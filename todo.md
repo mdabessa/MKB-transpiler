@@ -1,3 +1,10 @@
+Observations:
+- Before anything, The first task is to create a local documentation for the original language of the mod. All other tasks depend on the understanding of the mod's original language. 
+- The original language should be treated as a run-time language, so some hardcoded values will be inevitable, so it is very common to see things like usernames, passwords, and other sensitive information in the scripts. It should be find a workaround to avoid this, the transpiler can use a .env system to inject these values when transpiling, but because of it is common to share the .txt code, it still needs to available if there is a better way to handle this. In shared code, usually the sensitive information is replaced with placeholders, at the first lines of the script.
+
+
+Backlog:
+
 - [ ] Create a local documentation for the original language of the mod.
     Right now, it has only the [functions](./functions.json) mapping.
     There is some documentation in online wikis, but it is not complete and not always accurate and complete.
