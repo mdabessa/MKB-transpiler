@@ -1,0 +1,21 @@
+$${
+import commons.chest
+
+
+if(on)
+    toggle(on)
+    log("OFF!")
+elseif
+    toggle(on)
+    log("ON!")
+endif
+
+#iid = 261 
+
+do()
+    // até o final da mkb trap
+    withdraw_item("%#iid%","transferir")
+    wait(1t)
+    stock_item("%#iid%","guardar")
+loop
+}$$

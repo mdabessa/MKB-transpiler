@@ -1,0 +1,254 @@
+$${
+import commons.commons
+import commons.global
+import commons.chest
+
+
+// CONFIG
+&macro_name = "tool_support"
+// Numero de contas minerando
+#num_min = 2
+//home base do bau de minerios de esmeralda para repor, &home_min{num}
+&home_min = "rep_esmeralda"
+// home base do bau de esmeralda de mineracao, &home_sup{num}
+&home_sup = "sup_esmeralda"
+// Home da loja de esmeralda
+&shop = "loja_esmeralda"
+// Home estoque de minerios
+&home_ore = "estoque_esmeralda"
+// Id da esmeralda
+#iid = 388
+// Id do minerio de esmeralda
+#miid = 129
+
+toggle_macro(&macro_name);
+
+function count_items(#icount,#micount,#fcount,#ocount);
+	set(#icount,0)
+	set(#micount,0)
+	set(#fcount,0)
+	set(#ocount,0)
+
+	IF(%GUI%!="GUIINVENTORY");
+        GUI("INVENTORY");
+    ENDIF;
+
+    FOR(#slot,9,44);
+        GETSLOTITEM(%#slot%,#item_id);
+        // GETITEMINFO(%#item_id%,&item_name);
+
+        IF(%#item_id%==#iid)
+            INC(#icount);
+        ELSEIF(%#item_id%==#miid)
+            INC(#micount);
+        ELSEIF(%#item_id%==0)
+            INC(#fcount);
+        ELSE
+            INC(#ocount);
+        ENDIF;
+    NEXT;
+	GUI();
+endfunction;
+
+function start_inventory()
+	print("Verificando inventario inicial...")
+
+    IF(%GUI%!="GUIINVENTORY");
+        GUI("INVENTORY");
+    ENDIF;
+
+	count_items(#icount,#micount,#fcount,#ocount)
+
+    // Validar inventario
+    // 36 slots no total, 36 livres
+    if(#ocount > 0)
+    	GUI();
+		raise("&4Limpe seu inventario antes de iniciar a macro!")
+	endif
+
+	GUI();
+endfunction;
+
+
+function pick_up_items()
+	print("Coletando esmeraldas...")
+	unset(#baus[])
+	#baus[0] = 312;
+	#baus[1] = 335;
+	#baus[2] = 5;
+	#baus[3] = 33;
+	#baus[4] = 53;
+
+	// ciclar até encher o inventario
+	FOREACH(#baus[],#bau);
+		is_inventory_full = false
+
+		look("91", "%#bau%")
+		wait(1t)
+
+		if((%HITID% != 54) && (%HITID% != 146))
+	    	raise("Sem baus / Trap incompleta")
+	    endif
+
+	    key("use")
+	    wait(20t)
+    	
+    	GETSLOTITEM("0",#item_id_)
+    	// bau tem item
+    	if(#item_id_ != 0)
+	    	FOR(#slot,0,53)
+	    		#slot_ = 53 - #slot
+	    		GETSLOTITEM(%#slot_%,#item_id_)
+		        //GETITEMINFO(%#item_id_%,&item_name);
+
+		        if(#iid == #item_id_)
+		            SLOTCLICK(%#slot_%,L,TRUE);
+		            WAIT(1t);               
+		        endif
+
+	    		GETSLOTITEM(%#slot_%,#item_id_)
+		        if(#item_id_ != 0)
+		            is_inventory_full = true
+		            break
+		        endif
+		    next
+		endif
+
+	    gui()
+
+	    if(is_inventory_full)
+	    	break
+	    endif
+	next;
+endfunction;
+
+
+function sell_items()
+	print("Vendendo esmeraldas na home &3%&shop%")
+	go_home("%&shop%")
+	wait(20t)
+
+	do()
+		key("attack")
+		wait(10t)
+
+		IF(%GUI%!="GUIINVENTORY");
+            GUI(INVENTORY);
+        ENDIF;
+
+        sold = true
+
+        FOR(#slot,9, 44);
+            GETSLOTITEM(%#slot%,#item_id);
+            GETITEMINFO(%#item_id%,&item_name);
+            
+            IF(%#item_id%==#iid)
+            	sold = false;
+            	break;
+            ENDIF;
+        NEXT;
+
+        GUI();
+
+	    IF(sold)
+	     	break;
+	    endif
+	loop
+endfunction;
+
+
+function fill_ores();
+	print("Enchendo baus de minerios das mineradoras...")
+	unset(#chests[])
+	//#chests[0] = 312;
+	//#chests[1] = 335;
+	//#chests[2] = 5;
+	//#chests[3] = 33;
+	#chests[0] = 53;
+
+	FOREACH(#chests[],#chest);
+		is_chest_full = false
+
+	    look("181","%#chest%")
+	    wait(1t)
+
+	    if((%HITID% != 54) && (%HITID% != 146))
+	    	raise("Sem baus / Trap incompleta")
+	    endif
+
+	    key("use")
+	    wait(10t)
+    	
+    	FOR(#slot,54,89)
+	        GETSLOTITEM(%#slot%,#item_id_);
+
+	        if(#miid == #item_id_)
+	            SLOTCLICK(%#slot%,L,TRUE);
+	            WAIT(1t);
+	        endif
+	    next
+       	
+       	GETSLOTITEM("53",#last_chest_slot)
+        GETSLOTITEM("0",#first_chest_slot)
+
+        if((#last_chest_slot != 0) && (#first_chest_slot != 0))
+            is_chest_full = true
+            break
+        endif
+		
+		gui()
+        WAIT(1t);
+
+		// bau não está cheio e não tem mais itens para guardar
+	    if(!is_chest_full)
+	    	break;
+	    else;
+	    	print("Bau cheio")
+	    endif;
+    next;
+endfunction;
+
+function pick_up_ores(#max);
+	print("Coletando minerios de esmeralda...")
+	withdraw_item(#miid,"%&home_ore%","%#max%",false,false,false)
+endfunction;
+
+start_inventory()
+
+go_home("%&shop%")
+wait(20t)
+command("/esconder")
+wait(20t)
+command("/menuloja off")
+wait(20t)
+
+do()
+	for(#ind,1,"%#num_min%");
+		count_items(#icount,#micount,#fcount,#ocount)
+		if(#ocount > 0)
+			raise("Inventario com itens invalidos")
+		endif;
+
+		if(#icount > 18)
+			sell_items()
+		endif;
+		
+		if(#micount < 9)
+			#ores = 9 - #micount
+			pick_up_ores(#ores)
+		endif;
+
+
+		go_home("%&home_sup%%#ind%")
+		wait(20t)
+		pick_up_items()
+		wait(10t)
+
+		go_home("%&home_min%%#ind%")
+		wait(20t)
+		fill_ores()
+		wait(10t)
+	next;
+	wait(200t);
+loop
+}$$

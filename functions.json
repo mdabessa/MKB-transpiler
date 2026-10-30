@@ -1,0 +1,1284 @@
+{
+    "CALCYAWTO": {
+        "category": "Calculations",
+        "name": "CALCYAWTO",
+        "definition": "CALCYAWTO(<xpos>,<zpos>,[#yaw],[#distance])",
+        "varnames": [
+            "<xpos>",
+            "<zpos>",
+            "[#yaw]",
+            "[#distance]"
+        ],
+        "description": "\"Calculates the absolute yaw angle and optionally the distance to the specified",
+        "close": []
+    },
+    "DECODE": {
+        "category": "Calculations",
+        "name": "DECODE",
+        "definition": "DECODE(<input>,[&output])",
+        "varnames": [
+            "<input>",
+            "[&output]"
+        ],
+        "description": "Converts an string from base64 back to an normal string.",
+        "close": []
+    },
+    "GETID": {
+        "category": "Calculations",
+        "name": "GETID",
+        "definition": "GETID(<x>,<y>,<z>,[&idvar],[#datavar])",
+        "varnames": [
+            "<x>",
+            "<y>",
+            "<z>",
+            "[&idvar]",
+            "[#datavar]"
+        ],
+        "description": "\"Gets the ID and optionally the data value of the block at the specified coordinates",
+        "close": []
+    },
+    "GETIDREL": {
+        "category": "Calculations",
+        "name": "GETIDREL",
+        "definition": "GETIDREL(<xoffset>,<yoffset>,<zoffset>,[&idvar],[#datavar])",
+        "varnames": [
+            "<xoffset>",
+            "<yoffset>",
+            "<zoffset>",
+            "[&idvar]",
+            "[#datavar]"
+        ],
+        "description": "\"Gets the ID and optionally the data value of the block at the specified coordinates",
+        "close": []
+    },
+    "GETITEMINFO": {
+        "category": "Calculations",
+        "name": "GETITEMINFO",
+        "definition": "GETITEMINFO(<item[:damage]>,[&namevar],[#maxstacksize],[&type],[&dropid])",
+        "varnames": [
+            "<item[:damage]>",
+            "[&namevar]",
+            "[#maxstacksize]",
+            "[&type]",
+            "[&dropid]"
+        ],
+        "description": "Gets the name and other info for the specified item id",
+        "close": []
+    },
+    "LCASE": {
+        "category": "Calculations",
+        "name": "LCASE",
+        "definition": "LCASE(<input>,[&output])",
+        "varnames": [
+            "<input>",
+            "[&output]"
+        ],
+        "description": "Converts the input string to lower case and stores it in output.",
+        "close": []
+    },
+    "MATCH": {
+        "category": "Calculations",
+        "name": "MATCH",
+        "definition": "MATCH(<subject>,<pattern>,[&target],[group],[default])",
+        "varnames": [
+            "<subject>",
+            "<pattern>",
+            "[&target]",
+            "[group]",
+            "[default]"
+        ],
+        "description": "Runs a regular expression match on the <subject> and puts the result in<&target>.",
+        "close": []
+    },
+    "RANDOM": {
+        "category": "Calculations",
+        "name": "RANDOM",
+        "definition": "RANDOM(<#target>,[max],[min])",
+        "varnames": [
+            "<#target>",
+            "[max]",
+            "[min]"
+        ],
+        "description": "Assigns a random number between min and max to target.",
+        "close": []
+    },
+    "REGEXREPLACE": {
+        "category": "Calculations",
+        "name": "REGEXREPLACE",
+        "definition": "REGEXREPLACE(<&subject>,<pattern>,[replace])",
+        "varnames": [
+            "<&subject>",
+            "<pattern>",
+            "[replace]"
+        ],
+        "description": "Replace all matches of <pattern> with [replace] in <&subject>.",
+        "close": []
+    },
+    "REPLACE": {
+        "category": "Calculations",
+        "name": "REPLACE",
+        "definition": "REPLACE(<&subject>,<search>,[replace])",
+        "varnames": [
+            "<&subject>",
+            "<search>",
+            "[replace]"
+        ],
+        "description": "Replace all occurrences of <search> with [replace] in <&subject>.",
+        "close": []
+    },
+    "SQRT": {
+        "category": "Calculations",
+        "name": "SQRT",
+        "definition": "SQRT(<value>,[#outvar])",
+        "varnames": [
+            "<value>",
+            "[#outvar]"
+        ],
+        "description": "Calculate the rounded square root of <value> and store it in <#outvar>.",
+        "close": []
+    },
+    "STRIP": {
+        "category": "Calculations",
+        "name": "STRIP",
+        "definition": "STRIP(<&target>,<text>)",
+        "varnames": [
+            "<&target>",
+            "<text>"
+        ],
+        "description": "Strips all formatting codes from the specified <text> and assigns the result to<&target>.",
+        "close": []
+    },
+    "TIME": {
+        "category": "Calculations",
+        "name": "TIME",
+        "definition": "TIME(<&target>,[format])",
+        "varnames": [
+            "<&target>",
+            "[format]"
+        ],
+        "description": "Stores the current time and date into &target, optionally using format specified.",
+        "close": []
+    },
+    "TRACE": {
+        "category": "Calculations",
+        "name": "TRACE",
+        "definition": "TRACE(<distance>,[entities])",
+        "varnames": [
+            "<distance>",
+            "[entities]"
+        ],
+        "description": "Performs a ray trace operation which sets the raytrace variables in the local scope.",
+        "close": []
+    },
+    "UCASE": {
+        "category": "Calculations",
+        "name": "UCASE",
+        "definition": "UCASE(<input>,[&output])",
+        "varnames": [
+            "<input>",
+            "[&output]"
+        ],
+        "description": "Converts the input string to upper case and stores it in output.",
+        "close": []
+    },
+    "ENCODE": {
+        "category": "Calculations",
+        "name": "ENCODE",
+        "definition": "ENCODE(<input>,[&output])",
+        "varnames": [
+            "<input>",
+            "[&output]"
+        ],
+        "description": "Converts an string to base 64.",
+        "close": []
+    },
+    "BREAK": {
+        "category": "Control Flow",
+        "name": "BREAK",
+        "definition": "BREAK",
+        "varnames": [],
+        "description": "Interrupts exection of the innermost loop.",
+        "close": []
+    },
+    "DO": {
+        "category": "Control Flow",
+        "name": "DO",
+        "definition": "DO([count])",
+        "varnames": [
+            "[count]"
+        ],
+        "description": "Begins a loop.",
+        "close": ["LOOP"]
+    },
+    "ELSE": {
+        "category": "Control Flow",
+        "name": "ELSE",
+        "definition": "ELSE",
+        "varnames": [],
+        "description": "The actions following this action will only be executed if no if-clause beforeevaluated to true.",
+        "close": ["ENDIF", "ELSEIF"]
+    },
+    "ELSEIF": {
+        "category": "Control Flow",
+        "name": "ELSEIF",
+        "definition": "ELSEIF(<condition>)",
+        "varnames": [
+            "<condition>"
+        ],
+        "description": "The actions following this action will only be executed when the <condition>evaluates to true and no if-clause before evaluated to true.",
+        "close": ["ENDIF", "ELSEIF", "ELSE"]
+    },
+    "FOR": {
+        "category": "Control Flow",
+        "name": "FOR",
+        "definition": "FOR(<#var>,<start>,<end>,[step])",
+        "varnames": [
+            "<#var>",
+            "<start>",
+            "<end>",
+            "[step]"
+        ],
+        "description": "Begins a for loop using the specified var as a loop counter. Needs to be closed withNEXT.",
+        "close": ["NEXT"]
+    },
+    "FOREACH": {
+        "category": "Control Flow",
+        "name": "FOREACH",
+        "definition": "FOREACH(<iterator>)",
+        "varnames": [
+            "<iterator>"
+        ],
+        "description": "Runs a loop over the specified iterator. Needs to be closed with NEXT.",
+        "close": ["NEXT"]
+    },
+    "IF": {
+        "category": "Control Flow",
+        "name": "IF",
+        "definition": "IF(<condition>)",
+        "varnames": [
+            "<condition>"
+        ],
+        "description": "The actions following this action will only be executed when the <condition>evaluates to true.",
+        "close": ["ENDIF", "ELSEIF", "ELSE"]
+    },
+    "IFBEGINSWITH": {
+        "category": "Control Flow",
+        "name": "IFBEGINSWITH",
+        "definition": "IFBEGINSWITH(<haystack>,<needle>)",
+        "varnames": [
+            "<haystack>",
+            "<needle>"
+        ],
+        "description": "The actions following this action will only be executed when the <haystack>starts with <needle>.",
+        "close": ["ENDIF", "ELSE"]
+    },
+    "IFCONTAINS": {
+        "category": "Control Flow",
+        "name": "IFCONTAINS",
+        "definition": "IFCONTAINS(<haystack>,<needle>)",
+        "varnames": [
+            "<haystack>",
+            "<needle>"
+        ],
+        "description": "The actions following this action will only be executed when the <haystack>starts with <needle>.",
+        "close": ["ENDIF", "ELSE"]
+    },
+    "IFENDSWITH": {
+        "category": "Control Flow",
+        "name": "IFENDSWITH",
+        "definition": "IFENDSWITH(<haystack>,<needle>)",
+        "varnames": [
+            "<haystack>",
+            "<needle>"
+        ],
+        "description": "The actions following this action will only be executed when the <haystack> endswith <needle>.",
+        "close": ["ENDIF", "ELSE"]
+    },
+    "IFMATCHES": {
+        "category": "Control Flow",
+        "name": "IFMATCHES",
+        "definition": "IFMATCHES(<subject>,<pattern>,[&target],[group])",
+        "varnames": [
+            "<subject>",
+            "<pattern>",
+            "[&target]",
+            "[group]"
+        ],
+        "description": "The actions following this action will only be executed when the <subject>matches the <pattern>.",
+        "close": ["ENDIF", "ELSE"]
+    },
+    "IIF": {
+        "category": "Control Flow",
+        "name": "IIF",
+        "definition": "IIF(<condition>,<truetext>,[falsetext])",
+        "varnames": [
+            "<condition>",
+            "<truetext>",
+            "[falsetext]"
+        ],
+        "description": "Inline IF statement.",
+        "close": []
+    },
+    "STOP": {
+        "category": "Control Flow",
+        "name": "STOP",
+        "definition": "STOP([id])",
+        "varnames": [
+            "[id]"
+        ],
+        "description": "Stops the current macro, or macros matching the specified ID",
+        "close": []
+    },
+    "UNSAFE": {
+        "category": "Control Flow",
+        "name": "UNSAFE",
+        "definition": "UNSAFE(<executions>)",
+        "varnames": [
+            "<executions>"
+        ],
+        "description": "Begins an UNSAFE block with maximum executions set to <executions>.",
+        "close": ["ENDUNSAFE"]
+    },
+    "ENDUNSAFE": {
+        "category": "Control Flow",
+        "name": "ENDUNSAFE",
+        "definition": "ENDUNSAFE",
+        "varnames": [
+            "<executions>"
+        ],
+        "description": "Ends an UNSAFE block.",
+        "close": []
+    },
+    "UNTIL": {
+        "category": "Control Flow",
+        "name": "UNTIL",
+        "definition": "UNTIL(<condition>)",
+        "varnames": [
+            "<condition>"
+        ],
+        "description": "Completes a loop started with DO but exits the loop if <condition> is met.",
+        "close": ["LOOP"]
+    },
+    "WAIT": {
+        "category": "Control Flow",
+        "name": "WAIT",
+        "definition": "WAIT(<time>)",
+        "varnames": [
+            "<time>"
+        ],
+        "description": "Pauses the script for the time (in seconds) specified, suffix ms for a wait inmilliseconds or t to wait in ticks.",
+        "close": []
+    },
+    "WHILE": {
+        "category": "Control Flow",
+        "name": "WHILE",
+        "definition": "WHILE(<condition>)",
+        "varnames": [
+            "<condition>"
+        ],
+        "description": "Completes a loop started with DO but exits the loop if <condition> is not met",
+        "close": ["LOOP"]
+    },
+    "ENDIF": {
+        "category": "Control Flow",
+        "name": "ENDIF",
+        "definition": "ENDIF",
+        "varnames": [],
+        "description": "Ends an IF block.",
+        "close": []
+    },
+    "LOOP": {
+        "category": "Control Flow",
+        "name": "LOOP",
+        "definition": "LOOP",
+        "varnames": [],
+        "description": "Ends a loop.",
+        "close": []
+    },
+    "NEXT": {
+        "category": "Control Flow",
+        "name": "NEXT",
+        "definition": "NEXT",
+        "varnames": [],
+        "description": "Ends a iteration of a loop.",
+        "close": []
+    },
+    "CLEARCHAT()": {
+        "category": "GUI",
+        "name": "CLEARCHAT()",
+        "definition": "CLEARCHAT()",
+        "varnames": [],
+        "description": "Clears all messages from the chat window",
+        "close": []
+    },
+    "CLEARCRAFTING()": {
+        "category": "GUI",
+        "name": "CLEARCRAFTING()",
+        "definition": "CLEARCRAFTING()",
+        "varnames": [],
+        "description": "Cancels any queued crafting jobs",
+        "close": []
+    },
+    "CRAFT": {
+        "category": "GUI",
+        "name": "CRAFT",
+        "definition": "CRAFT(<item[:damage]>,[amount],[throw],[verbose])",
+        "varnames": [
+            "<item[:damage]>",
+            "[amount]",
+            "[throw]",
+            "[verbose]"
+        ],
+        "description": "Queues an auto-crafting request",
+        "close": []
+    },
+    "CRAFTANDWAIT": {
+        "category": "GUI",
+        "name": "CRAFTANDWAIT",
+        "definition": "CRAFTANDWAIT(<item[:id]>,[amount],[throw],[verbose])",
+        "varnames": [
+            "<item[:id]>",
+            "[amount]",
+            "[throw]",
+            "[verbose]"
+        ],
+        "description": "Queues an auto-crafting request and waits for it to complete",
+        "close": []
+    },
+    "GETSLOT": {
+        "category": "GUI",
+        "name": "GETSLOT",
+        "definition": "GETSLOT(<item[:damage]>,<#idvar>,[startfromslotid])",
+        "varnames": [
+            "<item[:damage]>",
+            "<#idvar>",
+            "[startfromslotid]"
+        ],
+        "description": "Gets the id of the slot containing an item matching the specified item id",
+        "close": []
+    },
+    "GETSLOTITEM": {
+        "category": "GUI",
+        "name": "GETSLOTITEM",
+        "definition": "GETSLOTITEM(<slotid>,<&idvar>,[#stacksizevar],[#datavar])",
+        "varnames": [
+            "<slotid>",
+            "<&idvar>",
+            "[#stacksizevar]",
+            "[#datavar]"
+        ],
+        "description": "Gets information about the item in the specified slot",
+        "close": []
+    },
+    "GUI": {
+        "category": "GUI",
+        "name": "GUI",
+        "definition": "GUI([name])",
+        "varnames": [
+            "[name]"
+        ],
+        "description": "Show (or hide) a gui screen",
+        "close": []
+    },
+    "INVENTORYDOWN": {
+        "category": "GUI",
+        "name": "INVENTORYDOWN",
+        "definition": "INVENTORYDOWN([amount])",
+        "varnames": [
+            "[amount]"
+        ],
+        "description": "Scrolls the specified number of slots down through the hotbar",
+        "close": []
+    },
+    "INVENTORYUP": {
+        "category": "GUI",
+        "name": "INVENTORYUP",
+        "definition": "INVENTORYUP([amount])",
+        "varnames": [
+            "[amount]"
+        ],
+        "description": "Scrolls the specified number of slots up through the hotbar",
+        "close": []
+    },
+    "PICK": {
+        "category": "GUI",
+        "name": "PICK",
+        "definition": "PICK(<item[:damage]>,[item[:damage]],...)",
+        "varnames": [
+            "<item[:damage]>",
+            "[item[:damage]]",
+            "..."
+        ],
+        "description": "\"Selects the specified item id if it is on the hotbar, specify multiple items to pick in",
+        "close": []
+    },
+    "POPUPMESSAGE": {
+        "category": "GUI",
+        "name": "POPUPMESSAGE",
+        "definition": "POPUPMESSAGE(<message>,[animate])",
+        "varnames": [
+            "<message>",
+            "[animate]"
+        ],
+        "description": "Display a message in the area above the hotbar",
+        "close": []
+    },
+    "SETSLOTITEM": {
+        "category": "GUI",
+        "name": "SETSLOTITEM",
+        "definition": "SETSLOTITEM([item[:damage]],[slot],[amount])",
+        "varnames": [
+            "[item[:damage]]",
+            "[slot]",
+            "[amount]"
+        ],
+        "description": "Creative mode only, set the contents of a hot bar slot",
+        "close": []
+    },
+    "SLOT": {
+        "category": "GUI",
+        "name": "SLOT",
+        "definition": "SLOT(<slot>)",
+        "varnames": [
+            "<slot>"
+        ],
+        "description": "Selects the specified slot on the hot bar",
+        "close": []
+    },
+    "SLOTCLICK": {
+        "category": "GUI",
+        "name": "SLOTCLICK",
+        "definition": "SLOTCLICK(<slot>,[button],[shift])",
+        "varnames": [
+            "<slot>",
+            "[button]",
+            "[shift]"
+        ],
+        "description": "Simulates clicking on the specified slot in the current GUI",
+        "close": []
+    },
+    "TITLE": {
+        "category": "GUI",
+        "name": "TITLE",
+        "definition": "TITLE([title],[subtitle],[inticks],[showticks],[outticks])",
+        "varnames": [
+            "[title]",
+            "[subtitle]",
+            "[inticks]",
+            "[showticks]",
+            "[outticks]"
+        ],
+        "description": "Displays the specified custom title, call with no arguments to hide current titles",
+        "close": []
+    },
+    "TOAST": {
+        "category": "GUI",
+        "name": "TOAST",
+        "definition": "TOAST([type],[icon],[text1],[text2],[ticks])",
+        "varnames": [
+            "[type]",
+            "[icon]",
+            "[text1]",
+            "[text2]",
+            "[ticks]"
+        ],
+        "description": "Displays an user-defined toast.",
+        "close": []
+    },
+    "ECHO": {
+        "category": "Input",
+        "name": "ECHO",
+        "definition": "ECHO(<text>)",
+        "varnames": [
+            "<text>"
+        ],
+        "description": "Sends the specified message to the server",
+        "close": []
+    },
+    "KEY": {
+        "category": "Input",
+        "name": "KEY",
+        "definition": "KEY(<bind>)",
+        "varnames": [
+            "<bind>"
+        ],
+        "description": "Activates the specified key binding for 1 tick",
+        "close": []
+    },
+    "KEYDOWN": {
+        "category": "Input",
+        "name": "KEYDOWN",
+        "definition": "KEYDOWN(<bind>)",
+        "varnames": [
+            "<bind>"
+        ],
+        "description": "Sets the specified key binding state to pressed, only works with pressable bindings",
+        "close": []
+    },
+    "KEYUP": {
+        "category": "Input",
+        "name": "KEYUP",
+        "definition": "KEYUP(<bind>)",
+        "varnames": [
+            "<bind>"
+        ],
+        "description": "\"Sets the specified key binding state to unpressed, only works with pressable",
+        "close": []
+    },
+    "LOG": {
+        "category": "Input",
+        "name": "LOG",
+        "definition": "LOG(<text>)",
+        "varnames": [
+            "<text>"
+        ],
+        "description": "Shows the specified text only on the client-side in the chat window.",
+        "close": []
+    },
+    "LOGRAW": {
+        "category": "Input",
+        "name": "LOGRAW",
+        "definition": "LOGRAW(<json>)",
+        "varnames": [
+            "<json>"
+        ],
+        "description": "\"Similar to minecraft tellraw command, parses and outputs JSON chat into the",
+        "close": []
+    },
+    "PRESS": {
+        "category": "Input",
+        "name": "PRESS",
+        "definition": "PRESS(<lwjgl_name>)",
+        "varnames": [
+            "<lwjgl_name>"
+        ],
+        "description": "Injects the specified key event directly into the keyboard buffer for 1 tick",
+        "close": []
+    },
+    "SPRINT()": {
+        "category": "Input",
+        "name": "SPRINT()",
+        "definition": "SPRINT()",
+        "varnames": [],
+        "description": "Sets the player state to sprinting if sufficient stamina (food)",
+        "close": []
+    },
+    "TOGGLEKEY": {
+        "category": "Input",
+        "name": "TOGGLEKEY",
+        "definition": "TOGGLEKEY(<bind>)",
+        "varnames": [
+            "<bind>"
+        ],
+        "description": "\"Toggles the pressed state of the specified key binding, only works with pressable",
+        "close": []
+    },
+    "TYPE": {
+        "category": "Input",
+        "name": "TYPE",
+        "definition": "TYPE(<text>)",
+        "varnames": [
+            "<text>"
+        ],
+        "description": "\"Injects the specified key sequence directly into the keyboard buffer at a rate of 1",
+        "close": []
+    },
+    "UNSPRINT()": {
+        "category": "Input",
+        "name": "UNSPRINT()",
+        "definition": "UNSPRINT()",
+        "varnames": [],
+        "description": "Sets the player state to not sprinting",
+        "close": []
+    },
+    "BINDGUI": {
+        "category": "Mod related",
+        "name": "BINDGUI",
+        "definition": "BINDGUI(<slot>,<screen>)",
+        "varnames": [
+            "<slot>",
+            "<screen>"
+        ],
+        "description": "Binds the specified custom screen to the slot specified",
+        "close": []
+    },
+    "CHATFILTER": {
+        "category": "Mod related",
+        "name": "CHATFILTER",
+        "definition": "CHATFILTER(<enabled>)",
+        "varnames": [
+            "<enabled>"
+        ],
+        "description": "Enable or disable the chat filter",
+        "close": []
+    },
+    "CONFIG": {
+        "category": "Mod related",
+        "name": "CONFIG",
+        "definition": "CONFIG(<configname>)",
+        "varnames": [
+            "<configname>"
+        ],
+        "description": "Switch to the specified configuration",
+        "close": []
+    },
+    "EXEC": {
+        "category": "Mod related",
+        "name": "EXEC",
+        "definition": "EXEC(<file.txt>,[taskname],[params],...)",
+        "varnames": [
+            "<file.txt>",
+            "[taskname]",
+            "[params]",
+            "..."
+        ],
+        "description": "Creates a task by running the specified script file.",
+        "close": []
+    },
+    "FILTER": {
+        "category": "Mod related",
+        "name": "FILTER",
+        "definition": "FILTER",
+        "varnames": [],
+        "description": "Indicate that this chat meesage should be filtered and terminate",
+        "close": []
+    },
+    "GETPROPERTY": {
+        "category": "Mod related",
+        "name": "GETPROPERTY",
+        "definition": "GETPROPERTY(<control>,<property>)",
+        "varnames": [
+            "<control>",
+            "<property>"
+        ],
+        "description": "Returns the value of the specified property from the specified GUI control",
+        "close": []
+    },
+    "IMPORT": {
+        "category": "Mod related",
+        "name": "IMPORT",
+        "definition": "IMPORT(<configname>)",
+        "varnames": [
+            "<configname>"
+        ],
+        "description": "Overlay the specified configuration",
+        "close": []
+    },
+    "ISRUNNING": {
+        "category": "Mod related",
+        "name": "ISRUNNING",
+        "definition": "ISRUNNING(<macro>)",
+        "varnames": [
+            "<macro>"
+        ],
+        "description": "Returns whether the specified macro is currently running",
+        "close": []
+    },
+    "LOGTO": {
+        "category": "Mod related",
+        "name": "LOGTO",
+        "definition": "LOGTO(<target>,<text>)",
+        "varnames": [
+            "<target>",
+            "<text>"
+        ],
+        "description": "\"Outputs the specified text into the specified target, target can be a text file name or",
+        "close": []
+    },
+    "MODIFY": {
+        "category": "Mod related",
+        "name": "MODIFY",
+        "definition": "MODIFY(<newmessage>)",
+        "varnames": [
+            "<newmessage>"
+        ],
+        "description": "Set new content for this chat message",
+        "close": []
+    },
+    "PASS": {
+        "category": "Mod related",
+        "name": "PASS",
+        "definition": "PASS",
+        "varnames": [],
+        "description": "Indicate that this chat meesage should PASS the filter and terminate",
+        "close": []
+    },
+    "PROMPT": {
+        "category": "Mod related",
+        "name": "PROMPT",
+        "definition": "PROMPT(<&target>,<paramstring>,[prompt],[override],[default])",
+        "varnames": [
+            "<&target>",
+            "<paramstring>",
+            "[prompt]",
+            "[override]",
+            "[default]"
+        ],
+        "description": "Displays a prompt (or prompts) by parsing the params in paramstring.",
+        "close": []
+    },
+    "REPL": {
+        "category": "Mod related",
+        "name": "REPL",
+        "definition": "REPL",
+        "varnames": [],
+        "description": "Access the REPL interface.",
+        "close": []
+    },
+    "SETLABEL": {
+        "category": "Mod related",
+        "name": "SETLABEL",
+        "definition": "SETLABEL(<labelname>,<text>,[binding])",
+        "varnames": [
+            "<labelname>",
+            "<text>",
+            "[binding]"
+        ],
+        "description": "Sets the text (and optionally binding) of the specified label",
+        "close": []
+    },
+    "SETPROPERTY": {
+        "category": "Mod related",
+        "name": "SETPROPERTY",
+        "definition": "SETPROPERTY(<control>,<property>,<value>)",
+        "varnames": [
+            "<control>",
+            "<property>",
+            "<value>"
+        ],
+        "description": "Sets the value of the specified property on the specified GUI control",
+        "close": []
+    },
+    "SHOWGUI": {
+        "category": "Mod related",
+        "name": "SHOWGUI",
+        "definition": "SHOWGUI(<screen>,[esc_screen],[macro_keys])",
+        "varnames": [
+            "<screen>",
+            "[esc_screen]",
+            "[macro_keys]"
+        ],
+        "description": "Show a custom gui screen, creates it if it doesn\u00e2\u20ac\u2122t exist.",
+        "close": []
+    },
+    "STORE": {
+        "category": "Mod related",
+        "name": "STORE",
+        "definition": "STORE(<type>,[name])",
+        "varnames": [
+            "<type>",
+            "[name]"
+        ],
+        "description": "Stores a value into one of the predefined parameter lists",
+        "close": []
+    },
+    "STOREOVER": {
+        "category": "Mod related",
+        "name": "STOREOVER",
+        "definition": "STOREOVER(<type>,[name])",
+        "varnames": [
+            "<type>",
+            "[name]"
+        ],
+        "description": "\"Stores a value into one of the predefined parameter lists and overwrites an entry if",
+        "close": []
+    },
+    "UNIMPORT()": {
+        "category": "Mod related",
+        "name": "UNIMPORT()",
+        "definition": "UNIMPORT()",
+        "varnames": [],
+        "description": "Remove the specified configuration overlay if active",
+        "close": []
+    },
+    "BIND": {
+        "category": "Settings",
+        "name": "BIND",
+        "definition": "BIND(<bind>,<keycode>)",
+        "varnames": [
+            "<bind>",
+            "<keycode>"
+        ],
+        "description": "Set the specified key binding to the specified key code",
+        "close": []
+    },
+    "CAMERA": {
+        "category": "Settings",
+        "name": "CAMERA",
+        "definition": "CAMERA([mode])",
+        "varnames": [
+            "[mode]"
+        ],
+        "description": "Set the current camera mode, call with no arguments to toggle modes",
+        "close": []
+    },
+    "CHATHEIGHT": {
+        "category": "Settings",
+        "name": "CHATHEIGHT",
+        "definition": "CHATHEIGHT(<value>,[time])",
+        "varnames": [
+            "<value>",
+            "[time]"
+        ],
+        "description": "Set height of the Minecraft chat whilst ingame.",
+        "close": []
+    },
+    "CHATHEIGHTFOCUSED": {
+        "category": "Settings",
+        "name": "CHATHEIGHTFOCUSED",
+        "definition": "CHATHEIGHTFOCUSED(<value>,[time])",
+        "varnames": [
+            "<value>",
+            "[time]"
+        ],
+        "description": "Set height of the Minecraft chat whilst in the chat GUI.",
+        "close": []
+    },
+    "CHATOPACITY": {
+        "category": "Settings",
+        "name": "CHATOPACITY",
+        "definition": "CHATOPACITY(<value>,[time])",
+        "varnames": [
+            "<value>",
+            "[time]"
+        ],
+        "description": "Set opacity of the Minecraft chat.",
+        "close": []
+    },
+    "CHATSCALE": {
+        "category": "Settings",
+        "name": "CHATSCALE",
+        "definition": "CHATSCALE(<value>,[time])",
+        "varnames": [
+            "<value>",
+            "[time]"
+        ],
+        "description": "Set scale of the Minecraft chat.",
+        "close": []
+    },
+    "CHATVISIBLE": {
+        "category": "Settings",
+        "name": "CHATVISIBLE",
+        "definition": "CHATVISIBLE(<value>)",
+        "varnames": [
+            "<value>"
+        ],
+        "description": "Set visibility of minecraft chat.",
+        "close": []
+    },
+    "CHATWIDTH": {
+        "category": "Settings",
+        "name": "CHATWIDTH",
+        "definition": "CHATWIDTH(<value>,[time])",
+        "varnames": [
+            "<value>",
+            "[time]"
+        ],
+        "description": "Set width of the Minecraft chat.",
+        "close": []
+    },
+    "FOG": {
+        "category": "Settings",
+        "name": "FOG",
+        "definition": "FOG([value])",
+        "varnames": [
+            "[value]"
+        ],
+        "description": "Toggles render distance, or optionally specify render distance",
+        "close": []
+    },
+    "FOV": {
+        "category": "Settings",
+        "name": "FOV",
+        "definition": "FOV(<value>,[time])",
+        "varnames": [
+            "<value>",
+            "[time]"
+        ],
+        "description": "\"Sets the FOV angle in degrees, specifying time causes the value to change",
+        "close": []
+    },
+    "GAMMA": {
+        "category": "Settings",
+        "name": "GAMMA",
+        "definition": "GAMMA(<value>,[time])",
+        "varnames": [
+            "<value>",
+            "[time]"
+        ],
+        "description": "\"Sets the brightness value (percent), specifying time causes the value to change",
+        "close": []
+    },
+    "LOOK": {
+        "category": "Settings",
+        "name": "LOOK",
+        "definition": "LOOK(<yaw>,[pitch],[time])",
+        "varnames": [
+            "<yaw>",
+            "[pitch]",
+            "[time]"
+        ],
+        "description": "\"Faces the player in the specified direction, prefix angles with + or - for relative",
+        "close": []
+    },
+    "LOOKS": {
+        "category": "Settings",
+        "name": "LOOKS",
+        "definition": "LOOKS(<yaw>,[pitch],[time])",
+        "varnames": [
+            "<yaw>",
+            "[pitch]",
+            "[time]"
+        ],
+        "description": "\"Smoothly turnes the player to the specified direction, prefix angles with + or - for",
+        "close": []
+    },
+    "MUSIC": {
+        "category": "Settings",
+        "name": "MUSIC",
+        "definition": "MUSIC(<value>,[time])",
+        "varnames": [
+            "<value>",
+            "[time]"
+        ],
+        "description": "Sets the music volume, specifying time causes the value to change smoothly.",
+        "close": []
+    },
+    "RELOADRESOURCES": {
+        "category": "Settings",
+        "name": "RELOADRESOURCES",
+        "definition": "RELOADRESOURCES",
+        "varnames": [],
+        "description": "Reloads resource packs, same as pressing F3 + T",
+        "close": []
+    },
+    "RESOURCEPACKS": {
+        "category": "Settings",
+        "name": "RESOURCEPACKS",
+        "definition": "RESOURCEPACKS([pattern],[pattern...])",
+        "varnames": [
+            "[pattern]",
+            "[pattern...]"
+        ],
+        "description": "Sets the resource pack stack to the order matching the specified patterns",
+        "close": []
+    },
+    "SENSITIVITY": {
+        "category": "Settings",
+        "name": "SENSITIVITY",
+        "definition": "SENSITIVITY(<value>,[time])",
+        "varnames": [
+            "<value>",
+            "[time]"
+        ],
+        "description": "Sets the mouse sensitivity, specifying time causes the value to change smoothly.",
+        "close": []
+    },
+    "SETRES": {
+        "category": "Settings",
+        "name": "SETRES",
+        "definition": "SETRES(<width>,<height>)",
+        "varnames": [
+            "<width>",
+            "<height>"
+        ],
+        "description": "Sets the size of the minecraft game window.",
+        "close": []
+    },
+    "SHADERGROUP": {
+        "category": "Settings",
+        "name": "SHADERGROUP",
+        "definition": "SHADERGROUP([path])",
+        "varnames": [
+            "[path]"
+        ],
+        "description": "Sets the active shader group to the shader matching path",
+        "close": []
+    },
+    "VOLUME": {
+        "category": "Settings",
+        "name": "VOLUME",
+        "definition": "VOLUME(<value>,[category])",
+        "varnames": [
+            "<value>",
+            "[category]"
+        ],
+        "description": "Sets the sound volume for the specified category.",
+        "close": []
+    },
+    "ARRAYSIZE": {
+        "category": "Variables",
+        "name": "ARRAYSIZE",
+        "definition": "ARRAYSIZE(<array[]>,[#outvar])",
+        "varnames": [
+            "<array[]>",
+            "[#outvar]"
+        ],
+        "description": "Stores the size of the specified <array[]> in [#outvar].",
+        "close": []
+    },
+    "DEC": {
+        "category": "Variables",
+        "name": "DEC",
+        "definition": "DEC(<#var>,[amount])",
+        "varnames": [
+            "<#var>",
+            "[amount]"
+        ],
+        "description": "Decrements the specified counter by 1 or by the specified amount",
+        "close": []
+    },
+    "INC": {
+        "category": "Variables",
+        "name": "INC",
+        "definition": "INC(<#var>,[amount])",
+        "varnames": [
+            "<#var>",
+            "[amount]"
+        ],
+        "description": "Increments the specified counter by 1 or by the specified amount",
+        "close": []
+    },
+    "INDEXOF": {
+        "category": "Variables",
+        "name": "INDEXOF",
+        "definition": "INDEXOF(<array[]>,<#outvar>,<searchfor>,[casesensitiv])",
+        "varnames": [
+            "<array[]>",
+            "<#outvar>",
+            "<searchfor>",
+            "[casesensitiv]"
+        ],
+        "description": "Gets the first index of <searchfor> in <array[]> and stores it in <#outvar>.",
+        "close": []
+    },
+    "JOIN": {
+        "category": "Variables",
+        "name": "JOIN",
+        "definition": "JOIN(<glue>,<array[]>,[&output])",
+        "varnames": [
+            "<glue>",
+            "<array[]>",
+            "[&output]"
+        ],
+        "description": "Combines all values inside <array[]> with <glue> and stores it optionally in[&output].",
+        "close": []
+    },
+    "POP": {
+        "category": "Variables",
+        "name": "POP",
+        "definition": "POP(<array[]>,<outvar>)",
+        "varnames": [
+            "<array[]>",
+            "<outvar>"
+        ],
+        "description": "Removes the last entry from the end of <array[]> and stores it in <outvar>.",
+        "close": []
+    },
+    "PUSH": {
+        "category": "Variables",
+        "name": "PUSH",
+        "definition": "PUSH(<array[]>,<value>)",
+        "varnames": [
+            "<array[]>",
+            "<value>"
+        ],
+        "description": "Appends <value> to the end of <array[]>",
+        "close": []
+    },
+    "PUT": {
+        "category": "Variables",
+        "name": "PUT",
+        "definition": "PUT(<array[]>,<value>)",
+        "varnames": [
+            "<array[]>",
+            "<value>"
+        ],
+        "description": "Inserts <value> at the first empty point in <array[]>.",
+        "close": []
+    },
+    "SET": {
+        "category": "Variables",
+        "name": "SET",
+        "definition": "SET(<target>,[value])",
+        "varnames": [
+            "<target>",
+            "[value]"
+        ],
+        "description": "Sets the value of <target> to [value].",
+        "close": []
+    },
+    "SPLIT": {
+        "category": "Variables",
+        "name": "SPLIT",
+        "definition": "SPLIT(<delimiter>,<source>,[output[]])",
+        "varnames": [
+            "<delimiter>",
+            "<source>",
+            "[output[]]"
+        ],
+        "description": "Splits the supplied <source> string on every <delimiter> into <output[]>.",
+        "close": []
+    },
+    "TOGGLE": {
+        "category": "Variables",
+        "name": "TOGGLE",
+        "definition": "TOGGLE([flag])",
+        "varnames": [
+            "[flag]"
+        ],
+        "description": "Toggles the specified boolean [flag] value",
+        "close": []
+    },
+    "UNSET": {
+        "category": "Variables",
+        "name": "UNSET",
+        "definition": "UNSET(<flag>)",
+        "varnames": [
+            "<flag>"
+        ],
+        "description": "Un-sets the specified <flag> variable.",
+        "close": []
+    },
+    "DISCONNECT()": {
+        "category": "World",
+        "name": "DISCONNECT()",
+        "definition": "DISCONNECT()",
+        "varnames": [],
+        "description": "Disconnects from the current game or server",
+        "close": []
+    },
+    "PLACESIGN": {
+        "category": "World",
+        "name": "PLACESIGN",
+        "definition": "PLACESIGN([line1],[line2],[line3],[line4],[showgui])",
+        "varnames": [
+            "[line1]",
+            "[line2]",
+            "[line3]",
+            "[line4]",
+            "[showgui]"
+        ],
+        "description": "Places a sign in the world with the specified text (if you have one)",
+        "close": []
+    },
+    "PLAYSOUND": {
+        "category": "World",
+        "name": "PLAYSOUND",
+        "definition": "PLAYSOUND(<sound>,[volume])",
+        "varnames": [
+            "<sound>",
+            "[volume]"
+        ],
+        "description": "Plays the specified sound.",
+        "close": []
+    },
+    "RESPAWN()": {
+        "category": "World",
+        "name": "RESPAWN()",
+        "definition": "RESPAWN()",
+        "varnames": [],
+        "description": "Respawns the player if you are dead",
+        "close": []
+    }
+}

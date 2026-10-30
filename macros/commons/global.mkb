@@ -1,0 +1,58 @@
+$${
+import commons.commons
+
+function toggle_macro(&macro_name,stop_macro=true);
+ 	indexof(@&macros[],#index,"%&macro_name%");
+	//log("%@#macro_count%")
+	if(#index > -1)
+		// remover macro_name da lista macros
+		unset(&temp_array[])
+		foreach(@&macros[],&macro);
+			if(&macro_name != &macro)
+				push(&temp_array[],&macro)
+			endif
+		next;
+
+		unset(@&macros[]);
+		foreach(&temp_array[],&value);
+			push(@&macros[],&value)
+		next;
+
+	    print("Macro &3%&macro_name% &f- &4OFF!")
+		keyup("forward")
+		if(stop_macro)
+	    	stop()
+	    endif;
+	else
+	    push(@&macros[],"%&macro_name%")
+	    print("Macro &3%&macro_name% &f- &2ON!")
+	endif
+endfunction;
+
+
+function reload();
+	// religar todos os macros
+	unset(&temp_array[])
+	foreach(@&macros[],&macro);
+		if(&macro_name != &macro)
+			push(&temp_array[],"%&macro%")
+		endif
+	next;
+
+	foreach(&temp_array[],&value);
+		// executar todos os macros que estariam ativos, garantindo que
+		// independentemente se estiver rodando ou não, o macro ira desligar
+		print("Macro &3%&value% &fdesligando...")
+		toggle_macro("%&value%",false)
+		wait(5t)
+
+		// religar a macro
+		// arquivo exec_<macro>.txt, versão exec da macro <macro>.txt
+		// gerada automaticamente pelo transpiler
+		&macro = "exec_%&value%"
+		print("Macro &3%&value% &fligando...")
+		exec("%&macro%.txt","%&macro%");
+		print("Macro &3%&value% &freativado!")
+	next;
+endfunction;
+}$$

@@ -1,0 +1,161 @@
+$${
+// Macro para farmar esqueletos
+import commons.commons
+import commons.chest
+import commons.global
+
+toggle_macro("esqueleto");
+
+&home_trap = "esqueleto"
+&home_loja = "loja_esqueleto"
+
+PROMPT(repair,"$$?","Reparar espada? ",);
+PROMPT(#delay,"$$?","Digite o delay do ataque (em ticks): ");
+PROMPT(arcos,"$$?","Guardar arcos? (home bau_inf)",);
+
+if(#delay == 0)
+    SET(#delay, 20)
+elseif(#delay < 0)
+    SET(#delay, 0)
+endif
+
+log("&6Iniciando macro [reparar: &5%repair%&6] [delay: &5%#delay%&6] [arcos: &5%arcos%&6]");
+go_home("%&home_trap%")
+
+#tick_elapsed = 0
+#timetick = %TICKS%
+#last_inv_check = 0
+#sword_slot = 1
+slot(1)
+do()
+    // Atualiza o tempo 
+    #diff = %TICKS% - #timetick
+	if(#diff < 0)
+		SET(#diff, #diff + 24000)
+	endif
+	#tick_elapsed = #tick_elapsed + #diff
+	SET(#timetick, %TICKS%)
+
+    // Main code
+    if((%YAW% != 271) || (%PITCH% != 14))
+        looks("271","14")
+        wait(1t)
+    endif
+
+    key("attack")
+    wait(%#delay%t)
+
+    // Checar o inventario a cada 30 segundos
+    #diff_check = #tick_elapsed - #last_inv_check
+    if(#diff_check > 400)
+        // Checar inventário
+        LOG("&6Checando inventário...");
+        IF(%GUI%!="GUIINVENTORY");
+            GUI(INVENTORY);
+        ENDIF;
+
+        #slots_livres = 0
+
+        FOR(#slot,9, 44);
+            GETSLOTITEM(%#slot%,#item_id);
+            GETITEMINFO(%#item_id%,&item_name);
+            
+            //LOG("Slot: %#slot% - Item: %&item_name% (%#item_id%)");
+            // Flecha ou arco
+            IF(%#item_id%==0)
+                INC(#slots_livres);
+            ENDIF;
+
+            IF(%#item_id%==262);
+                //LOG("Dropando %&item_name% (%#item_id%)");
+                looks("271","48")
+                wait(1t);
+                SLOTCLICK(%#slot%,L,FALSE);
+                WAIT(100ms)
+                SLOTCLICK(-999);
+                WAIT(100ms)
+
+                INC(#slots_livres);
+            ENDIF;
+            IF((%#item_id%==261) && (!arcos))
+                looks("271","48")
+                wait(1t);
+                SLOTCLICK(%#slot%,L,FALSE);
+                WAIT(100ms)
+                SLOTCLICK(-999);
+                WAIT(100ms)
+
+                INC(#slots_livres);
+            endif
+
+        NEXT;
+        GUI();
+
+        IF(#slots_livres < 5)
+            log("&6Inventario cheio, &4vendendo!");
+            go_home("%&home_loja%")
+            wait(100ms);
+			// esconder os players
+			command("/esconder");
+			wait(500ms);
+            command("/menuloja off")
+			wait(500ms);
+			key("attack");
+			wait(500ms);
+			key("attack");
+
+            // Guardar arcos
+            if(arcos)
+                stock_item(261,"guardar")
+            endif
+
+			// retorna para o ponto de inicio
+            go_home("%&home_trap%")
+            slot(%#sword_slot%)
+            wait(1t);
+        ENDIF;
+
+        // Atualiza o tempo 
+        #diff = %TICKS% - #timetick
+        if(#diff < 0)
+            SET(#diff, #diff + 24000)
+        endif
+        #tick_elapsed = #tick_elapsed + #diff
+        SET(#timetick, %TICKS%)
+
+        #last_inv_check = #tick_elapsed
+    endif
+
+    // Checar espada
+    IF(%DURABILITY% < 50)
+        if(repair)
+            log("&6Espada com durabilidade baixa, reparando...");
+
+            looks(%YAW%,89)
+            wait(5t)
+            key("use")
+            wait(10t)
+            key("use")
+            wait(5t)
+            looks(%YAW%,16)
+            wait(5t)
+            if(%DURABILITY% < 20)
+                log("&4 Sem materiais para reparar, parando macro...");
+                toggle(on);
+                STOP();
+            endif
+        else
+            INC(#sword_slot)
+            log("&6Espada com durabilidade baixa, proxima espada: %#sword_slot%");
+            SLOT(%#sword_slot%)
+            wait(1000ms)
+            if(#sword_slot > 9)
+                LOG("&4Espadas com durabilidade baixa, parando macro...");
+                toggle(on);
+                STOP();
+            endif
+        endif
+    ENDIF;
+loop
+
+}$$

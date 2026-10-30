@@ -1,0 +1,67 @@
+$${
+function print(&text);
+    log("&f[&5 MACRO &f] %&text%")
+endfunction;
+
+function warning(&text);
+    log("&f[&6 MACRO - AVISO &f] %&text%")
+endfunction;
+
+function raise(&text);
+    log("&f[&4 MACRO - ERRO &f] %&text%")
+    stop();
+endfunction;
+
+function command(&command_cmd);
+	print("Comando: &3%&command_cmd%")
+	echo("%&command_cmd%");
+	wait(1t)
+endfunction;
+
+function go_home(&gohome_home);
+    #gohome_x = %XPOS%
+    #gohome_y = %YPOS%
+    #gohome_z = %ZPOS%
+
+    command("/home %&gohome_home%");
+
+    // aguardar o teleporte, maximo 100 ticks (5 segundos)
+    DO(100)
+        IF((%XPOS% != #gohome_x) || (%YPOS% != #gohome_y) || (%ZPOS% != #gohome_z))
+            BREAK
+        ENDIF
+        wait(1t)
+    LOOP
+    // #todo: verificar se o teleporte foi bem sucedido
+    #pitch = %PITCH%
+    // Yaw é invertido
+    #yaw = %YAW% - 180
+    if(#yaw < 0)
+      #yaw = 360 + #yaw
+    elseif(#yaw > 360)
+      #yaw = #yaw - 360
+    endif
+
+    wait(1t)
+
+    // aguardar carregar o mundo
+    do();
+        look("355","90")
+        wait(100ms);
+        if(%HITID% != 0)
+            BREAK
+        ENDIF
+    loop()
+    wait(10t)
+    look("%#yaw%","%#pitch%")
+    wait(1t)
+endfunction;
+
+function set_home(&sethome_home);
+    command("/sethome %&sethome_home%");
+    wait(500ms);
+    // confirmar
+    command("/sethome %&sethome_home%");
+    wait(500ms);
+endfunction;
+}$$

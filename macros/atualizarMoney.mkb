@@ -1,0 +1,26 @@
+$${
+import commons.global
+// atualizar o money de tempo em tempo
+
+toggle_macro("atualizarMoney");
+
+#max_money = 260000
+do()
+	echo("/money")
+
+
+	// Caso bot mode enviar money para a conta principal
+	if((@bot_mode) && (%PLAYER% != @&main_nickname))
+		wait(1000ms)
+		#mon = @#money - #max_money
+		if(#mon > 500)
+			echo("/money pay %@&main_nickname% %#mon%");
+			wait(1000ms)
+			echo("/money pay %@&main_nickname% %#mon%");
+			wait(500ms)
+		endif;	
+	endif
+	wait(300000ms)
+loop
+
+}$$

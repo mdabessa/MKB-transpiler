@@ -1,0 +1,18 @@
+$${
+#pitch = %PITCH%
+// Yaw é invertido
+#yaw = %YAW% - 180
+if(#yaw < 0)
+  #yaw = 360 + #yaw
+elseif(#yaw > 360)
+  #yaw = #yaw - 360
+endif
+log("YAW: %YAW% | PITCH: %PITCH%")
+// aguardar carregar o mundo
+wait(20t)
+look("%#yaw%","%#pitch%")
+wait(1t)
+log("YAW: %YAW% | PITCH: %PITCH%")
+log("YAW: %#yaw% | PITCH: %#pitch%")
+
+}$$
