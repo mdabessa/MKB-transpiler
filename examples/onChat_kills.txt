@@ -1,0 +1,57 @@
+https://forum.craftlandia.com.br/xf/threads/macro-historico-de-kills-na-tela-onchat.1007478/#post-8810565
+
+
+$${
+ifmatches("%CHATCLEAN%","^\[CraftLandia\] Voc. matou: ([\w-\[\] ]+)",&kill,1);
+    // LABEL NECESS�RIA: 
+    // --> Criar label com nome "KillMexicana"
+    // --> Eu recomendaria fazer isso na janela "ingame"
+
+    // COMANDOS:
+    // --> "resetar kills" : limpa a lista de kills;
+    // --> "ocultar kills" : oculta a lista de kills;
+    // --> "mostrar kills" : mostra a lista de kills;
+
+    ifmatches("%@&lista_de_kills_mexicana_limpa%","\[(\d+)] [\[\] \w-]+$",#indice,1);
+        inc(#indice);
+        set(@&lista_de_kills_mexicana,"%@&lista_de_kills_mexicana%\n�4�l[�c�l%#indice%�4�l] �6�l%&kill%");
+    else;
+        #indice = 1;
+        unset(@&lista_de_kills_mexicana);
+        unset(@&lista_de_kills_mexicana_limpa);
+        set(@&lista_de_kills_mexicana,"�c�lKill Count\n�4�l[�c�l%#indice%�4�l] �6�l%&kill%");
+    endif;
+    strip(@&lista_de_kills_mexicana_limpa,"%@&lista_de_kills_mexicana%");
+    setlabel("KillMexicana","%@&lista_de_kills_mexicana%");
+    setproperty("KillMexicana","align","centre");
+    setproperty("KillMexicana","background","00000000");
+endif;
+ifmatches("%CHATCLEAN%","^\[L][^:]+ %PLAYER%(?: \[\w+\])*: (resetar|ocultar|mostrar) kills$",&qual_acao,1);
+    ifcontains("%&qual_acao%","resetar");
+        set(@&lista_de_kills_mexicana,"�c�lKill Count");
+        strip(@&lista_de_kills_mexicana_limpa,"%@&lista_de_kills_mexicana%");
+        setlabel("KillMexicana","%@&lista_de_kills_mexicana%");
+        setproperty("KillMexicana","visible",true);
+        setproperty("KillMexicana","align","centre");
+        setproperty("KillMexicana","background","00000000");
+        log("&f&l[&2&lMA&f&lC&4&lRO&f&l] &fLista de kills &eresetada&f!");
+    endif;
+    ifcontains("%&qual_acao%","ocultar");
+        setproperty("KillMexicana","visible",false);
+        log("&f&l[&2&lMA&f&lC&4&lRO&f&l] &fLista de kills &cdesabilitada&f!");
+    endif;
+    ifcontains("%&qual_acao%","mostrar");
+        ifmatches("%@&lista_de_kills_mexicana_limpa%","\w");
+        else;
+            set(@&lista_de_kills_mexicana,"�c�lKill Count");
+            strip(@&lista_de_kills_mexicana_limpa,"%@&lista_de_kills_mexicana%");
+            setlabel("KillMexicana","%@&lista_de_kills_mexicana%");
+            setproperty("KillMexicana","align","centre");
+            setproperty("KillMexicana","background","00000000");
+        endif;
+        setproperty("KillMexicana","visible",true);
+        log("&f&l[&2&lMA&f&lC&4&lRO&f&l] &fLista de kills &ahabilitada&f!");
+    endif;
+endif;
+
+}$$

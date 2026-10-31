@@ -11,10 +11,7 @@ import time
 from mkb import transpile
 
 path_in = os.path.join(os.getcwd(), 'macros')
-paths_out = [r"C:\Users\mdabe\Downloads\craftlandia\CraftLandia\Arquivos\CraftLandia\1.5\data\.minecraft\mods\macros",
-            r"C:\Users\mdabe\Downloads\craftlandia\CraftLandia - Copia\Arquivos\CraftLandia\1.5\data\.minecraft\mods\macros",
-            r"C:\Users\mdabe\Downloads\craftlandia\CraftLandia - Copia (2)\Arquivos\CraftLandia\1.5\data\.minecraft\mods\macros"
-        ]
+paths_out = [os.path.join(os.getcwd(), 'output')]
 
 
 logging.info('Running...')

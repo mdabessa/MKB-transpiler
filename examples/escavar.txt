@@ -1,0 +1,194 @@
+https://forum.craftlandia.com.br/xf/threads/macro-de-escavar-sem-perguntar.1010800/
+
+$${
+
+if(cav);
+unset(cav);
+log( );
+log("&6&l[VIP] &d&lCava-Cava &4(OFF) &f- &aAproximadamente &a%#exp% de EXP.");
+log( );
+
+unset(@cav);
+stop();
+
+else;
+set(cav);
+log( );
+log("&6&l[VIP] &d&lCava-Cava &2(ON)");
+log( );
+
+set(@cav);
+
+IFMATCHES(%DIRECTION%,N);
+&near = NORTH;
+ENDIF;
+IFMATCHES(%DIRECTION%,S);
+&near = SOUTH;
+ENDIF;
+IFMATCHES(%DIRECTION%,W);
+&near = WEST;
+ENDIF;
+IFMATCHES(%DIRECTION%,E);
+&near = EAST;
+ENDIF;
+
+#exp = 0;
+#bau = 1;
+
+&bloco = soul_sand;
+&pa = diamond_shovel;
+&rep = diamond_block;
+#dur = 200;
+#del = 200000;
+#vel = 1;
+
+#repq = 0;
+
+look(%&near%);
+look(,55);
+
+set(cav2);
+do;
+do(%#del%);
+pick(%&bloco%);
+key(use);
+wait(%#vel%ms);
+pick(%&pa%);
+
+if(%DURABILITY%<%#dur%);
+gui(inventory);
+for(#i,9,45);
+getslotitem(%#i%,&id,#stack1);
+if(%&id%=%&rep%);
+#repq=%#repq%+%#stack1%;
+endif;
+next;
+wait(1);
+gui();
+
+if(%#repq%=0);
+
+log( );
+log("&6&l[VIP] &d&lCava-Cava &4(OFF) &dNão pôde reparar &f- &aAproximadamente &a%#exp% de EXP.");
+log( );
+
+unset(@cav);
+unset(cav);
+unset(cav2);
+stop();
+
+else(%#repq%>0%);
+
+#repq=0;
+look(%&near%);
+look(,90);
+key(use);
+wait(2);
+#repq=0;
+
+endif;endif;
+
+endif;
+
+look(%&near%);
+look(,55);
+key(attack);
+inc(#exp, 1);
+loop;
+
+
+if(cav2);
+gui(inventory);
+wait(1);
+getslotitem(35,#id,#stack);
+if(%#stack%=0);
+gui();
+else;
+do;
+wait(1);
+
+}$$
+
+
+$${if(%#bau%=1);}$$
+/home esc1
+$${endif;}$$
+$${if(%#bau%=2);}$$
+/home esc2
+$${endif;}$$
+$${if(%#bau%=3);}$$
+/home esc3
+$${endif;}$$
+$${if(%#bau%=4);}$$
+/home esc4
+$${endif;}$$
+$${if(%#bau%=5);}$$
+/home esc5
+$${endif;}$$
+$${if(%#bau%=6);}$$
+/home esc6
+$${endif;}$$
+$${if(%#bau%=7);}$$
+/home esc7
+$${endif;}$$
+$${if(%#bau%=8);}$$
+/home esc8
+$${endif;}$$
+$${if(%#bau%=9);}$$
+/home esc9
+$${endif;}$$
+$${if(%#bau%=10);}$$
+/home esc10
+$${endif;}$$
+
+
+$${
+
+wait(5);
+key(use);
+wait(1);
+for(#slotn,54,89);
+GETSLOTITEM(%#slotn%,&id,#stack);
+if((%&id%=%&pa%) || (%&id%=%&bloco%) || (%&id%=%&rep%));
+else;
+slotclick(%#slotn%,l,true);wait(30ms);
+endif;
+next;
+wait(500ms);
+getslotitem(53,#id,#stack);
+wait(500ms);
+if(%#stack%!=0);inc(#bau);
+
+endif;
+if(%#bau%=11);
+unset(cav2);
+log(&d&l[MACRO] Cava-Cava &b"Baús cheios! Voltando a escavar.");
+gui();
+else;
+gui();
+endif;
+until(%#stack%=0);
+
+}$$
+
+
+/home macroesc
+
+
+$${
+wait(2);
+endif;
+endif;
+gui(inventory);
+wait(600ms);
+for(#slot,9,35);
+GETSLOTITEM(%#slot%,&id,#stack);
+if((%&id%=%&pa%) || (%&id%=%&bloco%));
+slotclick(%#slot%,l,true);wait(30ms);
+endif;
+next;
+gui();
+
+loop;
+endif;
+}$$

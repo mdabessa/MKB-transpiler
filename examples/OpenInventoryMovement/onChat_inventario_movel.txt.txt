@@ -1,0 +1,7 @@
+$${
+ifmatches("%CHATCLEAN%","^. Agora voc. est. logado");
+    stop("INVENTARIO_MOVEL");
+    unset(@inventario_movel);
+    exec("inventario_movel.txt","INVENTARIO_MOVEL");
+endif;
+}$$
