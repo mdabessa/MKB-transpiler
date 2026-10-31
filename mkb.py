@@ -369,13 +369,20 @@ def transpile(file: str, file_out: str = None, verbose: bool = True, force=False
             if func:
                 func = func.group(1)
                 func = builtins[func.upper()]
-                if stack and func['name'] in stack[-1]:
-                    stack = stack[:-1]
-                    ind = '\t' * len(stack)
+                if func['name'] in ('UNTIL', 'WHILE'):
+                    # A loop condition completes the DO it belongs to: it neither
+                    # opens a block nor needs a following LOOP. Without this,
+                    # `do(); … until(x);` could never be closed.
+                    if stack and 'LOOP' in stack[-1]:
+                        stack = stack[:-1]
+                else:
+                    if stack and func['name'] in stack[-1]:
+                        stack = stack[:-1]
+                        ind = '\t' * len(stack)
 
-                if func['close']:
-                    stack.append(func['close'])
-            
+                    if func['close']:
+                        stack.append(func['close'])
+
         code_ += f'{ind}{line}\n'
 
     if stack:

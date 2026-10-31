@@ -1,0 +1,15 @@
+$${
+// [Fixture] User functions: by-value arguments, a default, and a nested call.
+function greet(&who);
+    log("hello %&who%");
+endfunction;
+
+function greet_twice(&who, #times = 2);
+    for(#round, 1, %#times%)
+        greet(%&who%)
+    next;
+endfunction;
+
+greet("world")
+greet_twice("world")
+}$$

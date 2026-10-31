@@ -103,7 +103,9 @@ functions, code after `stop`, unused variables, and a call to a function that
 lives in a file you forgot to import. See [lint-mkb.md](../lint-mkb.md).
 
 It is expected to grow with the transpiler: a new construct should land with its
-linter rule.
+linter rule, its doc line here, and a fixture under
+[`tests/fixtures/mkb/`](../../tests/fixtures/mkb/) — `tests/test_fixtures.py`
+maps every feature to its fixture and fails when one is missing.
 
 ## Outputs
 

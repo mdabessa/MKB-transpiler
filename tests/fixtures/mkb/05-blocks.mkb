@@ -1,0 +1,23 @@
+$${
+// [Fixture] Block families: if/elseif/else, for/next, do/until/loop.
+#count = 0
+
+if(%#count% = 0)
+    log("zero")
+elseif(%#count% = 1)
+    log("one")
+else;
+    log("many")
+endif;
+
+for(#step, 1, 3)
+    inc(#count, 1)
+next;
+
+do();
+    inc(#count, 1)
+until(%#count% >= 5);
+loop;
+
+log("count is %#count%")
+}$$

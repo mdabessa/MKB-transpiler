@@ -124,6 +124,7 @@ def resolve_import(name: str, source: Path) -> Path | None:
         source.parent / relative,
         source.parent.parent / relative,
         Path.cwd() / relative,
+        REPO_ROOT / relative,
         REPO_ROOT / "macros" / relative,
     ]
     for candidate in candidates:
@@ -461,6 +462,118 @@ def iter_sources(paths: list[str]) -> list[Path]:
 
 
 # --------------------------------------------------------------------------
+# fixes
+# --------------------------------------------------------------------------
+
+SUGGESTION_RE = re.compile(r"did you mean ([A-Z][A-Z0-9_]*)?")
+
+
+def fix_from_diagnostics(text: str, diagnostics: list[Diagnostic]) -> tuple[str, list[str]]:
+    """Apply the repairs the linter can prove, and nothing else.
+
+    Only two classes qualify:
+
+    * a call whose name is one edit away from exactly one keyword
+      (`loo(` -> `look(`) — the message already carries the suggestion;
+    * imports that are not at the top of the file — the transpiler rejects
+      those, and moving a line cannot change meaning.
+
+    A missing `;` is deliberately **not** fixed: the transpiler appends it, and
+    1075 of the 1138 statements in `macros/` omit it on purpose.
+    """
+    applied: list[str] = []
+
+    # --- imports first: it shifts no lines, but it changes statement offsets.
+    if any(d.code == "M002" for d in diagnostics):
+        text, moved = reorder_imports(text)
+        if moved:
+            applied.append("moved import(s) to the top of the file")
+
+    edits: list[tuple[int, int, str]] = []
+    statements = validate.split_statements(text, 0, len(text))[0]
+    for diagnostic in diagnostics:
+        if diagnostic.code != "M003":
+            continue
+        match = SUGGESTION_RE.search(diagnostic.message)
+        if not match:
+            continue
+        statement = next(
+            (s for s in statements if s.line == diagnostic.line and s.col == diagnostic.col),
+            None,
+        )
+        if statement is None:
+            continue
+        call = CALL_RE.match(statement.text)
+        if not call:
+            continue
+        # `text` is `source[offset:end].strip()`; find the real start.
+        span = text[statement.offset:statement.end]
+        start = statement.offset + (len(span) - len(span.lstrip()))
+        replacement = match.group(1)
+        original = call.group(1)
+        replacement = replacement.upper() if original.isupper() else replacement.lower()
+        edits.append((start, start + len(original), replacement))
+        applied.append(f"{original}( -> {replacement}(")
+
+    for start, end, replacement in sorted(edits, reverse=True):
+        text = text[:start] + replacement + text[end:]
+
+    return text, applied
+
+
+def reorder_imports(text: str) -> tuple[str, bool]:
+    """Move every `import x;` line above the first real statement."""
+    lines = text.split("\n")
+    is_import = [bool(IMPORT_RE.match(line.strip())) for line in lines]
+    if not any(is_import):
+        return text, False
+
+    first_other = next(
+        (
+            index
+            for index, line in enumerate(lines)
+            if line.strip() and not is_import[index] and not line.strip().startswith("//")
+        ),
+        None,
+    )
+    if first_other is None:
+        return text, False
+    if all(index < first_other for index, flag in enumerate(is_import) if flag):
+        return text, False  # already at the top
+
+    imports = [line for line, flag in zip(lines, is_import) if flag]
+    kept = [line for line, flag in zip(lines, is_import) if not flag]
+    insert_at = next(
+        (
+            index
+            for index, line in enumerate(kept)
+            if line.strip() and not line.strip().startswith("//")
+        ),
+        0,
+    )
+    reordered = kept[:insert_at] + imports + kept[insert_at:]
+    return "\n".join(reordered), True
+
+
+def apply_fixes(text: str, filename: str, known: dict[str, validate.Keyword],
+                repo_index: dict[str, list[str]],
+                global_reads: dict[str, int] | None) -> tuple[str, list[str]]:
+    """Fix repeatedly until nothing more is provably wrong (max 5 passes)."""
+    applied: list[str] = []
+    for _ in range(5):
+        diagnostics = lint_text(text, filename, known, repo_index, global_reads)
+        fixes = [d for d in diagnostics if d.code in {"M002", "M003"}]
+        if not fixes:
+            break
+        updated, changes = fix_from_diagnostics(text, fixes)
+        if not changes or updated == text:
+            break
+        text = updated
+        applied.extend(changes)
+    return text, applied
+
+
+# --------------------------------------------------------------------------
 # cli
 # --------------------------------------------------------------------------
 
@@ -474,6 +587,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--statistics", action="store_true")
     parser.add_argument("--max-per-rule", type=int, default=25)
     parser.add_argument("--quiet", action="store_true")
+    parser.add_argument("--fix", action="store_true",
+                        help="apply the provable repairs and write the files")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="with --fix, report what would change without writing")
     parser.add_argument("--stdin-name", default="<stdin>",
                         help="file name to report when reading a source from stdin ('-')")
     args = parser.parse_args(argv)
@@ -494,10 +611,25 @@ def main(argv: list[str] | None = None) -> int:
         if not files:
             print("no .mkb files found", file=sys.stderr)
             return 2
+
+        if args.fix:
+            for path in files:
+                original = path.read_text(encoding="utf-8", errors="replace")
+                updated, applied = apply_fixes(original, str(path), known, index, global_reads)
+                if not applied or updated == original:
+                    continue
+                verb = "would fix" if args.dry_run else "fixed"
+                print(f"{verb} {path}: " + "; ".join(applied))
+                if not args.dry_run:
+                    path.write_text(updated, encoding="utf-8")
+
         diagnostics = []
         for path in files:
-            diagnostics.extend(lint_text(path.read_text(encoding="utf-8", errors="replace"),
-                                         str(path), known, index, global_reads))
+            text = path.read_text(encoding="utf-8", errors="replace")
+            if args.fix and args.dry_run:
+                # Report the state after the repairs that were not written.
+                text, _ = apply_fixes(text, str(path), known, index, global_reads)
+            diagnostics.extend(lint_text(text, str(path), known, index, global_reads))
 
     threshold = SEVERITY_ORDER[args.severity]
 

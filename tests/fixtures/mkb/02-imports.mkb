@@ -1,0 +1,7 @@
+$${
+// [Fixture] `import` at the top, calling into the module.
+import tests.fixtures.mkb.lib.util
+
+announce("hello from the fixture")
+add_and_show(1, 2)
+}$$

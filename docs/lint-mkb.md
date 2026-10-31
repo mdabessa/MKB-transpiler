@@ -71,19 +71,46 @@ would ever notice.
 `.mkb` files are wrapped in the same `$${ … }$$` markers as the generated
 script; the linter ignores them exactly like `mkb.py` does.
 
+## Fixing
+
+```bash
+python3 tools/lint_mkb.py --fix            # write the repairs
+python3 tools/lint_mkb.py --fix --dry-run  # show what would change
+```
+
+Only two repairs qualify as *provable*:
+
+| Repair | Why it is safe |
+| --- | --- |
+| move `import` lines above the first statement | the transpiler rejects them anywhere else, and the order of imports does not matter |
+| rewrite a call that is one edit away from exactly one keyword (`loo(` → `look(`, `et(` → `set(`) | the linter already knows the intended keyword; a user-defined function with that name is never touched |
+
+**Missing `;` is deliberately not "fixed".** The transpiler appends it, and 1075
+of the 1138 statements in `macros/` omit it on purpose — rewriting them would be
+a style change nobody asked for.
+
+The fixer re-lints after each pass, stops when nothing more is provable, and is
+idempotent: a second `--fix` produces no change.
+
 ## Tests
 
 ```bash
 python3 -m unittest tests.test_lint_mkb -v
 ```
 
-23 cases, at least one per rule, plus:
+30 cases, at least one per rule, plus the fix engine:
 
 * `test_repository_macros_have_no_errors` — `macros/` must stay lint-clean;
 * `test_function_from_another_file_hints_the_import` — the "did you forget
   `import`" hint;
 * `test_else_branch_is_reachable` — `stop` in one branch must not condemn the
-  other one.
+  other one;
+* `test_user_function_name_is_not_rewritten` — the fixer never "corrects" a
+  function you defined.
+
+`tests/test_fixtures.py` enforces the maintenance rule in the backlog: one
+fixture per transpiler feature, each one must lint clean **and** transpile into a
+valid script. A feature without a fixture fails the suite.
 
 ## VS Code
 
@@ -112,7 +139,5 @@ install lands in *Default* and the window never sees it.
 
 ## Not done yet
 
-* `--fix` for the safe repairs (missing `;`, provable keyword typos, import
-  ordering);
 * type tracking across assignments: today a variable is just a name;
 * user-function completion (keywords only, for now).

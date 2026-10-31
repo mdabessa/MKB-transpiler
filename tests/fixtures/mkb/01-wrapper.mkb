@@ -1,0 +1,11 @@
+$${
+// [Fixture] File shape: markers, comments, strings, interpolation, sigils.
+#counter = 1
+&label = "start"
+@&shared = "global value"
+
+log("counter is %#counter%, label is %&label%")
+log("shared is %@&shared%")
+
+stop;
+}$$

@@ -1,0 +1,15 @@
+$${
+// [Fixture] Two functions using the same local name must not collide.
+function first();
+    #value = 1;
+    log("first %#value%");
+endfunction;
+
+function second();
+    #value = 2;
+    log("second %#value%");
+endfunction;
+
+first()
+second()
+}$$

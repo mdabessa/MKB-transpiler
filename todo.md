@@ -73,7 +73,7 @@ Backlog:
         Rule, not a task: the validator has no knowledge of MKB, and the generated
         `original-language/` pages plus `functions.json` are its only inputs.
 
-- [ ] Linter and authoring tools for the MKB language — "help me code .mkb files".
+- [x] Linter and authoring tools for the MKB language — "help me code .mkb files".
     A development-experience tool, not a validity check: it exists to make writing and
     debugging macros in [macros/](./macros/) fast. It knows the transpiler's own features
     (imports, user functions, scoping, expansion) and therefore must be updated every time
@@ -101,11 +101,25 @@ Backlog:
         unsaved changes are linted with the real file path). Completion/hover/signature help read
         `functions.json`; snippets and grammars are declared in `package.json`. Packaged as
         `mkb-macro-language-0.1.0.vsix` and installed.
-    - [ ] `--fix` for safe repairs (missing trailing `;`, provable keyword typos, import ordering).
-    - [ ] Tests per rule, plus a fixture per transpiler feature so a feature cannot land without
+    - [x] `--fix` for safe repairs (missing trailing `;`, provable keyword typos, import ordering).
+        Done: `tools/lint_mkb.py --fix` (and `--dry-run`). Two repairs qualify: moving `import`
+        lines to the top, and rewriting a call one edit away from exactly one keyword (`loo(` ->
+        `look(`). Missing `;` is deliberately **not** fixed — the transpiler appends it and 1075 of
+        the 1138 statements in `macros/` omit it on purpose. The fixer re-lints after each pass and
+        is idempotent (7 tests).
+    - [x] Tests per rule, plus a fixture per transpiler feature so a feature cannot land without
         its linter counterpart.
-    - [ ] Track transpiler changes: when `mkb.py` gains a construct, add the rule, the doc line in
+        Done: [tests/fixtures/mkb](./tests/fixtures/mkb/) has one `.mkb` per feature (wrapper,
+        imports, functions, scoping, blocks) and `tests/test_fixtures.py` maps feature -> fixture,
+        failing when a feature has no fixture, when a fixture is unclaimed, or when a fixture does
+        not lint clean **and** transpile into a valid script.
+        It paid off immediately: the `do … until` fixture showed that `mkb.py`'s block checker
+        pushed a frame for `UNTIL` and could never close it, so any macro using `do … until`
+        failed to transpile. Fixed — `UNTIL`/`WHILE` now complete the `DO` they belong to.
+    - [x] Track transpiler changes: when `mkb.py` gains a construct, add the rule, the doc line in
         [docs/mkb-language](./docs/mkb-language/README.md) and the test in the same change.
+        Rule, now enforced: `FEATURES` in `tests/test_fixtures.py` is the checklist, and
+        [docs/mkb-language](./docs/mkb-language/README.md) states the three-part rule.
 - [ ] Refactor the transpiler to be more modular and easier to maintain.
     The transpiler is currently a single file with a lot of code, making it hard to extend and maintain.
     Add unit tests to ensure that the transpiler works correctly and to prevent regressions.

@@ -160,6 +160,48 @@ class Lexer(unittest.TestCase):
         self.assertIn("M011", codes('log("x";\n'))
 
 
+class Fixes(unittest.TestCase):
+    def apply(self, source: str) -> tuple[str, list[str]]:
+        return lint_mkb.apply_fixes(source, "test.mkb", KNOWN, {}, None)
+
+    def test_import_is_moved_to_the_top(self):
+        source = 'log("a");\nimport commons.math;\n'
+        fixed, applied = self.apply(source)
+        self.assertTrue(fixed.startswith("import commons.math;"))
+        self.assertIn("moved import(s)", " ".join(applied))
+
+    def test_provable_typo_is_rewritten(self):
+        fixed, applied = self.apply('loo(NORTH);\n')
+        self.assertIn("look(NORTH)", fixed)
+        self.assertTrue(any("loo(" in change for change in applied))
+
+    def test_typo_case_is_preserved(self):
+        fixed, _applied = self.apply("LOO(NORTH);\n")
+        self.assertIn("LOOK(NORTH)", fixed)
+
+    def test_user_function_name_is_not_rewritten(self):
+        source = "function loo();\nendfunction;\nloo();\n"
+        fixed, applied = self.apply(source)
+        self.assertEqual(fixed, source)
+        self.assertEqual(applied, [])
+
+    def test_fix_is_idempotent(self):
+        once, _ = self.apply('log("a");\nimport commons.math;\nloo(1);\n')
+        twice, applied = self.apply(once)
+        self.assertEqual(once, twice)
+        self.assertEqual(applied, [])
+
+    def test_semicolons_are_left_alone(self):
+        # The transpiler appends them; the codebase omits them on purpose.
+        source = 'log("a")\nlog("b")\n'
+        fixed, _applied = self.apply(source)
+        self.assertEqual(fixed, source)
+
+    def test_unfixable_error_survives(self):
+        fixed, _applied = self.apply("sqrt();\n")
+        self.assertIn("sqrt();", fixed)
+
+
 class Positions(unittest.TestCase):
     def test_reported_on_the_source_line(self):
         diagnostics = lint('log("a");\n\n\nsqrt();\n')

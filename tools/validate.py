@@ -117,6 +117,10 @@ class Statement:
     line: int
     col: int
     offset: int = 0
+    # Offset just past the statement text, before the `;` or newline that ended
+    # it. `text` is `source[offset:end].strip()`, so an editor or a fixer can
+    # locate the exact characters.
+    end: int = 0
 
     @property
     def keyword(self) -> str:
@@ -245,13 +249,13 @@ def split_statements(text: str, start: int, end: int) -> tuple[list[Statement], 
     depth = 0
     index = start
 
-    def flush() -> None:
+    def flush(end_offset: int) -> None:
         nonlocal buffer, buffer_start
         if buffer_start is not None:
             statement = "".join(buffer).strip()
             if statement:
                 line, col = position(starts, buffer_start)
-                statements.append(Statement(statement, line, col, buffer_start))
+                statements.append(Statement(statement, line, col, buffer_start, end_offset))
         buffer = []
         buffer_start = None
 
@@ -295,7 +299,7 @@ def split_statements(text: str, start: int, end: int) -> tuple[list[Statement], 
                 depth = 0
 
         if char in ";\n" and depth == 0:
-            flush()
+            flush(index)
             index += 1
             continue
 
@@ -306,7 +310,7 @@ def split_statements(text: str, start: int, end: int) -> tuple[list[Statement], 
 
     if depth > 0:
         problems.append((end, f"{depth} unclosed '('"))
-    flush()
+    flush(end)
     return statements, problems, (end if in_string else None)
 
 
