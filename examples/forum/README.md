@@ -5,9 +5,9 @@ material for documenting the language**. Nothing here is project source code and
 none of it is transpiled or executed by the tooling.
 
 * **89 scripts**, ~344 KB, from **44 authors**
+* **46 validate clean**; **43 are quarantined** in [`_broken/`](_broken/README.md)
 * indexed from the community list
   [LISTA DE MACROS ÚTEIS DO FÓRUM][index] (`tools/fetch_forum_examples.py`)
-* every file keeps its source topic on the first line
 * `manifest.json` records topic, author, URL, size and fetch date for each file
 * `index.md` records every link found in the index topic, including the ones
   that could not be archived
@@ -17,17 +17,34 @@ none of it is transpiled or executed by the tooling.
 ## Format
 
 ```
-<source topic URL>
-<blank line>
-$${ ... }$$        <- one or more code blocks, exactly as posted
+$${
+// source: <topic URL>
+// source URL, as posted ...      <- older files, before tools/fix_examples.py
+<code>
+}$$
 ```
 
-The first line is not part of the script — strip it before installing a file in
-the mod. This matches the convention already used by
-[`escavar.txt`](../escavar.txt) and [`onChat_kills.txt`](../onChat_kills.txt).
+The source topic is a `//` comment **inside** the first block, so the file can be
+dropped into the mod as-is: a URL on its own line outside the markers would be
+typed into chat. Provenance is also in `manifest.json` and in the git history.
+
+[`escavar.txt`](../escavar.txt) and [`onChat_kills.txt`](../onChat_kills.txt) still
+carry the old "first line is the link" shape; they are hand-written samples, not
+part of the automated repair.
 
 Only the **first post** of a topic is archived. Follow-ups often contain
 improved versions; those are still on the forum.
+
+## Which files are valid
+
+```
+examples/forum/            46 files, 0 validator errors
+examples/forum/_broken/    43 files, 348 validator errors (see its README)
+```
+
+`tools/validate.py` skips `_`-prefixed directories when walking a tree, so the
+default run only covers material that is expected to pass. The quarantine is not
+hidden — it is the linter's test corpus.
 
 ## Attribution and licensing
 
@@ -70,9 +87,9 @@ Notable files to read first:
 | --- | --- |
 | [`macro-auto-sprint.txt`](macro-auto-sprint.txt) | smallest complete script, shows statement separation |
 | [`2-0-pesca-lixeira-baus-ilimitados-e.txt`](2-0-pesca-lixeira-baus-ilimitados-e.txt) | array handling (`ARRAYSIZE`, `POP`, `INDEXOF`) |
-| [`macro-super-escavacao.txt`](macro-super-escavacao.txt) | long mining loop with durability checks |
-| [`novo-macro-de-fazer-pocoes-18-mesas.txt`](novo-macro-de-fazer-pocoes-18-mesas.txt) | largest file (30 KB), heavy GUI automation |
-| [`macro-evite-capacete-quebrar.txt`](macro-evite-capacete-quebrar.txt) | minimal event handler (`onArmourDurabilityChange`) |
+| [`macro-super-escavacao.txt`](_broken/macro-super-escavacao.txt) | long mining loop with durability checks |
+| [`novo-macro-de-fazer-pocoes-18-mesas.txt`](_broken/novo-macro-de-fazer-pocoes-18-mesas.txt) | largest file (30 KB), heavy GUI automation |
+| [`macro-evite-capacete-quebrar.txt`](_broken/macro-evite-capacete-quebrar.txt) | minimal event handler (`onArmourDurabilityChange`) |
 
 ## Caveats
 

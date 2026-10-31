@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-pesca-nao-buga-pra-repara.186721/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-pesca-nao-buga-pra-repara.186721/
+
 
 IF(forum);
 
@@ -52,4 +52,6 @@ LOOP;
 
 ENDIF;
 
+
+loop;
 }$$

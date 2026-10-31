@@ -1,0 +1,19 @@
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/um-login-para-cada-servidor.209561/
+IFMATCHES(%CHAT%,"Servidor: 1"); WAIT(1);}$$
+
+$${;Endif;}$$
+
+$${IFMATCHES(%CHAT%,"Servidor: 2"); WAIT(1);}$$
+
+$${IFMATCHES(%CHAT%,"Servidor: 3"); WAIT(1);}$$
+
+$${IFMATCHES(%CHAT%,"Craftlandia HARDCORE"); WAIT(1);}$$
+
+$${IFMATCHES(%CHAT%,"Craftlandia Classic"); WAIT(1);}$$
+
+$${IFMATCHES(%CHAT%,"Craftlandia Region"); WAIT(1);}$$
+
+$${IFMATCHES(%CHAT%,"Craftlandia Heaven"); WAIT(1);}$$
+
+$${IFMATCHES(%CHAT%,"Craftlandia Aurora"); WAIT(1);}$$

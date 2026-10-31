@@ -26,7 +26,7 @@ In this repository the convention is one file per event, e.g.
 | --- | --- | --- | --- |
 | `onLoad` | the macro set is loaded / the client starts | — | [`macros/onLoad.mkb`](../../macros/onLoad.mkb) ✅ |
 | `onChat` | a chat line arrives | `%CHAT%`, `%CHATCLEAN%` | [`examples/onChat_kills.txt`](../../examples/onChat_kills.txt) ✅ |
-| `onArmourDurabilityChange` | an armour piece loses durability | `%HELMDURABILITY%`, `%CHESTPLATEDURABILITY%`, `%LEGGINGSDURABILITY%`, `%BOOTSDURABILITY%` | [`examples/forum/macro-evite-capacete-quebrar.txt`](../../examples/forum/macro-evite-capacete-quebrar.txt) ✅ |
+| `onArmourDurabilityChange` | an armour piece loses durability | `%HELMDURABILITY%`, `%CHESTPLATEDURABILITY%`, `%LEGGINGSDURABILITY%`, `%BOOTSDURABILITY%` | [`examples/forum/macro-evite-capacete-quebrar.txt`](../../examples/forum/_broken/macro-evite-capacete-quebrar.txt) ✅ |
 
 ## `onChat` in practice
 

@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-de-escavar-sem-perguntar.1010800/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-de-escavar-sem-perguntar.1010800/
+
 
 if(cav);
 unset(cav);
@@ -190,5 +190,7 @@ next;
 gui();
 
 loop;
-endif;
+// [validator] was `endif;` — there is no open if here; the macro needs this
+// loop to return to the `do;` at the top of the file.
+loop;
 }$$

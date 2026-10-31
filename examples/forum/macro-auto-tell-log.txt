@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-auto-tell-log.337680/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-auto-tell-log.337680/
+
 
 if(@tellrecorder);
 

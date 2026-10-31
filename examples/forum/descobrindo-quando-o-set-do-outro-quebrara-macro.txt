@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/descobrindo-quando-o-set-do-outro-quebrara-macro.394854/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/descobrindo-quando-o-set-do-outro-quebrara-macro.394854/
+
 
 if(t);
 

@@ -1,0 +1,7 @@
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-descubrir-as-coord-do-look.260308/
+
+
+log("&5&l[%PLAYER%] &fO seu look deverá ficar &clook(%YAW%,%PITCH%"));
+
+}$$

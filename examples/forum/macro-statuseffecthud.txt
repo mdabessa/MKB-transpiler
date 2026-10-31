@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-statuseffecthud.358480/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-statuseffecthud.358480/
+
 
 DO;
 

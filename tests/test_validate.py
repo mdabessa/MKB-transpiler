@@ -173,5 +173,39 @@ class Positions(unittest.TestCase):
         self.assertEqual(diagnostics[0].file, "test.txt")
 
 
+class CorpusTargets(unittest.TestCase):
+    def test_underscore_directories_are_skipped_when_walking(self):
+        files = [str(p) for p in validate.iter_targets(["examples"])]
+        self.assertTrue(files)
+        self.assertFalse([f for f in files if "_broken" in f])
+
+    def test_underscore_directory_is_checked_when_named(self):
+        files = [str(p) for p in validate.iter_targets(["examples/forum/_broken"])]
+        self.assertTrue(files)
+
+
+class MissingClosers(unittest.TestCase):
+    def test_reports_the_keyword_needed(self):
+        self.assertEqual(validate.missing_closers("$${\nif(a);\nlog(\"x\");\n}$$"), ["ENDIF"])
+        self.assertEqual(validate.missing_closers("$${\ndo;\nkey(use);\n}$$"), ["LOOP"])
+        self.assertEqual(validate.missing_closers("$${\nfor(#i,0,3);\nlog(\"x\");\n}$$"), ["NEXT"])
+
+    def test_closed_file_needs_nothing(self):
+        self.assertEqual(validate.missing_closers('$${\nif(a);\nlog("x");\nendif;\n}$$'), [])
+
+
+class CorpusIsValid(unittest.TestCase):
+    def test_examples_pass(self):
+        """The examples are the validator's test bed: they must stay valid."""
+        problems = []
+        for path in validate.iter_targets(["examples"]):
+            text = path.read_text(encoding="utf-8", errors="replace")
+            errors = [d for d in validate.validate_text(text, str(path), KNOWN)
+                      if d.severity == "error"]
+            if errors:
+                problems.append(f"{path}: {len(errors)} error(s)")
+        self.assertEqual(problems, [])
+
+
 if __name__ == "__main__":
     unittest.main()

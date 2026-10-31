@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-auto-pvp.225230/
-
-$${if(auto);
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-auto-pvp.225230/
+if(auto);
 
 unset(auto);
 

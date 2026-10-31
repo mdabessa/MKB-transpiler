@@ -34,7 +34,7 @@ screen is open.
 The main inventory is three rows of nine, so its row ends are `17`, `26` and
 `35` — one cactus-farm script reads exactly those three slots to count what is
 left in each row ✅
-([`examples/forum/1-7-1-5-plant-cacto-completo.txt`](../../examples/forum/1-7-1-5-plant-cacto-completo.txt)).
+([`examples/forum/1-7-1-5-plant-cacto-completo.txt`](../../examples/forum/_broken/1-7-1-5-plant-cacto-completo.txt)).
 
 ### Single chest (27 slots)
 

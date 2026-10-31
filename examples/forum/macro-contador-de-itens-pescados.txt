@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-contador-de-itens-pescados.340044/
-
-$${IF(%PICKUPID% = 349);inc(@#hue,1);SETLABEL(PE1,"&aPeixes Pegos:&4&o %@#hue%",PE1);endif;}$$
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-contador-de-itens-pescados.340044/
+IF(%PICKUPID% = 349);inc(@#hue,1);SETLABEL(PE1,"&aPeixes Pegos:&4&o %@#hue%",PE1);endif;}$$
 
 $${
 

@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-upando-reparacao-rapidamente.181569/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-upando-reparacao-rapidamente.181569/
+
 
 if(teste);
 

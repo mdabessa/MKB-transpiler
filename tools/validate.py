@@ -477,6 +477,34 @@ class BlockTracker:
 # validation
 # --------------------------------------------------------------------------
 
+def missing_closers(text: str, known: dict[str, Keyword] | None = None) -> list[str]:
+    """Keywords needed to close every block still open at the end of the file.
+
+    Returned in the order they should be emitted. Used by `fix_examples.py` to
+    repair files whose only problem is a forgotten `endif`/`loop`/`next`.
+    """
+    known = known or load_keywords()
+    spans, _strays, _unterminated = find_blocks(text)
+    if not spans:
+        spans = [(0, len(text))]
+    tracker = BlockTracker()
+    for span_start, span_end in spans:
+        statements, _lex, _str = split_statements(text, span_start, span_end)
+        for statement in statements:
+            if not COMMENT_RE.match(statement.text):
+                tracker.visit(statement, known, lambda *args: None)
+
+    preferred = {"IF": "ENDIF", "ELSE": "ENDIF", "ELSEIF": "ENDIF", "DO": "LOOP",
+                 "FOR": "NEXT", "FOREACH": "NEXT", "UNSAFE": "ENDUNSAFE"}
+    closers: list[str] = []
+    # Innermost first, and every frame — including ones a loop condition already
+    # finished, which still have to be popped to reach the frame below.
+    for stack in (tracker.loop_stack, tracker.if_stack, tracker.unsafe_stack):
+        for block in reversed(stack):
+            closers.append(preferred.get(block.keyword, next(iter(block.allowed), "ENDIF")))
+    return closers
+
+
 def validate_text(text: str, filename: str = "<text>", known: dict[str, Keyword] | None = None) -> list[Diagnostic]:
     known = known or load_keywords()
     starts = line_starts(text)
@@ -699,11 +727,21 @@ def _code_outside_blocks(text, spans, starts, filename) -> list[Diagnostic]:
 # --------------------------------------------------------------------------
 
 def iter_targets(paths: list[str]) -> list[Path]:
+    """Expand the CLI paths into `.txt` files.
+
+    Directories whose name starts with `_` are skipped when walking a tree, so
+    quarantined material (like `examples/forum/_broken/`) does not make the
+    default run fail. Naming such a directory explicitly still validates it.
+    """
     files: list[Path] = []
     for entry in paths:
         path = Path(entry)
         if path.is_dir():
-            files.extend(sorted(path.rglob("*.txt")))
+            for candidate in sorted(path.rglob("*.txt")):
+                parents = candidate.relative_to(path).parts[:-1]
+                if any(part.startswith("_") for part in parents):
+                    continue
+                files.append(candidate)
         elif path.suffix == ".txt":
             files.append(path)
         else:

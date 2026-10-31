@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-auto-bring.343199/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-auto-bring.343199/
+
 
 ifmatches(%CHATCLEAN%,"^(.+) deseja ir até você! Use /bring @nick para aceitar.",&call_me,1,none);
 

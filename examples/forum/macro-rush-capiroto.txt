@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-rush-capiroto.391218/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-rush-capiroto.391218/
+
 if(autosing);
 log("&b&l[RUSH]&f[&4&lOFF&f]");
 unset(autosing);

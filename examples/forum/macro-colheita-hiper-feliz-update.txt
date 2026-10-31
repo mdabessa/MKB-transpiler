@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-colheita-hiper-feliz-update.257643/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-colheita-hiper-feliz-update.257643/
+
 
 if(running);
 
@@ -206,4 +206,6 @@ endif;
 
 loop;
 
+
+loop;
 }$$

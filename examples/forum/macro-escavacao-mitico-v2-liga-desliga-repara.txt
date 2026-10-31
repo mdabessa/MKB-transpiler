@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-escavacao-mitico-v2-liga-desliga-repara.186746/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-escavacao-mitico-v2-liga-desliga-repara.186746/
+
 
 if(escavar);
 
@@ -170,4 +170,7 @@ pick(277);
 
     lOOp;
 
+
+endif;
+endif;
 }$$

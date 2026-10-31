@@ -59,7 +59,9 @@ TIMEOUT_SECONDS = 40
 
 TOPIC_RE = re.compile(r"https?://forum\.craftlandia\.com\.br/(?:ipb/index\.php\?/|xf/)topic/[\w%\-\.]+/?")
 MACRO_BLOCK_RE = re.compile(r"\$\$\{(.*?)\}\$\$", re.DOTALL)
-EXTERNAL_MACRO_RE = re.compile(r"\$\$\s*([\w\-.]+\.txt)\s*", re.IGNORECASE)
+EXTERNAL_MACRO_RE = re.compile(r"\$\$\s*([\w\-.]+)\.txt\s*", re.IGNORECASE)
+# Start of a code block, which is where the provenance comment is inserted.
+OPEN_MARK = "$${"
 
 
 @dataclass
@@ -278,13 +280,22 @@ def write_topic(topic: Topic, out_dir: Path) -> dict | None:
         index += 1
 
     body = "\n\n".join(topic.blocks)
-    # Same header convention as the hand-made examples in ``examples/``: the
-    # first line is the source link, then a blank line, then the script itself.
-    header = f"{topic.url}\n\n"
-    target.write_text(header + body + "\n", encoding="utf-8")
+    # Provenance goes *inside* the first block as a comment: a bare URL line
+    # outside `$${ … }$$` would be typed into chat by the mod. Files are meant to
+    # be droppable into the mod as-is.
+    opener = body.find(OPEN_MARK)
+    if opener != -1:
+        insert_at = opener + len(OPEN_MARK)
+        body = f"{body[:insert_at]}\n// source: {topic.url}\n{body[insert_at:]}"
+    target.write_text(body + "\n", encoding="utf-8")
+
+    try:
+        stored_path = str(target.relative_to(REPO_ROOT))
+    except ValueError:
+        stored_path = str(target)
 
     return {
-        "file": str(target.relative_to(REPO_ROOT)),
+        "file": stored_path,
         "topic": topic.title,
         "author": topic.author or "unknown",
         "url": topic.url,

@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-autoclick-defesa-semi-automatica.267472/
-
-$${IF(auto);LOG("&3[%PLAYER%] &6auto-click &4[OFF]");UNSPRINT;UNSET(auto);STOP();
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-autoclick-defesa-semi-automatica.267472/
+IF(auto);LOG("&3[%PLAYER%] &6auto-click &4[OFF]");UNSPRINT;UNSET(auto);STOP();
 
 ELSE;LOG("&3[%PLAYER%] &6auto-click &2[ON]");SPRINT;
 
@@ -12,4 +12,6 @@ $${
 
 LOG("&3[%PLAYER%] &6auto-click &4[OFF]");UNSET(auto);STOP();endif;
 
-else;key(attack);wait(1t);IF(KEY_F);key(use);wait(1t);ENDIF;LOOP;}$$
+else;key(attack);wait(1t);IF(KEY_F);key(use);wait(1t);ENDIF;LOOP;
+endif;
+}$$

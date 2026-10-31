@@ -1,0 +1,27 @@
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-informacoes-do-player.200466/
+
+
+log(--- Informações do Player ---);
+
+log(Player: %PLAYER%);
+
+log(TexturePack: %TEXTUREPACK%);
+
+log(Vida: %HEALTH%);
+
+log(Fome: %HUNGER%);
+
+log(Cordenadas: x=%XPOS%, y=%YPOS%, z=%ZPOS%);
+
+log(Durabilidade da armadura;
+
+log(- Capacete: %HELMDURABILITY%);
+
+log(- Peitoral: %CHESTPLATEDURABILITY%);
+
+log(- Calça: %LEGGINGSDURABILITY%);
+
+log(- Botas: %BOOTSDURABILITY%);
+
+}$$

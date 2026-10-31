@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-macro-hiper-pesca-96baus-nao-vip-ou-vip.257325/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-macro-hiper-pesca-96baus-nao-vip-ou-vip.257325/
+
 
     if(macro);
 
@@ -106,7 +106,7 @@ $${
 
         //8
 
-        wait(100ms);loo(NORTH);
+        wait(100ms);look(NORTH);
 
         wait(100ms);look(20,-15);
 
@@ -148,7 +148,7 @@ $${
 
             //12
 
-            wait(100ms);loo(NORTH);
+            wait(100ms);look(NORTH);
 
             wait(100ms);look(40,-15);
 
@@ -1818,4 +1818,6 @@ endif;endif;endif;
 
 loop;
 
+
+loop;
 }$$

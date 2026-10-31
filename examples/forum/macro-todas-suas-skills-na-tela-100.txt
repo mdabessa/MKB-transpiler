@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-todas-suas-skills-na-tela-100.263215/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-todas-suas-skills-na-tela-100.263215/
+
 IFMATCHES(%CHATCLEAN%,"Agora você está logado. NUNCA use a mesma senha do CraftLandia em outros servidores.");
 wait(1800ms);
 }$$

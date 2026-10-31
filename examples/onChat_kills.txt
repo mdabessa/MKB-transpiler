@@ -1,7 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-historico-de-kills-na-tela-onchat.1007478/#post-8810565
-
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-historico-de-kills-na-tela-onchat.1007478/#post-8810565
+
 ifmatches("%CHATCLEAN%","^\[CraftLandia\] Voc. matou: ([\w-\[\] ]+)",&kill,1);
     // LABEL NECESS�RIA: 
     // --> Criar label com nome "KillMexicana"

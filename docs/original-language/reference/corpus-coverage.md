@@ -2,7 +2,7 @@
 
 # Corpus coverage
 
-Built from **97** scripts (27916 lines) found in
+Built from **97** scripts (27967 lines) found in
 `examples/`, `output/` and `macros/`, compared against `functions.json`.
 
 Use this page to decide what to document next:
@@ -40,14 +40,14 @@ Use this page to decide what to document next:
 | --- | --- | --- |
 | `LOG` | Input | 82 |
 | `IF` | Control Flow | 81 |
-| `ENDIF` | Control Flow | 76 |
+| `ENDIF` | Control Flow | 77 |
 | `UNSET` | Variables | 73 |
 | `SET` | Variables | 69 |
 | `WAIT` | Control Flow | 68 |
 | `DO` | Control Flow | 67 |
+| `LOOP` | Control Flow | 65 |
 | `STOP` | Control Flow | 64 |
 | `ELSE` | Control Flow | 63 |
-| `LOOP` | Control Flow | 63 |
 | `KEY` | Input | 60 |
 | `IFMATCHES` | Control Flow | 51 |
 | `LOOK` | Settings | 48 |

@@ -1,5 +1,5 @@
-https://forum.craftlandia.com.br/xf/threads/tutorial-macro-anti-esmoladores.159950/
-
-$${ Random(#cor,1,9);IFMATCHES(%CHAT%,me ajuda);ECHO(/r não dou coins/itens);ENDIF}$$
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/tutorial-macro-anti-esmoladores.159950/
+ Random(#cor,1,9);IFMATCHES(%CHAT%,me ajuda);ECHO(/r não dou coins/itens);ENDIF}$$
 
 $${ Random(#cor,1,9);IFMATCHES(%CHAT%,me da);ECHO(/r não dou coins/itens);ENDIF}$$

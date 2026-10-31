@@ -1,5 +1,5 @@
-https://forum.craftlandia.com.br/xf/threads/tutorial-macro-key-bind-anuncios.147676/
-
-$${wait(**)}$$
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/tutorial-macro-key-bind-anuncios.147676/
+wait(**)}$$
 
 $${wait(60)}$$

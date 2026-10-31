@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/colhe-planta-e-vende-macro.226079/
-
-$${if(z);log("&4 [Macro] ColheitaFeliz OFF");unset(z);keyup(forward);keyup(back);stop();else;set(z);log("&2 [Macro] ColheitaFeliz ON");endif;PROMPT(#comp,$$?,"Comprimento");PROMPT(#larg,$$?,"Largura");#comp=%#comp%*2;do(%#larg%);wait(2);look(north);slot(9);look(+0,90);wait(500ms);keydown(forward);do(%#comp%);key(attack);wait(155ms);loop;keyup(forward);keydown(back);do(%#comp%);wait(155ms);pick(372);key(use);loop;keyup(back);wait(1000ms);keydown(right);wait(420ms);keyup(right);}$$
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/colhe-planta-e-vende-macro.226079/
+if(z);log("&4 [Macro] ColheitaFeliz OFF");unset(z);keyup(forward);keyup(back);stop();else;set(z);log("&2 [Macro] ColheitaFeliz ON");endif;PROMPT(#comp,$$?,"Comprimento");PROMPT(#larg,$$?,"Largura");#comp=%#comp%*2;do(%#larg%);wait(2);look(north);slot(9);look(+0,90);wait(500ms);keydown(forward);do(%#comp%);key(attack);wait(155ms);loop;keyup(forward);keydown(back);do(%#comp%);wait(155ms);pick(372);key(use);loop;keyup(back);wait(1000ms);keydown(right);wait(420ms);keyup(right);}$$
 
 $${wait(100ms);wait(1);}$$
 

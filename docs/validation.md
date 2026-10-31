@@ -96,12 +96,31 @@ positives.
 
 | Corpus | Result |
 | --- | --- |
-| `output/` (transpiler output) | **0 problems** — good baseline |
-| `examples/` + `examples/forum/` (93 files) | 377 errors, 11 warnings, 38 infos |
+| `output/` (transpiler output) | **0 problems** — the acceptance baseline |
+| `examples/` (50 files) | **0 errors**, 8 warnings, 25 infos |
+| `examples/forum/_broken/` (43 files) | 348 errors — quarantined, expected |
 
-The errors concentrate in a handful of archived scripts that are genuinely
-broken, e.g. `pesca-repara-guarda-macro-warp-vip.txt` has 67 `if(` and 6
-`endif`. That is the work item "use the validator to fix the examples".
+Getting there took three passes:
+
+1. `tools/fix_examples.py` repaired what is provably repairable: the provenance
+   URL moved into the first block as a `// source:` comment, keyword typos
+   (`et(` → `set(`, `loo(` → `look(`), and files that were only missing a
+   closer at the end of the file (≤3 of them).
+2. `examples/escavar.txt` was repaired by hand: it ended with `loop; endif;`
+   where a second `loop;` belonged — there was no `if` open, and the outer `do;`
+   needed closing.
+3. The remaining 43 scripts are quarantined in
+   [`examples/forum/_broken/`](../examples/forum/_broken/README.md). Appending
+   the missing closers would make them *pass*, but one is short 61 `endif`s:
+   that would invent control flow the author never wrote.
+
+`validate.py` skips directories whose name starts with `_` when walking a tree,
+so `python3 tools/validate.py examples/` stays green while the quarantine is
+still checkable by naming it explicitly:
+
+```bash
+python3 tools/validate.py examples/forum/_broken --statistics
+```
 
 ## Where this fits
 

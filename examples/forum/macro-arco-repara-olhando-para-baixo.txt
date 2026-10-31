@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-arco-repara-olhando-para-baixo.186483/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-arco-repara-olhando-para-baixo.186483/
+
 if(arco);
 log("&d&l[MACRO] &fArco-Auto: &6[&4Off&6]");
 unset(arco);
@@ -28,5 +28,7 @@ unset(arco);
 stop();
 endif;
 look(,0);
+loop;
+
 loop;
 }$$

@@ -52,9 +52,15 @@ Backlog:
     - [x] [tests](./tests/test_validate.py): 34 `unittest` cases; `output/` must stay at 0 problems.
     - [x] Learnt three grammar facts the inventory does not state and encoded them: `DO` closed by
         `UNTIL`/`WHILE`, `if` and `do` families nesting independently, blocks spanning several markers.
-    - [ ] Fix the archived examples with it (`examples/` reports 377 errors today, concentrated in a few scripts).
+    - [x] Fix the archived examples with it (`examples/` reports 377 errors today, concentrated in a few scripts).
         Fixing them means dropping the first provenance line, repairing dropped `endif`/`loop`, and replacing
         silent-failure idioms. The examples double as the validator's test bed, so they should end up valid.
+        Done: `tools/fix_examples.py` moved the provenance URL into a `// source:` comment inside the block,
+        fixed the keyword typos and appended the ≤3 forgotten closers; `examples/escavar.txt` was repaired by
+        hand (it ended `loop; endif;` where a second `loop;` belonged). The 43 scripts that cannot be repaired
+        without inventing control flow are quarantined in [examples/forum/_broken](./examples/forum/_broken/README.md)
+        (one is short 61 `endif`s) — `validate.py` skips `_`-prefixed directories, so `examples/` is now at
+        **0 errors** and the test suite enforces it.
     - [ ] Wire the validator into the transpiler (`mkb.py`) and `server.py`, so a generated script that does
         not validate is reported at build time instead of failing in game.
     - [ ] Keep it stable: it only changes when `functions.json` or the grammar changes.

@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-4-em-1-escav-miner-herb-lenh-rep.195649/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-4-em-1-escav-miner-herb-lenh-rep.195649/
+
 if(pass1);
   log(&3Multi-Macro&6 Passo 1!);
   #idit=%ITEM%
@@ -124,4 +124,7 @@ endif;
 
 set(pass1);
 teste
+
+loop;
+loop;
 }$$

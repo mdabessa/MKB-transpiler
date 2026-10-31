@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-auto-troca-de-set.231471/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-auto-troca-de-set.231471/
+
 if(x);
 log("&3Macro Desligado");
 unset(x);stop;else;
@@ -60,4 +60,6 @@ wait(10ms);
 loop;
 endif;
 loop;
+
+endif;
 }$$

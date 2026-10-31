@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-acrobacia-inteligente.192393/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-acrobacia-inteligente.192393/
+
 
 if(acro);
 log("&3[%PLAYER%] &6Acrobacia &4[OFF]");
@@ -27,5 +27,8 @@ if(HEALTH < 1);
 endif;
 while(HEALTH > 0);
 wait(1);
+loop;
+
+loop;
 loop;
 }$$

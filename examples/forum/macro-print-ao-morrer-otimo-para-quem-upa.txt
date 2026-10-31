@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-print-ao-morrer-otimo-para-quem-upa.239301/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-print-ao-morrer-otimo-para-quem-upa.239301/
+
 
 if(forum);
 

@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/2-0-pesca-lixeira-baus-ilimitados-e.242510/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/2-0-pesca-lixeira-baus-ilimitados-e.242510/
+
 
 if(pesca);
 
@@ -186,4 +186,6 @@ $${wait(5);
 
 endif;endif;loop;
 
+
+loop;
 }$$

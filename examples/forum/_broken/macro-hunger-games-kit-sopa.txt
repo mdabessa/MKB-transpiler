@@ -1,0 +1,95 @@
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-hunger-games-kit-sopa.219833/
+
+
+if(x);
+
+log("&4[Macro] OFF);
+
+unset(x);
+
+stop();
+
+else;
+
+log("&d[Macro] ONN");
+
+set(x);
+
+&criador = Phodalao
+
+ACHIEVEMENTGET(Parabéns By %&criador% ,276);
+
+do;
+
+if(%HEALTH%<14);
+
+pick(282);
+
+key(use);
+
+wait(10ms);
+
+key(drop);
+
+wait(30ms);
+
+slot(1);
+
+endif;
+
+loop
+
+endif;
+
+}$$
+
+$${
+
+if(x);
+
+log("&4[Macro] OFF);
+
+unset(x);
+
+stop();
+
+else;
+
+log("&d[Macro] ONN");
+
+set(x);
+
+&criador = Phodalao
+
+ACHIEVEMENTGET(Parabéns By %&criador% ,276);
+
+do;
+
+if(%HEALTH%<14);
+
+pick(282);
+
+key(use);
+
+wait(10ms);
+
+key(drop);
+
+wait(30ms);
+
+}$$
+
+$${
+
+wait(10ms);
+
+slot(1);
+
+endif;
+
+loop
+
+endif;
+
+}$$

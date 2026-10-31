@@ -1,0 +1,49 @@
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-jogando-dano-2-manualmente.250469/
+
+
+if(z);
+
+log("&5&lPacto Encerrado");
+
+unset(z);
+
+stop;
+
+else;
+
+log("&5&lPACTO COM O CAPETA INICIADO");
+
+log("&e[l]&4Satanas&e: olá);
+
+set(z);
+
+#slot=1;
+
+do;
+
+if(KEY_Q);
+
+wait(1ms);
+
+slot(%#slot%);
+
+key(use);
+
+inc(#slot);
+
+else;
+
+#slot=%#slot%+2-%#slot%
+
+endif;
+
+if(%#slot%=10);
+
+#slot=%#slot%-8
+
+endif;
+
+loop;
+
+}$$

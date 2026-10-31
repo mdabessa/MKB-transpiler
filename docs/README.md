@@ -68,6 +68,7 @@ All three scripts live in `tools/` and only need the standard library.
 | `python3 tools/corpus_report.py` | `original-language/reference/corpus-coverage.md` from the example corpus. |
 | `python3 tools/fetch_forum_examples.py` | Downloads community scripts into `examples/forum/`. |
 | `python3 tools/validate.py <paths>` | Answers "is this script valid?" for original-language `.txt` files; see [validation.md](validation.md). |
+| `python3 tools/fix_examples.py` | Applies the provable repairs (provenance comment, keyword typos, ≤3 missing closers) and re-validates; `--dry-run` to preview. |
 
 The two generators accept `--check`, which exits non-zero when the committed
 page no longer matches its source — cheap insurance against docs drifting from

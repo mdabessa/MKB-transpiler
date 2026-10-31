@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-autoclick-inovador-toma-pot-e-defende.357643/
-
-$${IF(auto);LOG("&3[%PLAYER%] &6auto-click &4[OFF]");UNSPRINT;UNSET(auto);STOP();
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-autoclick-inovador-toma-pot-e-defende.357643/
+IF(auto);LOG("&3[%PLAYER%] &6auto-click &4[OFF]");UNSPRINT;UNSET(auto);STOP();
 
 ELSE;LOG("&3[%PLAYER%] &6auto-click &2[ON]");SPRINT;
 

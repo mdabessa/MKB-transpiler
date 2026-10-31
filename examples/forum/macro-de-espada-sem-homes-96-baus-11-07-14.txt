@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-de-espada-sem-homes-96-baus-11-07-14.351391/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-de-espada-sem-homes-96-baus-11-07-14.351391/
+
 
 if(testebaus);
 
@@ -762,4 +762,6 @@ endif;endif;
 
 loop;
 
+
+loop;
 }$$

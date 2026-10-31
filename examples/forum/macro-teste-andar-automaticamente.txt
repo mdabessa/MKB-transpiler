@@ -1,5 +1,5 @@
-https://forum.craftlandia.com.br/xf/threads/macro-teste-andar-automaticamente.385014/
-
-$${$$<Nome que voce deu.txt>}$$
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-teste-andar-automaticamente.385014/
+$$<Nome que voce deu.txt>}$$
 
 $${SET(@#andarx,%XPOS%);LOG(%@#andarx%);SET(@#andarz,%ZPOS%);LOG(%@#andarz%);SET(@#andary,%YPOS%);LOG(%@#andary%)}$$

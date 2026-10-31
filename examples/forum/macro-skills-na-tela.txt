@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-skills-na-tela.230034/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-skills-na-tela.230034/
+
 
 IFMATCHES(%CHATCLEAN%,"Agora você está logado. NUNCA use a mesma senha do CraftLandia em outros servidores.");
 

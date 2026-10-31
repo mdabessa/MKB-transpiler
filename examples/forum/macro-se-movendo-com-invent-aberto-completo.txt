@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-se-movendo-com-invent-aberto-completo.320599/
-
-$${if(invfunc);unset(invfunc);log(&aLogic Invent &bOFF);STOP;
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-se-movendo-com-invent-aberto-completo.320599/
+if(invfunc);unset(invfunc);log(&aLogic Invent &bOFF);STOP;
 
 else;set(invfunc);log(&aLogic Invent &bON);endif;
 

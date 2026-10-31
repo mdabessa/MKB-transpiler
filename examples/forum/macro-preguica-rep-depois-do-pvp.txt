@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-preguica-rep-depois-do-pvp.412928/
-
-$${log("Reparando");}$$
+$${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-preguica-rep-depois-do-pvp.412928/
+log("Reparando");}$$
 
 $${wait(500ms);}$$
 
@@ -112,4 +112,7 @@ slotclick(44,l,"true");
 
 stop()
 
+
+loop;
+loop;
 }$$

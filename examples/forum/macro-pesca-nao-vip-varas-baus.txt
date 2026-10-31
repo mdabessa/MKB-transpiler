@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-pesca-nao-vip-varas-baus.253350/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-pesca-nao-vip-varas-baus.253350/
+
 
 if(x);
 
@@ -894,4 +894,8 @@ endif;endif;endif;
 
 loop;
 
+
+endif;
+loop;
+loop;
 }$$

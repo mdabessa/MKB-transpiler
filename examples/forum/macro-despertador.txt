@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-despertador.316197/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-despertador.316197/
+
 
 if(dispert);unset(dispert);setlabel(DP,&aDespertador &bdesativado);log(&adespertador &bDESLIGADO);STOP;
 

@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-melhor-macro-de-fazer-pocoes.293412/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-melhor-macro-de-fazer-pocoes.293412/
+
 
 if(x);
 
@@ -280,4 +280,8 @@ endif;
 
 loop;
 
+
+loop;
+loop;
+loop;
 }$$

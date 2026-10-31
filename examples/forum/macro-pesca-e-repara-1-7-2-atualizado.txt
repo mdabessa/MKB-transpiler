@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-pesca-e-repara-1-7-2-atualizado.328541/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-pesca-e-repara-1-7-2-atualizado.328541/
+
 
 IF(a);
 

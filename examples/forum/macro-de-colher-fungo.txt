@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-de-colher-fungo.350679/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-de-colher-fungo.350679/
+
 
 if(running);
 
@@ -170,7 +170,7 @@ wait(8);
 
 uns
 
-et(running);
+set(running);
 
 stop();
 
@@ -208,4 +208,6 @@ endif;
 
 loop;
 
+
+loop;
 }$$

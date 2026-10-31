@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-repair-gogo.208233/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-repair-gogo.208233/
+
 
 if(z);
 
@@ -100,4 +100,6 @@ stop();
 
 }$$
 
-$${$$<escolha um nome qualquer aqui.txt>}$$
+$${$$<escolha um nome qualquer aqui.txt>
+loop;
+}$$

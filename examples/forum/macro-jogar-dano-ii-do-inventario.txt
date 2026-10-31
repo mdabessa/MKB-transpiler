@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/macro-jogar-dano-ii-do-inventario.282321/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/macro-jogar-dano-ii-do-inventario.282321/
+
 
 if(dano);
 

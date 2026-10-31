@@ -1,6 +1,6 @@
-https://forum.craftlandia.com.br/xf/threads/pack-pacote-de-labels-informacoes-na-tela.260852/
-
 $${
+// source: https://forum.craftlandia.com.br/xf/threads/pack-pacote-de-labels-informacoes-na-tela.260852/
+
 
 if(state);log(&3[%PLAYER%] &6Label's &4OFF);unset(state);
 
