@@ -761,24 +761,31 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-per-rule", type=int, default=25,
                         help="stop listing a file after N findings of the same rule (0 = no limit)")
     parser.add_argument("--quiet", action="store_true", help="only print the summary line")
+    parser.add_argument("--stdin-name", default="<stdin>",
+                        help="file name to report when reading a script from stdin ('-')")
     args = parser.parse_args(argv)
 
     known = load_keywords()
-    files = iter_targets(args.paths)
-    if not files:
-        print("no .txt files found", file=sys.stderr)
-        return 2
+
+    if args.paths == ["-"]:
+        # Editor integration: lint the unsaved buffer.
+        diagnostics = validate_text(sys.stdin.read(), args.stdin_name, known)
+        files = [Path(args.stdin_name)]
+    else:
+        files = iter_targets(args.paths)
+        if not files:
+            print("no .txt files found", file=sys.stderr)
+            return 2
+        diagnostics = []
+        for path in files:
+            text = path.read_text(encoding="utf-8", errors="replace")
+            try:
+                name = str(path.relative_to(REPO_ROOT))
+            except ValueError:
+                name = str(path)
+            diagnostics.extend(validate_text(text, name, known))
 
     threshold = SEVERITY_ORDER[args.severity]
-    diagnostics: list[Diagnostic] = []
-    for path in files:
-        text = path.read_text(encoding="utf-8", errors="replace")
-        try:
-            name = str(path.relative_to(REPO_ROOT))
-        except ValueError:
-            name = str(path)
-        diagnostics.extend(validate_text(text, name, known))
-
     shown = [d for d in diagnostics if SEVERITY_ORDER[d.severity] <= threshold]
     errors = sum(1 for d in shown if d.severity == "error")
     warnings = sum(1 for d in shown if d.severity == "warning")

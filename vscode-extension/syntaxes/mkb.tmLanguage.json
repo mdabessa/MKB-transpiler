@@ -1,0 +1,66 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "MKB",
+  "scopeName": "source.mkb",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#markers" },
+    { "include": "#strings" },
+    { "include": "#interpolation" },
+    { "include": "#declarations" },
+    { "include": "#calls" },
+    { "include": "#block-keywords" },
+    { "include": "#variables" },
+    { "include": "#numbers" }
+  ],
+  "repository": {
+    "comments": {
+      "match": "//.*$",
+      "name": "comment.line.double-slash.mkb"
+    },
+    "markers": {
+      "match": "\\$\\$\\{|\\}\\$\\$",
+      "name": "punctuation.section.macro.mkb"
+    },
+    "strings": {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.mkb",
+      "patterns": [
+        { "include": "#interpolation" }
+      ]
+    },
+    "interpolation": {
+      "match": "%(@?[#&]?)([A-Za-z_][A-Za-z0-9_]*)(\\[\\])?%",
+      "captures": {
+        "1": { "name": "punctuation.definition.variable.mkb" },
+        "2": { "name": "variable.other.interpolated.mkb" }
+      }
+    },
+    "declarations": {
+      "match": "\\b(import|function|endfunction)\\b",
+      "name": "keyword.control.declaration.mkb"
+    },
+    "calls": {
+      "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?=\\()",
+      "captures": {
+        "1": { "name": "support.function.mkb" }
+      }
+    },
+    "block-keywords": {
+      "match": "\\b(?:endif|else|elseif|loop|next|endfunction|endunsafe|break)\\b",
+      "name": "keyword.control.mkb"
+    },
+    "variables": {
+      "match": "(@[#&]?|#|&)([A-Za-z_][A-Za-z0-9_]*)",
+      "captures": {
+        "1": { "name": "punctuation.definition.variable.mkb" },
+        "2": { "name": "variable.other.mkb" }
+      }
+    },
+    "numbers": {
+      "match": "\\b\\d+\\b",
+      "name": "constant.numeric.mkb"
+    }
+  }
+}

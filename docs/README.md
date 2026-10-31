@@ -55,7 +55,8 @@ macros/*.mkb  ──transpile──▶  output/*.txt  ──▶  mod ($${ … }$
 | `docs/original-language/` | Reference for the mod's language. |
 | `docs/mkb-language/` | Reference for MKB (in progress). |
 | `docs/validation.md` | Rule catalogue for the script validator (`.txt`). |
-| `docs/lint-mkb.md` | Rule catalogue for the MKB linter (`.mkb`). |
+| `docs/lint-mkb.md` | Rule catalogue for the MKB linter (`.mkb`), and the VS Code client. |
+| `vscode-extension/` | Editor support: diagnostics, completion, hover, snippets, grammar. |
 | `tests/` | `unittest` suite for the tools. |
 | `tools/` | Documentation and validation tooling (see below). |
 

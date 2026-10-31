@@ -85,11 +85,34 @@ python3 -m unittest tests.test_lint_mkb -v
 * `test_else_branch_is_reachable` — `stop` in one branch must not condemn the
   other one.
 
+## VS Code
+
+[`vscode-extension/`](../vscode-extension/README.md) is a thin client over the
+two Python tools — it never reimplements a rule:
+
+| Feature | Comes from |
+| --- | --- |
+| diagnostics on `.mkb` | `tools/lint_mkb.py - --stdin-name <path> --format json` |
+| diagnostics on `.txt` | `tools/validate.py - --stdin-name <path> --format json` |
+| completion, hover, signature help | `functions.json` |
+| snippets, grammar | `vscode-extension/snippets/`, `vscode-extension/syntaxes/` |
+
+The buffer is piped through stdin, so unsaved changes are linted, and
+`--stdin-name` keeps import resolution and "the problem is in
+`commons/chest.mkb`" reporting working exactly as on the command line.
+
+```bash
+cd vscode-extension && npm install && npm run compile
+npx @vscode/vsce package && code --install-extension mkb-macro-language-*.vsix
+```
+
+Extensions are per profile: add `--profile <name>` (for example
+`--profile "MKB"`) when the editor window uses a custom profile, otherwise the
+install lands in *Default* and the window never sees it.
+
 ## Not done yet
 
-* VS Code integration (diagnostics on save, completion, hover, signature help,
-  snippets, `.tmLanguage`) — the JSON output is already in the shape an
-  extension needs;
 * `--fix` for the safe repairs (missing `;`, provable keyword typos, import
   ordering);
-* type tracking across assignments: today a variable is just a name.
+* type tracking across assignments: today a variable is just a name;
+* user-function completion (keywords only, for now).

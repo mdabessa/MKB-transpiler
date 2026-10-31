@@ -1,0 +1,126 @@
+{
+  "name": "mkb-macro-language",
+  "displayName": "MKB Macro Language",
+  "description": "Lint, completion and syntax highlighting for MKB macros (.mkb) and the mod's generated scripts (.txt).",
+  "version": "0.1.0",
+  "publisher": "mkb-transpiler",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "keywords": [
+    "minecraft",
+    "macro",
+    "macro/keybind",
+    "mkb"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:mkb",
+    "onLanguage:macroscript",
+    "workspaceContains:functions.json"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "mkb",
+        "aliases": [
+          "MKB",
+          "mkb"
+        ],
+        "extensions": [
+          ".mkb"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "macroscript",
+        "aliases": [
+          "Macro script",
+          "macro"
+        ],
+        "extensions": [
+          ".txt"
+        ],
+        "firstLine": "^\\s*\\$\\$\\{",
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "mkb",
+        "scopeName": "source.mkb",
+        "path": "./syntaxes/mkb.tmLanguage.json"
+      },
+      {
+        "language": "macroscript",
+        "scopeName": "source.macroscript",
+        "path": "./syntaxes/macroscript.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "mkb",
+        "path": "./snippets/mkb.json"
+      },
+      {
+        "language": "macroscript",
+        "path": "./snippets/mkb.json"
+      }
+    ],
+    "configuration": {
+      "title": "MKB",
+      "properties": {
+        "mkb.pythonPath": {
+          "type": "string",
+          "default": "python3",
+          "description": "Python interpreter used to run tools/lint_mkb.py and tools/validate.py."
+        },
+        "mkb.lintOnType": {
+          "type": "boolean",
+          "default": true,
+          "description": "Lint while typing (debounced). When off, files are linted on save only."
+        },
+        "mkb.validateScripts": {
+          "type": "boolean",
+          "default": true,
+          "description": "Also run tools/validate.py on .txt macro scripts, checking the generated language."
+        },
+        "mkb.lintWorkspaceOnStartup": {
+          "type": "boolean",
+          "default": false,
+          "description": "Lint every .mkb file under macros/ when the workspace opens."
+        },
+        "mkb.timeoutMs": {
+          "type": "number",
+          "default": 15000,
+          "description": "Timeout for one linter run, in milliseconds."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "mkb.lint",
+        "title": "MKB: Lint current file"
+      },
+      {
+        "command": "mkb.lintWorkspace",
+        "title": "MKB: Lint all macros"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.0"
+  }
+}

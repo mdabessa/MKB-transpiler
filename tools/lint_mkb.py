@@ -474,23 +474,32 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--statistics", action="store_true")
     parser.add_argument("--max-per-rule", type=int, default=25)
     parser.add_argument("--quiet", action="store_true")
+    parser.add_argument("--stdin-name", default="<stdin>",
+                        help="file name to report when reading a source from stdin ('-')")
     args = parser.parse_args(argv)
 
     known = validate.load_keywords()
-    files = iter_sources(args.paths)
-    if not files:
-        print("no .mkb files found", file=sys.stderr)
-        return 2
 
     repo_files = iter_sources([str(REPO_ROOT / "macros")])
     index = repository_index(repo_files)
     global_reads = scan_globals(repo_files) if repo_files else None
-    threshold = SEVERITY_ORDER[args.severity]
 
-    diagnostics: list[Diagnostic] = []
-    for path in files:
-        diagnostics.extend(lint_text(path.read_text(encoding="utf-8", errors="replace"),
-                                     str(path), known, index, global_reads))
+    if args.paths == ["-"]:
+        # Editor integration: lint the unsaved buffer, still with import scope.
+        diagnostics = lint_text(sys.stdin.read(), args.stdin_name, known,
+                                index, global_reads)
+        files = [Path(args.stdin_name)]
+    else:
+        files = iter_sources(args.paths)
+        if not files:
+            print("no .mkb files found", file=sys.stderr)
+            return 2
+        diagnostics = []
+        for path in files:
+            diagnostics.extend(lint_text(path.read_text(encoding="utf-8", errors="replace"),
+                                         str(path), known, index, global_reads))
+
+    threshold = SEVERITY_ORDER[args.severity]
 
     shown = [d for d in diagnostics if SEVERITY_ORDER[d.severity] <= threshold]
     errors = sum(1 for d in shown if d.severity == "error")

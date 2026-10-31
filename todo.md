@@ -93,9 +93,14 @@ Backlog:
         Done the other way round: the linter works on the source and follows the import graph,
         so it already knows the real file and line, and a problem in `commons/chest.mkb` is
         reported once, on that file.
-    - [ ] Make it a VS Code extension: `DiagnosticCollection` on `.mkb` files, keyword completion
+    - [x] Make it a VS Code extension: `DiagnosticCollection` on `.mkb` files, keyword completion
         and hover from `functions.json`, signature help from `definition`/`varnames`, snippets for
         `function`/`if`/`do`/`for`, and a `.tmLanguage` grammar for `.mkb` and `.txt`.
+        Done: [`vscode-extension/`](./vscode-extension/README.md) — a thin client that pipes the buffer
+        into `tools/lint_mkb.py` and `tools/validate.py` (both grew a `-` / `--stdin-name` mode, so
+        unsaved changes are linted with the real file path). Completion/hover/signature help read
+        `functions.json`; snippets and grammars are declared in `package.json`. Packaged as
+        `mkb-macro-language-0.1.0.vsix` and installed.
     - [ ] `--fix` for safe repairs (missing trailing `;`, provable keyword typos, import ordering).
     - [ ] Tests per rule, plus a fixture per transpiler feature so a feature cannot land without
         its linter counterpart.

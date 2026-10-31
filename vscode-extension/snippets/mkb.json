@@ -1,0 +1,116 @@
+{
+  "Macro skeleton": {
+    "prefix": "macro",
+    "body": [
+      "$${",
+      "import commons.commons",
+      "",
+      "$0",
+      "}$$"
+    ],
+    "description": "New macro with the standard import"
+  },
+  "Import": {
+    "prefix": ["import", "imp"],
+    "body": ["import ${1:commons.${2:chest}}"],
+    "description": "Import a module (must come before any other statement)"
+  },
+  "Function": {
+    "prefix": ["function", "func"],
+    "body": [
+      "function ${1:nome}(${2})",
+      "\t$0",
+      "endfunction;"
+    ],
+    "description": "User function, expanded inline by the transpiler"
+  },
+  "If": {
+    "prefix": ["if"],
+    "body": [
+      "if(${1:condition})",
+      "\t$0",
+      "endif;"
+    ],
+    "description": "Conditional block"
+  },
+  "If / elseif / else": {
+    "prefix": ["ifelse", "iffull"],
+    "body": [
+      "if(${1:condition})",
+      "\t$2",
+      "elseif(${3:condition})",
+      "\t$4",
+      "else;",
+      "\t$0",
+      "endif;"
+    ],
+    "description": "Conditional chain"
+  },
+  "If matches (regex)": {
+    "prefix": ["ifmatches"],
+    "body": [
+      "ifmatches(${1:%CHAT%},\"${2:^pattern}\",${3:&match},1);",
+      "\t$0",
+      "endif;"
+    ],
+    "description": "Regex match with the captured group"
+  },
+  "Loop until": {
+    "prefix": ["dountil", "until"],
+    "body": [
+      "do();",
+      "\t$0",
+      "until(${1:condition});",
+      "loop;"
+    ],
+    "description": "Infinite loop with an exit condition"
+  },
+  "Loop while": {
+    "prefix": ["dowhile", "while"],
+    "body": [
+      "do();",
+      "\t$0",
+      "while(${1:condition});",
+      "loop;"
+    ],
+    "description": "Loop that stops when the condition is false"
+  },
+  "Loop forever": {
+    "prefix": ["do", "loop"],
+    "body": [
+      "do();",
+      "\t$0",
+      "loop;"
+    ],
+    "description": "Infinite loop — remember a WAIT inside"
+  },
+  "For": {
+    "prefix": ["for"],
+    "body": [
+      "for(#${1:i},${2:0},${3:3})",
+      "\t$0",
+      "next;"
+    ],
+    "description": "Counting loop (end is inclusive)"
+  },
+  "Foreach": {
+    "prefix": ["foreach"],
+    "body": ["foreach(#${1:array},#${2:item})"],
+    "description": "Iterate an array or a built-in iterator"
+  },
+  "Log": {
+    "prefix": ["log"],
+    "body": ["log(\"${1:message}\");"],
+    "description": "Client-side chat message"
+  },
+  "Wait": {
+    "prefix": ["wait"],
+    "body": ["wait(${1:1});"],
+    "description": "Pause for seconds / ms / ticks"
+  },
+  "Stop with id": {
+    "prefix": ["stop"],
+    "body": ["stop(\"${1:MACRO_ID}\");"],
+    "description": "Stop this macro (and the one that started it)"
+  }
+}
