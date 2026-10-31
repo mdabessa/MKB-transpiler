@@ -96,10 +96,13 @@ transpile("macros/tool.mkb", "output", strict=True)
 written, so it cannot reach the mod folder. See
 [validation.md](../validation.md#build-time-integration).
 
-What neither layer does yet: type checking, unused-variable analysis, or a
-diagnostic that points back into the `.mkb` line that produced the bad output.
-That is the planned MKB linter (see [`todo.md`](../../todo.md)), which is
-expected to grow with the transpiler: a new construct should land with its
+**3. Before transpiling (source-level, developer-facing).**
+[`tools/lint_mkb.py`](../../tools/lint_mkb.py) reports problems on the `.mkb`
+line you wrote — unresolved imports, wrong arity, duplicate or unclosed
+functions, code after `stop`, unused variables, and a call to a function that
+lives in a file you forgot to import. See [lint-mkb.md](../lint-mkb.md).
+
+It is expected to grow with the transpiler: a new construct should land with its
 linter rule.
 
 ## Outputs

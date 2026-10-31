@@ -16,7 +16,7 @@ flowchart LR
 
 | Doc set | Scope | Location |
 | --- | --- | --- |
-| **Project** | What this repository is, how the pieces fit, how to run the tools. | this page, plus [validation.md](validation.md) |
+| **Project** | What this repository is, how the pieces fit, how to run the tools. | this page, plus [validation.md](validation.md) and [lint-mkb.md](lint-mkb.md) |
 | **Original language** | The Macro / Keybind mod's own scripting language — the `.txt` files the transpiler *emits* and *consumes*. | [`original-language/`](original-language/README.md) |
 | **MKB language** | The source language you write in — `.mkb` files that the transpiler turns into original-language `.txt`. | [`mkb-language/`](mkb-language/README.md) |
 
@@ -54,7 +54,8 @@ macros/*.mkb  ──transpile──▶  output/*.txt  ──▶  mod ($${ … }$
 | `examples/` | Original-language scripts: hand-written samples plus [`forum/`](../examples/forum/README.md) (89 archived community scripts). |
 | `docs/original-language/` | Reference for the mod's language. |
 | `docs/mkb-language/` | Reference for MKB (in progress). |
-| `docs/validation.md` | Rule catalogue for the script validator. |
+| `docs/validation.md` | Rule catalogue for the script validator (`.txt`). |
+| `docs/lint-mkb.md` | Rule catalogue for the MKB linter (`.mkb`). |
 | `tests/` | `unittest` suite for the tools. |
 | `tools/` | Documentation and validation tooling (see below). |
 
@@ -69,6 +70,7 @@ All three scripts live in `tools/` and only need the standard library.
 | `python3 tools/fetch_forum_examples.py` | Downloads community scripts into `examples/forum/`. |
 | `python3 tools/validate.py <paths>` | Answers "is this script valid?" for original-language `.txt` files; see [validation.md](validation.md). |
 | `python3 tools/fix_examples.py` | Applies the provable repairs (provenance comment, keyword typos, ≤3 missing closers) and re-validates; `--dry-run` to preview. |
+| `python3 tools/lint_mkb.py <paths>` | Answers "will this macro work?" for `.mkb` sources; see [lint-mkb.md](lint-mkb.md). |
 
 The two generators accept `--check`, which exits non-zero when the committed
 page no longer matches its source — cheap insurance against docs drifting from

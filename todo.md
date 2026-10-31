@@ -79,11 +79,20 @@ Backlog:
     (imports, user functions, scoping, expansion) and therefore must be updated every time
     the transpiler changes or implements a feature — a new construct without a linter rule
     is an unfinished feature.
-    - [ ] Lint the source before/independently of transpiling: unresolved `import`, unknown
+    - [x] Lint the source before/independently of transpiling: unresolved `import`, unknown
         keyword after expansion, wrong argument count, unclosed block, duplicate `function`
         name, function called with the wrong arity, unused local, unreachable code after `stop`.
-    - [ ] Report the *expanded* position, not just the `.mkb` position — a mistake inside
+        Done: [`tools/lint_mkb.py`](./tools/lint_mkb.py), rules `M001`–`M012` in
+        [docs/lint-mkb.md](./docs/lint-mkb.md), 23 tests in `tests/test_lint_mkb.py`.
+        `macros/` is clean: 0 errors, 1 warning, 2 infos — and all three are real bugs
+        (`place_placa.mkb` has code after a `stop`, `onChat.mkb` computes an unused
+        `#money_per_min`, `onLoad.mkb` initialises `@#money_chang1e` while `onChat.mkb`
+        reads `@#money_change`).
+    - [x] Report the *expanded* position, not just the `.mkb` position — a mistake inside
         `macros/commons/*.mkb` must point at that file and line, not at the caller.
+        Done the other way round: the linter works on the source and follows the import graph,
+        so it already knows the real file and line, and a problem in `commons/chest.mkb` is
+        reported once, on that file.
     - [ ] Make it a VS Code extension: `DiagnosticCollection` on `.mkb` files, keyword completion
         and hover from `functions.json`, signature help from `definition`/`varnames`, snippets for
         `function`/`if`/`do`/`for`, and a `.tmLanguage` grammar for `.mkb` and `.txt`.
