@@ -79,8 +79,9 @@ Function <name> not defined.
 ```
 
 That is the only check today — there is no type check, no arity check and no
-block-balance check beyond "unclosed block" at the end. The planned linter
-(see [`todo.md`](../../todo.md)) is meant to change that.
+block-balance check beyond "unclosed block" at the end. The planned MKB linter
+(see [`todo.md`](../../todo.md)) is meant to change that, and it is expected to
+grow with the transpiler: a new construct should land with its linter rule.
 
 ## Outputs
 

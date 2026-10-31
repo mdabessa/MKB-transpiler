@@ -1,8 +1,12 @@
 # Script validation
 
 `tools/validate.py` reads a `.txt` macro script the way the mod does and reports
-what is wrong with it. This page is the rule catalogue and the plan for turning
-it into an editor extension.
+what is wrong with it. This page is the rule catalogue for that tool.
+
+It answers **one question: is this script valid?** — for an example in
+`examples/` or for a script the transpiler just generated. It knows
+`functions.json` and the grammar, nothing else. Authoring help for `.mkb`
+sources is a separate workstream, tracked in [`todo.md`](../todo.md).
 
 Why it exists: the mod **silently ignores errors**. A typo, an argument in the
 wrong position or an unclosed block still runs — it just does less than you
@@ -99,24 +103,25 @@ The errors concentrate in a handful of archived scripts that are genuinely
 broken, e.g. `pesca-repara-guarda-macro-warp-vip.txt` has 67 `if(` and 6
 `endif`. That is the work item "use the validator to fix the examples".
 
-## Towards a VS Code extension
+## Where this fits
 
-The validator was written for this from the start:
+Validation is split in two, because the two tools answer different questions:
 
-* `validate_text(text, filename)` is pure — no I/O, no globals — so an extension
-  can call it on an unsaved buffer;
+| Tool | Question | Scope |
+| --- | --- | --- |
+| `tools/validate.py` (this page) | *Is this script valid?* | `.txt` files, `functions.json` + grammar |
+| MKB linter (planned) | *Help me write this macro.* | `.mkb` files, transpiler features — imports, functions, scoping, expansion |
+
+The validator stays deliberately small and only changes when `functions.json`
+or the grammar changes. The MKB linter is the one that has to grow with the
+transpiler.
+
+What the validator guarantees to whatever consumes it:
+
+* `validate_text(text, filename)` is pure — no I/O, no globals — so an editor
+  can call it on an unsaved buffer, and the MKB linter can call it on the
+  expanded output;
 * diagnostics carry 1-based `line`/`col` and a stable `code`, mapping directly
   onto `vscode.Diagnostic` (`Range`, `severity`, `code`, `message`);
-* `--format json` is the same list, already serialisable.
-
-The smallest useful extension:
-
-1. `vscode.languages.createDiagnosticCollection("mkb")`;
-2. run `validate_text` on `onDidOpen` / `onDidChange` / `onDidSave` for
-   `**/*.txt`, debounced;
-3. add a `.tmLanguage` grammar for keywords and `%…%` interpolation — the
-   inventory in `functions.json` can generate the keyword list;
-4. expose `--statistics` as a status-bar item so a broken script is visible
-   without opening the Problems panel.
-
-No language server is needed at this size; a plain extension is enough.
+* `--format json` is the same list, already serialisable;
+* `output/` is expected to stay at **0 problems** — that is the acceptance test.
