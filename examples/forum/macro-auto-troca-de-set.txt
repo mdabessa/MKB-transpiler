@@ -1,0 +1,63 @@
+https://forum.craftlandia.com.br/xf/threads/macro-auto-troca-de-set.231471/
+
+$${
+if(x);
+log("&3Macro Desligado");
+unset(x);stop;else;
+log("&3Macro Ligado");
+set(x);
+&capacete="^310$|^314$|^298$|^306$|^302$";
+&peitoral="^311$|^315$|^299$|^307$|^303$";
+&calca="^312$|^316$|^300$|^308$|^304$";
+&bota="^313$|^317$|^301$|^309$|^305$";
+#first=21;#firsta=22;#firstb=22;#firstc=21;
+#capacete=5;
+#peitoral=6;
+#calca=7;
+#bota=8;
+do;
+if(%HELMDURABILITY%<30);
+gui(inventory);wait(1ms);
+slotclick(%#capacete%,l,true);
+do;
+getslotitem(%#first%,#id,#stack);
+ifmatches(%#id%,%&capacete%);slotclick(%#first%,l,true);wait(1ms);gui;BREAK;else;inc(#first,1);endif;
+if(%#first%=44);log("&3Seus Capacetes Acabaram!!");log("&4MACRO DESLIGADO");GUI;endif;
+wait(10ms);
+loop;
+endif;
+
+if(%CHESTPLATEDURABILITY%<30);
+gui(inventory);wait(1ms);
+slotclick(%#peitoral%,l,true);
+do;
+getslotitem(%#firsta%,#id,#stack);
+ifmatches(%#id%,%&peitoral%);slotclick(%#firsta%,l,true);wait(1ms);gui;BREAK;else;inc(#firsta,1);endif;
+if(%#firsta%=44);log("&aSeus Peitorais Acabaram!!");log("&4MACRO DESLIGADO");GUI;STOP;endif;
+wait(10ms);
+loop;
+endif;
+
+if(%LEGGINGSDURABILITY%<30);
+gui(inventory);wait(1ms);
+slotclick(%#calca%,l,true);
+do;
+getslotitem(%#firstb%,#id,#stack);
+ifmatches(%#id%,%&calca%);slotclick(%#firstb%,l,true);wait(1ms);gui;BREAK;else;inc(#firstb,1);endif;
+if(%#firstb%=44);log("&aSuas Calças Acabaram!!");log("&4MACRO DESLIGADO");GUI;STOP;endif;
+wait(10ms);
+loop;
+endif;
+
+if(%BOOTSDURABILITY%<30);
+gui(inventory);wait(1ms);
+slotclick(%#bota%,l,true);
+do;
+getslotitem(%#firstc%,#id,#stack);
+ifmatches(%#id%,%&bota%);slotclick(%#firstc%,l,true);wait(1ms);gui;BREAK;else;inc(#firstc,1);endif;
+if(%#firstc%=44);log("&aSuas Botas Acabaram!!");log("&4MACRO DESLIGADO");GUI;STOP;endif;
+wait(10ms);
+loop;
+endif;
+loop;
+}$$

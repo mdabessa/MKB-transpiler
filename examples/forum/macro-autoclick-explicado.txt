@@ -1,0 +1,9 @@
+https://forum.craftlandia.com.br/xf/threads/macro-autoclick-explicado.335253/
+
+$${if(autousing);log("&d[AutoClick] &fAutoClick Parou.");unset(autousing);stop();else;log("&d[AutoClick] &fAutoClick Começou.");set(autousing);do;key(attack);wait(1ms);loop;endif;}$$
+
+$${if(autousing);log("&fChega!");unset(autousing);stop();else;log("Vamo lá");set(autousing);do;key(attack);wait(36ms);loop;endif;}$$
+
+$${if(autousing);log("&fMatador de galinhas Parou.");unset(autousing);stop();else;log("&fMatador de galinhas Começou.");set(autousing);do;key(attack);wait(1t);loop;endif;}$$
+
+$${if(autousing);log("&dAutoClick Parou.");unset(autousing);stop();else;log("&dAutoClick Começou.");set(autousing);do;key(attack);loop;endif;}$$

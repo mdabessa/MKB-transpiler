@@ -1,0 +1,3 @@
+https://forum.craftlandia.com.br/xf/threads/tutorial-macro-auto-click.161049/
+
+$${if(autousing);log("&d[AutoClick] &fAutoClick Parou.");unset(autousing);stop();else;log("&d[AutoClick] &fAutoClick Começou.");set(autousing);do;key(attack);wait(1ms);loop;endif;}$$

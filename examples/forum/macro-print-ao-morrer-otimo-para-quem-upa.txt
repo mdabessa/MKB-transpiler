@@ -1,0 +1,29 @@
+https://forum.craftlandia.com.br/xf/threads/macro-print-ao-morrer-otimo-para-quem-upa.239301/
+
+$${
+
+if(forum);
+
+log("&3[%PLAYER%] &6Print ao morrer &4[OFF]");
+
+unset(forum);
+
+stop();
+
+else;
+
+log("&3[%PLAYER%] &6Print ao morrer &2[ON]");
+
+set(forum);
+
+endif;
+
+do;
+
+while(HEALTH > 0);
+
+PRESS("F2");
+
+loop;
+
+}$$

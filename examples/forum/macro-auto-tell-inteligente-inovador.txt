@@ -1,0 +1,165 @@
+https://forum.craftlandia.com.br/xf/threads/macro-auto-tell-inteligente-inovador.352962/
+
+$${
+
+if(autotell);
+
+log(&5[MACRO]&bAuto-Tell Inteligente &4[OFF]);
+
+unset(autotell);
+
+unset(@autotell);
+
+stop;else;
+
+log(&5[MACRO]&bAuto-Tell Inteligente &2[ON);
+
+set(autotell);
+
+set(@autotell);
+
+endif;
+
+}$$
+
+$${
+
+if(@autotell);
+
+if(%@#r%=0);
+
+ifmatches(%CHATCLEAN%,"^[\(]Mensagem de (\S+)[\)]:",&a,1);
+
+log('&fMensagem de %&a% Detectada");
+
+}$$
+
+$${
+
+}$$
+
+$${
+
+dec(%@#time%,30);
+
+endif;endif;endif;
+
+if(%@#r%=2);
+
+ifmatches(%CHATCLEAN%,"^[\(]Mensagem de \S+[\)]: (\S+)",&a,1);
+
+log(%&a%);
+
+&ra="^fungo$|ˆfungos$|^cenoura$|ˆcenouras$|^cana$|ˆcanas|^batata$|ˆbatatas|^melancia$|ˆmelancias|^cacto$|ˆcactos|^cactu$|^cactus$";
+
+&rb="^pot$|ˆpots$|^pocoes$|ˆpoçoes$|^poções$|^pocões$";
+
+&rc="^ouro$|^dima$|^diamante$|^ferro$|^ferro$|^iron$|^esmeralda$|^emerald$|^carvao$|^carvões$|^redstone$|^redstones$|^quartzo$|";
+
+&rd="^madeira$|^pedra$|^areia$|^tijolo$|^argila$|^arenito$|^dirt$|^vidro$|^lã$|^la$|^pedregulho";
+
+&re="^set$|ˆsets$|^p3$|^p4$|^proteção$|^afiada$|^espada$|^picareta$|^pikareta$|^pá$|^pa$|^espadas$|^pikaretas$|^picaretas$";
+
+&rf="^machado$|^maxado$|^maxados$|^machados$|^bota$|^calca$|^calça$|^peito$|^peitoral$|^botas$|^capa$|^capacete$|^capa7$|^eificencia$|^eff$|^s5$|^s4$|^s3$|^capiroto$";
+
+&rg="^blaze$|^creme$|^magma$|^nether$|^lagrima$|^ghast$|^lágrima$|^glowstone$|^glow$|^açucar$|^acucar$|^polvora$|^pólvora$";
+
+ifmatches(%&ra%,%&a%);}$$
+
+$${@#r=0;endif;
+
+ifmatches(%&rb%,%&a%);}$$
+
+$${@#r=0;endif;
+
+ifmatches(%&rc%,%&a%);}$$
+
+$${@#r=0;endif;
+
+ifmatches(%&rd%,%&a%);}$$
+
+$${@#r=0;endif;
+
+ifmatches(%&a%,%&re%|%&rf%);}$$
+
+$${@#r=0;endif;
+
+ifmatches(%&rg%,%&a%);}$$
+
+$${@#r=0;endif;
+
+endif;endif;
+
+ifmatches(%CHATCLEAN%,”ˆ[\(]Mensagem de (\S+)[\]:”,&a,2);
+
+logto(AFK.txt,[%DATE%\%DAYTIME%\%PLAYERNAME%] %CHATCLEAN%);
+
+endif;endif;
+
+ifmatches(%CHATCLEAN%,”ˆ[\(]Mensagem de (\S+)[\]:”,&a,3);
+
+$${
+
+}$$
+
+$${@#r=0;endif;
+
+Note que nesta parte várias coisas se repetem e têm apenas seus valores mudados.
+
+Para cada "&ra=", por exemplo, há um "ifmatches(%&ra%,%&a%)". São esses códigos que você vai mudar.
+
+Tudo isso é um banco de dados, uma simples referência.
+
+if(%@#r%=2);
+
+ifmatches(%CHATCLEAN%,"^[\(]Mensagem de \S+[\)]: (\S+)",&a,1);
+
+log(%&a%);
+
+&ra="^fungo$|ˆfungos$";
+
+ifmatches(%&ra%,%&a%);}$$
+
+$${@#r=0;endif;
+
+Com este comando, estamos dizendo ao macro que, se no chat, tiver o texto "Mensagem de *:", ele vai ligar a variável "&a", e estamos dizendo que as expressões: "fungo" e "fungos" fazem parte da variável "&ra", e estamos dizendo que se no chat tiver a variável "&a", ou seja, tenha a frase "Mensagem de *:" e a variável "&ra", ou seja, o termo "fungo" ou "fungos", o macro irá digitar "/r /home seu_nick plantações", assim, respondendo ao player.
+
+Para configurar isto do seu jeito, você só precisa entender isso.
+
+Ou seja, você vai definir em cada uma destas variáveis que "se tiver "ouro" no texto, responda /r /home seu_nick ouro".
+
+Ainda tá difícil de entender? (Explicar código é muito difícil). Aqui vai um exemplo prático:
+
+"Eu tenho uma loja chamada "/home Augusto61 ouro", e quero que quando perguntem por "ouro" no meu /tell, o macro responda "/home Augusto61 ouro". Para fazer isso é simples, apenas escreva o seguinte:
+
+&ra="^ouro$";
+
+ifmatches(%&ra%,%&a%);}$$
+
+$${@#r=0;endif;
+
+Lembrando que:
+
+Depois que você colocar um "&ra", você só pode usar "&rb" e depois "&rc" e assim por diante, como se fosse uma lista, sem repetição de letras. E se você quiser mais de um parâmetro para a mesma resposta, você tem que colocar: "&ra="ˆouro$|ˆouros$"", iniciando com "^", terminando com "$" e separando tudo com "|" no final.
+
+"
+
+O macro já vem com alguns parâmetros já colocados, você pode usá-los como referência/editá-los. Se quiser adicionar mais, é só ler este tutorial/observar a sequência/me enviar MP falando sobre o problema/postando neste tópico o problema.
+
+Código separado
+
+Aqui está o código separado:
+
+		Spoiler
+
+			$${
+
+if(@autotell);
+
+if(%@#r%=0);
+
+ifmatches(%CHATCLEAN%,"^[\(]Mensagem de (\S+)[\)]:",&a,1);
+
+log('&fMensagem de %&a% Detectada");
+
+}$$

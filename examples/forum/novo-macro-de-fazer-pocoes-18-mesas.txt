@@ -1,0 +1,1171 @@
+https://forum.craftlandia.com.br/xf/threads/novo-macro-de-fazer-pocoes-18-mesas.258824/
+
+$${
+
+if(pot);
+
+log(&6&l[Macro] &eMacro de Fazer poções Desligado.);
+
+unset(pot);
+
+stop;
+
+else;
+
+log(&6&l[Macro] &eMacro de Fazer poções Ligado.);
+
+log(&6&l[Macro] &eMacro criado no dia &a27/01 &ePor: &aPhodalao);
+
+set(pot);slot(9);wait(1ms);
+
+getslotitem(9,#id,#qqq)
+
+if(%#qqq%!=64);
+
+LOG(&4&l[ALERTA] &fVocê precisa ter &a64 &fPotes vazios no slot 9.);
+
+LOG(&4&l[ALERTA] &fNo momento você tem &a%#qqq% &fPotes vazios no slot 9.);
+
+LOG(&4&l[ALERTA] &fMacro Desligado.);
+
+unset(pot);
+
+stop;
+
+endif;
+
+getslotitem(8,#id,#qqq);
+
+if(%#id%!=372);ph
+
+LOG(&4&l[ALERTA] &fVocê precisa colocar os fungos no slot &a8&f.);
+
+unset(pot);
+
+stop;
+
+endif;
+
+PROMPT(#ig,$$?,Quantos Ingredientes você vai usar? O FUNGO NÃO CONTA!);
+
+if(%#ig%<3);
+
+getslotitem(3,#id,#qqq);
+
+if(%#qqq%=0);
+
+log(&4&l[ALERTA] &fVocê Precisa ocupar todos os slots da parte de baixo do inventário.);
+
+unset(pot);
+
+stop;
+
+endif;
+
+endif;
+
+if(%#ig%<4);
+
+getslotitem(4,#id,#qqq);
+
+if(%#qqq%=0);
+
+log(&4&l[ALERTA] &fVocê Precisa ocupar todos os slots da parte de baixo do inventário.);
+
+unset(pot);
+
+stop;
+
+endif;
+
+endif;
+
+if(%#ig%<5);
+
+getslotitem(5,#id,#qqq);
+
+if(%#qqq%=0);
+
+log(&4&l[ALERTA] &fVocê Precisa ocupar todos os slots da parte de baixo do inventário.);
+
+unset(pot);
+
+stop;
+
+endif;
+
+endif;
+
+for(#q,5,7);
+
+getslotitem(%#q%,#id,#qqq);
+
+next;
+
+if(%#qqq%=0);
+
+log(&4&l[ALERTA] &fVocê Precisa ocupar todos os slots da parte de baixo do inventário.);
+
+unset(pot);
+
+stop;
+
+endif;
+
+wait(1);
+
+gui(inventory);
+
+wait(1);
+
+#pinho=41;
+
+#fung=38;
+
+#ths=31;
+
+#thh=32;
+
+#tss=33;
+
+#ttt=34;
+
+#lag=138;
+
+#leg=4;
+
+do;
+
+look(45,40);
+
+wait(100ms);
+
+key(use);
+
+getslotitem(44,#i,#st);
+
+until(%#st%<%#pinho%);
+
+wait(700ms);
+
+look(90,20);
+
+wait(500ms);
+
+key(use);
+
+wait(2);
+
+for(#v,54,80);
+
+wait(%#lag%ms);
+
+slotclick(%#v%,l,true);
+
+next;
+
+gui;
+
+wait(1ms);
+
+gui(inventory);
+
+do;
+
+look(45,40);
+
+wait(100ms);
+
+key(use);
+
+getslotitem(44,#i,#stt);
+
+until(%#stt%<13);
+
+do;
+
+wait(1ms);slot(8);
+
+Wait(100ms);
+
+#agua=4;
+
+////// MESA 1 ///////
+
+look(63,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 2 ///////
+
+look(90,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 3 ///////
+
+look(118,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 4 ///////
+
+look(25,47);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 5 ///////
+
+look(42,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 6 ///////
+
+look(90,70);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 7 ///////
+
+look(135,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 8 ///////
+
+look(153,46);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 9 ///////
+
+look(0,50);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+wait(1);
+
+#agua=%#agua%-27
+
+log(&f%#agua%);
+
+wait(1ms);
+
+look(90,20);
+
+gui(inventory);
+
+for(#j,9,35);
+
+wait(20ms);
+
+slotclick(%#i%);
+
+slotclick(-999);
+
+next;
+
+wait(700ms);
+
+look(90,20);
+
+wait(700ms);
+
+key(use);
+
+wait(2);
+
+for(#i,0,26);
+
+wait(320ms);
+
+slotclick(%#i%,l,true);
+
+next;
+
+gui;
+
+////// MESA 10 ///////
+
+look(0,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 11 ///////
+
+look(180,90);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 12 ///////
+
+look(180,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 13 ///////
+
+look(180,50);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 14 ///////
+
+look(335,47);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 15 ///////
+
+look(311,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 16 ///////
+
+look(270,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 17 ///////
+
+look(228,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+////// MESA 18 ///////
+
+look(210,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#agua%,l,true);wait(1ms);inc(#agua,1);wait(600ms);
+
+slotclick(%#fung%,l,false);wait(60ms);slotclick(%#fung%,r,false);wait(60ms);
+
+slotclick(%#fung%,l,true);wait(50ms);slotclick(%#fung%,l,false);wait(60ms);gui;
+
+wait(500ms);
+
+////// PRIMEIRA RODADA ///////
+
+////// MESA 1 //////
+
+look(63,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 2 //////
+
+look(90,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 3 //////
+
+look(118,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 4 //////
+
+look(25,47);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 5 //////
+
+look(42,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 6 //////
+
+look(90,70);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 7 //////
+
+look(135,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 8 //////
+
+look(153,46);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 9 //////
+
+look(0,50);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 10 //////
+
+look(0,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 11 //////
+
+look(180,90);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 12 //////
+
+look(180,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 13 //////
+
+look(180,50);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 14 //////
+
+look(335,47);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 15 //////
+
+look(311,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 16 //////
+
+look(270,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 17 //////
+
+look(228,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 18 //////
+
+look(210,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ths%,l,false);wait(%#lag%ms);slotclick(%#ths%,r,false);wait(%#lag%ms);
+
+slotclick(%#ths%,l,true);wait(%#lag%ms);slotclick(%#ths%,l,false);wait(%#lag%ms);gui;wait(1);
+
+/////// SEGUNDA FASE ///////
+
+////// MESA 1 //////
+
+look(63,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 2 //////
+
+look(90,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 3 //////
+
+look(118,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 4 //////
+
+look(25,47);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 5 //////
+
+look(42,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 6 //////
+
+look(90,70);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 7 //////
+
+look(135,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 8 //////
+
+look(153,46);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 9 //////
+
+look(0,50);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 10 //////
+
+look(0,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 11 //////
+
+look(180,90);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 12 //////
+
+look(180,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 13 //////
+
+look(180,50);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 14 //////
+
+look(335,47);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 15 //////
+
+look(311,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 16 //////
+
+look(270,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 17 //////
+
+look(228,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 18 //////
+
+look(210,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#thh%,l,false);wait(%#lag%ms);slotclick(%#thh%,r,false);wait(%#lag%ms);
+
+slotclick(%#thh%,l,true);wait(%#lag%ms);slotclick(%#thh%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// TERCEIRA FASE ///////
+
+if(%#ig%>2);
+
+////// MESA 1 //////
+
+look(63,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 2 //////
+
+look(90,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 3 //////
+
+look(118,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 4 //////
+
+look(25,47);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 5 //////
+
+look(42,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 6 //////
+
+look(90,70);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 7 //////
+
+look(135,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 8 //////
+
+look(153,46);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 9 //////
+
+look(0,50);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 10 //////
+
+look(0,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 11 //////
+
+look(180,90);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 12 //////
+
+look(180,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 13 //////
+
+look(180,50);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 14 //////
+
+look(335,47);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 15 //////
+
+look(311,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 16 //////
+
+look(270,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 17 //////
+
+look(228,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 18 //////
+
+look(210,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#tss%,l,false);wait(%#lag%ms);slotclick(%#tss%,r,false);wait(%#lag%ms);
+
+slotclick(%#tss%,l,true);wait(%#lag%ms);slotclick(%#tss%,l,false);wait(%#lag%ms);gui;wait(1);
+
+endif;
+
+if(%#ig%>3);
+
+////// MESA 1 //////
+
+look(63,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 2 //////
+
+look(90,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 3 //////
+
+look(118,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 4 //////
+
+look(25,47);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 5 //////
+
+look(42,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 6 //////
+
+look(90,70);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 7 //////
+
+look(135,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 8 //////
+
+look(153,46);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 9 //////
+
+look(0,50);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 10 //////
+
+look(0,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 11 //////
+
+look(180,90);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 12 //////
+
+look(180,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 13 //////
+
+look(180,50);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 14 //////
+
+look(335,47);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 15 //////
+
+look(311,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 16 //////
+
+look(270,65);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 17 //////
+
+look(228,60);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+////// MESA 18 //////
+
+look(210,48);wait(500ms);key(use);wait(%#leg%);
+
+slotclick(%#ttt%,l,false);wait(%#lag%ms);slotclick(%#ttt%,r,false);wait(%#lag%ms);
+
+slotclick(%#ttt%,l,true);wait(%#lag%ms);slotclick(%#ttt%,l,false);wait(%#lag%ms);gui;wait(1);
+
+endif;
+
+/////// RECOLHENDO SUAS POÇÕES ///////
+
+////// MESA 1 //////
+
+look(63,48);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 2 //////
+
+look(90,48);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 3 //////
+
+look(118,48);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 4 //////
+
+look(25,47);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 5 //////
+
+look(42,60);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 6 //////
+
+look(90,70);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 7 //////
+
+look(135,60);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 8 //////
+
+look(153,46);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 9 //////
+
+look(0,50);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+look(90,20);key(use);wait(2);for(#a,54,80);wait(123ms);slotclick(%#a%,l,true);next;gui;wait(500ms);
+
+////// MESA 10 //////
+
+look(0,65);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 11 //////
+
+look(180,90);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 12 //////
+
+look(180,65);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 13 //////
+
+look(180,50);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 14 //////
+
+look(335,47);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 15 //////
+
+look(311,60);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 16 //////
+
+look(270,65);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 17 //////
+
+look(228,60);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;gui;wait(500ms);
+
+////// MESA 18 //////
+
+look(210,48);wait(500ms);key(use);wait(%#leg%);for(#h,0,3);wait(%#lag%ms);slotclick(%#h%,l,true);next;wait(200ms);gui;wait(2);
+
+look(90,20);key(use);wait(2);for(#a,54,80);wait(123ms);slotclick(%#a%,l,true);next;wait(1);gui;wait(500ms);
+
+log(&6&l[Macro] &eDesligado...);
+
+unset(pot);
+
+stop;
+
+endif;
+
+endif;
+
+loop;
+
+endif;
+
+}$$

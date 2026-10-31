@@ -1,0 +1,49 @@
+https://forum.craftlandia.com.br/xf/threads/macro-autoclick-inovador-toma-pot-e-defende.357643/
+
+$${IF(auto);LOG("&3[%PLAYER%] &6auto-click &4[OFF]");UNSPRINT;UNSET(auto);STOP();
+
+ELSE;LOG("&3[%PLAYER%] &6auto-click &2[ON]");SPRINT;
+
+LOG("&3[%PLAYER%] &3Para desligar pressione %KEYNAME%");SET(auto);
+
+DO;if(%HEALTH%<2);}$$
+
+$${
+
+LOG("&3[%PLAYER%] &6auto-click &4[OFF]");UNSET(auto);STOP();endif;
+
+else;key(attack);wait(1t);IF(KEY_F);key(use);wait(1t);ENDIF;
+
+IF(KEY_F);
+
+if(%HEALTH%<8)
+
+do(35);
+
+pick(373:8229)
+
+key(use);
+
+loop;
+
+else;
+
+endif;
+
+if(%HEALTH%<14)
+
+do(35);
+
+pick(373:8225)
+
+key(use);
+
+loop;
+
+else;
+
+endif;
+
+endif;
+
+ENDIF;LOOP;}$$

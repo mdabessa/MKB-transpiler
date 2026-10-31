@@ -1,0 +1,32 @@
+https://forum.craftlandia.com.br/xf/threads/macro-arco-repara-olhando-para-baixo.186483/
+
+$${
+if(arco);
+log("&d&l[MACRO] &fArco-Auto: &6[&4Off&6]");
+unset(arco);
+stop();
+else;
+log("&d&l[MACRO] &fArco-Auto: &6[&aOn&6]");
+set(arco);
+endif;
+do;
+do;
+do(23);
+key(use);
+loop;
+while(DURABILITY>12);
+look(,90);
+wait(500ms);
+do(3);
+key(use);
+loop;
+wait(500ms);
+if(DURABILITY<6);
+log("&d&l[MACRO] &fArco-Auto: &6[&4Off&6]");
+log("&d[Macro] &c&lVocê precisa de mais linha para reparar o arco :p");
+unset(arco);
+stop();
+endif;
+look(,0);
+loop;
+}$$

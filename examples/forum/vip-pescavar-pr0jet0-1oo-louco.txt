@@ -1,0 +1,463 @@
+https://forum.craftlandia.com.br/xf/threads/vip-pescavar-pr0jet0-1oo-louco.344841/
+
+$${
+
+if(pescav);
+
+unset(pescav);
+
+log( );
+
+log("&6&l[VIP] &d&lPescavar! &a&lBETA 1.6 &4(OFF)");
+
+log( );
+
+unset(@cav);
+
+unset(cav2);
+
+stop();
+
+else;
+
+set(pescav);
+
+log( );
+
+log("&6&l[VIP] &d&lPescavar! &a&lBETA 1.6 &2(ON)");
+
+log( );
+
+ACHIEVEMENTGET(by MrBlueees,346);
+
+set(@cav);
+
+endif;
+
+next;
+
+IFMATCHES(%DIRECTION%,N);
+
+&near = NORTH;
+
+ENDIF;
+
+IFMATCHES(%DIRECTION%,S);
+
+&near = SOUTH;
+
+ENDIF;
+
+IFMATCHES(%DIRECTION%,W);
+
+&near = WEST;
+
+ENDIF;
+
+IFMATCHES(%DIRECTION%,E);
+
+&near = EAST;
+
+ENDIF;
+
+#exp = 0;
+
+#bau = 1;
+
+PROMPT(&bloco,$$i, Que bloco usará para cavar?);
+
+PROMPT(&pa,$$i, Que tipo de pá irá ser usada?);
+
+PROMPT(#rep,$$i, Qual o material usado na reparação da sua pá?);
+
+PROMPT(#dur,$$?, Em qual durabilidade você quer reparar sua pá?);
+
+#repq=0;
+
+}$$
+
+$${
+
+do;
+
+unset(cav2);
+
+do(1);
+
+look(%&near%);
+
+look(,55);
+
+gui();
+
+do(3);
+
+pick(%&bloco%);
+
+key(use);
+
+wait(1ms);
+
+pick(%&pa%);
+
+if(%DURABILITY%<%#dur%);
+
+gui(inventory);
+
+for(#i,9,45);
+
+getslotitem(%#i%,#id,#stack1);
+
+if(%#id%=%#rep%);
+
+#repq=%#repq%+%#stack1%;
+
+endif;
+
+next;
+
+wait(1);
+
+gui();
+
+if(%#repq%=0);
+
+log( );
+
+log("&6&l[VIP] &d&lPescavar! &a&lBETA 1.6 &4(OFF)");
+
+log("&4&lSem item para reparar a pá");
+
+log( );
+
+unset(@cav);
+
+unset(pescav);
+
+unset(cav2);
+
+stop();
+
+else(%#repq%>0%);
+
+#repq=0;
+
+look(%&near%);
+
+look(,90);
+
+key(use);
+
+wait(2);
+
+#repq=0;
+
+endif;
+
+endif;
+
+look(%&near%);
+
+look(,55);
+
+key(attack);
+
+inc(#exp, 1);
+
+loop;
+
+do(3);
+
+pick(346);
+
+look(%&near%);
+
+look(,-90)
+
+if(%DURABILITY%<20);
+
+look(,90);
+
+log( );
+
+log("&4&lReparando a vara!");
+
+log( );
+
+wait(500ms);
+
+do(2);
+
+key(use);
+
+wait(500ms);
+
+loop;
+
+log( );
+
+log("&a&lVara reparada com sucesso!");
+
+log( );
+
+endif;
+
+look(%&near%);
+
+look(,-90);
+
+gui(inventory);
+
+wait(1ms);
+
+getslotitem(35,#id,#stack);
+
+if(%#stack%=0);
+
+else;
+
+set(cav2);
+
+endif;
+
+do(8);
+
+wait(10ms);
+
+key(use);
+
+wait(10ms);
+
+key(use);
+
+loop;
+
+loop;
+
+loop;
+
+if(cav2);
+
+wait(1ms);
+
+getslotitem(35,#id,#stack);
+
+if(%#stack%=0);
+
+else;
+
+log( );
+
+log("&c&lGuardando itens escolhidos.");
+
+log( );
+
+do;
+
+gui();
+
+wait(1);
+
+}$$
+
+$${if(%#bau%=1);}$$
+
+$${endif;}$$
+
+$${if(%#bau%=2);}$$
+
+$${if(%#bau%=3);}$$
+
+$${if(%#bau%=4);}$$
+
+$${if(%#bau%=5);}$$
+
+$${if(%#bau%=6);}$$
+
+$${if(%#bau%=7);}$$
+
+$${if(%#bau%=8);}$$
+
+$${if(%#bau%=9);}$$
+
+$${if(%#bau%=10);}$$
+
+$${
+
+wait(5);
+
+key(use);
+
+wait(1);
+
+ARRAYSIZE(#li,#size);#size = #size - 1;
+
+FOR(#y,0,%#size%);
+
+POP(#li,#tempvar);
+
+NEXT;
+
+#tempvar = 0;
+
+// ITENS DE ESCAVAÇAO
+
+#li[] =348;
+
+#li[] =289;
+
+#li[] =341;
+
+#li[] =352;
+
+#li[] =344;
+
+#li[] =2267;
+
+#li[] =260;
+
+#li[] =287;
+
+#li[] =%351:3%;
+
+#li[] =351;
+
+#li[] =40;
+
+#li[] =39;
+
+#li[] =347;
+
+#li[] =325;
+
+#li[] =88;
+
+#li[] =354;
+
+#li[] =30;
+
+#li[] =87;
+
+// ITENS DE PESCA
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+for(#slotn,54,80);
+
+getslotitem(%#slotn%,#id,#stack);
+
+indexof(#li,#index,%#id%);
+
+if((#index != -1) && (%#id% != 0));
+
+slotclick(%#slotn%,l,true);wait(30ms);
+
+endif;
+
+endif;
+
+next;
+
+wait(500ms);
+
+getslotitem(53,#id,#stack);
+
+wait(500ms);
+
+if(%#stack%!=0);inc(#bau);
+
+endif;
+
+if(%#bau%=11);
+
+unset(cav2);
+
+log();
+
+log("&6&lBaús cheios! Voltando a pescavar.");
+
+log();
+
+gui();
+
+else;
+
+gui();
+
+endif;
+
+until(%#stack%=0);
+
+log( );
+
+log("&c&lItens guardados!");
+
+log( );
+
+}$$
+
+$${
+
+wait(2);
+
+endif;
+
+gui(inventory);
+
+wait(600ms);
+
+for(#slotz,9,35);
+
+GETSLOTITEM(%#slotz%,&id,#stack);
+
+slotclick(%#slotz%,l,true);wait(30ms);
+
+endif;
+
+next;
+
+gui();
+
+log( );
+
+log("&c&lLimpando inventário!");
+
+log( );
+
+}$$
+
+$${
+
+wait(1);
+
+endif;
+
+loop;
+
+}$$

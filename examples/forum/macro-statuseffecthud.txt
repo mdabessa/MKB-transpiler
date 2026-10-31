@@ -1,0 +1,95 @@
+https://forum.craftlandia.com.br/xf/threads/macro-statuseffecthud.358480/
+
+$${
+
+DO;
+
+&pot="";
+
+FOREACH(effects);
+
+IF(EFFECTTIME<60);
+
+#min= 0;
+
+#seg=EFFECTTIME;
+
+ELSEIF((EFFECTTIME>= 60) && (EFFECTTIME< 120));
+
+#min= 1;
+
+#seg= EFFECTTIME- 60;
+
+ELSEIF((EFFECTTIME>= 120) && (EFFECTTIME< 180));
+
+#min= 2;
+
+#seg= EFFECTTIME- 120;
+
+ELSEIF((EFFECTTIME>=180) && (EFFECTTIME< 240));
+
+#min= 3;
+
+#seg= EFFECTTIME- 180;
+
+ELSEIF((EFFECTTIME>= 240) && (EFFECTTIME< 300));
+
+#min= 4;
+
+#seg= EFFECTTIME- 240;
+
+ELSEIF((EFFECTTIME>= 300) && (EFFECTTIME< 360));
+
+#min= 5;
+
+#seg= EFFECTTIME- 300;
+
+ELSEIF((EFFECTTIME>= 360) && (EFFECTTIME<420));
+
+#min= 6;
+
+#seg= EFFECTTIME- 360;
+
+ELSEIF((EFFECTTIME>= 420) && (EFFECTTIME< 480));
+
+#min= 7;
+
+#seg= EFFECTTIME- 420;
+
+ELSEIF(EFFECTTIME>=480);
+
+#min= 8;
+
+#seg= EFFECTTIME- 480;
+
+ENDIF;
+
+IF(%#seg%<10);
+
+&seg= "0%#seg%";
+
+ELSE;
+
+&seg= "%#seg%";
+
+ENDIF;
+
+IF(%#min%<10);
+
+&min= "0%#min%";
+
+ELSE;
+
+&min= "%#min%";
+
+ENDIF;
+
+&pot = "%&pot%\n&e%EFFECTNAME%: &f%&min%:%&seg%";
+
+NEXT;
+
+SETLABEL(SE,%&pot%);
+
+LOOP;
+
+}$$

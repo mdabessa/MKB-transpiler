@@ -1,0 +1,103 @@
+https://forum.craftlandia.com.br/xf/threads/macro-repair-gogo.208233/
+
+$${
+
+if(z);
+
+log("       &c[&3%PLAYER%&c] &5Reparaçao com Enxada &4OFF");
+
+log("       &bForam reparadas um total de : &c%#cont% &benxadas");
+
+unset(z);
+
+stop();
+
+else;
+
+set(z);
+
+log("       &c[&3%PLAYER%&c] &5Reparaçao com Enxada &2ON");
+
+endif;
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+// ------------
+
+#enx=1;
+
+#cont=0;
+
+look(%&dir%);
+
+do;
+
+  wait(10ms);
+
+  look(+50,0);
+
+  slot(%#enx%);
+
+  key(use);
+
+    if(%DURABILITY% < 15)
+
+        INC(#enx,1);
+
+        wait(100ms);
+
+            if(%#enx% = 10);
+
+                wait(250ms);
+
+                look(%&dir%);
+
+                look(+0,90);
+
+                #enx=1;
+
+                do;
+
+                slot(%#enx%);
+
+                wait(250ms);
+
+                key(use);
+
+                wait(250ms);
+
+                key(use);
+
+                wait(250ms);
+
+                INC(#enx,1);
+
+                until(%#enx% = 10);
+
+                #enx=1;
+
+                #cont= %#cont% + 9;
+
+            endif;
+
+    endif;
+
+loop;
+
+log("       &c[&3%PLAYER%&c] &5Reparaçao com Enxada &4OFF");
+
+unset(z);
+
+stop();
+
+}$$
+
+$${$$<escolha um nome qualquer aqui.txt>}$$

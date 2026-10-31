@@ -1,0 +1,3 @@
+https://forum.craftlandia.com.br/xf/threads/macro-upar-acrobacia-em-segundo-plano.183468/
+
+$${TOGGLE;IF(flag);DO;RESPAWN;LOOP;ELSE;STOP;ENDIF;}$$

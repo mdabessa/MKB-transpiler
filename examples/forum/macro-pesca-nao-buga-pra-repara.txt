@@ -1,0 +1,55 @@
+https://forum.craftlandia.com.br/xf/threads/macro-pesca-nao-buga-pra-repara.186721/
+
+$${
+
+IF(forum);
+
+LOG("&b[macro de Pesca 2.2]&6&4Off");
+
+LOG("&6[!] macro editado por _matheus_22");
+
+UNSET(forum);
+
+STOP();
+
+ELSE;
+
+LOG("&bmacro de Pesca 2.2]&6 &2On");
+
+SET(forum);
+
+IFMATCHES(%DIRECTION%,N);
+
+&frente = NORTH;
+
+ENDIF;
+
+DO;
+
+LOOK(,0);
+
+LOOK(,-90);
+
+DO;
+
+KEY(use);
+
+WAIT(200ms);
+
+UNTIL(%DURABILITY% < 5);
+
+LOOK(%&frente%);
+
+LOOK(,+90);
+
+DO(3);
+
+KEY(use);
+
+LOOP;
+
+LOOP;
+
+ENDIF;
+
+}$$

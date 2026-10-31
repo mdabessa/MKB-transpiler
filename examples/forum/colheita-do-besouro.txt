@@ -1,0 +1,1495 @@
+https://forum.craftlandia.com.br/xf/threads/colheita-do-besouro.277937/
+
+$${
+
+if(@neth3);
+
+keyup(forward);
+
+unset(@neth3);
+
+}$$
+
+$${
+
+#snposx1=%XPOS%; #snposx2=%ZPOS%;
+
+log("&d» &6Plantação Automática &c[OFF]");
+
+stop();
+
+else;
+
+set(@neth3);
+
+#delay=8;#nbau=1;
+
+log("&d» &6Plantação Automática &a[ON]");
+
+PROMPT(&return,$$?,"Continuar de onde estava quando desligou? (S ou N)");
+
+ifmatches(%&return%,^[S|s]);
+
+set(return);
+
+log("&d» &6Continuando a partir de onde foi desligado!");
+
+else;
+
+unset(return);
+
+PROMPT(#fxv,$$?,"Quantos andares são? (O máximo são 6 andares!)");      if(%#fxv%=0);unset(@neth3);stop();endif;
+
+#hfl=1;
+
+if(%#fxv%>1);
+
+&tm=;
+
+if(%#fxv%=2);&tm=1 ou 2?;endif;if(%#fxv%=3);&tm=1, 2 ou 3?;endif;if(%#fxv%=4);&tm=1, 2, 3 ou 4?;endif;if(%#fxv%=5);&tm=1, 2, 3, 4 ou 5?;endif;if(%#fxv%=6);&tm=1, 2, 3, 4, 5 ou 6?;endif;
+
+if(%#fxv%>6);
+
+log("&d» &cOps! &6Número de andares maior que o possível &3(6)&6!");
+
+log("&d» &6Plantação Automática &c[OFF]");
+
+unset(@neth3);
+
+stop();
+
+endif;
+
+PROMPT(#flror,$$?,"Começar por qual andar? %&tm%");                 if(%#flror%=0);unset(@neth3);stop();endif;
+
+else;
+
+#flror=1;
+
+endif;
+
+if(%#flror%>%#fxv%);
+
+log(&d» &cOps! &6Andar escolhido para começar é maior que o número de andares que você escolheu! Preste mais atenção nas perguntas &3:/);
+
+log("&d» &6Plantação Automática &c[OFF]");
+
+unset(@neth3);
+
+stop();
+
+endif;
+
+log("&d» &6As sethomes devem ser no estilo: &3/home fungof1 /home fungof2&6 ...");
+
+log("&d» &6A sethome dos baús deve ser &3/home fungobaus &6...");
+
+log("&d» &6Se quiser parar só por um tempo, segure a &3tecla P&6 até parar!");
+
+set(first);
+
+endif;
+
+do;
+
+for(#hfl,%#flror%,%#fxv%);
+
+wait(1);
+
+if(return);
+
+#hfltemp=%#hfl%;#hfl=8000;
+
+}$$
+
+$${
+
+do;until((%XPOS%=%#snposx1%)&&(%ZPOS%=%#snposx2%));wait(1);
+
+unset(return);
+
+else;
+
+}$$
+
+$${if(%#hfl%=1);}$$
+
+$${endif;}$$
+
+$${if(%#hfl%=2);}$$
+
+$${if(%#hfl%=3);}$$
+
+$${if(%#hfl%=4);}$$
+
+$${if(%#hfl%=5);}$$
+
+$${if(%#hfl%=6);}$$
+
+$${
+
+wait(8);
+
+set(first);
+
+endif;
+
+keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+gui();
+
+for(#in,1,9);
+
+getslotitem(%#in%,#idk,#stack);
+
+ifmatches(%#idk%,^269$|^270$|^271$|^273$|^274$|^275$|^277$|^278$|^279$|^284$|^285$|^286$|^256$|^257$|^258$);
+
+#slotl=%#in%;
+
+endif;
+
+next;
+
+look(%&dir%);
+
+look(,+89);
+
+key(attack);
+
+unset(nextfloor);
+
+do;
+
+#stack=0;
+
+keyup(forward);
+
+gui(inventory);
+
+wait(450ms);
+
+getslot(372,#fghot);
+
+getslotitem(35,#id,#stack);
+
+if(%#fghot%<36);
+
+slotclick(%#fghot%,l,true);
+
+endif;
+
+wait(450ms);
+
+gui();
+
+if(%#stack%>0);
+
+#nposx1=%XPOS%; #nposx2=%ZPOS%;
+
+}$$
+
+$${}$$
+
+$${
+
+do;until((%XPOS%!=%#nposx1%)|(%ZPOS%!=%#nposx2%));wait(3);
+
+keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+do;
+
+look(%&dir%);
+
+if(%#nbau%=1);look(-26,-40);endif;
+
+if(%#nbau%=2);look(+26,-40);endif;
+
+if(%#nbau%=3);look(+65,-40);endif;
+
+if(%#nbau%=4);look(+116,-40);endif;
+
+if(%#nbau%=5);look(+155,-40);endif;
+
+if(%#nbau%=6);look(+206,-40);endif;
+
+if(%#nbau%=7);look(-26,-20);endif;
+
+if(%#nbau%=8);look(+26,-20);endif;
+
+if(%#nbau%=9);look(+65,-20);endif;
+
+if(%#nbau%=10);look(+116,-20);endif;
+
+if(%#nbau%=11);look(+155,-20);endif;
+
+if(%#nbau%=12);look(+206,-20);endif;
+
+if(%#nbau%=13);look(-26,-0);endif;
+
+if(%#nbau%=14);look(+26,-0);endif;
+
+if(%#nbau%=15);look(+65,-0);endif;
+
+if(%#nbau%=16);look(+116,-0);endif;
+
+if(%#nbau%=17);look(+155,-0);endif;
+
+if(%#nbau%=18);look(+206,-0);endif;
+
+if(%#nbau%=19);look(-26,+25);endif;
+
+if(%#nbau%=20);look(+26,+25);endif;
+
+if(%#nbau%=21);look(+65,+25);endif;
+
+if(%#nbau%=22);look(+116,+25);endif;
+
+if(%#nbau%=23);look(+155,+25);endif;
+
+if(%#nbau%=24);look(+206,+25);endif;
+
+wait(1);
+
+key(use);
+
+wait(4);
+
+for(#i,54,87);
+
+getslotitem(%#i%,#ide,#stacke);
+
+if(%#ide%=372);
+
+slotclick(%#i%,l,true);
+
+wait(30ms);
+
+endif;
+
+next;
+
+wait(250ms);
+
+getslotitem(53,#id,#stack);
+
+wait(250ms);
+
+if(%#stack%!=0);
+
+#nbau=%#nbau%+1;
+
+if(%#nbau%=25);
+
+unset(@neth3);
+
+log("&d» &6Baús cheios?");
+
+log("&d» &6Plantação Automática &c[OFF]");
+
+stop();
+
+endif;
+
+endif;
+
+gui();
+
+until(%#stack%=0);
+
+}$$
+
+$${
+
+wait(%#delay%);
+
+keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+else;
+
+gui();
+
+endif;
+
+do;
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;&z=-1;&x=+0;&z1=+0;&z2=+0;&x1=-1;&x2=+1;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;&z=+1;&x=+0;&z1=+0;&z2=+0;&x1=+1;&x2=-1;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;&z=+0;&x=+1;&x1=+0;&x2=+0;&z1=-1;&z2=+1;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;&z=+0;&x=-1;&x1=+0;&x2=+0;&z1=+1;&z2=-1;endif;
+
+ifmatches(%GUI%,chat|inventory);
+
+keyup(forward);
+
+log(&d» &6Chat ou inventório detectado. &3Macro pausado!);
+
+do;
+
+ifmatches(%GUI%,CHAT|INVENTORY);
+
+else;
+
+#g=0;
+
+endif;
+
+until(%#g%=0);
+
+#g=1;
+
+log(&d» &6Chat ou inventório fechado. &3Continuando!);
+
+endif;
+
+if(KEY_P);
+
+keyup(forward);
+
+wait(200ms);
+
+#nposx1=%XPOS%;#nposx2=%ZPOS%;
+
+}$$
+
+$${
+
+log(&d» &6Plantação automática &3interrompida&6!);
+
+log(&d» &6Para continuar, segure a &3tecla P &6por 3 segundos!);
+
+do;
+
+if(KEY_P);
+
+wait(3);
+
+if(KEY_P);
+
+wait(200ms);
+
+if(KEY_P);
+
+set(resume);
+
+endif;
+
+endif;
+
+endif;
+
+until(resume);
+
+unset(resume);
+
+}$$
+
+$${
+
+log("&d» &6Plantação automática &3retomada&6!");
+
+log("&d» &6Não mexa o mouse, oki? &3");
+
+do;until((%XPOS%=%#nposx1%)&&(%ZPOS%=%#nposx2%));
+
+wait(2);
+
+endif;
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+look(%&dir%);
+
+look(,+89);
+
+#nposx1=%XPOS%; #nposx2=%ZPOS%;
+
+do;
+
+keydown(forward);
+
+pick(372);
+
+key(use);
+
+getidrel(%&x%,+0,%&z%,#blockd);
+
+getidrel(%&x%,+1,%&z%,#blocku);
+
+until((%XPOS%!=%#nposx1%)|(%ZPOS%!=%#nposx2%)|(%#blockd%!=88)|(%#blocku%!=115)&&(%#blocku%!=0));
+
+slot(%#slotl%);
+
+if(%HITDATA%>2);key(attack);wait(10ms);endif;
+
+until((%#blockd%!=88)|(%#blocku%!=115)&&(%#blocku%!=0));
+
+key(use);
+
+keyup(forward);
+
+if(first);
+
+getidrel(%&x1%,+0,%&z1%,#block1);getidrel(%&x2%,+0,%&z2%,#block2);
+
+getidrel(%&x1%,+1,%&z1%,#block3);getidrel(%&x2%,+1,%&z2%,#block4);
+
+if((%#block1%=88)|(%#block3%=88));&sn=-;endif;
+
+if((%#block2%=88)|(%#block4%=88));&sn=+;endif;
+
+&dirc=%DIRECTION%;
+
+ifmatches(%&sn%,[\+]);&sn1=+;&sn2=-;endif;
+
+ifmatches(%&sn%,[\-]);&sn1=-;&sn2=+;endif;
+
+unset(first);
+
+endif;
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dirc%,N);ifmatches(%&dir%,N);&sn=%&sn1%;endif;ifmatches(%&dir%,S);&sn=%&sn2%;endif;endif;
+
+ifmatches(%&dirc%,S);ifmatches(%&dir%,N);&sn=%&sn2%;endif;ifmatches(%&dir%,S);&sn=%&sn1%;endif;endif;
+
+ifmatches(%&dirc%,W);ifmatches(%&dir%,W);&sn=%&sn1%;endif;ifmatches(%&dir%,E);&sn=%&sn2%;endif;endif;
+
+ifmatches(%&dirc%,E);ifmatches(%&dir%,W);&sn=%&sn2%;endif;ifmatches(%&dir%,E);&sn=%&sn1%;endif;endif;
+
+look(%&sn%90,);
+
+wait(100ms);
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;&z=-1;&x=+0;&z1=+0;&z2=+0;&x1=-1;&x2=+1;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;&z=+1;&x=+0;&z1=+0;&z2=+0;&x1=+1;&x2=-1;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;&z=+0;&x=+1;&x1=+0;&x2=+0;&z1=-1;&z2=+1;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;&z=+0;&x=-1;&x1=+0;&x2=+0;&z1=+1;&z2=-1;endif;
+
+getidrel(%&x%,+0,%&z%,#block1);
+
+getidrel(%&x%,+1,%&z%,#block3);
+
+if(((%#block3%!=0)&&(%#block3%!=115))|(%#block1%!=88));
+
+set(nextfloor);
+
+endif;
+
+if(nextfloor);
+
+else;
+
+#nposx1 = %XPOS%; #nposx2 = %ZPOS%;
+
+do;
+
+keydown(forward);
+
+pick(372);
+
+key(use);
+
+until((%XPOS%!=%#nposx1%)|(%ZPOS%!=%#nposx2%));
+
+keyup(forward);
+
+key(attack);
+
+look(%&sn%90,);
+
+endif;
+
+until(nextfloor);
+
+keyup(FORWARD);
+
+next;
+
+#flror=1;
+
+loop;
+
+endif;
+
+}$$
+
+$${
+
+wait(8);
+
+set(first);
+
+endif;
+
+keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+gui();
+
+for(#in,1,9);
+
+getslotitem(%#in%,&idk,#stack);
+
+ifmatches(%&idk%,shovel|pickaxe|axe);
+
+#slotl=%#in%;
+
+endif;
+
+next;
+
+look(%&dir%);
+
+look(,+89);
+
+key(attack);
+
+unset(nextfloor);
+
+do;
+
+#stack=0;
+
+keyup(forward);
+
+gui(inventory);
+
+wait(450ms);
+
+getslot(372,#fghot);
+
+getslotitem(35,&id,#stack);
+
+if(%#fghot%<36);
+
+slotclick(%#fghot%,l,true);
+
+endif;
+
+wait(450ms);
+
+gui();
+
+if(%#stack%>0);
+
+#nposx1=%XPOS%; #nposx2=%ZPOS%;
+
+}$$
+
+$${
+
+do;until((%XPOS%!=%#nposx1%)|(%ZPOS%!=%#nposx2%));wait(3);
+
+keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+do;
+
+look(%&dir%);
+
+if(%#nbau%=1);look(-26,-40);endif;
+
+if(%#nbau%=2);look(+26,-40);endif;
+
+if(%#nbau%=3);look(+65,-40);endif;
+
+if(%#nbau%=4);look(+116,-40);endif;
+
+if(%#nbau%=5);look(+155,-40);endif;
+
+if(%#nbau%=6);look(+206,-40);endif;
+
+if(%#nbau%=7);look(-26,-20);endif;
+
+if(%#nbau%=8);look(+26,-20);endif;
+
+if(%#nbau%=9);look(+65,-20);endif;
+
+if(%#nbau%=10);look(+116,-20);endif;
+
+if(%#nbau%=11);look(+155,-20);endif;
+
+if(%#nbau%=12);look(+206,-20);endif;
+
+if(%#nbau%=13);look(-26,-0);endif;
+
+if(%#nbau%=14);look(+26,-0);endif;
+
+if(%#nbau%=15);look(+65,-0);endif;
+
+if(%#nbau%=16);look(+116,-0);endif;
+
+if(%#nbau%=17);look(+155,-0);endif;
+
+if(%#nbau%=18);look(+206,-0);endif;
+
+if(%#nbau%=19);look(-26,+25);endif;
+
+if(%#nbau%=20);look(+26,+25);endif;
+
+if(%#nbau%=21);look(+65,+25);endif;
+
+if(%#nbau%=22);look(+116,+25);endif;
+
+if(%#nbau%=23);look(+155,+25);endif;
+
+if(%#nbau%=24);look(+206,+25);endif;
+
+wait(1);
+
+key(use);
+
+wait(4);
+
+for(#i,54,87);
+
+getslotitem(%#i%,&ide,#stacke);
+
+ifmatches(%&ide%,nether_wart);
+
+slotclick(%#i%,l,true);
+
+wait(30ms);
+
+endif;
+
+next;
+
+wait(250ms);
+
+getslotitem(53,&id,#stack);
+
+wait(250ms);
+
+if(%#stack%!=0);
+
+#nbau=%#nbau%+1;
+
+if(%#nbau%=25);
+
+unset(@neth3);
+
+log("&d» &6Baús cheios?");
+
+log("&d» &6Plantação Automática &c[OFF]");
+
+stop();
+
+endif;
+
+endif;
+
+gui();
+
+until(%#stack%=0);
+
+}$$
+
+$${
+
+log("&d» &6Plantação automática &3retomada&6!");
+
+log("&d» &6Não mexa o mouse, oki? &3");
+
+do;until((%XPOS%=%#nposx1%)&&(%ZPOS%=%#nposx2%));
+
+wait(2);
+
+endif;
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+look(%&dir%);
+
+look(,+89);
+
+#nposx1=%XPOS%; #nposx2=%ZPOS%;
+
+do;
+
+keydown(forward);
+
+pick(nether_wart);
+
+key(use);
+
+getidrel(%&x%,+0,%&z%,&blockd);
+
+getidrel(%&x%,+1,%&z%,&blocku);
+
+ifmatches(%&blockd%,soul_sand);#cond1=0;else;#cond1=1;endif;
+
+ifmatches(%&blocku%,nether_wart);#cond2=0;else;#cond2=1;endif;
+
+ifmatches(%&blocku%,air);#cond3=0;else;#cond3=1;endif;
+
+until((%XPOS%!=%#nposx1%)|(%ZPOS%!=%#nposx2%)|(%#cond1%=1)|(%#cond2%=1)&&(%#cond3%=1));
+
+slot(%#slotl%);
+
+if(%HITDATA%>2);key(attack);wait(10ms);endif;
+
+ifmatches(%&blockd%,soul_sand);#cond1=0;else;#cond1=1;endif;
+
+ifmatches(%&blocku%,nether_wart);#cond2=0;else;#cond2=1;endif;
+
+ifmatches(%&blocku%,air);#cond3=0;else;#cond3=1;endif;
+
+until((%#cond1%=1)|(%#cond2%=1)&&(%#cond3%=1));
+
+key(use);
+
+keyup(forward);
+
+if(first);
+
+getidrel(%&x1%,+0,%&z1%,&block1);getidrel(%&x2%,+0,%&z2%,&block2);
+
+getidrel(%&x1%,+1,%&z1%,&block3);getidrel(%&x2%,+1,%&z2%,&block4);
+
+ifmatches(%&block1%,soul_sand);&sn=-;endif;ifmatches(%&block3%,soul_sand);&sn=-;endif;
+
+ifmatches(%&block2%,soul_sand);&sn=+;endif;ifmatches(%&block4%,soul_sand);&sn=+;endif;
+
+&dirc=%DIRECTION%;
+
+ifmatches(%&sn%,[\+]);&sn1=+;&sn2=-;endif;
+
+ifmatches(%&sn%,[\-]);&sn1=-;&sn2=+;endif;
+
+unset(first);
+
+endif;
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dirc%,N);ifmatches(%&dir%,N);&sn=%&sn1%;endif;ifmatches(%&dir%,S);&sn=%&sn2%;endif;endif;
+
+ifmatches(%&dirc%,S);ifmatches(%&dir%,N);&sn=%&sn2%;endif;ifmatches(%&dir%,S);&sn=%&sn1%;endif;endif;
+
+ifmatches(%&dirc%,W);ifmatches(%&dir%,W);&sn=%&sn1%;endif;ifmatches(%&dir%,E);&sn=%&sn2%;endif;endif;
+
+ifmatches(%&dirc%,E);ifmatches(%&dir%,W);&sn=%&sn2%;endif;ifmatches(%&dir%,E);&sn=%&sn1%;endif;endif;
+
+look(%&sn%90,);
+
+wait(100ms);
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;&z=-1;&x=+0;&z1=+0;&z2=+0;&x1=-1;&x2=+1;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;&z=+1;&x=+0;&z1=+0;&z2=+0;&x1=+1;&x2=-1;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;&z=+0;&x=+1;&x1=+0;&x2=+0;&z1=-1;&z2=+1;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;&z=+0;&x=-1;&x1=+0;&x2=+0;&z1=+1;&z2=-1;endif;
+
+getidrel(%&x%,+0,%&z%,&block1);
+
+getidrel(%&x%,+1,%&z%,&block3);
+
+#rf=0;
+
+ifmatches(%&block3%,air);else;inc(#rf,1);endif;
+
+ifmatches(%&block3%,nether_wart);else;inc(#rf,1);endif;
+
+ifmatches(%&block1%,soul_sand);else;#rf=2;endif;
+
+endif;
+
+if(%#rf%=2);
+
+else;
+
+#nposx1 = %XPOS%; #nposx2 = %ZPOS%;
+
+do;
+
+keydown(forward);
+
+pick(nether_wart);
+
+key(use);
+
+until((%XPOS%!=%#nposx1%)|(%ZPOS%!=%#nposx2%));
+
+keyup(forward);
+
+key(attack);
+
+look(%&sn%90,);
+
+endif;
+
+until(%#rf%=2);
+
+keyup(FORWARD);
+
+next;
+
+#flror=1;
+
+loop;
+
+endif;
+
+}$$
+
+$${
+
+    if(@neth3);
+
+        keyup(forward);
+
+        unset(@neth3);
+
+        }$$
+
+$${
+
+        #snposx1=%XPOS%; #snposx2=%ZPOS%;
+
+        log("&d» &6Plantação Automática &c[OFF]");
+
+        stop();
+
+        else;
+
+        set(@neth3);
+
+        #delay=8;#nbau=1;
+
+        log("&d» &6Plantação Automática &a[ON]");
+
+        PROMPT(&return,$$?,"Continuar de onde estava quando desligou? (S ou N)");
+
+        ifmatches(%&return%,^[S|s]);
+
+                set(return);
+
+                log("&d» &6Continuando a partir de onde foi desligado!");
+
+                else;
+
+#ch=1;
+
+                unset(return);
+
+            PROMPT(#fxv,$$?,"Quantos andares são? (O máximo são 6 andares!)");      if(%#fxv%=0);unset(@neth3);stop();endif;
+
+            #hfl=1;
+
+            if(%#fxv%>1);
+
+                &tm=;
+
+                if(%#fxv%=2);&tm=1 ou 2?;endif;if(%#fxv%=3);&tm=1, 2 ou 3?;endif;if(%#fxv%=4);&tm=1, 2, 3 ou 4?;endif;if(%#fxv%=5);&tm=1, 2, 3, 4 ou 5?;endif;if(%#fxv%=6);&tm=1, 2, 3, 4, 5 ou 6?;endif;
+
+                if(%#fxv%>6);
+
+                    log("&d» &cOps! &6Número de andares maior que o possível &3(6)&6!");
+
+                    log("&d» &6Plantação Automática &c[OFF]");
+
+                    unset(@neth3);
+
+                    stop();
+
+                endif;
+
+                PROMPT(#flror,$$?,"Começar por qual andar? %&tm%");                 if(%#flror%=0);unset(@neth3);stop();endif;
+
+                else;
+
+                #flror=1;
+
+            endif;
+
+            if(%#flror%>%#fxv%);
+
+                    log(&d» &cOps! &6Andar escolhido para começar é maior que o número de andares que você escolheu! Preste mais atenção nas perguntas &3:/);
+
+                    log("&d» &6Plantação Automática &c[OFF]");
+
+                    unset(@neth3);
+
+                    stop();
+
+                endif;
+
+        log("&d» &6As sethomes devem ser no estilo: &3/home fungof1 /home fungof2&6 ...");
+
+        log("&d» &6A sethome dos baús deve ser &3/home fungobaus &6...");
+
+        log("&d» &6Se quiser parar só por um tempo, segure a &3tecla P&6 até parar!");
+
+        set(first);
+
+        endif;
+
+    do;
+
+        for(#hfl,%#flror%,%#fxv%);
+
+            wait(1);
+
+            if(return);
+
+                #hfltemp=%#hfl%;#hfl=8000;
+
+                }$$
+
+$${
+
+                do;until((%XPOS%=%#snposx1%)&&(%ZPOS%=%#snposx2%));wait(1);
+
+                unset(return);
+
+                else;
+
+                }$$
+
+$${
+
+                wait(8);
+
+                set(first);
+
+            endif;
+
+            keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+            &dir=%DIRECTION%;
+
+            ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+            ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+            ifmatches(%&dir%,E);&dir=EAST;endif;
+
+            ifmatches(%&dir%,W);&dir=WEST;endif;
+
+gui();
+
+for(#in,1,9);
+
+getslotitem(%#in%,&idk,#stack);
+
+ifmatches(%&idk%,shovel|pickaxe|axe);
+
+#slotl=%#in%;
+
+endif;
+
+next;
+
+            look(%&dir%);
+
+            look(,+89);
+
+            key(attack);
+
+            unset(nextfloor);
+
+            do;
+
+                #stack=0;
+
+                keyup(forward);
+
+                gui(inventory);
+
+                wait(450ms);
+
+                getslot(372,#fghot);
+
+                getslotitem(35,&id,#stack);
+
+                if(%#fghot%<36);
+
+                    slotclick(%#fghot%,l,true);
+
+                endif;
+
+                wait(450ms);
+
+                gui();
+
+                if(%#stack%>0);
+
+                    #nposx1=%XPOS%; #nposx2=%ZPOS%;
+
+                    }$$
+
+$${
+
+                    if(%#ch%=1);}$$
+
+$${endif;
+
+if(%#ch%=2);}$$
+
+$${endif;
+
+                    do;until((%XPOS%!=%#nposx1%)|(%ZPOS%!=%#nposx2%));wait(3);
+
+                    keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+                    &dir=%DIRECTION%;
+
+                    ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+                    ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+                    ifmatches(%&dir%,E);&dir=EAST;endif;
+
+                    ifmatches(%&dir%,W);&dir=WEST;endif;
+
+                    do;
+
+                        look(%&dir%);
+
+                        if(%#nbau%=1);look(-26,-40);endif;
+
+if(%#nbau%=2);look(+26,-40);endif;
+
+if(%#nbau%=3);look(+65,-40);endif;
+
+if(%#nbau%=4);look(+116,-40);endif;
+
+if(%#nbau%=5);look(+155,-40);endif;
+
+if(%#nbau%=6);look(+206,-40);endif;
+
+if(%#nbau%=7);look(-26,-20);endif;
+
+if(%#nbau%=8);look(+26,-20);endif;
+
+if(%#nbau%=9);look(+65,-20);endif;
+
+if(%#nbau%=10);look(+116,-20);endif;
+
+if(%#nbau%=11);look(+155,-20);endif;
+
+if(%#nbau%=12);look(+206,-20);endif;
+
+if(%#nbau%=13);look(-26,-0);endif;
+
+if(%#nbau%=14);look(+26,-0);endif;
+
+if(%#nbau%=15);look(+65,-0);endif;
+
+if(%#nbau%=16);look(+116,-0);endif;
+
+if(%#nbau%=17);look(+155,-0);endif;
+
+if(%#nbau%=18);look(+206,-0);endif;
+
+if(%#nbau%=19);look(-26,+25);endif;
+
+if(%#nbau%=20);look(+26,+25);endif;
+
+if(%#nbau%=21);look(+65,+25);endif;
+
+if(%#nbau%=22);look(+116,+25);endif;
+
+if(%#nbau%=23);look(+155,+25);endif;
+
+if(%#nbau%=24);look(+206,+25);endif;
+
+wait(1);
+
+key(use);
+
+wait(4);
+
+                        for(#i,54,87);
+
+                            getslotitem(%#i%,&ide,#stacke);
+
+ifmatches(%&ide%,nether_wart);
+
+slotclick(%#i%,l,true);
+
+wait(30ms);
+
+endif;
+
+                        next;
+
+                        wait(250ms);
+
+                        getslotitem(53,&id,#stack);
+
+                        wait(250ms);
+
+                        if(%#stack%!=0);
+
+#nbau=%#nbau%+1;
+
+if(%#nbau%=25);
+
+unset(@neth3);
+
+log("&d» &6Baús cheios?");
+
+if(%#ch%=1);
+
+log("&d» &6Segundo conjunto de baús!");
+
+#ch=2;
+
+#nbau=1;
+
+}$$
+
+$${
+
+do;until((%XPOS%!=%#nposx1%)|(%ZPOS%!=%#nposx2%));wait(3);
+
+keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+else;
+
+log("&d» &6Plantação Automática &c[OFF]");
+
+stop();
+
+endif;
+
+endif;
+
+                        endif;
+
+gui();
+
+                    until(%#stack%=0);
+
+                    }$$
+
+$${
+
+                    wait(%#delay%);
+
+                    keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+                    else;
+
+                    gui();
+
+                endif;
+
+                do;
+
+                    &dir=%DIRECTION%;
+
+                    ifmatches(%&dir%,N);&dir=NORTH;&z=-1;&x=+0;&z1=+0;&z2=+0;&x1=-1;&x2=+1;endif;
+
+                    ifmatches(%&dir%,S);&dir=SOUTH;&z=+1;&x=+0;&z1=+0;&z2=+0;&x1=+1;&x2=-1;endif;
+
+                    ifmatches(%&dir%,E);&dir=EAST;&z=+0;&x=+1;&x1=+0;&x2=+0;&z1=-1;&z2=+1;endif;
+
+                    ifmatches(%&dir%,W);&dir=WEST;&z=+0;&x=-1;&x1=+0;&x2=+0;&z1=+1;&z2=-1;endif;
+
+                    ifmatches(%GUI%,chat|inventory);
+
+                        keyup(forward);
+
+                        log(&d» &6Chat ou inventório detectado. &3Macro pausado!);
+
+                        do;
+
+                            ifmatches(%GUI%,CHAT|INVENTORY);
+
+                                else;
+
+                                #g=0;
+
+                            endif;
+
+                        until(%#g%=0);
+
+                        #g=1;
+
+                        log(&d» &6Chat ou inventório fechado. &3Continuando!);
+
+                    endif;
+
+                    if(KEY_P);
+
+                        keyup(forward);
+
+                        wait(200ms);
+
+                        #nposx1=%XPOS%;#nposx2=%ZPOS%;
+
+                        }$$
+
+$${
+
+                        log(&d» &6Plantação automática &3interrompida&6!);
+
+                        log(&d» &6Para continuar, segure a &3tecla P &6por 3 segundos!);
+
+                        do;
+
+                            if(KEY_P);
+
+                                wait(3);
+
+                                if(KEY_P);
+
+                                    wait(200ms);
+
+                                    if(KEY_P);
+
+                                        set(resume);
+
+                                    endif;
+
+                                endif;
+
+                            endif;
+
+                        until(resume);
+
+                        unset(resume);
+
+                        }$$
+
+$${
+
+                        log("&d» &6Plantação automática &3retomada&6!");
+
+                        log("&d» &6Não mexa o mouse, oki? &3");
+
+                        do;until((%XPOS%=%#nposx1%)&&(%ZPOS%=%#nposx2%));
+
+                        wait(2);
+
+                    endif;
+
+                    &dir=%DIRECTION%;
+
+                    ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+                    ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+                    ifmatches(%&dir%,E);&dir=EAST;endif;
+
+                    ifmatches(%&dir%,W);&dir=WEST;endif;
+
+                    look(%&dir%);
+
+                    look(,+89);
+
+                    #nposx1=%XPOS%; #nposx2=%ZPOS%;
+
+                    do;
+
+                        keydown(forward);
+
+                        pick(nether_wart);
+
+                        key(use);
+
+getidrel(%&x%,+0,%&z%,&blockd);
+
+getidrel(%&x%,+1,%&z%,&blocku);
+
+ifmatches(%&blockd%,soul_sand);#cond1=0;else;#cond1=1;endif;
+
+                        ifmatches(%&blocku%,nether_wart);#cond2=0;else;#cond2=1;endif;
+
+                        ifmatches(%&blocku%,air);#cond3=0;else;#cond3=1;endif;
+
+until((%XPOS%!=%#nposx1%)|(%ZPOS%!=%#nposx2%)|(%#cond1%=1)|(%#cond2%=1)&&(%#cond3%=1));
+
+                    slot(%#slotl%);
+
+if(%HITDATA%>2);key(attack);endif;
+
+ifmatches(%&blockd%,soul_sand);#cond1=0;else;#cond1=1;endif;
+
+ifmatches(%&blocku%,nether_wart);#cond2=0;else;#cond2=1;endif;
+
+ifmatches(%&blocku%,air);#cond3=0;else;#cond3=1;endif;
+
+                until((%#cond1%=1)|((%#cond2%=1)&&(%#cond3%=1)));
+
+                key(use);
+
+                keyup(forward);
+
+                if(first);
+
+                    getidrel(%&x1%,+0,%&z1%,&block1);getidrel(%&x2%,+0,%&z2%,&block2);
+
+                    getidrel(%&x1%,+1,%&z1%,&block3);getidrel(%&x2%,+1,%&z2%,&block4);
+
+                    ifmatches(%&block1%,soul_sand);&sn=-;endif;ifmatches(%&block3%,soul_sand);&sn=-;endif;
+
+                    ifmatches(%&block2%,soul_sand);&sn=+;endif;ifmatches(%&block4%,soul_sand);&sn=+;endif;
+
+                    &dirc=%DIRECTION%;
+
+                    ifmatches(%&sn%,[\+]);&sn1=+;&sn2=-;endif;
+
+                    ifmatches(%&sn%,[\-]);&sn1=-;&sn2=+;endif;
+
+                    unset(first);
+
+                endif;
+
+                &dir=%DIRECTION%;
+
+                ifmatches(%&dirc%,N);ifmatches(%&dir%,N);&sn=%&sn1%;endif;ifmatches(%&dir%,S);&sn=%&sn2%;endif;endif;
+
+                ifmatches(%&dirc%,S);ifmatches(%&dir%,N);&sn=%&sn2%;endif;ifmatches(%&dir%,S);&sn=%&sn1%;endif;endif;
+
+                ifmatches(%&dirc%,W);ifmatches(%&dir%,W);&sn=%&sn1%;endif;ifmatches(%&dir%,E);&sn=%&sn2%;endif;endif;
+
+                ifmatches(%&dirc%,E);ifmatches(%&dir%,W);&sn=%&sn2%;endif;ifmatches(%&dir%,E);&sn=%&sn1%;endif;endif;
+
+                look(%&sn%90,);
+
+                wait(100ms);
+
+                &dir=%DIRECTION%;
+
+                ifmatches(%&dir%,N);&dir=NORTH;&z=-1;&x=+0;&z1=+0;&z2=+0;&x1=-1;&x2=+1;endif;
+
+                ifmatches(%&dir%,S);&dir=SOUTH;&z=+1;&x=+0;&z1=+0;&z2=+0;&x1=+1;&x2=-1;endif;
+
+                ifmatches(%&dir%,E);&dir=EAST;&z=+0;&x=+1;&x1=+0;&x2=+0;&z1=-1;&z2=+1;endif;
+
+                ifmatches(%&dir%,W);&dir=WEST;&z=+0;&x=-1;&x1=+0;&x2=+0;&z1=+1;&z2=-1;endif;
+
+                getidrel(%&x%,+0,%&z%,&block1);
+
+                getidrel(%&x%,+1,%&z%,&block3);
+
+#rf=0;
+
+                ifmatches(%&block3%,air);else;inc(#rf,1);endif;
+
+ifmatches(%&block3%,nether_wart);else;inc(#rf,1);endif;
+
+ifmatches(%&block1%,soul_sand);else;#rf=2;endif;
+
+endif;
+
+                if(%#rf%=2);
+
+                    else;
+
+                    #nposx1 = %XPOS%; #nposx2 = %ZPOS%;
+
+                    do;
+
+                        keydown(forward);
+
+                        pick(nether_wart);
+
+                        key(use);
+
+                    until((%XPOS%!=%#nposx1%)|(%ZPOS%!=%#nposx2%));
+
+                    keyup(forward);
+
+                    key(attack);
+
+                    look(%&sn%90,);
+
+                endif;
+
+            until(%#rf%=2);
+
+            keyup(FORWARD);
+
+        next;
+
+        #flror=1;
+
+    loop;
+
+endif;
+
+}$$

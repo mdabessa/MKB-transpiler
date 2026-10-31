@@ -1,0 +1,803 @@
+[
+  {
+    "file": "examples/forum/1-7-1-5-plant-cacto-completo.txt",
+    "topic": "ENTREGUE - [1.7|1.5] Plant cacto completo !",
+    "author": "Nugou",
+    "url": "https://forum.craftlandia.com.br/xf/threads/1-7-1-5-plant-cacto-completo.395223/",
+    "blocks": 108,
+    "bytes": 37728,
+    "fetched_at": "2026-10-31T14:43:14+00:00"
+  },
+  {
+    "file": "examples/forum/2-0-pesca-lixeira-baus-ilimitados-e.txt",
+    "topic": "ENTREGUE - [2.0] Pesca - lixeira, baus ilimitados e +",
+    "author": "jimmyfilips",
+    "url": "https://forum.craftlandia.com.br/xf/threads/2-0-pesca-lixeira-baus-ilimitados-e.242510/",
+    "blocks": 2,
+    "bytes": 2686,
+    "fetched_at": "2026-10-31T14:42:13+00:00"
+  },
+  {
+    "file": "examples/forum/colhe-planta-e-vende-macro.txt",
+    "topic": "ENTREGUE - Colhe planta e vende =)     [Macro]",
+    "author": "shibusen",
+    "url": "https://forum.craftlandia.com.br/xf/threads/colhe-planta-e-vende-macro.226079/",
+    "blocks": 4,
+    "bytes": 928,
+    "fetched_at": "2026-10-31T14:43:27+00:00"
+  },
+  {
+    "file": "examples/forum/colheita-do-besouro.txt",
+    "topic": "ENTREGUE - Colheita do besouro",
+    "author": "BeetleJuice",
+    "url": "https://forum.craftlandia.com.br/xf/threads/colheita-do-besouro.277937/",
+    "blocks": 30,
+    "bytes": 25072,
+    "fetched_at": "2026-10-31T14:43:24+00:00"
+  },
+  {
+    "file": "examples/forum/descobrindo-quando-o-set-do-outro-quebrara-macro.txt",
+    "topic": "ENTREGUE - Descobrindo quando o set do outro quebrará [MACRO]",
+    "author": "shibusen",
+    "url": "https://forum.craftlandia.com.br/xf/threads/descobrindo-quando-o-set-do-outro-quebrara-macro.394854/",
+    "blocks": 2,
+    "bytes": 438,
+    "fetched_at": "2026-10-31T14:44:15+00:00"
+  },
+  {
+    "file": "examples/forum/macro-4-em-1-escav-miner-herb-lenh-rep.txt",
+    "topic": "ENTREGUE - [MACRO] 4 em 1 - Escav./miner./herb./lenh. + REP.",
+    "author": "jimmyfilips",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-4-em-1-escav-miner-herb-lenh-rep.195649/",
+    "blocks": 2,
+    "bytes": 2287,
+    "fetched_at": "2026-10-31T14:42:40+00:00"
+  },
+  {
+    "file": "examples/forum/macro-acrobacia-inteligente.txt",
+    "topic": "ENTREGUE - [MACRO] Acrobacia Inteligente",
+    "author": "jimmyfilips",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-acrobacia-inteligente.192393/",
+    "blocks": 2,
+    "bytes": 319,
+    "fetched_at": "2026-10-31T14:42:36+00:00"
+  },
+  {
+    "file": "examples/forum/macro-arco-2-0.txt",
+    "topic": "ENTREGUE - [Macro] Arco 2.0",
+    "author": "Substituto",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-arco-2-0.174445/",
+    "blocks": 2,
+    "bytes": 772,
+    "fetched_at": "2026-10-31T14:42:47+00:00"
+  },
+  {
+    "file": "examples/forum/macro-arco-repara-olhando-para-baixo.txt",
+    "topic": "ENTREGUE - Macro arco Repara olhando para baixo",
+    "author": "Polentafrita",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-arco-repara-olhando-para-baixo.186483/",
+    "blocks": 1,
+    "bytes": 444,
+    "fetched_at": "2026-10-31T14:42:49+00:00"
+  },
+  {
+    "file": "examples/forum/macro-auto-bring.txt",
+    "topic": "ENTREGUE - [MACRO] Auto Bring",
+    "author": "Ernanik",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-auto-bring.343199/",
+    "blocks": 1,
+    "bytes": 160,
+    "fetched_at": "2026-10-31T14:43:48+00:00"
+  },
+  {
+    "file": "examples/forum/macro-auto-click-para-matar-morcegos-e-outros.txt",
+    "topic": "ENTREGUE - [Macro] Auto-Click para matar Morcegos e outros.",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-auto-click-para-matar-morcegos-e-outros.216660/",
+    "blocks": 2,
+    "bytes": 294,
+    "fetched_at": "2026-10-31T14:42:56+00:00"
+  },
+  {
+    "file": "examples/forum/macro-auto-pvp.txt",
+    "topic": "ENTREGUE - [MACRO] Auto PvP",
+    "author": "Rockefeller__",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-auto-pvp.225230/",
+    "blocks": 4,
+    "bytes": 735,
+    "fetched_at": "2026-10-31T14:43:07+00:00"
+  },
+  {
+    "file": "examples/forum/macro-auto-sprint.txt",
+    "topic": "ENTREGUE - [Macro] Auto-Sprint",
+    "author": "dllfour",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-auto-sprint.218222/",
+    "blocks": 1,
+    "bytes": 61,
+    "fetched_at": "2026-10-31T14:43:10+00:00"
+  },
+  {
+    "file": "examples/forum/macro-auto-tell-inteligente-inovador.txt",
+    "topic": "ENTREGUE - [MACRO] Auto-Tell Inteligente! [INOVADOR]",
+    "author": "augustoantipou",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-auto-tell-inteligente-inovador.352962/",
+    "blocks": 13,
+    "bytes": 4003,
+    "fetched_at": "2026-10-31T14:44:17+00:00"
+  },
+  {
+    "file": "examples/forum/macro-auto-tell-log.txt",
+    "topic": "ENTREGUE - [MACRO] Auto-tell + log",
+    "author": "Miletto",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-auto-tell-log.337680/",
+    "blocks": 3,
+    "bytes": 434,
+    "fetched_at": "2026-10-31T14:41:37+00:00"
+  },
+  {
+    "file": "examples/forum/macro-auto-troca-de-set.txt",
+    "topic": "ENTREGUE - [Macro] Auto Troca de Set",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-auto-troca-de-set.231471/",
+    "blocks": 1,
+    "bytes": 1711,
+    "fetched_at": "2026-10-31T14:43:06+00:00"
+  },
+  {
+    "file": "examples/forum/macro-autoclick-defesa-semi-automatica.txt",
+    "topic": "ENTREGUE - [MACRO] Autoclick - Defesa semi-automática",
+    "author": "jimmyfilips",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-autoclick-defesa-semi-automatica.267472/",
+    "blocks": 2,
+    "bytes": 369,
+    "fetched_at": "2026-10-31T14:42:52+00:00"
+  },
+  {
+    "file": "examples/forum/macro-autoclick-explicado.txt",
+    "topic": "[MACRO] Autoclick Explicado",
+    "author": "jimmyfilips",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-autoclick-explicado.335253/",
+    "blocks": 4,
+    "bytes": 637,
+    "fetched_at": "2026-10-31T14:41:50+00:00"
+  },
+  {
+    "file": "examples/forum/macro-autoclick-inovador-toma-pot-e-defende.txt",
+    "topic": "ENTREGUE - [Macro] AutoClick INOVADOR toma POT e DEFENDE",
+    "author": "DangerousPlay",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-autoclick-inovador-toma-pot-e-defende.357643/",
+    "blocks": 2,
+    "bytes": 546,
+    "fetched_at": "2026-10-31T14:43:51+00:00"
+  },
+  {
+    "file": "examples/forum/macro-colhe-planta-e-vende.txt",
+    "topic": "ENTREGUE - [Macro] Colhe, planta e vende !",
+    "author": "Substituto",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-colhe-planta-e-vende.203946/",
+    "blocks": 5,
+    "bytes": 2074,
+    "fetched_at": "2026-10-31T14:43:32+00:00"
+  },
+  {
+    "file": "examples/forum/macro-colheita-hiper-feliz-update.txt",
+    "topic": "ENTREGUE - [Macro] Colheita Hiper Feliz (Update)",
+    "author": "iKillerx",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-colheita-hiper-feliz-update.257643/",
+    "blocks": 1,
+    "bytes": 2165,
+    "fetched_at": "2026-10-31T14:43:26+00:00"
+  },
+  {
+    "file": "examples/forum/macro-colheita-hiper-feliz.txt",
+    "topic": "ENTREGUE - [Macro] Colheita Hiper Feliz",
+    "author": "Substituto",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-colheita-hiper-feliz.197681/",
+    "blocks": 5,
+    "bytes": 2638,
+    "fetched_at": "2026-10-31T14:43:29+00:00"
+  },
+  {
+    "file": "examples/forum/macro-construtor-de-muros.txt",
+    "topic": "ENTREGUE - [Macro] Construtor de Muros",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-construtor-de-muros.299286/",
+    "blocks": 2,
+    "bytes": 6692,
+    "fetched_at": "2026-10-31T14:43:16+00:00"
+  },
+  {
+    "file": "examples/forum/macro-contador-de-itens-pescados.txt",
+    "topic": "ENTREGUE - [Macro] Contador de itens pescados",
+    "author": "Eduarte",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-contador-de-itens-pescados.340044/",
+    "blocks": 5,
+    "bytes": 2445,
+    "fetched_at": "2026-10-31T14:44:20+00:00"
+  },
+  {
+    "file": "examples/forum/macro-craftando-blocos-3x3.txt",
+    "topic": "ENTREGUE - [MACRO] Craftando blocos (3x3)",
+    "author": "jimmyfilips",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-craftando-blocos-3x3.325404/",
+    "blocks": 2,
+    "bytes": 4282,
+    "fetched_at": "2026-10-31T14:43:55+00:00"
+  },
+  {
+    "file": "examples/forum/macro-de-colher-fungo.txt",
+    "topic": "ENTREGUE - Macro de Colher fungo",
+    "author": "Piguet",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-de-colher-fungo.350679/",
+    "blocks": 1,
+    "bytes": 2167,
+    "fetched_at": "2026-10-31T14:43:22+00:00"
+  },
+  {
+    "file": "examples/forum/macro-de-espada-sem-homes-96-baus-11-07-14.txt",
+    "topic": "ENTREGUE - |MACRO| de Espada | Sem Homes | 96 Baús | 11/07/14",
+    "author": "Xertzy",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-de-espada-sem-homes-96-baus-11-07-14.351391/",
+    "blocks": 4,
+    "bytes": 10953,
+    "fetched_at": "2026-10-31T14:42:01+00:00"
+  },
+  {
+    "file": "examples/forum/macro-de-fazer-pocao.txt",
+    "topic": "ENTREGUE - Macro De Fazer Poção",
+    "author": "AZNegative",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-de-fazer-pocao.321259/",
+    "blocks": 3,
+    "bytes": 10967,
+    "fetched_at": "2026-10-31T14:43:35+00:00"
+  },
+  {
+    "file": "examples/forum/macro-de-pesca-com-homes-dropa-itens.txt",
+    "topic": "ENTREGUE - [Macro] De pesca | Com homes | Dropa itens.",
+    "author": "JVFC11",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-de-pesca-com-homes-dropa-itens.233673/",
+    "blocks": 34,
+    "bytes": 2348,
+    "fetched_at": "2026-10-31T14:42:23+00:00"
+  },
+  {
+    "file": "examples/forum/macro-descubrir-as-coord-do-look.txt",
+    "topic": "(Macro) descubrir as coord do look",
+    "author": "FroesPvp",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-descubrir-as-coord-do-look.260308/",
+    "blocks": 1,
+    "bytes": 80,
+    "fetched_at": "2026-10-31T14:41:52+00:00"
+  },
+  {
+    "file": "examples/forum/macro-despertador.txt",
+    "topic": "ENTREGUE - [MACRO] Despertador!",
+    "author": "jimmyfilips",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-despertador.316197/",
+    "blocks": 2,
+    "bytes": 1777,
+    "fetched_at": "2026-10-31T14:41:38+00:00"
+  },
+  {
+    "file": "examples/forum/macro-escavacao-economizar-dirt-e-cascalho.txt",
+    "topic": "ENTREGUE - [Macro] Escavação, Economizar Dirt e Cascalho.",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-escavacao-economizar-dirt-e-cascalho.191063/",
+    "blocks": 1,
+    "bytes": 95,
+    "fetched_at": "2026-10-31T14:42:31+00:00"
+  },
+  {
+    "file": "examples/forum/macro-escavacao-mitico-v2-liga-desliga-repara.txt",
+    "topic": "ENTREGUE - [Macro] Escavação Mitico V2 [Liga/Desliga][Repara]",
+    "author": "FroesPvp",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-escavacao-mitico-v2-liga-desliga-repara.186746/",
+    "blocks": 3,
+    "bytes": 2053,
+    "fetched_at": "2026-10-31T14:42:34+00:00"
+  },
+  {
+    "file": "examples/forum/macro-espadas-arqueiro-e-machado-vip-ou-nao.txt",
+    "topic": "ENTREGUE - [Macro] Espadas, Arqueiro e Machado (VIP ou NÃO)",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-espadas-arqueiro-e-machado-vip-ou-nao.359860/",
+    "blocks": 20,
+    "bytes": 7840,
+    "fetched_at": "2026-10-31T14:41:58+00:00"
+  },
+  {
+    "file": "examples/forum/macro-evite-capacete-quebrar.txt",
+    "topic": "ENTREGUE - MACRO / Evite capacete quebrar.",
+    "author": "shibusen",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-evite-capacete-quebrar.219000/",
+    "blocks": 2,
+    "bytes": 138,
+    "fetched_at": "2026-10-31T14:43:09+00:00"
+  },
+  {
+    "file": "examples/forum/macro-fabrica-de-vidros-sem-homes-06-12-13.txt",
+    "topic": "ENTREGUE - [Macro] Fábrica de Vidros | Sem Homes! 06/12/13.",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-fabrica-de-vidros-sem-homes-06-12-13.229796/",
+    "blocks": 2,
+    "bytes": 6972,
+    "fetched_at": "2026-10-31T14:43:34+00:00"
+  },
+  {
+    "file": "examples/forum/macro-fazendo-batatas-para-morfar.txt",
+    "topic": "ENTREGUE - [Macro] Fazendo batatas para MORFAR!",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-fazendo-batatas-para-morfar.216345/",
+    "blocks": 1,
+    "bytes": 283,
+    "fetched_at": "2026-10-31T14:44:23+00:00"
+  },
+  {
+    "file": "examples/forum/macro-fps-na-tela-sem-f3.txt",
+    "topic": "ENTREGUE - [Macro] FPS na tela (sem F3)",
+    "author": "Eperson",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-fps-na-tela-sem-f3.223949/",
+    "blocks": 1,
+    "bytes": 48,
+    "fetched_at": "2026-10-31T14:44:14+00:00"
+  },
+  {
+    "file": "examples/forum/macro-horarios-eventos-automaticos.txt",
+    "topic": "ENTREGUE - [Macro] Horários: Eventos Automáticos",
+    "author": "LincolnSSC",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-horarios-eventos-automaticos.333044/",
+    "blocks": 1,
+    "bytes": 1830,
+    "fetched_at": "2026-10-31T14:44:19+00:00"
+  },
+  {
+    "file": "examples/forum/macro-hunger-games-kit-sopa.txt",
+    "topic": "ENTREGUE - [Macro] Hunger Games/Kit Sopa",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-hunger-games-kit-sopa.219833/",
+    "blocks": 3,
+    "bytes": 585,
+    "fetched_at": "2026-10-31T14:43:12+00:00"
+  },
+  {
+    "file": "examples/forum/macro-informacoes-do-player.txt",
+    "topic": "ENTREGUE - (Macro)Informações do Player",
+    "author": "Duufih",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-informacoes-do-player.200466/",
+    "blocks": 1,
+    "bytes": 375,
+    "fetched_at": "2026-10-31T14:44:12+00:00"
+  },
+  {
+    "file": "examples/forum/macro-ir-aos-warps-1-0-inedito.txt",
+    "topic": "ENTREGUE - [MACRO] IR Aos /Warps [1.0] INÉDITO!",
+    "author": "BrenoGamers",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-ir-aos-warps-1-0-inedito.382196/",
+    "blocks": 1,
+    "bytes": 297,
+    "fetched_at": "2026-10-31T14:43:46+00:00"
+  },
+  {
+    "file": "examples/forum/macro-jogando-dano-2-manualmente.txt",
+    "topic": "ENTREGUE - [Macro] Jogando DANO 2 Manualmente",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-jogando-dano-2-manualmente.250469/",
+    "blocks": 1,
+    "bytes": 318,
+    "fetched_at": "2026-10-31T14:43:02+00:00"
+  },
+  {
+    "file": "examples/forum/macro-jogar-dano-ii-do-inventario.txt",
+    "topic": "ENTREGUE - [Macro] Jogar Dano II do Inventário?",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-jogar-dano-ii-do-inventario.282321/",
+    "blocks": 1,
+    "bytes": 277,
+    "fetched_at": "2026-10-31T14:43:00+00:00"
+  },
+  {
+    "file": "examples/forum/macro-macro-de-pesca-com-homes.txt",
+    "topic": "ENTREGUE - [Macro] Macro de Pesca | Com Homes!",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-macro-de-pesca-com-homes.228672/",
+    "blocks": 31,
+    "bytes": 1793,
+    "fetched_at": "2026-10-31T14:42:25+00:00"
+  },
+  {
+    "file": "examples/forum/macro-macro-hiper-pesca-96baus-nao-vip-ou-vip.txt",
+    "topic": "[Macro] Macro Hiper pesca 96baús Não VIP ou VIP",
+    "author": "gabrielgarciamarini",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-macro-hiper-pesca-96baus-nao-vip-ou-vip.257325/",
+    "blocks": 2,
+    "bytes": 27834,
+    "fetched_at": "2026-10-31T14:42:20+00:00"
+  },
+  {
+    "file": "examples/forum/macro-melhor-macro-de-escavacao-01-10-13.txt",
+    "topic": "ENTREGUE - [Macro] Melhor Macro de Escavação! 01/10/13",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-melhor-macro-de-escavacao-01-10-13.197993/",
+    "blocks": 19,
+    "bytes": 3420,
+    "fetched_at": "2026-10-31T14:42:32+00:00"
+  },
+  {
+    "file": "examples/forum/macro-melhor-macro-de-fazer-pocoes.txt",
+    "topic": "ENTREGUE - [Macro] Melhor Macro de Fazer Poções?",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-melhor-macro-de-fazer-pocoes.293412/",
+    "blocks": 7,
+    "bytes": 5470,
+    "fetched_at": "2026-10-31T14:43:37+00:00"
+  },
+  {
+    "file": "examples/forum/macro-melhor-macro-de-pesca-sem-homes-27-10-13.txt",
+    "topic": "ENTREGUE - [Macro] Melhor macro de Pesca? Sem Homes! 27/10/13",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-melhor-macro-de-pesca-sem-homes-27-10-13.210158/",
+    "blocks": 3,
+    "bytes": 3750,
+    "fetched_at": "2026-10-31T14:42:22+00:00"
+  },
+  {
+    "file": "examples/forum/macro-mobspawners-2-mais-lucro.txt",
+    "topic": "ENTREGUE - [Macro] Mobspawners 2 (Mais Lucro)",
+    "author": "Felipesferreira",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-mobspawners-2-mais-lucro.186296/",
+    "blocks": 21,
+    "bytes": 3846,
+    "fetched_at": "2026-10-31T14:42:06+00:00"
+  },
+  {
+    "file": "examples/forum/macro-pesca-e-repara-1-7-2-atualizado.txt",
+    "topic": "ENTREGUE - [Macro] Pesca e repara 1.7.2 [ Atualizado]",
+    "author": "iTu3x",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-pesca-e-repara-1-7-2-atualizado.328541/",
+    "blocks": 1,
+    "bytes": 616,
+    "fetched_at": "2026-10-31T14:44:26+00:00"
+  },
+  {
+    "file": "examples/forum/macro-pesca-nao-buga-pra-repara.txt",
+    "topic": "ENTREGUE - [Macro]pesca (não buga pra repara)",
+    "author": "zMatheus22",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-pesca-nao-buga-pra-repara.186721/",
+    "blocks": 1,
+    "bytes": 396,
+    "fetched_at": "2026-10-31T14:42:26+00:00"
+  },
+  {
+    "file": "examples/forum/macro-pesca-nao-vip-varas-baus.txt",
+    "topic": "ENTREGUE - [Macro] Pesca NÃO-VIP +Varas +Baús",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-pesca-nao-vip-varas-baus.253350/",
+    "blocks": 3,
+    "bytes": 8302,
+    "fetched_at": "2026-10-31T14:42:12+00:00"
+  },
+  {
+    "file": "examples/forum/macro-plant-de-cacto-automatica-mc-novo.txt",
+    "topic": "ENTREGUE - [Macro] Plant de Cacto automática /mc novo",
+    "author": "Eperson",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-plant-de-cacto-automatica-mc-novo.235281/",
+    "blocks": 1,
+    "bytes": 2972,
+    "fetched_at": "2026-10-31T14:43:19+00:00"
+  },
+  {
+    "file": "examples/forum/macro-plant-de-cacto-automatica-v2-0-nao-vip.txt",
+    "topic": "ENTREGUE - [Macro] Plant de Cacto automática v2.0 [NAO VIP]",
+    "author": "Eperson",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-plant-de-cacto-automatica-v2-0-nao-vip.236967/",
+    "blocks": 1,
+    "bytes": 4604,
+    "fetched_at": "2026-10-31T14:43:17+00:00"
+  },
+  {
+    "file": "examples/forum/macro-pratico-pvp-autoclick-autoarco.txt",
+    "topic": "ENTREGUE - [Macro] [Prático] PvP Autoclick + \"Autoarco\"",
+    "author": "iFriboy",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-pratico-pvp-autoclick-autoarco.365863/",
+    "blocks": 2,
+    "bytes": 611,
+    "fetched_at": "2026-10-31T14:42:50+00:00"
+  },
+  {
+    "file": "examples/forum/macro-preguica-rep-depois-do-pvp.txt",
+    "topic": "ENTREGUE - Macro/Preguiça Rep depois do PvP",
+    "author": "AZNegative",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-preguica-rep-depois-do-pvp.412928/",
+    "blocks": 3,
+    "bytes": 926,
+    "fetched_at": "2026-10-31T14:43:41+00:00"
+  },
+  {
+    "file": "examples/forum/macro-print-ao-morrer-otimo-para-quem-upa.txt",
+    "topic": "ENTREGUE - [Macro] Print ao morrer, ótimo para quem upa.",
+    "author": "JVFC11",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-print-ao-morrer-otimo-para-quem-upa.239301/",
+    "blocks": 1,
+    "bytes": 213,
+    "fetched_at": "2026-10-31T14:41:39+00:00"
+  },
+  {
+    "file": "examples/forum/macro-projeto-multi-storage.txt",
+    "topic": "ENTREGUE - [Macro] Projeto Multi-storage",
+    "author": "salucci",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-projeto-multi-storage.324465/",
+    "blocks": 6,
+    "bytes": 3698,
+    "fetched_at": "2026-10-31T14:42:04+00:00"
+  },
+  {
+    "file": "examples/forum/macro-pvp-autoclick-arco.txt",
+    "topic": "ENTREGUE - [Macro PvP] AutoClick & Arco",
+    "author": "MatheusCosta13",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-pvp-autoclick-arco.177756/",
+    "blocks": 2,
+    "bytes": 189,
+    "fetched_at": "2026-10-31T14:42:58+00:00"
+  },
+  {
+    "file": "examples/forum/macro-pvp-tomando-pocoes-automaticamente.txt",
+    "topic": "ENTREGUE - [Macro-PVP] Tomando Poções Automaticamente",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-pvp-tomando-pocoes-automaticamente.268673/",
+    "blocks": 1,
+    "bytes": 1321,
+    "fetched_at": "2026-10-31T14:43:04+00:00"
+  },
+  {
+    "file": "examples/forum/macro-repair-gogo.txt",
+    "topic": "ENTREGUE - [Macro] Repair gogo!",
+    "author": "Kilbyre",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-repair-gogo.208233/",
+    "blocks": 2,
+    "bytes": 1249,
+    "fetched_at": "2026-10-31T14:42:42+00:00"
+  },
+  {
+    "file": "examples/forum/macro-rush-capiroto.txt",
+    "topic": "ENTREGUE - [macro] Rush Capiroto",
+    "author": "hugohg",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-rush-capiroto.391218/",
+    "blocks": 1,
+    "bytes": 207,
+    "fetched_at": "2026-10-31T14:43:44+00:00"
+  },
+  {
+    "file": "examples/forum/macro-se-movendo-com-invent-aberto-completo.txt",
+    "topic": "ENTREGUE - [MACRO] Se movendo com invent. aberto (completo)",
+    "author": "jimmyfilips",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-se-movendo-com-invent-aberto-completo.320599/",
+    "blocks": 2,
+    "bytes": 739,
+    "fetched_at": "2026-10-31T14:44:06+00:00"
+  },
+  {
+    "file": "examples/forum/macro-skills-na-tela.txt",
+    "topic": "ENTREGUE - [MACRO] Skills na tela",
+    "author": "Bielzilao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-skills-na-tela.230034/",
+    "blocks": 21,
+    "bytes": 8419,
+    "fetched_at": "2026-10-31T14:41:45+00:00"
+  },
+  {
+    "file": "examples/forum/macro-statuseffecthud.txt",
+    "topic": "ENTREGUE - [Macro] StatusEffectHUD",
+    "author": "LincolnSSC",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-statuseffecthud.358480/",
+    "blocks": 1,
+    "bytes": 961,
+    "fetched_at": "2026-10-31T14:44:03+00:00"
+  },
+  {
+    "file": "examples/forum/macro-super-escavacao.txt",
+    "topic": "ENTREGUE - [MACRO] Super Escavação",
+    "author": "Ernanik",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-super-escavacao.380989/",
+    "blocks": 13,
+    "bytes": 14398,
+    "fetched_at": "2026-10-31T14:42:29+00:00"
+  },
+  {
+    "file": "examples/forum/macro-teste-andar-automaticamente.txt",
+    "topic": "ENTREGUE - [Macro/Teste] Andar Automaticamente",
+    "author": "Xtycon",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-teste-andar-automaticamente.385014/",
+    "blocks": 2,
+    "bytes": 149,
+    "fetched_at": "2026-10-31T14:43:43+00:00"
+  },
+  {
+    "file": "examples/forum/macro-todas-suas-skills-na-tela-100.txt",
+    "topic": "ENTREGUE - [Macro] Todas suas Skills na tela, 100%",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-todas-suas-skills-na-tela-100.263215/",
+    "blocks": 2,
+    "bytes": 5259,
+    "fetched_at": "2026-10-31T14:41:41+00:00"
+  },
+  {
+    "file": "examples/forum/macro-up-reparacao-para-1-7-2.txt",
+    "topic": "ENTREGUE - [Macro] Up reparação para 1.7.2",
+    "author": "Nugou",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-up-reparacao-para-1-7-2.386671/",
+    "blocks": 11,
+    "bytes": 9208,
+    "fetched_at": "2026-10-31T14:44:24+00:00"
+  },
+  {
+    "file": "examples/forum/macro-upando-reparacao-1-1.txt",
+    "topic": "ENTREGUE - [MACRO] UPANDO REPARAÇÃO 1.1",
+    "author": "daisekai2",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-upando-reparacao-1-1.256243/",
+    "blocks": 1,
+    "bytes": 1101,
+    "fetched_at": "2026-10-31T14:42:43+00:00"
+  },
+  {
+    "file": "examples/forum/macro-upando-reparacao-rapidamente.txt",
+    "topic": "ENTREGUE - [Macro] Upando Reparação RAPIDAMENTE!",
+    "author": "ShaDoWBR190",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-upando-reparacao-rapidamente.181569/",
+    "blocks": 1,
+    "bytes": 1149,
+    "fetched_at": "2026-10-31T14:42:45+00:00"
+  },
+  {
+    "file": "examples/forum/macro-upar-acrobacia-em-segundo-plano.txt",
+    "topic": "ENTREGUE - [Macro] Upar Acrobacia em segundo plano",
+    "author": "Eperson",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-upar-acrobacia-em-segundo-plano.183468/",
+    "blocks": 1,
+    "bytes": 54,
+    "fetched_at": "2026-10-31T14:42:38+00:00"
+  },
+  {
+    "file": "examples/forum/macro-upar-espada-machado-48baus-vip-e-nao-vip.txt",
+    "topic": "ENTREGUE - [MACRO] Upar Espada/Machado 48baus [vip] e nao vip",
+    "author": "Ernanik",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-upar-espada-machado-48baus-vip-e-nao-vip.363088/",
+    "blocks": 7,
+    "bytes": 8393,
+    "fetched_at": "2026-10-31T14:42:00+00:00"
+  },
+  {
+    "file": "examples/forum/macro-vender-fungo-na-warp-vip.txt",
+    "topic": "ENTREGUE - [MACRO] Vender Fungo na \"WARP VIP\"",
+    "author": "Ernanik",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-vender-fungo-na-warp-vip.346181/",
+    "blocks": 24,
+    "bytes": 1654,
+    "fetched_at": "2026-10-31T14:43:50+00:00"
+  },
+  {
+    "file": "examples/forum/macro-vip-vender-cactus-no-warp-vip.txt",
+    "topic": "ENTREGUE - [MACRO][VIP] Vender Cactus no \"WARP VIP\"",
+    "author": "Ernanik",
+    "url": "https://forum.craftlandia.com.br/xf/threads/macro-vip-vender-cactus-no-warp-vip.344203/",
+    "blocks": 8,
+    "bytes": 1268,
+    "fetched_at": "2026-10-31T14:43:54+00:00"
+  },
+  {
+    "file": "examples/forum/novo-macro-de-fazer-pocoes-18-mesas.txt",
+    "topic": "ENTREGUE - [NOVO] Macro de Fazer Poções | 18 Mesas",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/novo-macro-de-fazer-pocoes-18-mesas.258824/",
+    "blocks": 1,
+    "bytes": 30854,
+    "fetched_at": "2026-10-31T14:43:39+00:00"
+  },
+  {
+    "file": "examples/forum/novo-macro-de-pesca-sem-homes-48-baus-02-01-14.txt",
+    "topic": "ENTREGUE - [NOVO] Macro de Pesca | Sem Homes 48 Baús 02/01/14",
+    "author": "Phodalao",
+    "url": "https://forum.craftlandia.com.br/xf/threads/novo-macro-de-pesca-sem-homes-48-baus-02-01-14.244747/",
+    "blocks": 6,
+    "bytes": 11844,
+    "fetched_at": "2026-10-31T14:42:17+00:00"
+  },
+  {
+    "file": "examples/forum/pack-pacote-de-labels-informacoes-na-tela.txt",
+    "topic": "ENTREGUE - [PACK] Pacote de LABELS - Informações na tela",
+    "author": "jimmyfilips",
+    "url": "https://forum.craftlandia.com.br/xf/threads/pack-pacote-de-labels-informacoes-na-tela.260852/",
+    "blocks": 1,
+    "bytes": 1943,
+    "fetched_at": "2026-10-31T14:44:10+00:00"
+  },
+  {
+    "file": "examples/forum/pesca-repara-guarda-macro-warp-vip.txt",
+    "topic": "ENTREGUE - Pesca,repara,guarda [Macro] - /Warp vip",
+    "author": "shibusen",
+    "url": "https://forum.craftlandia.com.br/xf/threads/pesca-repara-guarda-macro-warp-vip.254838/",
+    "blocks": 68,
+    "bytes": 2802,
+    "fetched_at": "2026-10-31T14:42:16+00:00"
+  },
+  {
+    "file": "examples/forum/tutorial-fazer-regioes-planas.txt",
+    "topic": "ENTREGUE - [Tutorial] Fazer regiões planas!",
+    "author": "BeetleJuice",
+    "url": "https://forum.craftlandia.com.br/xf/threads/tutorial-fazer-regioes-planas.190159/",
+    "blocks": 2,
+    "bytes": 6711,
+    "fetched_at": "2026-10-31T14:43:20+00:00"
+  },
+  {
+    "file": "examples/forum/tutorial-guia-de-macro-para-iniciantes.txt",
+    "topic": "[Tutorial] Guia de macro para iniciantes",
+    "author": "DeathStroker",
+    "url": "https://forum.craftlandia.com.br/xf/threads/tutorial-guia-de-macro-para-iniciantes.159896/",
+    "blocks": 2,
+    "bytes": 867,
+    "fetched_at": "2026-10-31T14:41:32+00:00"
+  },
+  {
+    "file": "examples/forum/tutorial-macro-anti-esmoladores.txt",
+    "topic": "[Tutorial] Macro anti-esmoladores",
+    "author": "DomingosBopp",
+    "url": "https://forum.craftlandia.com.br/xf/threads/tutorial-macro-anti-esmoladores.159950/",
+    "blocks": 2,
+    "bytes": 169,
+    "fetched_at": "2026-10-31T14:43:57+00:00"
+  },
+  {
+    "file": "examples/forum/tutorial-macro-auto-click.txt",
+    "topic": "ENTREGUE - [Tutorial Macro] Auto-Click",
+    "author": "TheWeb1000",
+    "url": "https://forum.craftlandia.com.br/xf/threads/tutorial-macro-auto-click.161049/",
+    "blocks": 1,
+    "bytes": 182,
+    "fetched_at": "2026-10-31T14:42:54+00:00"
+  },
+  {
+    "file": "examples/forum/tutorial-macro-key-bind-anuncios.txt",
+    "topic": "[Tutorial] Macro/Key Bind - Anúncios",
+    "author": "MatheusUzumaki",
+    "url": "https://forum.craftlandia.com.br/xf/threads/tutorial-macro-key-bind-anuncios.147676/",
+    "blocks": 2,
+    "bytes": 30,
+    "fetched_at": "2026-10-31T14:41:34+00:00"
+  },
+  {
+    "file": "examples/forum/tutorial-macro-super-pesca-48baus-nao-vip-ou-vip.txt",
+    "topic": "ENTREGUE - [Tutorial] Macro Super pesca 48baús Não VIP ou VIP",
+    "author": "gabrielgarciamarini",
+    "url": "https://forum.craftlandia.com.br/xf/threads/tutorial-macro-super-pesca-48baus-nao-vip-ou-vip.264864/",
+    "blocks": 2,
+    "bytes": 8493,
+    "fetched_at": "2026-10-31T14:42:10+00:00"
+  },
+  {
+    "file": "examples/forum/um-login-para-cada-servidor.txt",
+    "topic": "ENTREGUE - Um login para cada servidor",
+    "author": "yuridacsm",
+    "url": "https://forum.craftlandia.com.br/xf/threads/um-login-para-cada-servidor.209561/",
+    "blocks": 9,
+    "bytes": 443,
+    "fetched_at": "2026-10-31T14:43:59+00:00"
+  },
+  {
+    "file": "examples/forum/vip-mob-lucroso.txt",
+    "topic": "ENTREGUE - [VIP]Mob \"lucroso\"",
+    "author": "Nenpow",
+    "url": "https://forum.craftlandia.com.br/xf/threads/vip-mob-lucroso.358295/",
+    "blocks": 5,
+    "bytes": 2565,
+    "fetched_at": "2026-10-31T14:42:03+00:00"
+  },
+  {
+    "file": "examples/forum/vip-pescavar-pr0jet0-1oo-louco.txt",
+    "topic": "ENTREGUE - [VIP] Pescavar! - PR0JET0 1OO% LOUCO",
+    "author": "MrBlueees",
+    "url": "https://forum.craftlandia.com.br/xf/threads/vip-pescavar-pr0jet0-1oo-louco.344841/",
+    "blocks": 16,
+    "bytes": 3565,
+    "fetched_at": "2026-10-31T14:42:08+00:00"
+  }
+]

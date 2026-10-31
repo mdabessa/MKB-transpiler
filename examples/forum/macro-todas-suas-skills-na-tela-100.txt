@@ -1,0 +1,189 @@
+https://forum.craftlandia.com.br/xf/threads/macro-todas-suas-skills-na-tela-100.263215/
+
+$${
+IFMATCHES(%CHATCLEAN%,"Agora você está logado. NUNCA use a mesma senha do CraftLandia em outros servidores.");
+wait(1800ms);
+}$$
+
+$${wait(10ms);
+endif;
+ifmatches(%CHATCLEAN%,"Escavaçao: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Escavaçao: %#a%,([0-9]+) XP",#b,1);
+setlabel(v1,&6Escavaçao: &a%#a%.%#b%,v1);
+ifmatches(%CHATCLEAN%,"Habilidade escavaçao aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Escavaçao: ([0-9]+) XP",#c,1);
+setlabel(v1,&6Escavaçao: &a%#c%,v1);
+ifmatches(%CHATCLEAN%,"Habilidade escavaçao aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Pescador: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Pescador: %#a%,([0-9]+) XP",#b,1);
+setlabel(v2,&6Pescador: &a%#a%.%#b%,v2);
+ifmatches(%CHATCLEAN%,"Habilidade pescador aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Pescador: ([0-9]+) XP",#c,1);
+setlabel(v2,&6Pescador: &a%#c%,v2);
+ifmatches(%CHATCLEAN%,"Habilidade pescador aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Herbalismo: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Herbalismo: %#a%,([0-9]+) XP",#b,1);
+setlabel(v3,&6Herbalismo: &a%#a%.%#b%,v3);
+ifmatches(%CHATCLEAN%,"Habilidade herbalismo aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Herbalismo: ([0-9]+) XP",#c,1);
+setlabel(v3,&6Herbalismo: &a%#c%,v3);
+ifmatches(%CHATCLEAN%,"Habilidade herbalismo aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Mineraçao: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Mineraçao: %#a%,([0-9]+) XP",#b,1);
+setlabel(v4,&6Mineraçao: &a%#a%.%#b%,v4);
+ifmatches(%CHATCLEAN%,"Habilidade mineraçao aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Mineraçao: ([0-9]+) XP",#c,1);
+setlabel(v4,&6Mineraçao: &a%#c%,v4);
+ifmatches(%CHATCLEAN%,"Habilidade mineraçao aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Lenhador: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Lenhador: %#a%,([0-9]+) XP",#b,1);
+setlabel(v5,&6Lenhador: &a%#a%.%#b%,v5);
+ifmatches(%CHATCLEAN%,"Habilidade lenhador aumentada em 1.");
+#b = %#b%+1
+endif
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Lenhador: ([0-9]+) XP",#c,1);
+setlabel(v5,&6Lenhador: &a%#c%,v5);
+ifmatches(%CHATCLEAN%,"Habilidade lenhador aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Arqueiro: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Arqueiro: %#a%,([0-9]+) XP",#b,1);
+setlabel(v6,&6Arqueiro: &a%#a%.%#b%,v6);
+ifmatches(%CHATCLEAN%,"Habilidade arqueiro aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Arqueiro: ([0-9]+) XP",#c,1);
+setlabel(v6,&6Arqueiro: &a%#c%,v6);
+ifmatches(%CHATCLEAN%,"Habilidade arqueiro aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Espadas: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Espadas: %#a%,([0-9]+) XP",#b,1);
+setlabel(v7,&6Espadas: &a%#a%.%#b%,v7);
+ifmatches(%CHATCLEAN%,"Habilidade espadas aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Espadas: ([0-9]+) XP",#c,1);
+setlabel(v7,&6Espadas: &a%#c%,v7);
+ifmatches(%CHATCLEAN%,"Habilidade espadas aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Domar: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Domar: %#a%,([0-9]+) XP",#b,1);
+setlabel(v8,&6Domar: &a%#a%.%#b%,v8);
+ifmatches(%CHATCLEAN%,"Habilidade domar aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Domar: ([0-9]+) XP",#c,1);
+setlabel(v8,&6Domar: &a%#c%,v8);
+ifmatches(%CHATCLEAN%,"Habilidade domar aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Acrobacia: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Acrobacia: %#a%,([0-9]+) XP",#b,1);
+setlabel(v9,&6Acrobacia: &a%#a%.%#b%,v9);
+ifmatches(%CHATCLEAN%,"Habilidade acrobacia aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Acrobacia: ([0-9]+) XP",#c,1);
+setlabel(v9,&6Acrobacia: &a%#c%,v9);
+ifmatches(%CHATCLEAN%,"Habilidade acrobacia aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Reparaçao: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Reparaçao: %#a%,([0-9]+) XP",#b,1);
+setlabel(v10,&6Reparaçao: &a%#a%.%#b%,v10);
+ifmatches(%CHATCLEAN%,"Habilidade reparaçao aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Reparaçao: ([0-9]+) XP",#c,1);
+setlabel(v10,&6Reparaçao: &a%#c%,v10);
+ifmatches(%CHATCLEAN%,"Habilidade reparaçao aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Desarmado: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Desarmado: %#a%,([0-9]+) XP",#b,1);
+setlabel(v11,&6Desarmado: &a%#a%.%#b%,v11);
+ifmatches(%CHATCLEAN%,"Habilidade desarmado aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Desarmado: ([0-9]+) XP",#c,1);
+setlabel(v11,&6Desarmado: &a%#c%,v11);
+ifmatches(%CHATCLEAN%,"Habilidade desarmado aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+
+ifmatches(%CHATCLEAN%,"Machado: ([0-9]+),",#a,1);
+ifmatches(%CHATCLEAN%,"Machado: %#a%,([0-9]+) XP",#b,1);
+setlabel(v11,&6Machado: &a%#a%.%#b%,v11);
+ifmatches(%CHATCLEAN%,"Habilidade machado aumentada em 1.");
+#b = %#b%+1
+endif;
+endif;
+endif;
+ifmatches(%CHATCLEAN%,"Machado: ([0-9]+) XP",#c,1);
+setlabel(v12,&6Machado: &a%#c%,v12);
+ifmatches(%CHATCLEAN%,"Habilidade machado aumentada em 1.");
+#c = %#c%+1
+endif;
+endif;
+}$$

@@ -1,0 +1,127 @@
+https://forum.craftlandia.com.br/xf/threads/macro-4-em-1-escav-miner-herb-lenh-rep.195649/
+
+$${
+if(pass1);
+  log(&3Multi-Macro&6 Passo 1!);
+  #idit=%ITEM%
+  log(&3ID do &6ITEM &3salvo com sucesso! - %#idit%);
+  wait(200ms);
+  unset(pass1);
+  set(pass2);
+  stop();
+endif;
+
+if(pass2);
+
+  &ff = %DIRECTION%;
+  ifmatches(%&ff%,N);&ff=NORTH;endif;
+  ifmatches(%&ff%,S);&ff=SOUTH;endif;
+  ifmatches(%&ff%,E);&ff=EAST;endif;
+  ifmatches(%&ff%,W);&ff=WEST;endif;
+
+  log(&3Multi-Macro&6 Passo 2!);
+  #idbl=%ITEM%
+  log(&3ID do &6BLOCO &3salvo com sucesso! - %#idbl%);
+  log(Iniciando processo);
+  wait(200ms);
+  unset(pass2);
+  set(pass3);
+  do;
+    PICK(%#idbl%);
+    wait(50ms);
+    LOOK(%&ff%);LOOK(,50);
+    key(USE);
+    wait(50ms);
+    PICK(%#idit%);
+    if(%#idit% != 0);
+      if(%DURABILITY% < 10);
+        LOOK(%&ff%);LOOK(,90);
+        wait(50ms);
+        KEY(USE);KEY(USE);KEY(USE);
+        wait(50ms);
+      endif;
+    endif;
+    wait(50ms);
+    LOOK(%&ff%);LOOK(,50);
+    do;
+    KEY(attack);
+    while(%HITID%=%#idbl%);
+    wait(200ms);
+  loop;
+endif;
+
+if(pass3);
+  log(&3Multi-Macro &4[OFF]);
+  wait(200ms);
+  unset(pass3);
+  set(pass1);
+  stop();
+endif;
+
+set(pass1);
+teste
+}$$
+
+$${
+if(pass1);
+  log(&3Multi-Macro&6 Passo 1!);
+  &idit=%ITEM%
+  log(&3ID do &6ITEM &3salvo com sucesso! - %&idit%);
+  wait(200ms);
+  unset(pass1);
+  set(pass2);
+  stop();
+endif;
+
+if(pass2);
+
+  &ff = %DIRECTION%;
+  ifmatches(%&ff%,N);&ff=NORTH;endif;
+  ifmatches(%&ff%,S);&ff=SOUTH;endif;
+  ifmatches(%&ff%,E);&ff=EAST;endif;
+  ifmatches(%&ff%,W);&ff=WEST;endif;
+
+  log(&3Multi-Macro&6 Passo 2!);
+  &idbl=%ITEM%
+  log(&3ID do &6BLOCO &3salvo com sucesso! - %&idbl%);
+  log(Iniciando processo);
+  wait(200ms);
+  unset(pass2);
+  set(pass3);
+  do;
+    PICK(%&idbl%);
+    wait(50ms);
+    LOOK(%&ff%);LOOK(,50);
+    key(USE);
+    wait(50ms);
+    PICK(%&idit%);
+    ifmatches(%&idit%,air);
+    else;
+      if(%DURABILITY% < 10);
+        LOOK(%&ff%);LOOK(,90);
+        wait(50ms);
+        KEY(USE);KEY(USE);KEY(USE);
+        wait(50ms);
+      endif;
+    endif;
+    wait(50ms);#parar=0;
+    LOOK(%&ff%);LOOK(,50);
+    do;
+    KEY(attack);
+    ifmatches(%HITID%,%&idbl%);else;#parar=1;log(ok - %&idbl%);endif;
+    until(%#parar%=1);log(teste);
+    wait(200ms);
+  loop;
+endif;
+
+if(pass3);
+  log(&3Multi-Macro &4[OFF]);
+  wait(200ms);
+  unset(pass3);
+  set(pass1);
+  stop();
+endif;
+
+set(pass1);
+teste
+}$$

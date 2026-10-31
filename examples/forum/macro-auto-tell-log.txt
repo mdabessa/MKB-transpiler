@@ -1,0 +1,33 @@
+https://forum.craftlandia.com.br/xf/threads/macro-auto-tell-log.337680/
+
+$${
+
+if(@tellrecorder);
+
+	ifMatches(%CHATCLEAN%,"^\(Mensagem de (.+)\): .*$",&pname,1,none);
+
+		match(%CHATCLEAN%,"^\(Mensagem de .+\): (.*)$",&message,1,none);
+
+		Time(&date,"dd/MM/yyyy HH:mm:ss");
+
+		logTo("tells.txt","[%&date%] %&pname%: %&message%");
+
+		}$$
+
+$${
+
+	endIf;
+
+endIf;
+
+}$$
+
+$${
+if(@tellrecorder);
+	unset(@tellrecorder);
+	log(&9[Tell-recorder] &4OFF);
+else;
+	set(@tellrecorder);
+	log(&9[Tell-recorder] &aON);
+endIf;
+}$$

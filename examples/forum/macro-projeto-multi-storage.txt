@@ -1,0 +1,243 @@
+https://forum.craftlandia.com.br/xf/threads/macro-projeto-multi-storage.324465/
+
+$${
+
+if(mstorage);
+
+log("&4[Macro] Mstorage [OFF]");unset(mstorage);keyup(RIGHT);stop();
+
+else;
+
+log("&2[Macro] Mstorage [ON]");set(mstorage);
+
+do();
+
+PROMPT(#nbau,$$?,"Digite o numero do baú:");
+
+wait(100ms);#msxpos=%XPOS%;#mszpos=%ZPOS%;}$$
+
+$${do();wait(100ms);until((%#msxpos%!=%XPOS%)|(%#mszpos%!=%ZPOS%));wait(200ms);keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+log("&2[Macro] Cheguei na home!");#msxpos=%XPOS%;#mszpos=%ZPOS%;
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+look(%&dir%);
+
+if(%#nbau%<5);#calctemp=0;
+
+else;#calctemp=(%#nbau%-1)/4;endif;
+
+//procura fileira
+
+keydown(RIGHT);do();wait(10ms);until((%#mszpos%=%ZPOS%+%#calctemp%)|(%#mszpos%=%ZPOS%-%#calctemp%)|(%#msxpos%=%XPOS%+%#calctemp%)|(%#msxpos%=%XPOS%-%#calctemp%));keyup(RIGHT);
+
+#calctemp=(%#nbau%-(%#calctemp%*4))-1;
+
+//procura baú
+
+if(%#calctemp%=0);look(+0,-45);endif;
+
+if(%#calctemp%=1);look(+0,-35);endif;
+
+if(%#calctemp%=2);look(+0,+0);endif;
+
+if(%#calctemp%=3);look(+0,+35);endif;
+
+gui();wait(1);key(use);wait(3);gui();
+
+PROMPT(&return,$$?,"Acertei? S ou N");
+
+ifmatches(%&return%,^[S|s]);wait(200ms);keydown(jump);wait(3);keyup(jump);wait(1);else;log("&2[Macro] Reporte o mal funcionamento no fórum!");unset(mstorage);stop();endif();
+
+loop();
+
+endif;
+
+}$$
+
+$${
+
+IF(espada);
+
+log("&d[Phodalao-MS]&6Espadas 2.0 &4Off");
+
+unset(espada);
+
+stop();
+
+else;
+
+log("&d[Phodalao-MS]&6Espadas 2.0 &aOn");
+
+log("&6[Ediçao 2.1 do macro, script melhorado]");
+
+set(espada);
+
+PROMPT(#nmax,$$?,"Digite o quantidade de baús:");#nbau=1;
+
+IFMATCHES(%DIRECTION%,N);
+
+&frente = NORTH;
+
+ENDIF;
+
+IFMATCHES(%DIRECTION%,S);
+
+&frente = SOUTH;
+
+ENDIF;
+
+IFMATCHES(%DIRECTION%,W);
+
+&frente = WEST;
+
+ENDIF;
+
+IFMATCHES(%DIRECTION%,E);
+
+&frente = EAST;
+
+ENDIF;
+
+}$$
+
+$${
+
+do;
+
+if(%DURABILITY%<100);
+
+look(,90);
+
+wait(10ms);
+
+key(use);
+
+wait(10ms);
+
+key(use);
+
+endif;
+
+look(%&frente%);
+
+look(,0);
+
+do(40)
+
+key(attack);
+
+wait(150ms);
+
+loop;
+
+gui(inventory);getslotitem(35,#id,#stackq);
+
+if(%#stackq%!=0);gui();
+
+#li[] = 276;
+
+#li[] = 279;
+
+#li[] = 267;
+
+do()
+
+wait(100ms);#msxpos=%XPOS%;#mszpos=%ZPOS%;}$$
+
+$${do();wait(100ms);until((%#msxpos%!=%XPOS%)|(%#mszpos%!=%ZPOS%));wait(200ms);keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+log("&2[Macro] Cheguei na home!");#msxpos=%XPOS%;#mszpos=%ZPOS%;
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+look(%&dir%);
+
+if(%#nbau%<5);#calctemp=0;
+
+else;#calctemp=(%#nbau%-1)/4;endif;
+
+//procura fileira
+
+keydown(RIGHT);do();wait(10ms);until((%#mszpos%=%ZPOS%+%#calctemp%)|(%#mszpos%=%ZPOS%-%#calctemp%)|(%#msxpos%=%XPOS%+%#calctemp%)|(%#msxpos%=%XPOS%-%#calctemp%));keyup(RIGHT);
+
+#calctemp=(%#nbau%-(%#calctemp%*4))-1;
+
+//procura baú
+
+if(%#calctemp%=0);look(+0,-45);endif;
+
+if(%#calctemp%=1);look(+0,-35);endif;
+
+if(%#calctemp%=2);look(+0,+0);endif;
+
+if(%#calctemp%=3);look(+0,+35);endif;
+
+gui();wait(1);key(use);wait(3);
+
+for(#i,54,89);
+
+getslotitem(%#i%,#ide,#stack);INDEXOF(#li,#index,%#ide%);
+
+if((#index = -1)&&(%#ide% != 0));
+
+slotclick(%#i%,l,true);
+
+wait(30ms);
+
+endif;
+
+next;
+
+wait(250ms);
+
+getslotitem(53,#id,#stack);
+
+wait(250ms);
+
+if(%#stack%!=0);
+
+#nbau=%#nbau%+1;
+
+if(%#nbau%=%nmax%-1);
+
+unset(espada);
+
+log("&d» &6Baús cheios?");log("&d» &6Espadas &c[OFF]");stop();
+
+endif;
+
+endif;
+
+gui();
+
+getslotitem(80,#id,#stackq);
+
+until(%#stackq%!=0);
+
+wait(100ms);#msxpos=%XPOS%;#mszpos=%ZPOS%;}$$
+
+$${do();wait(100ms);until((%#msxpos%!=%XPOS%)|(%#mszpos%!=%ZPOS%));wait(200ms);keydown(jump);wait(100ms);keyup(jump);wait(1);
+
+endif;
+
+loop;
+
+}$$

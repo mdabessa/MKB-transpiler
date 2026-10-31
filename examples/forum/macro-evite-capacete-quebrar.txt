@@ -1,0 +1,10 @@
+https://forum.craftlandia.com.br/xf/threads/macro-evite-capacete-quebrar.219000/
+
+$${
+if(%HELMDURABILITY%<=30);
+log(&4%PLAYER% &eSeu capacete foi salvo ! durabilidade restante:%HELMDURABILITY%); !!!);
+}$$
+
+$${
+endif;
+}$$

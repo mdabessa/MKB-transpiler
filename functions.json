@@ -403,6 +403,17 @@
         "description": "Ends a iteration of a loop.",
         "close": []
     },
+    "ACHIEVEMENTGET": {
+        "category": "GUI",
+        "name": "ACHIEVEMENTGET",
+        "definition": "ACHIEVEMENTGET(<text>,<id>)",
+        "varnames": [
+            "<text>",
+            "<id>"
+        ],
+        "description": "Displays a fake Minecraft achievement notification with the specified <text> and the achievement icon matching <id>.",
+        "close": []
+    },
     "CLEARCHAT()": {
         "category": "GUI",
         "name": "CLEARCHAT()",

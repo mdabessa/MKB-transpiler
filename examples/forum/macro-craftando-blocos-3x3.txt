@@ -1,0 +1,129 @@
+https://forum.craftlandia.com.br/xf/threads/macro-craftando-blocos-3x3.325404/
+
+$${
+
+if(craftn);unset(craftn);log(off);stop;else;set(craftn);log(on);endif;
+
+PROMPT(#dly,$$?,"Qual o delay usado? (em 'ms', altere o delay em caso de lag");
+
+&item=%ITEM%;log(%&item%);key(use);wait(3);
+
+//linha 1
+
+for(#slot,37,45);getslotitem(%#slot%,&id,#stack);ifmatches(%&item%,%&id%);#div=%#stack%/9;slotclick(%#slot%,l,false);
+
+for(#craftt,1,9);do(%#div%);slotclick(%#craftt%,r,false);loop;wait(%#dly%ms);next;slotclick(%#slot%,l,false);endif;next;
+
+for(#slot,38,45);getslotitem(%#slot%,&id,#stack);if(%#stack%=!0);slotclick(%#slot%,l,false);slotclick(37,l,false);endif;next;
+
+slotclick(0,l,true);
+
+//linha 2
+
+for(#slot,28,36);getslotitem(%#slot%,&id,#stack);ifmatches(%&item%,%&id%);#div=%#stack%/9;slotclick(%#slot%,l,false);
+
+for(#craftt,1,9);do(%#div%);slotclick(%#craftt%,r,false);loop;wait(%#dly%ms);next;slotclick(%#slot%,l,false);endif;next;
+
+for(#slot,29,36);getslotitem(%#slot%,&id,#stack);if(%#stack%=!0);slotclick(%#slot%,l,false);slotclick(28,l,false);endif;next;
+
+slotclick(0,l,true);
+
+//linha 3
+
+for(#slot,19,27);getslotitem(%#slot%,&id,#stack);ifmatches(%&item%,%&id%);#div=%#stack%/9;slotclick(%#slot%,l,false);
+
+for(#craftt,1,9);do(%#div%);slotclick(%#craftt%,r,false);wait(%#dly%ms);loop;next;slotclick(%#slot%,l,false);endif;next;
+
+for(#slot,20,27);getslotitem(%#slot%,&id,#stack);if(%#stack%=!0);slotclick(%#slot%,l,false);slotclick(19,l,false);endif;next;
+
+slotclick(0,l,true);
+
+//linha 4
+
+for(#slot,10,18);getslotitem(%#slot%,&id,#stack);ifmatches(%&item%,%&id%);#div=%#stack%/9;slotclick(%#slot%,l,false);
+
+for(#craftt,1,9);do(%#div%);slotclick(%#craftt%,r,false);wait(%#dly%ms);loop;next;slotclick(%#slot%,l,false);endif;next;
+
+for(#slot,11,18);getslotitem(%#slot%,&id,#stack);if(%#stack%=!0);slotclick(%#slot%,l,false);slotclick(10,l,false);endif;next;
+
+slotclick(0,l,true);
+
+//organizar final
+
+slotclick(10,l,true);next;slotclick(19,l,true);next;slotclick(28,l,true);next;
+
+//resto
+
+getslotitem(37,&id,#stack);#div=%#stack%/9;slotclick(37,l,false);
+
+for(#craftt,1,9);do(%#div%);slotclick(%#craftt%,r,false);wait(%#dly%ms);loop;next;slotclick(37,l,false);endif;next;
+
+slotclick(0,l,true);
+
+unset(craftn);log(off);stop;
+
+}$$
+
+$${
+
+if(craftn);unset(craftn);log(off);stop;else;set(craftn);log(on);endif;
+
+PROMPT(#dly,$$?,"Qual o delay usado? (em 'ms', altere o delay em caso de lag");
+
+#item=%ITEM%;log(%#item%);key(use);wait(3);
+
+//linha 1
+
+for(#slot,37,45);getslotitem(%#slot%,#id,#stack);if(%#item%=%#id%);#div=%#stack%/9;slotclick(%#slot%,l,false);
+
+for(#craftt,1,9);do(%#div%);slotclick(%#craftt%,r,false);wait(%#dly%ms);loop;next;slotclick(%#slot%,l,false);endif;next;
+
+for(#slot,38,45);getslotitem(%#slot%,#id,#stack);if(%#stack%=!0);slotclick(%#slot%,l,false);slotclick(37,l,false);endif;next;
+
+slotclick(0,l,true);
+
+//linha 2
+
+for(#slot,28,36);getslotitem(%#slot%,#id,#stack);if(%#item%=%#id%);#div=%#stack%/9;slotclick(%#slot%,l,false);
+
+for(#craftt,1,9);do(%#div%);slotclick(%#craftt%,r,false);wait(%#dly%ms);loop;next;slotclick(%#slot%,l,false);endif;next;
+
+for(#slot,29,36);getslotitem(%#slot%,#id,#stack);if(%#stack%=!0);slotclick(%#slot%,l,false);slotclick(28,l,false);endif;next;
+
+slotclick(0,l,true);
+
+//linha 3
+
+for(#slot,19,27);getslotitem(%#slot%,#id,#stack);if(%#item%=%#id%);#div=%#stack%/9;slotclick(%#slot%,l,false);
+
+for(#craftt,1,9);do(%#div%);slotclick(%#craftt%,r,false);wait(%#dly%ms);loop;next;slotclick(%#slot%,l,false);endif;next;
+
+for(#slot,20,27);getslotitem(%#slot%,#id,#stack);if(%#stack%=!0);slotclick(%#slot%,l,false);slotclick(19,l,false);endif;next;
+
+slotclick(0,l,true);
+
+//linha 4
+
+for(#slot,10,18);getslotitem(%#slot%,#id,#stack);if(%#item%=%#id%);#div=%#stack%/9;slotclick(%#slot%,l,false);
+
+for(#craftt,1,9);do(%#div%);slotclick(%#craftt%,r,false);wait(%#dly%ms);loop;next;slotclick(%#slot%,l,false);endif;next;
+
+for(#slot,11,18);getslotitem(%#slot%,#id,#stack);if(%#stack%=!0);slotclick(%#slot%,l,false);slotclick(10,l,false);endif;next;
+
+slotclick(0,l,true);
+
+//organizar final
+
+slotclick(10,l,true);next;slotclick(19,l,true);next;slotclick(28,l,true);next;
+
+//resto
+
+getslotitem(37,#id,#stack);#div=%#stack%/9;slotclick(37,l,false);
+
+for(#craftt,1,9);do(%#div%);slotclick(%#craftt%,r,false);wait(%#dly%ms);loop;next;slotclick(37,l,false);endif;next;
+
+slotclick(0,l,true);
+
+unset(craftn);log(off);stop;
+
+}$$

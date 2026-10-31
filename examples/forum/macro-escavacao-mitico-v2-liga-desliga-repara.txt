@@ -1,0 +1,173 @@
+https://forum.craftlandia.com.br/xf/threads/macro-escavacao-mitico-v2-liga-desliga-repara.186746/
+
+$${
+
+if(escavar);
+
+  log("&d{MACRO} &6Escavar &6por FroesPvp&4[OFF]");
+
+  unset(escavar);
+
+  stop();
+
+else;
+
+  log("&d{MACRO} &6Escavar &6por FroesPvp&a[ON]");
+
+  set(escavar);
+
+&dir = %DIRECTION%;
+
+#v=40;
+
+set(nf);
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+Do;
+
+pick(277);
+
+        if(%DURABILITY%<30);
+
+            look(0,90);
+
+            log(&d{MACRO}&b Durabilidade baixa, processo de reparar inciado!);
+
+            wait(500ms);
+
+            key(use);
+
+            wait(500ms);
+
+            key(use);
+
+            log(&d{MACRO}&b Pá reparada com sucesso!);
+
+            log(&d{MACRO}&b Processo de escavar retomado!);
+
+        endif;
+
+        look(%&dir%);
+
+        look(,70);
+
+    do(3)
+
+    PICK(TROQUE AQUI PELO ID DO BLOCO);
+
+    KEY(use);
+
+    wait(1ms);
+
+    PICK(277);
+
+    KEY(attack);
+
+    wait(1ms);
+
+    Loop;
+
+    lOOp;
+
+}$$
+
+$${log("2 = Terra com grama -
+
+3 = Terra -
+
+12 = Areia -
+
+13 = Cascalho (gravel)
+
+82 = Argila -
+
+88 = Soul Sand")}$$
+
+$${
+
+if(escavar);
+
+  log("&d{MACRO} &6Escavar &6por FroesPvp&4[OFF]");
+
+  unset(escavar);
+
+  stop();
+
+else;
+
+  log("&d{MACRO} &6Escavar &6por FroesPvp&a[ON]");
+
+  set(escavar);
+
+&dir = %DIRECTION%;
+
+#v=40;
+
+set(nf);
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+Do;
+
+pick(277);
+
+        if(%DURABILITY%<30);
+
+            look(0,90);
+
+            log(&d{MACRO}&b Durabilidade baixa, processo de reparar inciado!);
+
+            wait(500ms);
+
+            key(use);
+
+            wait(500ms);
+
+            key(use);
+
+            log(&d{MACRO}&b Pá reparada com sucesso!);
+
+            log(&d{MACRO}&b Processo de escavar retomado!);
+
+        endif;
+
+        look(%&dir%);
+
+        look(,70);
+
+    do(3)
+
+    PICK(TROQUE AQUI PELO ID DO BLOCO);
+
+    KEY(use);
+
+    wait(1ms);
+
+    PICK(277);
+
+    do(4);
+
+    KEY(attack);
+
+    loop;
+
+    wait(1ms);
+
+    Loop;
+
+    lOOp;
+
+}$$

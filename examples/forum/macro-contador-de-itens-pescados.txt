@@ -1,0 +1,91 @@
+https://forum.craftlandia.com.br/xf/threads/macro-contador-de-itens-pescados.340044/
+
+$${IF(%PICKUPID% = 349);inc(@#hue,1);SETLABEL(PE1,"&aPeixes Pegos:&4&o %@#hue%",PE1);endif;}$$
+
+$${
+
+IF(%PICKUPID% = 266);inc(@#minerios,5);SETLABEL(PE2,"&aMinerios Pegos:&4&o %@#minerios%",PE2);endif;
+
+IF(%PICKUPID% = 265);inc(@#minerios,5);SETLABEL(PE2,"&aMinerios Pegos:&4&o %@#minerios%",PE2);endif;
+
+IF(%PICKUPID% = 264);inc(@#minerios,5);SETLABEL(PE2,"&aMinerios Pegos:&4&o %@#minerios%",PE2);endif;
+
+}$$
+
+$${
+
+IF(%PICKUPID% = 2256);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2257);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2258);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2259);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2260);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2261);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2262);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2263);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2264);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2265);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2266);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+IF(%PICKUPID% = 2267);inc(@#discos,1);SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);endif;
+
+}$$
+
+$${ifmatches(%CHATCLEAN%,"Tesouro encontrado");inc(@#tesouros,1);SETLABEL(PE4,"&aTesouros Pegos:&4&o %@#tesouros%",PE4);endif;}$$
+
+$${
+
+log("&4&oPara resetar &aTesouros Pegos &6digite 1");
+
+log("&4&oPara resetar &aDiscos Pegos &6digite 2");
+
+log("&4&oPara resetar &aMinerios Pegos &6digite 3");
+
+log("&4&oPara resetar &aPeixes Pegos &6digite 4");
+
+log("                               ");
+
+prompt(#ria,$$?,Escreva 1.2.3. ou 4 se não quiser proseguir de enter sem nada escrito);
+
+if(%#ria% = 1);
+
+@#tesouros = 0;
+
+SETLABEL(PE4,"&aTesouros Pegos:&4&o %@#tesouros%",PE4);
+
+endif;
+
+if(%#ria% = 2);
+
+@#discos = 0;
+
+SETLABEL(PE3,"&aDiscos Pegos:&4&o %@#discos%",PE3);
+
+endif;
+
+if(%#ria% = 3);
+
+@#minerios = 0;
+
+SETLABEL(PE2,"&aMinerios Pegos:&4&o %@#minerios%",PE2);
+
+endif;
+
+if(%#ria% = 4);
+
+@#hue = 0;
+
+SETLABEL(PE1,"&aPeixes Pegos:&4&o %@#hue%",PE1);
+
+endif;
+
+}$$

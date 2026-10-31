@@ -1,0 +1,77 @@
+https://forum.craftlandia.com.br/xf/threads/pack-pacote-de-labels-informacoes-na-tela.260852/
+
+$${
+
+if(state);log(&3[%PLAYER%] &6Label's &4OFF);unset(state);
+
+SETLABEL(ST1, ,ST1);SETLABEL(ST2, ,ST2);SETLABEL(ST3, ,ST3);SETLABEL(ST4, ,ST4);SETLABEL(ST5, ,ST5);
+
+SETLABEL(ST6, ,ST6);SETLABEL(ST7, ,ST7);SETLABEL(ST8, ,ST8);SETLABEL(ST9, ,ST9);SETLABEL(ST10, ,ST10);
+
+SETLABEL(ST11, ,ST11);SETLABEL(ST12, ,ST12);SETLABEL(ST13, ,ST13);SETLABEL(ST14, ,ST14);stop();
+
+else;log(&3[%PLAYER%] &6Label's &2ON);set(state);do;endif;
+
+//==========ENCANTAMENTOS
+
+#encant=1;&anc1=;&anc2=;&anc3=;&anc4=;
+
+FOREACH(enchantments);IF(%#encant%=1);&enc1=&a%ENCHANTMENT%;endif;IF(%#encant%=2);&enc2=&b. &a%ENCHANTMENT%;endif;
+
+IF(%#encant%=3);&enc3= &b. &a%ENCHANTMENT%;endif;IF(%#encant%=4);&enc4= &b. &a%ENCHANTMENT%;endif;INC(#encant,1);NEXT;
+
+SETLABEL(ST1,&bEncantamentos: %&enc1% %&enc2% %&enc3% %&enc4%,ST1);
+
+//==========TEXTURA
+
+SETLABEL(ST2,&bTexturepack Atual: &a%TEXTUREPACK%,ST2);
+
+//==========ITEM/DURABILIDADE
+
+SETLABEL(ST3,&bID: &a%ITEM%  &bDurabilidade: &a%DURABILITY%,ST3);
+
+//==========POSIÇÃO
+
+SETLABEL(ST4,&bPos: X: &a%XPOS% &bY: &a%YPOS% &bZ: &a%ZPOS%,ST4);
+
+//==========LEVEL/XP
+
+SETLABEL(ST5,&bLevel: &a%LEVEL%  &bXP: &a%TOTALXP%,ST5);
+
+//==========CLIMA
+
+SETLABEL(ST6,&bDensidade da chuva: &a%RAIN%,ST6);
+
+//==========DIMENSÃO
+
+if(DIMENSION = "SURFACE");SETLABEL(ST7,&bDimensão atual: &aNormal,ST7);
+
+elseif(DIMENSION == "NETHER");SETLABEL(ST7,&bDimensão atual: &aNether,ST7);
+
+elseif(DIMENSION == "END");SETLABEL(ST7,&bDimensão atual: &aThe End,ST7);
+
+else;SETLABEL(ST7,&bDimensão atual: &aDesconhecida,ST7);endif;
+
+//==========GAMEMODE
+
+iF(MODE = 1);SETLABEL(ST8,&bGamemode: &aCriativo,ST8);
+
+else;
+
+SETLABEL(ST8,&bGamemode: &aSurvival,ST8);endif;
+
+//==========TEMPO
+
+SETLABEL(ST9,&bTempo em Ticks: &a%TICKS%,ST9);
+
+SETLABEL(ST10,&bHorário do jogo: &a%DAYTIME%,ST10);
+
+SETLABEL(ST11,&bHorário Real: &a%TIME%,ST11);
+
+SETLABEL(ST12,&bPlayer: &a%PLAYER%,ST12);
+
+SETLABEL(ST13,&bSaúde: &a%HEALTH% &bArmadura: &a%ARMOUR%,ST13);
+
+loop;
+
+}$$

@@ -1,0 +1,115 @@
+https://forum.craftlandia.com.br/xf/threads/macro-upando-reparacao-1-1.256243/
+
+$${if(reparar);
+
+//By Daisekai
+
+log("&f[&dMacro&f] &bReparação desativada.");
+
+unset(reparar);
+
+ACHIEVEMENTGET(MACRO DESATIVADO,291);
+
+stop();
+
+else;
+
+log("&f[&dMacro&f] &bReparação ativada.");
+
+set(reparar);
+
+ACHIEVEMENTGET(MACRO ATIVADO,291);
+
+endif;
+
+ifmatches(%DIRECTION%,N);&dir=NORTH;endif;
+
+ifmatches(%DIRECTION%,S);&dir=SOUTH;endif;
+
+ifmatches(%DIRECTION%,E);&dir=EAST;endif;
+
+ifmatches(%DIRECTION%,W);&dir=WEST;endif;
+
+do;
+
+pick(291);
+
+IF(%DURABILITY%<15);
+
+wait(500ms);
+
+log(&f[&dMACRO&f]&dEnxada Quebrando);
+
+look(0,90);
+
+wait(500ms);
+
+log(&f[&dMACRO&f]&dRepadando Enxada);
+
+key(use);
+
+wait(500ms);
+
+key(use);
+
+wait(500ms);
+
+key(use);
+
+log(&f[&dMACRO&f]&dEnxada Reparada);
+
+ACHIEVEMENTGET(Enxada Reparada,291);
+
+wait(500ms);
+
+IF(%DURABILITY%<15)
+
+LOG(&f[&bMACRO&f]&dSeus pedregulhos acabaram!);
+
+unset(reparar);
+
+unset(reparar);
+
+ACHIEVEMENTGET(MACRO DESATIVADO,291);
+
+stop();
+
+endif;
+
+loop;
+
+endif;
+
+look(%&dir%)
+
+pick(291);
+
+look(%&dir%)
+
+look(,10);
+
+key(use);
+
+wait(1t);
+
+key(use);
+
+wait(50ms);
+
+look(%&dir%)
+
+look(,-30);
+
+key(use);
+
+wait(1t);
+
+key(use);
+
+wait(50ms);
+
+loop;
+
+endif;
+
+}$$

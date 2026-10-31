@@ -1,0 +1,3 @@
+https://forum.craftlandia.com.br/xf/threads/macro-auto-sprint.218222/
+
+$${TOGGLE;IF(flag);DO;SPRINT;LOOP;ELSE;UNSPRINT;STOP;ENDIF}$$

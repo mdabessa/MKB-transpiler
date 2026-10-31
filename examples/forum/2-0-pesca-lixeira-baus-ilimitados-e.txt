@@ -1,0 +1,189 @@
+https://forum.craftlandia.com.br/xf/threads/2-0-pesca-lixeira-baus-ilimitados-e.242510/
+
+$${
+
+if(pesca);
+
+ACHIEVEMENTGET(pesca desativada,346);unset(pesca);stop();
+
+else;
+
+ACHIEVEMENTGET(pesca ativada,346);set(pesca);set(bausok);#nbau=1;
+
+endif;
+
+ifmatches(%DIRECTION%,N);&dir=NORTH;endif;
+
+ifmatches(%DIRECTION%,S);&dir=SOUTH;endif;
+
+ifmatches(%DIRECTION%,E);&dir=EAST;endif;
+
+ifmatches(%DIRECTION%,W);&dir=WEST;endif;
+
+PROMPT(#maxbau,$$?,"Quantos baús você irá utilizar?");
+
+PROMPT(&discos,$$?,"venderá discos? (s/n)");
+
+do;
+
+//================================================ preparar
+
+gui(inventory);pick(346);
+
+look(%&dir%);look(,-90);
+
+//================================================ repara
+
+if(%DURABILITY%<20);look(,90);
+
+ACHIEVEMENTGET(Reparando a vara,346);
+
+wait(500ms);
+
+do(2);key(use);wait(500ms);loop;
+
+ACHIEVEMENTGET(Vara reparada,346);
+
+endif;
+
+//================================================ pesca
+
+look(%&dir%);look(,-90);
+
+do(19);key(use);wait(1ms);loop;
+
+//================================================ verifica inventario
+
+if(bausok);wait(10ms);
+
+getslotitem(35,#id,#stack);
+
+//================================================ limpa
+
+if(%#stack%!=0);
+
+look(%&dir%);look(,0);
+
+ARRAYSIZE(#li,#size);#size = #size - 1;
+
+FOR(#y,0,%#size%);
+
+POP(#li,#tempvar);
+
+NEXT;
+
+#tempvar = 0;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+#li[] = ;
+
+ACHIEVEMENTGET(limpando inventario,325);
+
+for(#slotn,9,44);
+
+GETSLOTITEM(%#slotn%,#id,#stack);INDEXOF(#li,#index,%#id%);
+
+IF((#index != -1) && (%#id% != 0));
+
+SLOTCLICK(%#slotn%);SLOTCLICK(-999);WAIT(250ms);
+
+ENDIF;
+
+next;
+
+ACHIEVEMENTGET(Inventario limpo,325);
+
+//================================================ discos
+
+ifmatches(%&discos%,s);
+
+gui();
+
+ACHIEVEMENTGET(vendendo discos,2259);
+
+for(#hdisco,1,12);
+
+type(sst);wait(500ms);
+
+type( /home disco);wait(500ms);
+
+type(%#hdisco%);wait(1);PRESS(return);
+
+wait(5);do(2);key(attack);wait(1);loop;wait(1);
+
+next;
+
+ACHIEVEMENTGET(discos vendidos,2259);
+
+endif;
+
+//================================================ baus
+
+gui();
+
+do;wait(1);
+
+type(sst);wait(500ms);
+
+type( /home bau);wait(500ms);
+
+type(%#nbau%);
+
+wait(1);PRESS(return);wait(5);
+
+ACHIEVEMENTGET(guardando itens,146);
+
+key(use);wait(1);
+
+for(#slotn,54,89);
+
+GETSLOTITEM(%#slotn%,#id,#stack);
+
+if(%#id%=346);elseif(%#id%=287);else;
+
+slotclick(%#slotn%,l,true);wait(30ms);
+
+endif;
+
+next;
+
+//================================================ verifica bau cheio
+
+wait(500ms);getslotitem(53,#id,#stack);wait(500ms);
+
+if(%#stack%!=0);inc(#nbau);endif;
+
+if(%#nbau%=%#maxbau%);
+
+unset(bausok);ACHIEVEMENTGET(baús cheios,146);gui();
+
+else;gui();endif;
+
+until(%#stack%=0);
+
+ACHIEVEMENTGET(itens guardandos,146);
+
+}$$
+
+$${wait(5);
+
+endif;endif;loop;
+
+}$$

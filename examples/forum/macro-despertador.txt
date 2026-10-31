@@ -1,0 +1,70 @@
+https://forum.craftlandia.com.br/xf/threads/macro-despertador.316197/
+
+$${
+
+if(dispert);unset(dispert);setlabel(DP,&aDespertador &bdesativado);log(&adespertador &bDESLIGADO);STOP;
+
+else;set(dispert);setlabel(DP,&aDespertador &bativado);log(&adespertador &bLIGADO);endif;
+
+PROMPT(#hora,$$?,"A que HORAS vai dispertar? (apenas números)");
+
+PROMPT(#minuto,$$?,"A que MINUTOS vai dispertar? (apenas números)");
+
+if(%#hora%<10);&hora=0%#hora%;else;&hora=%#hora%;endif;
+
+if(%#minuto%<10);&minuto=0%#minuto%;else;&minuto=%#minuto%;endif;
+
+&final=%&hora%:%&minuto%:00;
+
+log(&aDispertador setado para às %&final%);
+
+do;
+
+ifmatches(%TIME%,%&final%);
+
+log( );log( );log(&6&n&lATENÇÃO %PLAYER%, O DESPERTADOR TOCOU!);log( );log( );
+
+playsound(random.click);wait(50ms);playsound(tile.piston.out);
+
+wait(1);
+
+endif;
+
+loop;
+
+}$$
+
+$${
+if(dispert);unset(dispert);setlabel(DP,&aDespertador &bdesativado);log(&adespertador &bDESLIGADO);STOP;
+else;set(dispert);setlabel(DP,&aDespertador &bativado);log(&adespertador &bLIGADO);endif;
+
+PROMPT(#hora,$$?,"A que HORAS vai dispertar? (apenas números)");
+PROMPT(#minuto,$$?,"A que MINUTOS vai dispertar? (apenas números)");
+
+if(%#hora%<10);&hora=0%#hora%;else;&hora=%#hora%;endif;
+if(%#minuto%<10);&minuto=0%#minuto%;else;&minuto=%#minuto%;endif;
+&final=%&hora%:%&minuto%:00;
+log(&aDispertador setado para às %&final%);
+
+do;
+
+ifmatches(%DAYTIME%,06:00);
+log( );log( );log(&6&n&lBom dia %PLAYER%!);log( );log( );
+exec(soundtest.txt);
+wait(1);
+endif;
+
+ifmatches(%DAYTIME%,19:00);
+log( );log( );log(&6&n&lHora de ir pra casa %PLAYER%!);log( );log( );
+playsound(random.click);wait(50ms);playsound(tile.piston.out);
+wait(1);
+endif;
+
+ifmatches(%TIME%,%&final%);
+log( );log( );log(&6&n&lATENÇÃO %PLAYER%, O DESPERTADOR TOCOU!);log( );log( );
+playsound(random.click);wait(50ms);playsound(tile.piston.out);
+wait(1);
+endif;
+
+loop;
+}$$

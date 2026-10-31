@@ -1,0 +1,11 @@
+https://forum.craftlandia.com.br/xf/threads/macro-fps-na-tela-sem-f3.223949/
+
+$${
+
+do;
+
+setlabel(fps,&a%FPS%,fps);
+
+loop;
+
+}$$

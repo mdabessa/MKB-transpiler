@@ -1,0 +1,31 @@
+https://forum.craftlandia.com.br/xf/threads/macro-acrobacia-inteligente.192393/
+
+$${
+
+if(acro);
+log("&3[%PLAYER%] &6Acrobacia &4[OFF]");
+unset(acro);
+stop();
+
+else;
+log("&3[%PLAYER%] &6Acrobacia &2[ON]");
+log("&3[%PLAYER%] &3Para desligar pressione %KEYNAME%");
+set(acro);
+endif;
+
+do;
+}$$
+
+$${
+do;
+while(HEALTH=20)
+
+do;
+if(HEALTH < 1);
+ Wait(1);
+ Respawn;
+endif;
+while(HEALTH > 0);
+wait(1);
+loop;
+}$$

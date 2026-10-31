@@ -1,0 +1,1821 @@
+https://forum.craftlandia.com.br/xf/threads/macro-macro-hiper-pesca-96baus-nao-vip-ou-vip.257325/
+
+$${
+
+    if(macro);
+
+    unset(macro);
+
+    log(&4[MACRO] off);
+
+    stop;
+
+    else;
+
+    set(macro);
+
+    log(&2[MACRO] on);
+
+    endif;
+
+    &d=%DIRECTION%;
+
+    ifmatches(%&d%,N);&d=NORTH;endif;
+
+    ifmatches(%&d%,S);&d=SOUTH;endif;
+
+    ifmatches(%&d%,E);&d=EAST;endif;
+
+    ifmatches(%&d%,W);&d=WEST;endif;
+
+        //Norte
+
+    //4º
+
+    //1
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(10,35);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    //2
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(10,25);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    //3
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(10,5);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    //4
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(10,-15);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+        //5º
+
+        //5
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(20,35);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        //6
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(20,20);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        //7
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(20,5);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        //8
+
+        wait(100ms);loo(NORTH);
+
+        wait(100ms);look(20,-15);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+            //6º
+
+            //9
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(37,30);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            //10
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(40,15);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            //11
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(40,5);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            //12
+
+            wait(100ms);loo(NORTH);
+
+            wait(100ms);look(40,-15);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+                //ok<12>
+
+        //Leste
+
+    //1º
+
+    //13
+
+    wait(100ms);look(EAST);
+
+    wait(100ms);look(-37,30);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    //14
+
+    wait(100ms);look(EAST);
+
+    wait(100ms);look(-40,15);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    //15
+
+    wait(100ms);look(EAST);
+
+    wait(100ms);look(-40,5);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    //16
+
+    wait(100ms);look(EAST);
+
+    wait(100ms);look(-40,-11);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+        //2º
+
+        //17
+
+        wait(100ms);look(EAST);
+
+        wait(100ms);look(-20,35);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        //18
+
+        wait(100ms);look(EAST);
+
+        wait(100ms);look(-20,20);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        //19
+
+        wait(100ms);look(EAST);
+
+        wait(100ms);look(-20,5);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        //20
+
+        wait(100ms);look(EAST);
+
+        wait(100ms);look(-20,-15);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+            //3º
+
+            //21
+
+            wait(100ms);look(EAST);
+
+            wait(100ms);look(-5,35);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(EAST);
+
+            wait(100ms);look(-5,25);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(EAST);
+
+            wait(100ms);look(-5,5);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(EAST);
+
+            wait(100ms);look(-5,-15);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+                //4º
+
+                wait(100ms);look(EAST);
+
+                wait(100ms);look(95,35);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                wait(100ms);look(EAST);
+
+                wait(100ms);look(95,25);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                wait(100ms);look(EAST);
+
+                wait(100ms);look(95,5);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                wait(100ms);look(EAST);
+
+                wait(100ms);look(95,-15);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                    //5º
+
+                    wait(100ms);look(EAST);
+
+                    wait(100ms);look(110,35);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                    wait(100ms);look(EAST);
+
+                    wait(100ms);look(110,20);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                    wait(100ms);look(EAST);
+
+                    wait(100ms);look(110,5);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                    wait(100ms);look(EAST);
+
+                    wait(100ms);look(110,-15);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                        //6º
+
+                        wait(100ms);look(EAST);
+
+                        wait(100ms);look(127,30);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        wait(100ms);look(EAST);
+
+                        wait(100ms);look(130,15);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        wait(100ms);look(EAST);
+
+                        wait(100ms);look(130,5);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        wait(100ms);look(EAST);
+
+                        wait(100ms);look(130,-11);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        //ok<36>
+
+        //Sul
+
+    //1º
+
+    wait(100ms);look(SOUTH);
+
+    wait(100ms);look(-37,30);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    wait(100ms);look(SOUTH);
+
+    wait(100ms);look(-40,15);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    wait(100ms);look(SOUTH);
+
+    wait(100ms);look(-40,5);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    wait(100ms);look(SOUTH);
+
+    wait(100ms);look(-40,-11);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+        //2º
+
+        wait(100ms);look(SOUTH);
+
+        wait(100ms);look(-20,35);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        wait(100ms);look(SOUTH);
+
+        wait(100ms);look(-20,20);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        wait(100ms);look(SOUTH);
+
+        wait(100ms);look(-20,5);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        wait(100ms);look(SOUTH);
+
+        wait(100ms);look(-20,-15);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+            //3º
+
+            wait(100ms);look(SOUTH);
+
+            wait(100ms);look(-5,35);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(SOUTH);
+
+            wait(100ms);look(-5,25);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(SOUTH);
+
+            wait(100ms);look(-5,5);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(SOUTH);
+
+            wait(100ms);look(-5,-15);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+                //4º
+
+                wait(100ms);look(SOUTH);
+
+                wait(100ms);look(185,35);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                wait(100ms);look(SOUTH);
+
+                wait(100ms);look(185,25);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                wait(100ms);look(SOUTH);
+
+                wait(100ms);look(185,5);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                wait(100ms);look(SOUTH);
+
+                wait(100ms);look(185,-15);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                    //5º
+
+                    wait(100ms);look(SOUTH);
+
+                    wait(100ms);look(200,35);
+
+                    key(USE);
+
+                    gui();wait(1);
+
+                    wait(100ms);look(SOUTH);
+
+                    wait(100ms);look(200,20);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                    wait(100ms);look(SOUTH);
+
+                    wait(100ms);look(200,5);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                    wait(100ms);look(SOUTH);
+
+                    wait(100ms);look(200,-15);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                        //6º
+
+                        wait(100ms);look(SOUTH);
+
+                        wait(100ms);look(217,30);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        wait(100ms);look(SOUTH);
+
+                        wait(100ms);look(220,15);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        wait(100ms);look(SOUTH);
+
+                        wait(100ms);look(220,5);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        wait(100ms);look(SOUTH);
+
+                        wait(100ms);look(220,-11);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        //ok<60>
+
+        //Oeste
+
+    //1º
+
+    wait(100ms);look(WEST);
+
+    wait(100ms);look(-37,30);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    wait(100ms);look(WEST);
+
+    wait(100ms);look(-40,15);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    wait(100ms);look(WEST);
+
+    wait(100ms);look(-40,5);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    wait(100ms);look(WEST);
+
+    wait(100ms);look(-40,-11);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+        //2º
+
+        wait(100ms);look(WEST);
+
+        wait(100ms);look(-20,35);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        wait(100ms);look(WEST);
+
+        wait(100ms);look(-20,20);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        wait(100ms);look(WEST);
+
+        wait(100ms);look(-20,5);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        wait(100ms);look(WEST);
+
+        wait(100ms);look(-20,-15);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+            //3º
+
+            wait(100ms);look(WEST);
+
+            wait(100ms);look(-5,35);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(WEST);
+
+            wait(100ms);look(-5,25);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(WEST);
+
+            wait(100ms);look(-5,5);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(WEST);
+
+            wait(100ms);look(-5,-15);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+                //4º
+
+                wait(100ms);look(WEST);
+
+                wait(100ms);look(275,35);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                wait(100ms);look(WEST);
+
+                wait(100ms);look(275,25);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                wait(100ms);look(WEST);
+
+                wait(100ms);look(275,5);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                wait(100ms);look(WEST);
+
+                wait(100ms);look(275,-15);
+
+                key(USE);wait(1);
+
+                gui();wait(1);
+
+                    //5º
+
+                    wait(100ms);look(WEST);
+
+                    wait(100ms);look(290,35);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                    wait(100ms);look(WEST);
+
+                    wait(100ms);look(290,20);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                    wait(100ms);look(WEST);
+
+                    wait(100ms);look(290,5);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                    wait(100ms);look(WEST);
+
+                    wait(100ms);look(290,-15);
+
+                    key(USE);wait(1);
+
+                    gui();wait(1);
+
+                        //6º
+
+                        wait(100ms);look(WEST);
+
+                        wait(100ms);look(307,30);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        wait(100ms);look(WEST);
+
+                        wait(100ms);look(310,15);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        wait(100ms);look(WEST);
+
+                        wait(100ms);look(310,5);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+                        wait(100ms);look(WEST);
+
+                        wait(100ms);look(310,-11);
+
+                        key(USE);wait(1);
+
+                        gui();wait(1);
+
+        //Norte
+
+    //1º
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(-37,30);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(-40,15);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(-40,5);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(-40,-11);
+
+    key(USE);wait(1);
+
+    gui();wait(1);
+
+        //2º
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(-20,35);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(-20,20);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(-20,5);
+
+        key(USE);wait(1);
+
+        gui();wait(1);wait(100ms);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(-20,-15);
+
+        key(USE);wait(1);
+
+        gui();wait(1);
+
+            //3º
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(-5,35);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(-5,25);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(-5,5);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(-5,-15);
+
+            key(USE);wait(1);
+
+            gui();wait(1);
+
+    log(&b[MACRO]&c[%PLAYER%] &fbaus verificados!!);
+
+    stop();
+
+}$$
+
+$${
+
+if(x);
+
+log(&d[MACRO] &fHiper pesca &4Desligado!! [OFF]);
+
+unset(x);
+
+stop();
+
+else;
+
+log(&d[MACRO] &fHiper pesca &2Ligado!! [ON]);
+
+set(x);
+
+set(bau);
+
+#bau=1;
+
+&dir=%DIRECTION%;
+
+ifmatches(%&dir%,N);&dir=NORTH;endif;
+
+ifmatches(%&dir%,S);&dir=SOUTH;endif;
+
+ifmatches(%&dir%,E);&dir=EAST;endif;
+
+ifmatches(%&dir%,W);&dir=WEST;endif;
+
+log(                                            );
+
+log(&d[MACRO] &6Matenha o inventario &bABERTO!!!);
+
+log(                                            );
+
+wait(1);
+
+gui(inventory);
+
+do;
+
+gui(inventory);
+
+pick(346);
+
+if(%DURABILITY%<9);
+
+look(NORTH);
+
+look(,90);
+
+wait(5ms);
+
+key(use);wait(1ms);
+
+key(use);
+
+endif;
+
+do(70);
+
+look(%&dir%);
+
+look(,-90);
+
+key(use);wait(100ms);
+
+key(use);
+
+loop;
+
+if(bau);
+
+getslotitem(35,#id,#stack);
+
+wait(20ms);
+
+if(%#stack%=0);
+
+else;
+
+do;
+
+//Norte
+
+    if(%#bau%=1);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(10,35);
+
+    endif;
+
+    if(%#bau%=2);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(10,25);
+
+    endif;
+
+    if(%#bau%=3);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(10,5);
+
+    endif;
+
+    if(%#bau%=4);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(10,-15);
+
+    endif;
+
+        if(%#bau%=5);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(20,35);
+
+        endif;
+
+        if(%#bau%=6);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(20,20);
+
+        endif;
+
+        if(%#bau%=7);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(20,5);
+
+        endif;
+
+        if(%#bau%=8);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(20,-15);
+
+        endif;
+
+            if(%#bau%=9);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(37,30);
+
+            endif;
+
+            if(%#bau%=10);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(40,15);
+
+            endif;
+
+            if(%#bau%=11);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(40,5);
+
+            endif;
+
+            if(%#bau%=12);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(40,-15);
+
+            endif;
+
+    //leste
+
+    if(%#bau%=13);
+
+    wait(100ms);look(EAST);
+
+    wait(100ms);look(-37,30);
+
+    endif;
+
+    if(%#bau%=14);
+
+    wait(100ms);look(EAST);
+
+    wait(100ms);look(-40,15);
+
+    endif;
+
+    if(%#bau%=15);
+
+    wait(100ms);look(EAST);
+
+    wait(100ms);look(-40,5);
+
+    endif;
+
+    if(%#bau%=16);
+
+    wait(100ms);look(EAST);
+
+    wait(100ms);look(-40,-11);
+
+    endif;
+
+        if(%#bau%=17);
+
+        wait(100ms);look(EAST);
+
+        wait(100ms);look(-20,35);
+
+        endif;
+
+        if(%#bau%=18);
+
+        wait(100ms);look(EAST);
+
+        wait(100ms);look(-20,20);
+
+        endif;
+
+        if(%#bau%=19);
+
+        wait(100ms);look(EAST);
+
+        wait(100ms);look(-20,5);
+
+        endif;
+
+        if(%#bau%=20);
+
+        wait(100ms);look(EAST);
+
+        wait(100ms);look(-20,-15);
+
+        endif;
+
+            if(%#bau%=21);
+
+            wait(100ms);look(EAST);
+
+            wait(100ms);look(-5,35);
+
+            endif;
+
+            if(%#bau%=22);
+
+            wait(100ms);look(EAST);
+
+            wait(100ms);look(-5,25);
+
+            endif;
+
+            if(%#bau%=23);
+
+            wait(100ms);look(EAST);
+
+            wait(100ms);look(-5,5);
+
+            endif;
+
+            if(%#bau%=24);
+
+            wait(100ms);look(EAST);
+
+            wait(100ms);look(-5,-15);
+
+            endif;
+
+                if(%#bau%=25);
+
+                wait(100ms);look(EAST);
+
+                wait(100ms);look(95,35);
+
+                endif;
+
+                if(%#bau%=26);
+
+                wait(100ms);look(EAST);
+
+                wait(100ms);look(95,25);
+
+                endif;
+
+                if(%#bau%=27);
+
+                wait(100ms);look(EAST);
+
+                wait(100ms);look(95,5);
+
+                endif;
+
+                if(%#bau%=28);
+
+                wait(100ms);look(EAST);
+
+                wait(100ms);look(95,-15);
+
+                endif;
+
+                    if(%#bau%=29);
+
+                    wait(100ms);look(EAST);
+
+                    wait(100ms);look(110,35);
+
+                    endif;
+
+                    if(%#bau%=30);
+
+                    wait(100ms);look(EAST);
+
+                    wait(100ms);look(110,20);
+
+                    endif;
+
+                    if(%#bau%=31);
+
+                    wait(100ms);look(EAST);
+
+                    wait(100ms);look(110,5);
+
+                    endif;
+
+                    if(%#bau%=32);
+
+                    wait(100ms);look(EAST);
+
+                    wait(100ms);look(110,-15);
+
+                    endif;
+
+                        if(%#bau%=33);
+
+                        wait(100ms);look(EAST);
+
+                        wait(100ms);look(127,30);
+
+                        endif;
+
+                        if(%#bau%=34);
+
+                        wait(100ms);look(EAST);
+
+                        wait(100ms);look(130,15);
+
+                        endif;
+
+                        if(%#bau%=35);
+
+                        wait(100ms);look(EAST);
+
+                        wait(100ms);look(130,5);
+
+                        endif;
+
+                        if(%#bau%=36);
+
+                        wait(100ms);look(EAST);
+
+                        wait(100ms);look(130,-11);
+
+                        endif;
+
+    //sul
+
+    if(%#bau%=37);
+
+    wait(100ms);look(SOUTH);
+
+    wait(100ms);look(-37,30);
+
+    endif;
+
+    if(%#bau%=38);
+
+    wait(100ms);look(SOUTH);
+
+    wait(100ms);look(-40,15);
+
+    endif;
+
+    if(%#bau%=39);
+
+    wait(100ms);look(SOUTH);
+
+    wait(100ms);look(-40,5);
+
+    endif;
+
+    if(%#bau%=40);
+
+    wait(100ms);look(SOUTH);
+
+    wait(100ms);look(-40,-11);
+
+    endif;
+
+        if(%#bau%=41);
+
+        wait(100ms);look(SOUTH);
+
+        wait(100ms);look(-20,35);
+
+        endif;
+
+        if(%#bau%=42);
+
+        wait(100ms);look(SOUTH);
+
+        wait(100ms);look(-20,20);
+
+        endif;
+
+        if(%#bau%=43);
+
+        wait(100ms);look(SOUTH);
+
+        wait(100ms);look(-20,5);
+
+        endif;
+
+        if(%#bau%=44);
+
+        wait(100ms);look(SOUTH);
+
+        wait(100ms);look(-20,-15);
+
+        endif;
+
+            if(%#bau%=45);
+
+            wait(100ms);look(SOUTH);
+
+            wait(100ms);look(-5,35);
+
+            endif;
+
+            if(%#bau%=46);
+
+            wait(100ms);look(SOUTH);
+
+            wait(100ms);look(-5,25);
+
+            endif;
+
+            if(%#bau%=47);
+
+            wait(100ms);look(SOUTH);
+
+            wait(100ms);look(-5,5);
+
+            endif;
+
+            if(%#bau%=48);
+
+            wait(100ms);look(SOUTH);
+
+            wait(100ms);look(-5,-15);
+
+            endif;
+
+                if(%#bau%=49);
+
+                wait(100ms);look(SOUTH);
+
+                wait(100ms);look(185,35);
+
+                endif;
+
+                if(%#bau%=50);
+
+                wait(100ms);look(SOUTH);
+
+                wait(100ms);look(185,25);
+
+                endif;
+
+                if(%#bau%=51);
+
+                wait(100ms);look(SOUTH);
+
+                wait(100ms);look(185,5);
+
+                endif;
+
+                if(%#bau%=52);
+
+                wait(100ms);look(SOUTH);
+
+                wait(100ms);look(185,-15);
+
+                endif;
+
+                    if(%#bau%=53);
+
+                    wait(100ms);look(SOUTH);
+
+                    wait(100ms);look(200,35);
+
+                    endif;
+
+                    if(%#bau%=54);
+
+                    wait(100ms);look(SOUTH);
+
+                    wait(100ms);look(200,20);
+
+                    endif;
+
+                    if(%#bau%=55);
+
+                    wait(100ms);look(SOUTH);
+
+                    wait(100ms);look(200,5);
+
+                    endif;
+
+                    if(%#bau%=56);
+
+                    wait(100ms);look(SOUTH);
+
+                    wait(100ms);look(200,-15);
+
+                    endif;
+
+                        if(%#bau%=57);
+
+                        wait(100ms);look(SOUTH);
+
+                        wait(100ms);look(217,30);
+
+                        endif;
+
+                        if(%#bau%=58);
+
+                        wait(100ms);look(SOUTH);
+
+                        wait(100ms);look(220,15);
+
+                        endif;
+
+                        if(%#bau%=59);
+
+                        wait(100ms);look(SOUTH);
+
+                        wait(100ms);look(220,5);
+
+                        endif;
+
+                        if(%#bau%=60);
+
+                        wait(100ms);look(SOUTH);
+
+                        wait(100ms);look(220,-11);
+
+                        endif;
+
+    //Oeste
+
+    if(%#bau%=61);
+
+    wait(100ms);look(WEST);
+
+    wait(100ms);look(-37,30);
+
+    endif;
+
+    if(%#bau%=62);
+
+    wait(100ms);look(WEST);
+
+    wait(100ms);look(-40,15);
+
+    endif;
+
+    if(%#bau%=63);
+
+    wait(100ms);look(WEST);
+
+    wait(100ms);look(-40,5);
+
+    endif;
+
+    if(%#bau%=64);
+
+    wait(100ms);look(WEST);
+
+    wait(100ms);look(-40,-11);
+
+    endif;
+
+        if(%#bau%=65);
+
+        wait(100ms);look(WEST);
+
+        wait(100ms);look(-20,35);
+
+        endif;
+
+        if(%#bau%=66);
+
+        wait(100ms);look(WEST);
+
+        wait(100ms);look(-20,20);
+
+        endif;
+
+        if(%#bau%=67);
+
+        wait(100ms);look(WEST);
+
+        wait(100ms);look(-20,5);
+
+        endif;
+
+        if(%#bau%=68);
+
+        wait(100ms);look(WEST);
+
+        wait(100ms);look(-20,-15);
+
+        endif;
+
+            if(%#bau%=69);
+
+            wait(100ms);look(WEST);
+
+            wait(100ms);look(-5,35);
+
+            endif;
+
+            if(%#bau%=70);
+
+            wait(100ms);look(WEST);
+
+            wait(100ms);look(-5,25);
+
+            endif;
+
+            if(%#bau%=71);
+
+            wait(100ms);look(WEST);
+
+            wait(100ms);look(-5,5);
+
+            endif;
+
+            if(%#bau%=72);
+
+            wait(100ms);look(WEST);
+
+            wait(100ms);look(-5,-15);
+
+            endif;
+
+                if(%#bau%=73);
+
+                wait(100ms);look(WEST);
+
+                wait(100ms);look(275,35);
+
+                endif;
+
+                if(%#bau%=74);
+
+                wait(100ms);look(WEST);
+
+                wait(100ms);look(275,25);
+
+                endif;
+
+                if(%#bau%=75);
+
+                wait(100ms);look(WEST);
+
+                wait(100ms);look(275,5);
+
+                endif;
+
+                if(%#bau%=76);
+
+                wait(100ms);look(WEST);
+
+                wait(100ms);look(275,-15);
+
+                endif;
+
+                    if(%#bau%=77);
+
+                    wait(100ms);look(WEST);
+
+                    wait(100ms);look(290,35);
+
+                    endif;
+
+                    if(%#bau%=78);
+
+                    wait(100ms);look(WEST);
+
+                    wait(100ms);look(290,20);
+
+                    endif;
+
+                    if(%#bau%=79);
+
+                    wait(100ms);look(WEST);
+
+                    wait(100ms);look(290,5);
+
+                    endif;
+
+                    if(%#bau%=80);
+
+                    wait(100ms);look(WEST);
+
+                    wait(100ms);look(290,-15);
+
+                    endif;
+
+                        if(%#bau%=81);
+
+                        wait(100ms);look(WEST);
+
+                        wait(100ms);look(307,30);
+
+                        endif;
+
+                        if(%#bau%=82);
+
+                        wait(100ms);look(WEST);
+
+                        wait(100ms);look(310,15);
+
+                        endif;
+
+                        if(%#bau%=83);
+
+                        wait(100ms);look(WEST);
+
+                        wait(100ms);look(310,5);
+
+                        endif;
+
+                        if(%#bau%=84);
+
+                        wait(100ms);look(WEST);
+
+                        wait(100ms);look(310,-11);
+
+                        endif;
+
+    //Norte
+
+    if(%#bau%=85);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(-37,30);
+
+    endif;
+
+    if(%#bau%=86);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(-40,15);
+
+    endif;
+
+    if(%#bau%=87);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(-40,5);
+
+    endif;
+
+    if(%#bau%=88);
+
+    wait(100ms);look(NORTH);
+
+    wait(100ms);look(-40,-11);
+
+    endif;
+
+        if(%#bau%=89);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(-20,35);
+
+        endif;
+
+        if(%#bau%=90);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(-20,20);
+
+        endif;
+
+        if(%#bau%=91);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(-20,5);
+
+        endif;
+
+        if(%#bau%=92);
+
+        wait(100ms);look(NORTH);
+
+        wait(100ms);look(-20,-15);
+
+        endif;
+
+            if(%#bau%=93);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(-5,35);
+
+            endif;
+
+            if(%#bau%=94);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(-5,25);
+
+            endif;
+
+            if(%#bau%=95);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(-5,5);
+
+            endif;
+
+            if(%#bau%=96);
+
+            wait(100ms);look(NORTH);
+
+            wait(100ms);look(-5,-15);
+
+            endif;
+
+wait(1);
+
+key(use);
+
+wait(1);
+
+for(#marini,54,80);
+
+wait(35ms);
+
+slotclick(%#marini%,l,true);
+
+next;
+
+wait(300ms);
+
+getslotitem(53,#id,#stack);
+
+wait(55ms);
+
+if(%#stack%!=0);
+
+inc(#bau);
+
+endif;
+
+gui();
+
+if(%#bau%=98);
+
+unset(bau);log(&d[MACRO]&c[%PLAYER%] &fparece que todos os 96 baus foram cheios &6=O);
+
+gui();
+
+else;
+
+gui();
+
+endif;
+
+until(%#stack%=0);
+
+gui(inventory);
+
+endif;endif;endif;
+
+loop;
+
+}$$
