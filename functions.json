@@ -297,12 +297,13 @@
     "IFMATCHES": {
         "category": "Control Flow",
         "name": "IFMATCHES",
-        "definition": "IFMATCHES(<subject>,<pattern>,[&target],[group])",
+        "definition": "IFMATCHES(<subject>,<pattern>,[&target],[group],[default])",
         "varnames": [
             "<subject>",
             "<pattern>",
             "[&target]",
-            "[group]"
+            "[group]",
+            "[default]"
         ],
         "description": "The actions following this action will only be executed when the <subject>matches the <pattern>.",
         "close": ["ENDIF", "ELSE"]

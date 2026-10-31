@@ -34,7 +34,7 @@ Blocks that decide what runs: conditionals, loops, waits.
 | `IFBEGINSWITH` | `IFBEGINSWITH(<haystack>,<needle>)` | The actions following this action will only be executed when the <haystack>starts with <needle>. |
 | `IFCONTAINS` | `IFCONTAINS(<haystack>,<needle>)` | The actions following this action will only be executed when the <haystack>starts with <needle>. |
 | `IFENDSWITH` | `IFENDSWITH(<haystack>,<needle>)` | The actions following this action will only be executed when the <haystack> endswith <needle>. |
-| `IFMATCHES` | `IFMATCHES(<subject>,<pattern>,[&target],[group])` | The actions following this action will only be executed when the <subject>matches the <pattern>. |
+| `IFMATCHES` | `IFMATCHES(<subject>,<pattern>,[&target],[group],[default])` | The actions following this action will only be executed when the <subject>matches the <pattern>. |
 | `IIF` | `IIF(<condition>,<truetext>,[falsetext])` | Inline IF statement. |
 | `LOOP` | `LOOP` | Ends a loop. |
 | `NEXT` | `NEXT` | Ends a iteration of a loop. |

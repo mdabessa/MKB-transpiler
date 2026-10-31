@@ -16,7 +16,7 @@ flowchart LR
 
 | Doc set | Scope | Location |
 | --- | --- | --- |
-| **Project** | What this repository is, how the pieces fit, how to run the tools. | this page |
+| **Project** | What this repository is, how the pieces fit, how to run the tools. | this page, plus [validation.md](validation.md) |
 | **Original language** | The Macro / Keybind mod's own scripting language — the `.txt` files the transpiler *emits* and *consumes*. | [`original-language/`](original-language/README.md) |
 | **MKB language** | The source language you write in — `.mkb` files that the transpiler turns into original-language `.txt`. | [`mkb-language/`](mkb-language/README.md) |
 
@@ -54,7 +54,9 @@ macros/*.mkb  ──transpile──▶  output/*.txt  ──▶  mod ($${ … }$
 | `examples/` | Original-language scripts: hand-written samples plus [`forum/`](../examples/forum/README.md) (89 archived community scripts). |
 | `docs/original-language/` | Reference for the mod's language. |
 | `docs/mkb-language/` | Reference for MKB (in progress). |
-| `tools/` | Documentation tooling (see below). |
+| `docs/validation.md` | Rule catalogue for the script validator. |
+| `tests/` | `unittest` suite for the tools. |
+| `tools/` | Documentation and validation tooling (see below). |
 
 ## Documentation tooling
 
@@ -65,10 +67,13 @@ All three scripts live in `tools/` and only need the standard library.
 | `python3 tools/gen_function_docs.py` | `original-language/reference/functions.md` from `functions.json`. |
 | `python3 tools/corpus_report.py` | `original-language/reference/corpus-coverage.md` from the example corpus. |
 | `python3 tools/fetch_forum_examples.py` | Downloads community scripts into `examples/forum/`. |
+| `python3 tools/validate.py <paths>` | Validates `.txt` scripts; see [validation.md](validation.md). |
 
 The two generators accept `--check`, which exits non-zero when the committed
 page no longer matches its source — cheap insurance against docs drifting from
 `functions.json`.
+
+Tests: `python3 -m unittest discover -s tests -v`.
 
 ## Conventions
 

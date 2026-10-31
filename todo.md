@@ -43,6 +43,21 @@ Backlog:
 - [ ] Create a validation tool for the mod's scripts.
     It should check for syntax errors, missing functions, and other common issues.
     See if it is viable to create a vs code extension to works as a linter for the mod's scripts.
+    The examples in the [examples](./examples/) folder can be used to test the validator but right now it has typos and errors, so when the validator is ready, it should be used to fix the examples and make them complete valid scripts.
+    The mod tends to ignore errors and silently fail, so the scripts with errors probably runs, but with unexpected behavior.
+    - [x] [validator](./tools/validate.py): lexer that understands `$${ … }$$` blocks, multi-line strings and
+        statements split by `;`, plus keyword/arity/block checks against `functions.json`.
+    - [x] [rule catalogue](./docs/validation.md): E001–E010, W001–W004, I001–I002 with what each one catches.
+    - [x] [tests](./tests/test_validate.py): 34 `unittest` cases; `output/` must stay at 0 problems.
+    - [x] Learnt three grammar facts the inventory does not state and encoded them: `DO` closed by
+        `UNTIL`/`WHILE`, `if` and `do` families nesting independently, blocks spanning several markers.
+    - [ ] Fix the archived examples with it (`examples/` reports 377 errors today, concentrated in a few scripts).
+        Fixing them means dropping the first provenance line, repairing dropped `endif`/`loop`, and replacing
+        silent-failure idioms.
+    - [ ] Decide on the VS Code extension: `validate_text` is pure and `--format json` already emits
+        editor-ready diagnostics, so a thin extension (DiagnosticCollection + `.tmLanguage`) is viable.
+    - [ ] Wire the validator into the transpiler (`mkb.py`), so a bad generated script is reported at build time.
+    - [ ] Add a `--fix` mode for the safe repairs (missing trailing `;`, provable typos of a keyword).
 - [ ] Refactor the transpiler to be more modular and easier to maintain.
     The transpiler is currently a single file with a lot of code, making it hard to extend and maintain.
     Add unit tests to ensure that the transpiler works correctly and to prevent regressions.
