@@ -1,0 +1,102 @@
+// [Transpiler] import commons.commons
+// [Transpiler] import commons.global
+
+// 	Login e inciar macros ao entrar no server.
+@#money = 0;
+@#tick_total = 0;
+@#money_chang1e = 0;
+
+@&main_nickname = "zaaaht";
+&senha = "";
+
+echo("/login %&senha%");
+wait(1);
+echo("/menuloja off");
+wait(1);
+echo("/pvp off");
+wait(1);
+
+wait(5000ms);
+echo("/money");
+wait(3000ms);
+
+// Redefinir o @#money_change apos atualizar o @#money
+set(@#money_change, 0);
+wait(1000ms);
+echo("/money");
+wait(1000ms);
+
+// Religar todos os macros que estavam ativos
+// [Transpiler] reload()
+
+// religar todos os macros
+unset(&temp_array[]);
+foreach(@&macros[],&macro_scope_reload);
+	if(&macro_name != &macro_scope_reload);
+		push(&temp_array[],"%&macro_scope_reload%");
+	endif;
+next;
+
+foreach(&temp_array[],&value);
+	// executar todos os macros que estariam ativos, garantindo que
+	// independentemente se estiver rodando ou não, o macro ira desligar
+	// [Transpiler] print(&text_scope_print)
+	&text_scope_print = "Macro &3%&value% &fdesligando...";
+
+	log("&f[&5 MACRO &f] %&text_scope_print%");
+
+	// [Transpiler] toggle_macro(&macro_name_scope_toggle_macro, false=true)
+	&macro_name_scope_toggle_macro = "%&value%";
+
+	indexof(@&macros[],#index,"%&macro_name_scope_toggle_macro%");
+	//log("%@#macro_count%")
+	if(#index > -1);
+		// remover macro_name da lista macros
+		unset(&temp_array[]);
+		foreach(@&macros[],&macro);
+			if(&macro_name_scope_toggle_macro != &macro);
+				push(&temp_array[],&macro);
+			endif;
+		next;
+
+		unset(@&macros[]);
+		foreach(&temp_array[],&value);
+			push(@&macros[],&value);
+		next;
+
+		// [Transpiler] print(&text_scope_print)
+		&text_scope_print = "Macro &3%&macro_name_scope_toggle_macro% &f- &4OFF!";
+
+		log("&f[&5 MACRO &f] %&text_scope_print%");
+
+		keyup("forward");
+		if(false);
+			stop();
+		endif;
+	else;
+		push(@&macros[],"%&macro_name_scope_toggle_macro%");
+		// [Transpiler] print(&text_scope_print)
+		&text_scope_print = "Macro &3%&macro_name_scope_toggle_macro% &f- &2ON!";
+
+		log("&f[&5 MACRO &f] %&text_scope_print%");
+
+	endif;
+
+	wait(5t);
+
+	// religar a macro
+	// arquivo exec_<macro>.txt, versão exec da macro <macro>.txt
+	// gerada automaticamente pelo transpiler
+	&macro_scope_reload = "exec_%&value%";
+	// [Transpiler] print(&text_scope_print)
+	&text_scope_print = "Macro &3%&value% &fligando...";
+
+	log("&f[&5 MACRO &f] %&text_scope_print%");
+
+	exec("%&macro_scope_reload%.txt","%&macro_scope_reload%");
+	// [Transpiler] print(&text_scope_print)
+	&text_scope_print = "Macro &3%&value% &freativado!";
+
+	log("&f[&5 MACRO &f] %&text_scope_print%");
+
+next;

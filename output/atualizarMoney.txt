@@ -1,0 +1,64 @@
+$${
+// [Transpiler] import commons.commons
+// [Transpiler] import commons.global
+
+// atualizar o money de tempo em tempo
+
+// [Transpiler] toggle_macro(&macro_name_scope_toggle_macro, stop_macro_scope_toggle_macro=true)
+&macro_name_scope_toggle_macro = "atualizarMoney";
+stop_macro_scope_toggle_macro = true;
+
+indexof(@&macros[],#index,"%&macro_name_scope_toggle_macro%");
+//log("%@#macro_count%")
+if(#index > -1);
+	// remover macro_name da lista macros
+	unset(&temp_array[]);
+	foreach(@&macros[],&macro);
+		if(&macro_name_scope_toggle_macro != &macro);
+			push(&temp_array[],&macro);
+		endif;
+	next;
+
+	unset(@&macros[]);
+	foreach(&temp_array[],&value);
+		push(@&macros[],&value);
+	next;
+
+	// [Transpiler] print(&text_scope_print)
+	&text_scope_print = "Macro &3%&macro_name_scope_toggle_macro% &f- &4OFF!";
+
+	log("&f[&5 MACRO &f] %&text_scope_print%");
+
+	keyup("forward");
+	if(stop_macro_scope_toggle_macro);
+		stop();
+	endif;
+else;
+	push(@&macros[],"%&macro_name_scope_toggle_macro%");
+	// [Transpiler] print(&text_scope_print)
+	&text_scope_print = "Macro &3%&macro_name_scope_toggle_macro% &f- &2ON!";
+
+	log("&f[&5 MACRO &f] %&text_scope_print%");
+
+endif;
+
+
+#max_money = 260000;
+do();
+	echo("/money");
+
+
+	// Caso bot mode enviar money para a conta principal
+	if((@bot_mode) && (%PLAYER% != @&main_nickname));
+		wait(1000ms);
+		#mon = @#money - #max_money;
+		if(#mon > 500);
+			echo("/money pay %@&main_nickname% %#mon%");
+			wait(1000ms);
+			echo("/money pay %@&main_nickname% %#mon%");
+			wait(500ms);
+		endif;
+	endif;
+	wait(300000ms);
+loop;
+}$$

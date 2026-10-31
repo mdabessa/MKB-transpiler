@@ -1,0 +1,15 @@
+$${
+// [Transpiler] import commons.commons
+join(", ",@&macros[],&mac);
+// [Transpiler] print(&text_scope_print)
+&text_scope_print = "Macros atuais: [%&mac%]";
+
+log("&f[&5 MACRO &f] %&text_scope_print%");
+
+unset(@&macros[]);
+join(", ",@&macros[],&mac);
+// [Transpiler] print(&text_scope_print)
+&text_scope_print = "Macros pos clear: [%&mac%]";
+
+log("&f[&5 MACRO &f] %&text_scope_print%");
+}$$

@@ -1,6 +1,90 @@
 import os
 import re
+import sys
 import json
+
+
+def split_arguments(raw: str) -> list[str]:
+    """Split a call's arguments on commas that are not inside a string.
+
+    A literal like `raise("a, b")` is one argument, not two — splitting it
+    naively turns the second half into a reference and corrupts the expansion.
+    """
+    args: list[str] = []
+    current: list[str] = []
+    in_string = False
+    escaped = False
+    for char in raw:
+        if in_string:
+            current.append(char)
+            if escaped:
+                escaped = False
+            elif char == '\\':
+                escaped = True
+            elif char == '"':
+                in_string = False
+            continue
+        if char == '"':
+            in_string = True
+        elif char == ',':
+            args.append(''.join(current).strip())
+            current = []
+            continue
+        current.append(char)
+    args.append(''.join(current).strip())
+    return args
+
+
+def load_script_validator():
+    """Import `tools/validate.py`, or return None when it is not available.
+
+    The validator lives outside the package so it can be used on its own from
+    the command line; importing it here keeps a single implementation of the
+    language rules. Failing to import must never stop a transpile.
+    """
+    try:
+        tools_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tools')
+        if tools_dir not in sys.path:
+            sys.path.insert(0, tools_dir)
+        import validate as script_validator
+        return script_validator
+    except Exception:
+        return None
+
+
+def lint_generated(code: str, name: str, verbose: bool = True, strict: bool = False) -> int:
+    """Validate a generated script and report it. Returns the error count.
+
+    The mod silently ignores mistakes, so a script that the transpiler emits
+    without complaint can still fail in game. Validating here turns that into a
+    build-time message.
+    """
+    validator = load_script_validator()
+    if validator is None:
+        if verbose:
+            print(f"<{name}> not validated: tools/validate.py not found.")
+        return 0
+
+    diagnostics = validator.validate_text(code, name)
+    errors = [d for d in diagnostics if d.severity == 'error']
+    warnings = [d for d in diagnostics if d.severity == 'warning']
+
+    if verbose:
+        for diagnostic in errors + warnings:
+            print(f'  {diagnostic.format()}')
+
+    if errors:
+        print(f'<{name}> generated an invalid script: '
+              f'{len(errors)} error(s), {len(warnings)} warning(s).')
+        if strict:
+            first = errors[0]
+            raise ValueError(
+                f'<{name}> generated an invalid script: {len(errors)} error(s); '
+                f'first at line {first.line}: {first.message}')
+    elif verbose and warnings:
+        print(f'<{name}> generated a valid script with {len(warnings)} warning(s).')
+
+    return len(errors)
 
 
 def read_file(file: str) -> str:
@@ -53,8 +137,12 @@ def read_imports(code: str, stack_size: int = 0, files: list = None) -> str:
             raise ValueError('Invalid import statement.')
         
         importer = importer[1]
-        importer = importer.replace(';', '').replace('.', '\\').replace('.mkb', '')
-        importer = importer + '.mkb'
+        # `import commons.chest;` -> commons/chest.mkb. Built with os.sep so the
+        # same source works on Windows and Linux.
+        importer = importer.split('//')[0].strip().rstrip(';').strip()
+        if importer.lower().endswith('.mkb'):
+            importer = importer[:-4]
+        importer = os.sep.join(importer.split('.')) + '.mkb'
 
         if not os.path.exists(importer):
             importer = os.path.join('macros', importer)
@@ -77,8 +165,13 @@ def read_imports(code: str, stack_size: int = 0, files: list = None) -> str:
     return code
 
 
-def transpile(file: str, file_out: str = None, verbose: bool = True, force=False) -> list[bool, str]:
-    """Transpile a .mkb file to .txt file."""
+def transpile(file: str, file_out: str = None, verbose: bool = True, force=False, strict=False) -> list[bool, str]:
+    """Transpile a .mkb file to .txt file.
+
+    The generated script is validated with `tools/validate.py` before it is
+    written. With ``strict=True`` an invalid script raises instead of being
+    saved, so a build fails at the source instead of in game.
+    """
 
     with open('functions.json', 'r') as f:
         builtins = json.load(f)
@@ -124,7 +217,7 @@ def transpile(file: str, file_out: str = None, verbose: bool = True, force=False
     pattern = r'function\s+(\w+)\s*\((.*?)\);(.*?)endfunction;\s*'
     def register_function(match):
         name = match.group(1)
-        args = match.group(2).split(',')
+        args = split_arguments(match.group(2))
         args = [arg.strip() for arg in args]
         inner_code = match.group(3)
         func = {
@@ -176,7 +269,7 @@ def transpile(file: str, file_out: str = None, verbose: bool = True, force=False
                 continue
 
             name = func.group(1)
-            args = func.group(2).split(',')
+            args = split_arguments(func.group(2))
 
             if builtins[name.upper()]['category'] != 'defined':
                 code_ += f'{line}\n'
@@ -302,6 +395,9 @@ def transpile(file: str, file_out: str = None, verbose: bool = True, force=False
     
     name = os.path.basename(file)
     name = name.replace('.mkb', '.txt')
+
+    # Validar o script gerado antes de escrever qualquer coisa
+    lint_generated(code, name, verbose=verbose, strict=strict)
 
     # Apenas salvar o arquivo se o código for diferente
     if os.path.exists(os.path.join(file_out, name)):

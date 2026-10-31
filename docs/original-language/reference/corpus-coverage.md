@@ -2,7 +2,7 @@
 
 # Corpus coverage
 
-Built from **97** scripts (27967 lines) found in
+Built from **106** scripts (30695 lines) found in
 `examples/`, `output/` and `macros/`, compared against `functions.json`.
 
 Use this page to decide what to document next:
@@ -21,72 +21,77 @@ Use this page to decide what to document next:
 ## Summary
 
 * keywords in `functions.json`: **120**
-* keywords seen in scripts: **57**
-* keywords never seen: **63**
-* identifiers unknown to `functions.json`: **132**
+* keywords seen in scripts: **62**
+* keywords never seen: **58**
+* identifiers unknown to `functions.json`: **135**
 
 ## Sigil usage
 
 | Syntax | Occurrences |
 | --- | --- |
-| `%name%` (legacy interpolation) | 5598 |
-| `#name` (number) | 1882 |
-| `&name` (string) | 1249 |
-| `@name` (global flag) | 64 |
+| `%name%` (legacy interpolation) | 5881 |
+| `#name` (number) | 2420 |
+| `&name` (string) | 1470 |
+| `@name` (global flag) | 65 |
 
 ## Keywords seen in scripts
 
 | Keyword | Category | Scripts using it |
 | --- | --- | --- |
-| `LOG` | Input | 82 |
-| `IF` | Control Flow | 81 |
-| `ENDIF` | Control Flow | 77 |
-| `UNSET` | Variables | 73 |
-| `SET` | Variables | 69 |
-| `WAIT` | Control Flow | 68 |
-| `DO` | Control Flow | 67 |
-| `LOOP` | Control Flow | 65 |
-| `STOP` | Control Flow | 64 |
-| `ELSE` | Control Flow | 63 |
-| `KEY` | Input | 60 |
+| `LOG` | Input | 91 |
+| `IF` | Control Flow | 89 |
+| `ENDIF` | Control Flow | 85 |
+| `UNSET` | Variables | 81 |
+| `WAIT` | Control Flow | 75 |
+| `DO` | Control Flow | 73 |
+| `SET` | Variables | 73 |
+| `STOP` | Control Flow | 72 |
+| `LOOP` | Control Flow | 71 |
+| `ELSE` | Control Flow | 70 |
+| `KEY` | Input | 64 |
+| `LOOK` | Settings | 52 |
 | `IFMATCHES` | Control Flow | 51 |
-| `LOOK` | Settings | 48 |
-| `GUI` | GUI | 40 |
-| `SLOTCLICK` | GUI | 38 |
+| `GUI` | GUI | 44 |
+| `SLOTCLICK` | GUI | 42 |
+| `NEXT` | Control Flow | 41 |
+| `FOR` | Control Flow | 40 |
+| `GETSLOTITEM` | GUI | 40 |
+| `INC` | Variables | 39 |
 | `UNTIL` | Control Flow | 38 |
-| `FOR` | Control Flow | 36 |
-| `GETSLOTITEM` | GUI | 36 |
-| `INC` | Variables | 36 |
 | `PICK` | GUI | 36 |
-| `NEXT` | Control Flow | 34 |
-| `PROMPT` | Mod related | 25 |
-| `KEYDOWN` | Input | 21 |
-| `KEYUP` | Input | 21 |
-| `SLOT` | GUI | 20 |
+| `KEYUP` | Input | 28 |
+| `KEYDOWN` | Input | 26 |
+| `PROMPT` | Mod related | 26 |
+| `SLOT` | GUI | 22 |
+| `ELSEIF` | Control Flow | 16 |
 | `WHILE` | Control Flow | 14 |
-| `ELSEIF` | Control Flow | 10 |
-| `SETLABEL` | Mod related | 10 |
+| `BREAK` | Control Flow | 12 |
+| `SETLABEL` | Mod related | 12 |
+| `INDEXOF` | Variables | 10 |
 | `ACHIEVEMENTGET` | GUI | 9 |
-| `BREAK` | Control Flow | 8 |
+| `FOREACH` | Control Flow | 9 |
+| `ECHO` | Input | 7 |
 | `PRESS` | Input | 6 |
+| `PUSH` | Variables | 6 |
 | `GETSLOT` | GUI | 5 |
 | `TYPE` | Input | 5 |
 | `DEC` | Variables | 4 |
-| `INDEXOF` | Variables | 4 |
+| `EXEC` | Mod related | 4 |
+| `TOGGLE` | Variables | 4 |
 | `ARRAYSIZE` | Variables | 3 |
-| `EXEC` | Mod related | 3 |
 | `LOGTO` | Mod related | 3 |
 | `POP` | Variables | 3 |
-| `FOREACH` | Control Flow | 2 |
 | `GETIDREL` | Calculations | 2 |
+| `GETITEMINFO` | Calculations | 2 |
 | `INVENTORYUP` | GUI | 2 |
+| `LOOKS` | Settings | 2 |
 | `MATCH` | Calculations | 2 |
-| `TOGGLE` | Variables | 2 |
+| `PLAYSOUND` | World | 2 |
 | `CHATOPACITY` | Settings | 1 |
 | `DISCONNECT` | World | 1 |
-| `ECHO` | Input | 1 |
 | `IFCONTAINS` | Control Flow | 1 |
-| `PLAYSOUND` | World | 1 |
+| `JOIN` | Variables | 1 |
+| `PLACESIGN` | World | 1 |
 | `RANDOM` | Calculations | 1 |
 | `RESPAWN` | World | 1 |
 | `SETPROPERTY` | Mod related | 1 |
@@ -124,7 +129,6 @@ Coverage tracking only — their documentation comes from the inventory.
 * `FOV` — Settings
 * `GAMMA` — Settings
 * `GETID` — Calculations
-* `GETITEMINFO` — Calculations
 * `GETPROPERTY` — Mod related
 * `IFBEGINSWITH` — Control Flow
 * `IFENDSWITH` — Control Flow
@@ -132,16 +136,12 @@ Coverage tracking only — their documentation comes from the inventory.
 * `IMPORT` — Mod related
 * `INVENTORYDOWN` — GUI
 * `ISRUNNING` — Mod related
-* `JOIN` — Variables
 * `LCASE` — Calculations
 * `LOGRAW` — Input
-* `LOOKS` — Settings
 * `MODIFY` — Mod related
 * `MUSIC` — Settings
 * `PASS` — Mod related
-* `PLACESIGN` — World
 * `POPUPMESSAGE` — GUI
-* `PUSH` — Variables
 * `PUT` — Variables
 * `REGEXREPLACE` — Calculations
 * `RELOADRESOURCES` — Settings
@@ -187,37 +187,45 @@ Each one is a documentation target.
 
 | Identifier | Scripts |
 | --- | --- |
-| `DURABILITY` | 33 |
+| `DURABILITY` | 35 |
 | `DIRECTION` | 32 |
 | `NORTH` | 32 |
 | `EAST` | 31 |
 | `SOUTH` | 31 |
 | `WEST` | 31 |
-| `XPOS` | 19 |
-| `ZPOS` | 19 |
-| `HITID` | 11 |
+| `XPOS` | 23 |
+| `ZPOS` | 23 |
+| `HITID` | 15 |
+| `YPOS` | 13 |
+| `ITEM` | 10 |
 | `HEALTH` | 9 |
-| `ITEM` | 9 |
-| `YPOS` | 9 |
+| `PLAYER` | 9 |
+| `INVENTORY` | 8 |
 | `OFF` | 8 |
-| `PLAYER` | 8 |
 | `USE` | 8 |
 | `CHAT` | 7 |
 | `CHATCLEAN` | 7 |
 | `FORWARD` | 7 |
 | `MACRO` | 7 |
-| `INVENTORY` | 6 |
 | `ON` | 6 |
 | `ATTACK` | 5 |
 | `HIT` | 5 |
+| `PITCH` | 5 |
+| `YAW` | 5 |
+| `HITX` | 4 |
+| `HITY` | 4 |
 | `RETURN` | 4 |
 | `DAYTIME` | 3 |
 | `HELMDURABILITY` | 3 |
+| `HITZ` | 3 |
 | `ID` | 3 |
 | `JUMP` | 3 |
 | `STACKSIZE` | 3 |
+| `TICKS` | 3 |
+| `TRUE` | 3 |
 | `BOOTSDURABILITY` | 2 |
 | `CHESTPLATEDURABILITY` | 2 |
+| `FALSE` | 2 |
 | `HITDATA` | 2 |
 | `HUNGER` | 2 |
 | `KEY_A` | 2 |
@@ -265,8 +273,6 @@ Each one is a documentation target.
 | `FILES` | 1 |
 | `FPS` | 1 |
 | `FUNGO` | 1 |
-| `HITX` | 1 |
-| `HITY` | 1 |
 | `HOMES` | 1 |
 | `INVENTARIO` | 1 |
 | `ITENS` | 1 |
@@ -292,7 +298,6 @@ Each one is a documentation target.
 | `PE4` | 1 |
 | `PELO` | 1 |
 | `PICKUPID` | 1 |
-| `PITCH` | 1 |
 | `PLAYERNAME` | 1 |
 | `RAIN` | 1 |
 | `SE` | 1 |
@@ -313,9 +318,7 @@ Each one is a documentation target.
 | `ST8` | 1 |
 | `ST9` | 1 |
 | `TEMPO` | 1 |
-| `TICKS` | 1 |
 | `TOCOU` | 1 |
 | `TOTALXP` | 1 |
 | `TRAP` | 1 |
 | `TROQUE` | 1 |
-| `YAW` | 1 |

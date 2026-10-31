@@ -1,0 +1,105 @@
+$${
+// [Transpiler] import commons.commons
+// [Transpiler] import commons.global
+
+// [Transpiler] toggle_macro(&macro_name_scope_toggle_macro, stop_macro_scope_toggle_macro=true)
+&macro_name_scope_toggle_macro = "atualizarTempo";
+stop_macro_scope_toggle_macro = true;
+
+indexof(@&macros[],#index,"%&macro_name_scope_toggle_macro%");
+//log("%@#macro_count%")
+if(#index > -1);
+	// remover macro_name da lista macros
+	unset(&temp_array[]);
+	foreach(@&macros[],&macro);
+		if(&macro_name_scope_toggle_macro != &macro);
+			push(&temp_array[],&macro);
+		endif;
+	next;
+
+	unset(@&macros[]);
+	foreach(&temp_array[],&value);
+		push(@&macros[],&value);
+	next;
+
+	// [Transpiler] print(&text_scope_print)
+	&text_scope_print = "Macro &3%&macro_name_scope_toggle_macro% &f- &4OFF!";
+
+	log("&f[&5 MACRO &f] %&text_scope_print%");
+
+	keyup("forward");
+	if(stop_macro_scope_toggle_macro);
+		stop();
+	endif;
+else;
+	push(@&macros[],"%&macro_name_scope_toggle_macro%");
+	// [Transpiler] print(&text_scope_print)
+	&text_scope_print = "Macro &3%&macro_name_scope_toggle_macro% &f- &2ON!";
+
+	log("&f[&5 MACRO &f] %&text_scope_print%");
+
+endif;
+
+
+// Mostrar daytime na tela
+// Config
+
+// Dar log quando estiver mudando o ciclo do dia?(Dia/Noite)
+log_cicle = false;
+// Quantos segundos de antecedencia?
+#seconds_before = 10;
+
+// MAIN
+#last_tick = %TICKS%;
+#last_secs = 0;
+do();
+	if(#last_tick != %TICKS%);
+		#diff = %TICKS% - #last_tick;
+		if(#diff < 0);
+			SET(#diff, #diff + 24000);
+		endif;
+
+		@#tick_total = @#tick_total + #diff;
+		#last_tick = %TICKS%;
+	endif;
+
+	#total_secs = %TICKS% / 20;
+	#mins = #total_secs / 60;
+	// Module
+	#secs = #total_secs - (#total_secs / 60) * 60;
+
+	SET(&secs_string, "%#secs%");
+	if(#secs < 10);
+		&secs_string = "0%#secs%";
+	endif;
+
+	SET(&mins_string, "%#mins%");
+	if(#mins < 10);
+		&mins_string = "0%#mins%";
+	endif;
+
+	// Definir se é dia ou noite
+	&cicle = "&4Noite";
+	&cicle_reversed = "&3Dia";
+	if(#mins < 10);
+		&cicle = "&3Dia";
+		&cicle_reversed = "&4Noite";
+	endif;
+
+	SETLABEL("daytick","DT &6%&mins_string%:%&secs_string%\n%&cicle%");
+
+	if(#last_secs != #total_secs);
+		#last_secs = #total_secs;
+		if(log_cicle);
+			#seconds_cicle = #total_secs - (#total_secs / 600) * 600;
+			#seconds_lasting = 600 - #seconds_cicle;
+			//log("&6Ciclo do dia mudará para %&cicle_reversed%&6 em &5%#seconds_lasting% &6segundos!")
+			if(#seconds_lasting =< 1);
+				log("&6Ciclo do dia mudou para %&cicle_reversed%&6!");
+			elseif(#seconds_lasting < #seconds_before);
+				log("&6Ciclo do dia mudara para %&cicle_reversed%&6 em &5%#seconds_lasting% &6segundos!");
+			endif;
+		endif;
+	endif;
+loop;
+}$$

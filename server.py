@@ -31,11 +31,16 @@ while True:
         try:
             status = True
             for path_out in paths_out:
-                status_, code = transpile(os.path.join(path_in, file), path_out, verbose=False)
+                # strict: a generated script that does not validate is an error,
+                # not a file silently dropped into the mod folder.
+                status_, code = transpile(os.path.join(path_in, file), path_out,
+                                          verbose=False, strict=True)
                 status = status and status_
 
             if status:
-                logging.info(f'{file} transpiled successfully.')
+                logging.info(f'{file} transpiled and validated successfully.')
+            else:
+                logging.info(f'{file} is unchanged.')
             
             hist[file] = code
 

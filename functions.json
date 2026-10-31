@@ -244,9 +244,10 @@
     "FOREACH": {
         "category": "Control Flow",
         "name": "FOREACH",
-        "definition": "FOREACH(<iterator>)",
+        "definition": "FOREACH(<iterator>,[outvar])",
         "varnames": [
-            "<iterator>"
+            "<iterator>",
+            "[outvar]"
         ],
         "description": "Runs a loop over the specified iterator. Needs to be closed with NEXT.",
         "close": ["NEXT"]

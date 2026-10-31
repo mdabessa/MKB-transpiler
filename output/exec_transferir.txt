@@ -1,0 +1,539 @@
+// [Transpiler] import commons.commons
+// [Transpiler] import commons.chest
+
+if(on);
+	toggle(on);
+	log("OFF!");
+elseif;
+	toggle(on);
+	log("ON!");
+endif;
+
+#iid = 261;
+
+do();
+	// até o final da mkb trap
+	// [Transpiler] withdraw_item(#item_id_scope_withdraw_item, &stock_home_scope_withdraw_item="guardar", #max_scope_withdraw_item=36, stop__scope_withdraw_item=true, temp_home_scope_withdraw_item=true, fast_inv_scope_withdraw_item=true)
+	#item_id_scope_withdraw_item = "%#iid%";
+	&stock_home_scope_withdraw_item = "transferir";
+	#max_scope_withdraw_item = 36;
+	stop__scope_withdraw_item = true;
+	temp_home_scope_withdraw_item = true;
+	fast_inv_scope_withdraw_item = true;
+
+	// [Transpiler] go_home(&gohome_home_scope_go_home)
+	&gohome_home_scope_go_home = "%&stock_home_scope_withdraw_item%";
+
+	#gohome_x_scope_go_home = %XPOS%;
+	#gohome_y_scope_go_home = %YPOS%;
+	#gohome_z_scope_go_home = %ZPOS%;
+
+	// [Transpiler] command(&command_cmd_scope_command)
+	&command_cmd_scope_command = "/home %&gohome_home_scope_go_home%";
+
+	// [Transpiler] print(&text_scope_print)
+	&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
+
+	log("&f[&5 MACRO &f] %&text_scope_print%");
+
+	echo("%&command_cmd_scope_command%");
+	wait(1t);
+
+
+	// aguardar o teleporte, maximo 100 ticks (5 segundos)
+	DO(100);
+		IF((%XPOS% != #gohome_x_scope_go_home) || (%YPOS% != #gohome_y_scope_go_home) || (%ZPOS% != #gohome_z_scope_go_home));
+			BREAK;
+		ENDIF;
+		wait(1t);
+	LOOP;
+	// #todo: verificar se o teleporte foi bem sucedido
+	#pitch_scope_go_home = %PITCH%;
+	// Yaw é invertido
+	#yaw_scope_go_home = %YAW% - 180;
+	if(#yaw_scope_go_home < 0);
+		#yaw_scope_go_home = 360 + #yaw_scope_go_home;
+	elseif(#yaw_scope_go_home > 360);
+		#yaw_scope_go_home = #yaw_scope_go_home - 360;
+	endif;
+
+	wait(1t);
+
+	// aguardar carregar o mundo
+	do();
+		look("355","90");
+		wait(100ms);
+		if(%HITID% != 0);
+			BREAK;
+		ENDIF;
+	loop();
+	wait(10t);
+	look("%#yaw_scope_go_home%","%#pitch_scope_go_home%");
+	wait(1t);
+
+
+	// isso pode bugar caso o stock for de mais de um tipo de item
+	if(temp_home_scope_withdraw_item);
+		// verificar se ultimo bau ja esta vazio
+		look("1","50");
+		wait(2t);
+		key("use");
+		wait(5t);
+		GETSLOTITEM(53,#item);
+		wait(1t);
+		gui();
+
+		if(#item == 0);
+			// bau vazio
+			// [Transpiler] go_home(&gohome_home_scope_go_home)
+			&gohome_home_scope_go_home = "%&stock_home_scope_withdraw_item%_temp";
+
+			#gohome_x_scope_go_home = %XPOS%;
+			#gohome_y_scope_go_home = %YPOS%;
+			#gohome_z_scope_go_home = %ZPOS%;
+
+			// [Transpiler] command(&command_cmd_scope_command)
+			&command_cmd_scope_command = "/home %&gohome_home_scope_go_home%";
+
+			// [Transpiler] print(&text_scope_print)
+			&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
+
+			log("&f[&5 MACRO &f] %&text_scope_print%");
+
+			echo("%&command_cmd_scope_command%");
+			wait(1t);
+
+
+			// aguardar o teleporte, maximo 100 ticks (5 segundos)
+			DO(100);
+				IF((%XPOS% != #gohome_x_scope_go_home) || (%YPOS% != #gohome_y_scope_go_home) || (%ZPOS% != #gohome_z_scope_go_home));
+					BREAK;
+				ENDIF;
+				wait(1t);
+			LOOP;
+			// #todo: verificar se o teleporte foi bem sucedido
+			#pitch_scope_go_home = %PITCH%;
+			// Yaw é invertido
+			#yaw_scope_go_home = %YAW% - 180;
+			if(#yaw_scope_go_home < 0);
+				#yaw_scope_go_home = 360 + #yaw_scope_go_home;
+			elseif(#yaw_scope_go_home > 360);
+				#yaw_scope_go_home = #yaw_scope_go_home - 360;
+			endif;
+
+			wait(1t);
+
+			// aguardar carregar o mundo
+			do();
+				look("355","90");
+				wait(100ms);
+				if(%HITID% != 0);
+					BREAK;
+				ENDIF;
+			loop();
+			wait(10t);
+			look("%#yaw_scope_go_home%","%#pitch_scope_go_home%");
+			wait(1t);
+
+		elseif;
+			// bau cheio
+			// [Transpiler] set_home(&sethome_home_scope_set_home)
+			&sethome_home_scope_set_home = "%&stock_home_scope_withdraw_item%_temp";
+
+			// [Transpiler] command(&command_cmd_scope_command)
+			&command_cmd_scope_command = "/sethome %&sethome_home_scope_set_home%";
+
+			// [Transpiler] print(&text_scope_print)
+			&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
+
+			log("&f[&5 MACRO &f] %&text_scope_print%");
+
+			echo("%&command_cmd_scope_command%");
+			wait(1t);
+
+			wait(500ms);
+			// confirmar
+			// [Transpiler] command(&command_cmd_scope_command)
+			&command_cmd_scope_command = "/sethome %&sethome_home_scope_set_home%";
+
+			// [Transpiler] print(&text_scope_print)
+			&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
+
+			log("&f[&5 MACRO &f] %&text_scope_print%");
+
+			echo("%&command_cmd_scope_command%");
+			wait(1t);
+
+			wait(500ms);
+
+		endif;
+	endif;
+
+	unset(#chests_scope_withdraw_item[]);
+	#chests_scope_withdraw_item[0] = 316;
+	#chests_scope_withdraw_item[1] = 333;
+	#chests_scope_withdraw_item[2] = 9;
+	#chests_scope_withdraw_item[3] = 33;
+	#chests_scope_withdraw_item[4] = 51;
+
+	// 54 -> 89 Inventario | 0 -> 53 Bau
+	do();
+		FOREACH(#chests_scope_withdraw_item[],#chest);
+			is_inventory_full_scope_withdraw_item = false;
+
+			look("1","%#chest%");
+			wait(1t);
+
+			if((%HITID% != 54) && (%HITID% != 146));
+				log("&4Sem baus / Trap incompleta");
+				stop();
+			endif;
+
+			key("use");
+			wait(10t);
+
+			GETSLOTITEM("53",#item_id__scope_withdraw_item);
+			if(!fast_inv_scope_withdraw_item);
+				#item_id__scope_withdraw_item = 1;
+			endif;
+			if(#item_id__scope_withdraw_item != 0);
+				FOR(#slot,0,53);
+					GETSLOTITEM(%#slot%,#item_id__scope_withdraw_item);
+					//GETITEMINFO(%#item_id__scope_withdraw_item%,&item_name);
+
+					if(#item_id_scope_withdraw_item == #item_id__scope_withdraw_item);
+						SLOTCLICK(%#slot%,L,TRUE);
+						WAIT(1t);
+						#max_scope_withdraw_item = #max_scope_withdraw_item - 1;
+					endif;
+
+					GETSLOTITEM(%#slot%,#item_id__scope_withdraw_item);
+					if((#item_id__scope_withdraw_item != 0) || (#max_scope_withdraw_item = 0));
+						is_inventory_full_scope_withdraw_item = true;
+						break;
+					endif;
+				next;
+			endif;
+
+			gui();
+
+			if(is_inventory_full_scope_withdraw_item);
+				break;
+			endif;
+		next;
+
+		if(is_inventory_full_scope_withdraw_item);
+			break;
+		endif;
+
+		// Proxima coluna
+		// verificar se é o fim da trap mkb bau infinito
+		look("90","56");
+		wait(2t);
+		#diff_scope_withdraw_item = %YPOS% - %HITY%;
+		if(#diff_scope_withdraw_item != 1);
+			// fim da trap
+			if(stop__scope_withdraw_item);
+				log("&4Fim da trap");
+				stop();
+			endif;
+			break;
+		endif;
+
+		look("1","317");
+		wait(2t);
+
+		#last_x_scope_withdraw_item = %HITX%;
+		#last_z_scope_withdraw_item = %HITZ%;
+		#last_y_scope_withdraw_item = %HITY%;
+
+		do();
+			keydown("right");
+			keydown("sneak");
+			wait(1t);
+			if((#last_z_scope_withdraw_item != %HITZ%) || (#last_x_scope_withdraw_item != %HITX%) || (#last_y_scope_withdraw_item != %HITY%));
+				if((%HITID% == 54) || (%HITID% == 146));
+					keyup("right");
+					keyup("sneak");
+					break;
+				endif;
+			endif;
+		loop;
+
+		if(temp_home_scope_withdraw_item);
+			// [Transpiler] set_home(&sethome_home_scope_set_home)
+			&sethome_home_scope_set_home = "%&stock_home_scope_withdraw_item%_temp";
+
+			// [Transpiler] command(&command_cmd_scope_command)
+			&command_cmd_scope_command = "/sethome %&sethome_home_scope_set_home%";
+
+			// [Transpiler] print(&text_scope_print)
+			&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
+
+			log("&f[&5 MACRO &f] %&text_scope_print%");
+
+			echo("%&command_cmd_scope_command%");
+			wait(1t);
+
+			wait(500ms);
+			// confirmar
+			// [Transpiler] command(&command_cmd_scope_command)
+			&command_cmd_scope_command = "/sethome %&sethome_home_scope_set_home%";
+
+			// [Transpiler] print(&text_scope_print)
+			&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
+
+			log("&f[&5 MACRO &f] %&text_scope_print%");
+
+			echo("%&command_cmd_scope_command%");
+			wait(1t);
+
+			wait(500ms);
+
+		endif;
+	loop;
+
+	wait(1t);
+	// [Transpiler] stock_item(#item_id_scope_stock_item, &stock_home_scope_stock_item)
+	#item_id_scope_stock_item = "%#iid%";
+	&stock_home_scope_stock_item = "guardar";
+
+	if(!&stock_home_scope_stock_item);
+		&stock_home_scope_stock_item = "guardar";
+	endif;
+
+
+	// [Transpiler] go_home(&gohome_home_scope_go_home)
+	&gohome_home_scope_go_home = "%&stock_home_scope_stock_item%";
+
+	#gohome_x_scope_go_home = %XPOS%;
+	#gohome_y_scope_go_home = %YPOS%;
+	#gohome_z_scope_go_home = %ZPOS%;
+
+	// [Transpiler] command(&command_cmd_scope_command)
+	&command_cmd_scope_command = "/home %&gohome_home_scope_go_home%";
+
+	// [Transpiler] print(&text_scope_print)
+	&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
+
+	log("&f[&5 MACRO &f] %&text_scope_print%");
+
+	echo("%&command_cmd_scope_command%");
+	wait(1t);
+
+
+	// aguardar o teleporte, maximo 100 ticks (5 segundos)
+	DO(100);
+		IF((%XPOS% != #gohome_x_scope_go_home) || (%YPOS% != #gohome_y_scope_go_home) || (%ZPOS% != #gohome_z_scope_go_home));
+			BREAK;
+		ENDIF;
+		wait(1t);
+	LOOP;
+	// #todo: verificar se o teleporte foi bem sucedido
+	#pitch_scope_go_home = %PITCH%;
+	// Yaw é invertido
+	#yaw_scope_go_home = %YAW% - 180;
+	if(#yaw_scope_go_home < 0);
+		#yaw_scope_go_home = 360 + #yaw_scope_go_home;
+	elseif(#yaw_scope_go_home > 360);
+		#yaw_scope_go_home = #yaw_scope_go_home - 360;
+	endif;
+
+	wait(1t);
+
+	// aguardar carregar o mundo
+	do();
+		look("355","90");
+		wait(100ms);
+		if(%HITID% != 0);
+			BREAK;
+		ENDIF;
+	loop();
+	wait(10t);
+	look("%#yaw_scope_go_home%","%#pitch_scope_go_home%");
+	wait(1t);
+
+
+	// verificar se ultimo bau ja esta cheio
+	look("1","50");
+	wait(2t);
+	key("use");
+	wait(5t);
+	GETSLOTITEM(53,#item);
+	wait(1t);
+	gui();
+
+	if(#item != 0);
+		// bau cheio
+		// [Transpiler] go_home(&gohome_home_scope_go_home)
+		&gohome_home_scope_go_home = "%&stock_home_scope_stock_item%_temp";
+
+		#gohome_x_scope_go_home = %XPOS%;
+		#gohome_y_scope_go_home = %YPOS%;
+		#gohome_z_scope_go_home = %ZPOS%;
+
+		// [Transpiler] command(&command_cmd_scope_command)
+		&command_cmd_scope_command = "/home %&gohome_home_scope_go_home%";
+
+		// [Transpiler] print(&text_scope_print)
+		&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
+
+		log("&f[&5 MACRO &f] %&text_scope_print%");
+
+		echo("%&command_cmd_scope_command%");
+		wait(1t);
+
+
+		// aguardar o teleporte, maximo 100 ticks (5 segundos)
+		DO(100);
+			IF((%XPOS% != #gohome_x_scope_go_home) || (%YPOS% != #gohome_y_scope_go_home) || (%ZPOS% != #gohome_z_scope_go_home));
+				BREAK;
+			ENDIF;
+			wait(1t);
+		LOOP;
+		// #todo: verificar se o teleporte foi bem sucedido
+		#pitch_scope_go_home = %PITCH%;
+		// Yaw é invertido
+		#yaw_scope_go_home = %YAW% - 180;
+		if(#yaw_scope_go_home < 0);
+			#yaw_scope_go_home = 360 + #yaw_scope_go_home;
+		elseif(#yaw_scope_go_home > 360);
+			#yaw_scope_go_home = #yaw_scope_go_home - 360;
+		endif;
+
+		wait(1t);
+
+		// aguardar carregar o mundo
+		do();
+			look("355","90");
+			wait(100ms);
+			if(%HITID% != 0);
+				BREAK;
+			ENDIF;
+		loop();
+		wait(10t);
+		look("%#yaw_scope_go_home%","%#pitch_scope_go_home%");
+		wait(1t);
+
+	elseif;
+		// bau vazio
+		// set_home("%&stock_home_scope_stock_item%_temp")
+	endif;
+
+	unset(#chests_scope_stock_item[]);
+	#chests_scope_stock_item[0] = 316;
+	#chests_scope_stock_item[1] = 333;
+	#chests_scope_stock_item[2] = 9;
+	#chests_scope_stock_item[3] = 33;
+	#chests_scope_stock_item[4] = 51;
+
+	// 54 -> 89 Inventario | 0 -> 53 Bau
+	do();
+		FOREACH(#chests_scope_stock_item[],#chest);
+			is_chest_full_scope_stock_item = false;
+
+			look("1","%#chest%");
+			wait(1t);
+
+			if((%HITID% != 54) && (%HITID% != 146));
+				log("&4Sem baus / Trap incompleta");
+				stop();
+			endif;
+
+			key("use");
+			wait(10t);
+
+			FOR(#slot,54,89);
+				GETSLOTITEM("53",#last_chest_slot);
+				//GETITEMINFO(%#last_chest_slot%,&chest_name);
+
+				if(#last_chest_slot != 0);
+					is_chest_full_scope_stock_item = true;
+					break;
+				endif;
+
+				GETSLOTITEM(%#slot%,#item_id_);
+				//GETITEMINFO(%#item_id_%,&item_name);
+
+				if(#item_id_scope_stock_item == #item_id_);
+					SLOTCLICK(%#slot%,L,TRUE);
+					WAIT(1t);
+				endif;
+			next;
+
+			gui();
+
+			// bau não está cheio e não tem mais itens para guardar
+			if(!is_chest_full_scope_stock_item);
+				break;
+			endif;
+		next;
+
+		if(!is_chest_full_scope_stock_item);
+			break;
+		endif;
+
+
+		// Proxima coluna
+		// verificar se é o fim da trap mkb bau infinito
+		look("90","56");
+		wait(2t);
+		#diff_scope_stock_item = %YPOS% - %HITY%;
+		if(#diff_scope_stock_item != 1);
+			// fim da trap
+			log("&4Fim da trap");
+			stop();
+		endif;
+
+		look("1","317");
+		wait(2t);
+
+		#last_x_scope_stock_item = %HITX%;
+		#last_z_scope_stock_item = %HITZ%;
+		#last_y_scope_stock_item = %HITY%;
+
+		do();
+			keydown("right");
+			keydown("sneak");
+			wait(1t);
+			if((#last_z_scope_stock_item != %HITZ%) || (#last_x_scope_stock_item != %HITX%) || (#last_y_scope_stock_item != %HITY%));
+				if((%HITID% == 54) || (%HITID% == 146));
+					keyup("right");
+					keyup("sneak");
+					break;
+				endif;
+			endif;
+		loop;
+
+		// [Transpiler] set_home(&sethome_home_scope_set_home)
+		&sethome_home_scope_set_home = "%&stock_home_scope_stock_item%_temp";
+
+		// [Transpiler] command(&command_cmd_scope_command)
+		&command_cmd_scope_command = "/sethome %&sethome_home_scope_set_home%";
+
+		// [Transpiler] print(&text_scope_print)
+		&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
+
+		log("&f[&5 MACRO &f] %&text_scope_print%");
+
+		echo("%&command_cmd_scope_command%");
+		wait(1t);
+
+		wait(500ms);
+		// confirmar
+		// [Transpiler] command(&command_cmd_scope_command)
+		&command_cmd_scope_command = "/sethome %&sethome_home_scope_set_home%";
+
+		// [Transpiler] print(&text_scope_print)
+		&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
+
+		log("&f[&5 MACRO &f] %&text_scope_print%");
+
+		echo("%&command_cmd_scope_command%");
+		wait(1t);
+
+		wait(500ms);
+
+	loop;
+
+loop;

@@ -29,7 +29,7 @@ Blocks that decide what runs: conditionals, loops, waits.
 | `ENDIF` | `ENDIF` | Ends an IF block. |
 | `ENDUNSAFE` | `ENDUNSAFE` | Ends an UNSAFE block. |
 | `FOR` | `FOR(<#var>,<start>,<end>,[step])` | Begins a for loop using the specified var as a loop counter. Needs to be closed withNEXT. |
-| `FOREACH` | `FOREACH(<iterator>)` | Runs a loop over the specified iterator. Needs to be closed with NEXT. |
+| `FOREACH` | `FOREACH(<iterator>,[outvar])` | Runs a loop over the specified iterator. Needs to be closed with NEXT. |
 | `IF` | `IF(<condition>)` | The actions following this action will only be executed when the <condition>evaluates to true. |
 | `IFBEGINSWITH` | `IFBEGINSWITH(<haystack>,<needle>)` | The actions following this action will only be executed when the <haystack>starts with <needle>. |
 | `IFCONTAINS` | `IFCONTAINS(<haystack>,<needle>)` | The actions following this action will only be executed when the <haystack>starts with <needle>. |

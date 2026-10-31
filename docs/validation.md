@@ -39,6 +39,39 @@ Exit codes: `0` clean or warnings only, `1` errors found, `2` usage problem.
 python3 -m unittest discover -s tests -v
 ```
 
+## Build-time integration
+
+The validator is not only a command-line tool: `mkb.py` runs it on every script
+it generates, before writing anything.
+
+```python
+transpile("macros/tool.mkb", "output")              # reports, writes anyway
+transpile("macros/tool.mkb", "output", strict=True) # raises, writes nothing
+```
+
+* `lint_generated(code, name, verbose, strict)` prints one line per error and
+  warning, plus a summary;
+* **`strict=True`** raises `ValueError` with the first error, so a build fails at
+  the source instead of a broken script appearing in the mod folder;
+* `server.py` transpiles with `strict=True`, so the watcher logs
+  `failed to transpile` and keeps the last good output.
+
+Running the whole macro set through it is part of the test suite:
+
+```bash
+python3 -m unittest tests.test_transpile -v
+```
+
+* `test_all_repository_macros_validate` — every `macros/*.mkb` must transpile
+  into a script with zero errors;
+* `test_invalid_script_raises_and_is_not_written` / `..._without_strict` — the
+  two modes behave as documented.
+
+Wiring it in immediately paid for itself: it found that `mkb.py` split call
+arguments on every comma, so `raise("a, b")` became two arguments and the
+expansion emitted a broken string literal. The generated script was invalid and
+nobody would have noticed until the macro misbehaved in game.
+
 ## Rules
 
 ### Errors

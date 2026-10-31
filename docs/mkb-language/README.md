@@ -71,17 +71,36 @@ Inside an expanded function body:
 
 ## Validation
 
-Before emitting anything, `mkb.py` collects every `name(` in the expanded body
-and checks it against `functions.json`:
+Two layers, checking different things:
+
+**1. During the transpile (source-level).** Before expanding anything, `mkb.py`
+collects every `name(` in the body and checks it against `functions.json`:
 
 ```
 Function <name> not defined.
 ```
 
-That is the only check today — there is no type check, no arity check and no
-block-balance check beyond "unclosed block" at the end. The planned MKB linter
-(see [`todo.md`](../../todo.md)) is meant to change that, and it is expected to
-grow with the transpiler: a new construct should land with its linter rule.
+It also rejects imports that are not at the top of the file, unresolvable
+imports, recursive expansion past 15 levels, and blocks that never close.
+
+**2. On the generated script (output-level).** After expanding, the `.txt` is
+validated with [`tools/validate.py`](../../tools/validate.py) before it is
+written — keywords, arity, block balance, strings, parentheses:
+
+```
+python3 tools/validate.py output/          # or:
+transpile("macros/tool.mkb", "output", strict=True)
+```
+
+`strict=True` is what `server.py` uses: an invalid script is reported and not
+written, so it cannot reach the mod folder. See
+[validation.md](../validation.md#build-time-integration).
+
+What neither layer does yet: type checking, unused-variable analysis, or a
+diagnostic that points back into the `.mkb` line that produced the bad output.
+That is the planned MKB linter (see [`todo.md`](../../todo.md)), which is
+expected to grow with the transpiler: a new construct should land with its
+linter rule.
 
 ## Outputs
 
