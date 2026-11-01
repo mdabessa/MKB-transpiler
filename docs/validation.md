@@ -97,6 +97,7 @@ nobody would have noticed until the macro misbehaved in game.
 | `W002` | an infinite `DO … LOOP` with no `WAIT` and no input action |
 | `W003` | `ELSE` after `ELSE` (unreachable) |
 | `W004` | statement-shaped code outside a `$${ … }$$` block (it becomes chat) |
+| `W005` | `//` comment outside a `$${ … }$$` block (the mod sends it to chat) |
 
 ### Info
 

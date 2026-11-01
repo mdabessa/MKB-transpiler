@@ -2,7 +2,7 @@
 
 # Corpus coverage
 
-Built from **106** scripts (30695 lines) found in
+Built from **106** scripts (30751 lines) found in
 `examples/`, `output/` and `macros/`, compared against `functions.json`.
 
 Use this page to decide what to document next:

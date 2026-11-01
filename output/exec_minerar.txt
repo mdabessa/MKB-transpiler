@@ -1,9 +1,7 @@
-// ============================================================================
 // [Transpiled by MKB Transpiler v0.2.0]
 // Source: macros/minerar.mkb
-// Date: 2026-10-31 21:22:44
-// Options: strict=False, verbose=True
-// ============================================================================
+// Date: 2026-11-01 11:11:56
+// Options: strict=False, verbose=False
 
 if(on);
 	toggle(on);
@@ -26,7 +24,7 @@ DO();
 	if(%HITY% >= %YPOS%);
 		key("attack");
 	endif;
-	
+
 	IF(%DURABILITY% < 100);
 		log("DURABILITY LOW!");
 		stop();

@@ -1,15 +1,13 @@
-// ============================================================================
 // [Transpiled by MKB Transpiler v0.2.0]
 // Source: macros/atualizarMoney.mkb
-// Date: 2026-10-31 21:22:44
-// Options: strict=False, verbose=True
-// ============================================================================
+// Date: 2026-11-01 11:11:56
+// Options: strict=False, verbose=False
 
 // [Transpiler] import commons.global;
 // [Transpiler] import commons.commons;
 // atualizar o money de tempo em tempo
 
-// [Transpiler] toggle_macro(&macro_name_scope_toggle_macro, stop_macro_scope_toggle_macro=true)
+// [Transpiler] toggle_macro(&macro_name, stop_macro=true)
 &macro_name_scope_toggle_macro = "atualizarMoney";
 stop_macro_scope_toggle_macro = true;
 
@@ -23,36 +21,36 @@ if(#index > -1);
 			push(&temp_array[],&macro);
 		endif;
 	next;
-	
+
 	unset(@&macros[]);
 	foreach(&temp_array[],&value);
 		push(@&macros[],&value);
 	next;
-	
-	// [Transpiler] print(&text_scope_print)
+
+	// [Transpiler] print(&text)
 	&text_scope_print = "Macro &3%&macro_name_scope_toggle_macro% &f- &4OFF!";
-	
+
 	log("&f[&5 MACRO &f] %&text_scope_print%");
-	
+
 	keyup("forward");
 	if(stop_macro_scope_toggle_macro);
 		stop();
 	endif;
 else;
 	push(@&macros[],"%&macro_name_scope_toggle_macro%");
-	// [Transpiler] print(&text_scope_print)
+	// [Transpiler] print(&text)
 	&text_scope_print = "Macro &3%&macro_name_scope_toggle_macro% &f- &2ON!";
-	
+
 	log("&f[&5 MACRO &f] %&text_scope_print%");
-	
+
 endif;
 
 
 #max_money = 260000;
 do();
 	echo("/money");
-	
-	
+
+
 	// Caso bot mode enviar money para a conta principal
 	if((@bot_mode) && (%PLAYER% != @&main_nickname));
 		wait(1000ms);

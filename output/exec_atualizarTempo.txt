@@ -1,13 +1,11 @@
-// ============================================================================
 // [Transpiled by MKB Transpiler v0.2.0]
 // Source: macros/atualizarTempo.mkb
-// Date: 2026-10-31 21:22:44
-// Options: strict=False, verbose=True
-// ============================================================================
+// Date: 2026-11-01 11:11:56
+// Options: strict=False, verbose=False
 
 // [Transpiler] import commons.global;
 // [Transpiler] import commons.commons;
-// [Transpiler] toggle_macro(&macro_name_scope_toggle_macro, stop_macro_scope_toggle_macro=true)
+// [Transpiler] toggle_macro(&macro_name, stop_macro=true)
 &macro_name_scope_toggle_macro = "atualizarTempo";
 stop_macro_scope_toggle_macro = true;
 
@@ -21,28 +19,28 @@ if(#index > -1);
 			push(&temp_array[],&macro);
 		endif;
 	next;
-	
+
 	unset(@&macros[]);
 	foreach(&temp_array[],&value);
 		push(@&macros[],&value);
 	next;
-	
-	// [Transpiler] print(&text_scope_print)
+
+	// [Transpiler] print(&text)
 	&text_scope_print = "Macro &3%&macro_name_scope_toggle_macro% &f- &4OFF!";
-	
+
 	log("&f[&5 MACRO &f] %&text_scope_print%");
-	
+
 	keyup("forward");
 	if(stop_macro_scope_toggle_macro);
 		stop();
 	endif;
 else;
 	push(@&macros[],"%&macro_name_scope_toggle_macro%");
-	// [Transpiler] print(&text_scope_print)
+	// [Transpiler] print(&text)
 	&text_scope_print = "Macro &3%&macro_name_scope_toggle_macro% &f- &2ON!";
-	
+
 	log("&f[&5 MACRO &f] %&text_scope_print%");
-	
+
 endif;
 
 
@@ -63,26 +61,26 @@ do();
 		if(#diff < 0);
 			SET(#diff, #diff + 24000);
 		endif;
-		
+
 		@#tick_total = @#tick_total + #diff;
 		#last_tick = %TICKS%;
 	endif;
-	
+
 	#total_secs = %TICKS% / 20;
 	#mins = #total_secs / 60;
 	// Module
 	#secs = #total_secs - (#total_secs / 60) * 60;
-	
+
 	SET(&secs_string, "%#secs%");
 	if(#secs < 10);
 		&secs_string = "0%#secs%";
 	endif;
-	
+
 	SET(&mins_string, "%#mins%");
 	if(#mins < 10);
 		&mins_string = "0%#mins%";
 	endif;
-	
+
 	// Definir se é dia ou noite
 	&cicle = "&4Noite";
 	&cicle_reversed = "&3Dia";
@@ -90,9 +88,9 @@ do();
 		&cicle = "&3Dia";
 		&cicle_reversed = "&4Noite";
 	endif;
-	
+
 	SETLABEL("daytick","DT &6%&mins_string%:%&secs_string%\n%&cicle%");
-	
+
 	if(#last_secs != #total_secs);
 		#last_secs = #total_secs;
 		if(log_cicle);

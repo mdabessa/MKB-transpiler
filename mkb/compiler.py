@@ -118,8 +118,12 @@ def transpile(file: str, file_out_dir: str | None = None, **kwargs) -> tuple[boo
     for line in code.split('\n'):
         stripped = line.strip()
         indent = '\t' * len(stack)
-        if not stripped or stripped.startswith('//'):
-            code_final += f'{indent}{line.lstrip()}\n'
+        if not stripped:
+            # Blank lines stay blank: no indentation to leak into the script.
+            code_final += '\n'
+            continue
+        if stripped.startswith('//'):
+            code_final += f'{indent}{stripped}\n'
             continue
 
         call_match = re.match(r'(\b\w+\b)\s*[;\(]', stripped)
@@ -153,12 +157,16 @@ def transpile(file: str, file_out_dir: str | None = None, **kwargs) -> tuple[boo
     
     lint_generated(code_wrapped, name, config)
 
+    def same_as_disk(existing: str, fresh: str) -> bool:
+        """Compare two outputs, ignoring the generation date in the header."""
+        date_line = re.compile(r'^// Date: .*$', re.MULTILINE)
+        return date_line.sub('', existing) == date_line.sub('', fresh)
+
     changed = False
     if not out_path.exists() or config.force:
         changed = True
-    else:
-        if out_path.read_text(encoding="utf-8") != code_wrapped:
-            changed = True
+    elif not same_as_disk(out_path.read_text(encoding="utf-8"), code_wrapped):
+        changed = True
         
     if changed:
         out_path.write_text(code_wrapped, encoding="utf-8")

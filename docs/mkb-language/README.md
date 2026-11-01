@@ -1,124 +1,94 @@
-# MKB language — the language you write
+# MKB — the language you write
 
-MKB is the source language of this project: `.mkb` files that `mkb.py` turns
-into the mod's `.txt` scripts. It is a thin language — it adds `import`,
-user-defined functions and local scoping on top of the original language, then
-gets out of the way.
+MKB is the source language of this project: `.mkb` files that the transpiler
+turns into the mod's `.txt` scripts.
 
-> **Status: scaffold.** Everything below is read directly from `mkb.py` and from
-> the working sources in `macros/`. Full documentation of MKB is its own backlog
-> item; this page exists so the two doc sets have a stable home and a clear
-> boundary.
+It is a thin language. It adds five things to the
+[original language](../original-language/README.md) — modules, functions,
+automatic local scoping, an optional `;`, and a file format with no markers —
+and then gets out of the way: what comes out is ordinary original-language code,
+line for line.
 
 > MKB may reference the [original language](../original-language/README.md);
 > the original language never references MKB.
 
-## What MKB adds
+## What it compiles to
 
-| Feature | MKB | Compiles to |
-| --- | --- | --- |
-| File wrapper | none, write plain statements | `$${\n…\n}$$` |
-| Statements | one per line, `;` optional | `;` appended when missing |
-| Comments | `// …`, kept | same line, or moved above if trailing |
-| Modules | `import commons.math;` | file contents spliced in, in place |
-| Functions | `function name(a, b); … endfunction;` | call site replaced by the body |
-| Locals | automatic | inner variables renamed `<name>_scope_<function>` |
-
-## Modules
-
-```txt
-import commons.math;
-import commons.chest;
+```mermaid
+flowchart LR
+    S["macros/foo.mkb<br/>statements, imports, functions"] --> T["transpile()"]
+    T --> W["output/foo.txt<br/>$${ … }$$"]
+    T --> E["output/exec_foo.txt<br/>raw code"]
+    W --> M["the mod"]
+    E --> M
 ```
 
-* Imports must be the **first** statements of a file — anything after a normal
-  statement raises "Imports must be at the beginning of the file."
-* Resolution: the path as written first, then the same name under `macros/`.
-* Dots are path separators: `import commons.math` loads `commons\math.mkb`
-  (implemented with a backslash substitution, so this is Windows-shaped).
-* Each file is included **once** — repeated imports are skipped.
-* The generated script gets a `// [Transpiler] import …` marker per module.
+The full nine-stage pipeline is in [usage.md](usage.md#the-pipeline).
 
-## Functions
+## The five additions
 
-```txt
-function print(&text);
-    log(&text);
+| | MKB | Becomes |
+| --- | --- | --- |
+| File | plain lines, no `$${ … }$$` needed | one wrapper around everything |
+| Statements | one per line, `;` optional | `;` appended where missing |
+| Comments | `// …` anywhere | kept; a trailing one moves above its statement |
+| Modules | `import commons.math;` | module contents spliced in, before your code |
+| Functions | `function f(a); … endfunction;` | body inlined at every call |
+| Locals | automatic | `<name>_scope_<function>` |
+
+## Quick start
+
+```mkb
+function greet(&who);
+    log("hello %&who%");
 endfunction;
 
-print("hello");
+greet("world");
 ```
 
-* Declared with `function <name>(<params>);` … `endfunction;`.
-* Definition is **removed** from the output; every call is replaced by the body,
-  so it is a textual macro, not a runtime call.
-* A parameter passed as a literal, a number, a quoted string or a `%var%`
-  reference is bound by **value** (`&text = "hello";`).
-* Any other argument is bound by **reference**: the parameter name is replaced
-  by the caller's variable name throughout the body.
-* Strings passed to a function must be inlined by the caller — this is why
-  "f-strings can break when the variable inside has the same name as a local".
-* Recursion is expanded up to 15 levels, then "Stack overflow" is raised.
-
-## Scoping
-
-Inside an expanded function body:
-
-* `@`-prefixed variables stay global;
-* all-caps names (constants such as `%TICKS%`) are left alone;
-* everything else is renamed `<name>_scope_<functionname>`, so two functions can
-  use `#delay` without colliding.
-
-## Validation
-
-Two layers, checking different things:
-
-**1. During the transpile (source-level).** Before expanding anything, `mkb.py`
-collects every `name(` in the body and checks it against `functions.json`:
-
-```
-Function <name> not defined.
+```bash
+python3 mkb.py                    # every macros/*.mkb → output/*.txt
 ```
 
-It also rejects imports that are not at the top of the file, unresolvable
-imports, recursive expansion past 15 levels, and blocks that never close.
+```txt
+$${
+// [Transpiler] greet(&who)
+&who_scope_greet = "world";
 
-**2. On the generated script (output-level).** After expanding, the `.txt` is
-validated with [`tools/validate.py`](../../tools/validate.py) before it is
-written — keywords, arity, block balance, strings, parentheses:
-
-```
-python3 tools/validate.py output/          # or:
-transpile("macros/tool.mkb", "output", strict=True)
+log("hello %&who_scope_greet%");
+}$$
 ```
 
-`strict=True` is what `server.py` uses: an invalid script is reported and not
-written, so it cannot reach the mod folder. See
-[validation.md](../validation.md#build-time-integration).
+Three things happened: the definition vanished, the call became its body, and
+the local was renamed so a second function can also use `&who`.
 
-**3. Before transpiling (source-level, developer-facing).**
-[`tools/lint_mkb.py`](../../tools/lint_mkb.py) reports problems on the `.mkb`
-line you wrote — unresolved imports, wrong arity, duplicate or unclosed
-functions, code after `stop`, unused variables, and a call to a function that
-lives in a file you forgot to import. See [lint-mkb.md](../lint-mkb.md).
+## Reading order
 
-It is expected to grow with the transpiler: a new construct should land with its
-linter rule, its doc line here, and a fixture under
-[`tests/fixtures/mkb/`](../../tests/fixtures/mkb/) — `tests/test_fixtures.py`
-maps every feature to its fixture and fails when one is missing.
+| Page | Answers |
+| --- | --- |
+| [syntax.md](syntax.md) | how a file is written: statements, `;`, comments, blank lines, variables, blocks, and what is *not* MKB |
+| [modules.md](modules.md) | `import`: syntax, the leading-block rule, resolution order, dedupe, what gets spliced where |
+| [functions.md](functions.md) | declaring functions, by-value vs by-reference parameters, defaults, scope renaming, keyword shadowing, expansion limits |
+| [usage.md](usage.md) | running the transpiler: the pipeline, `transpile()`, `TranspilerConfig`, the header, `foo.txt` vs `exec_foo.txt`, `server.py`, the editor, troubleshooting |
+| [reference/commons.md](reference/commons.md) | the module library in `macros/commons/`, function by function |
 
-## Outputs
+## The boundary
 
-For every `macros/foo.mkb`, the transpiler writes:
+| | |
+| --- | --- |
+| **This doc set** | the language you write, and the tool that compiles it. |
+| **[../original-language/](../original-language/README.md)** | the mod's own language: keywords, events, slots, variables. Valid on its own, for somebody who has never heard of MKB. |
+| **[../validation.md](../validation.md), [../lint-mkb.md](../lint-mkb.md)** | the rule catalogues of the two checkers. |
 
-* `output/foo.txt` — the wrapped script, ready for the mod;
-* `output/exec_foo.txt` — the same code **without** the `$${ … }$$` wrapper, for
-  `EXEC(...)`;
-* nothing at all when the content is unchanged (`--force` overrides).
+A sentence here may say "this compiles to `look(...)`". A sentence there may
+never say "this comes from MKB".
 
-## Where to look next
+## When the language changes
 
-* [original language](../original-language/README.md) — what MKB compiles into,
-  and the `functions.json` keyword list MKB is validated against.
-* `macros/commons/` — the working module library (`math`, `chest`, `global`).
-* `mkb.py` — the implementation; ~340 lines, no dependencies.
+A new construct is done when it has: its stage in `mkb/`, its paragraph here,
+its linter rule in [lint-mkb.md](../lint-mkb.md) if it can be checked, and a
+fixture in [`tests/fixtures/mkb/`](../../tests/fixtures/mkb/).
+`tests/test_fixtures.py` maps every feature to its fixture and fails when one is
+missing; `tests/test_doc_library.py` keeps
+[reference/commons.md](reference/commons.md) in step with the library.
+

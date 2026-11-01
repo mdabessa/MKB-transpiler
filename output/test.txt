@@ -1,11 +1,9 @@
-// ============================================================================
+$${
 // [Transpiled by MKB Transpiler v0.2.0]
 // Source: macros/test.mkb
-// Date: 2026-10-31 21:22:44
-// Options: strict=False, verbose=True
-// ============================================================================
+// Date: 2026-11-01 11:16:54
+// Options: strict=False, verbose=False
 
-$${
 #pitch = %PITCH%;
 // Yaw é invertido
 #yaw = %YAW% - 180;

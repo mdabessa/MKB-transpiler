@@ -31,7 +31,7 @@ Same output conventions as the validator (`--severity`, `--max-per-rule`,
 | Code | Severity | Catches |
 | --- | --- | --- |
 | `M001` | error | import cannot be resolved — prints the path it looked for |
-| `M002` | error | import after a normal statement (the transpiler rejects it) |
+| `M002` | error | import after a normal statement — the transpiler copies it to the output verbatim, and the mod does not know `import` |
 | `M003` | error | call to something that is neither a keyword nor a function in scope |
 | `M004` | error | wrong number of arguments for a keyword |
 | `M005` | error | wrong number of arguments for a user function |

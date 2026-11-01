@@ -1,21 +1,19 @@
-// ============================================================================
+$${
 // [Transpiled by MKB Transpiler v0.2.0]
 // Source: macros/clear_macros.mkb
-// Date: 2026-10-31 21:22:44
-// Options: strict=False, verbose=True
-// ============================================================================
+// Date: 2026-11-01 11:11:56
+// Options: strict=False, verbose=False
 
-$${
 // [Transpiler] import commons.commons;
 join(", ",@&macros[],&mac);
-// [Transpiler] print(&text_scope_print)
+// [Transpiler] print(&text)
 &text_scope_print = "Macros atuais: [%&mac%]";
 
 log("&f[&5 MACRO &f] %&text_scope_print%");
 
 unset(@&macros[]);
 join(", ",@&macros[],&mac);
-// [Transpiler] print(&text_scope_print)
+// [Transpiler] print(&text)
 &text_scope_print = "Macros pos clear: [%&mac%]";
 
 log("&f[&5 MACRO &f] %&text_scope_print%");

@@ -127,11 +127,18 @@ Backlog:
     - [x] Add header metadata comments to generated `.txt` and `exec_*.txt` scripts (transpiler version, source file path, build flags).
     - [x] Add modular unit tests (`tests/test_mkb_compiler.py`) for lexing, AST parsing, module resolving, macro expansion, and code emission.
     - [x] Refactor the server (`server.py`) that keeps transpiling scripts, removing hardcoded paths and adding CLI options/config for flexible directory watching.
-- [ ] Create the documentation for the transpiler, explaining the new language and how to use it.
-    Scaffold lives in [docs/mkb-language](./docs/mkb-language/README.md); it still needs
-    a full reference (every construct, `import` resolution, function expansion rules,
-    scoping, module library in `macros/commons/`).
+- [x] Create the documentation for the transpiler, explaining the new language and how to use it.
+    Scaffold lived in [docs/mkb-language](./docs/mkb-language/README.md); it is now a full reference:
+    - [x] Index: what MKB adds, the pipeline diagram, quick start, reading order, the one-way boundary rule.
+    - [x] [syntax.md](./docs/mkb-language/syntax.md) — file format, `;`, comments (incl. trailing → hoisted), blank lines, variables, blocks/indentation, "what is not MKB".
+    - [x] [modules.md](./docs/mkb-language/modules.md) — `import`, the leading-block rule, the five-step resolution order, dedupe/cycles, what gets spliced and where, no namespaces.
+    - [x] [functions.md](./docs/mkb-language/functions.md) — declaration, the definition disappearing, defaults, by-value vs by-reference binding, `_scope_` renaming, keyword shadowing, calls are statements, expansion limit.
+    - [x] [usage.md](./docs/mkb-language/usage.md) — nine-stage pipeline table, `transpile()` API, `TranspilerConfig`, header format, `foo.txt` vs `exec_foo.txt`, `mkb.py`/`server.py` options, editor settings, troubleshooting table.
+    - [x] [reference/commons.md](./docs/mkb-language/reference/commons.md) — the module library, function by function, plus known issues.
+    - [x] Guarded by tests: `tests/test_doc_library.py` (page ↔ library signatures, both directions) and `tests/test_docs.py` (`tools/check_docs.py`: every relative link and heading anchor resolves).
+    - [x] Defects found while documenting, fixed: the header comment was written **outside** `$${ … }$$` (chat text for the mod — now inside, validator rule `W005` catches that class); scope renaming used to rewrite `//` comments and the `// [Transpiler]` call marker; blank lines carried stray indentation; the unchanged-check compared the timestamp so nothing was ever "unchanged".
 - [ ] Extend the transpiler to support more features.
+    Each feature implemented in the transpiler should be documented and refactored the examples if eligible or create new example with it.
     - [ ] Raise all features already implemented.
     - [ ] Explore what can be done to make the transpiler more powerful (the original language is very limited)
     - [ ] Explore ways to make the new language more natural and easier to use, removing things like the "$${" and "}$" wrappers, a better f-string, string colors, better way to handle the variables types, etc.

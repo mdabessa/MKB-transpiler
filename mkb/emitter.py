@@ -21,10 +21,11 @@ def emit_output(code: str, file_path: Path, config: TranspilerConfig, repo_root:
             verbose=config.verbose
         ).strip() + "\n\n"
 
-    # Standard wrapped script: header at top, then $${ ... }$$
-    code_wrapped = header + f'$${{\n{code}\n}}$$'
-    
-    # Exec script: header at top, then raw code
+    # The header is a comment, and a comment outside `$${ … }$$` is *chat text*
+    # for the mod — it would be typed into the chat window when the macro runs.
+    # So the wrapped script keeps it inside the block; the exec script is raw
+    # code, where a `//` line is a comment like any other.
+    code_wrapped = f'$${{\n{header}{code}\n}}$$'
     code_exec = header + code
     
     return code_wrapped, code_exec

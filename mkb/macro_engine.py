@@ -62,10 +62,19 @@ def expand_macro_calls(code: str, builtins: dict, max_depth: int = 15) -> str:
             inner += func_def['code']
             var_pattern = r'^(?!//)(?:#|&)?\b[a-zA-Z_]\w*(?:\[\])?(?=\s*=|\s*[\[\]])'
             vars_found = list(set(re.findall(var_pattern, inner, flags=re.MULTILINE)).union(set(refs.keys())))
-            for var in vars_found:
-                rep = f'{var}_scope_{name}' if var not in refs and not var.startswith('@') and var != var.upper() else refs.get(var, var)
-                clean_v, clean_r = var.replace('[]', ''), rep.replace('[]', '')
-                inner = re.sub(rf'(?<![a-zA-Z0-9_&#@]){re.escape(clean_v)}(?![a-zA-Z0-9_&#@])', clean_r, inner)
+            renamed = []
+            for line_in_inner in inner.split('\n'):
+                if line_in_inner.lstrip().startswith('//'):
+                    # Comments are user text: never rename inside them, and keep
+                    # the `// [Transpiler] <call>` marker readable.
+                    renamed.append(line_in_inner)
+                    continue
+                for var in vars_found:
+                    rep = f'{var}_scope_{name}' if var not in refs and not var.startswith('@') and var != var.upper() else refs.get(var, var)
+                    clean_v, clean_r = var.replace('[]', ''), rep.replace('[]', '')
+                    line_in_inner = re.sub(rf'(?<![a-zA-Z0-9_&#@]){re.escape(clean_v)}(?![a-zA-Z0-9_&#@])', clean_r, line_in_inner)
+                renamed.append(line_in_inner)
+            inner = '\n'.join(renamed)
             out += inner + '\n'
         return out.strip()
 

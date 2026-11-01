@@ -714,10 +714,18 @@ def _code_outside_blocks(text, spans, starts, filename) -> list[Diagnostic]:
         if start >= len(line):
             continue
         stripped = line[start:].strip()
+        offset = starts[number - 1]
+        is_outside = not inside[offset + start]
+        if stripped.startswith("//"):
+            if is_outside:
+                found.append(Diagnostic(
+                    filename, number, start + 1, "warning", "W005",
+                    "comment outside a $${ … }$$ block — the mod sends this line "
+                    "to chat"))
+            continue
         if stripped.startswith(("/", "#")) or EXTERNAL_REF_RE.match(stripped):
             continue
-        offset = starts[number - 1]
-        if inside[offset + start]:
+        if not is_outside:
             continue
         if STATEMENT_CALL_RE.match(stripped) or BARE_WORD_RE.match(stripped):
             found.append(Diagnostic(

@@ -36,9 +36,10 @@ is free to say "this compiles to `look(...)`".
 macros/*.mkb  ──transpile──▶  output/*.txt  ──▶  mod ($${ … }$$ script)
 ```
 
-* `mkb.py` reads `.mkb` sources, resolves `import`, expands user-defined
-  functions, validates keyword names against `functions.json`, and writes the
-  wrapped `.txt` scripts (plus an `exec_*.txt` variant).
+* `mkb/` is the transpiler, as a pipeline of small stages: read → imports →
+  format → register functions → expand → indent/check blocks → emit → validate →
+  write. `mkb.py` is a thin CLI on top of it. What it does is documented in
+  [mkb-language/usage.md](mkb-language/usage.md#the-pipeline).
 * `server.py` watches the `macros/` folder and re-transpiles on change.
 * `functions.json` is the keyword inventory shared by the transpiler and the
   documentation generators.
@@ -47,13 +48,15 @@ macros/*.mkb  ──transpile──▶  output/*.txt  ──▶  mod ($${ … }$
 
 | Path | Contents |
 | --- | --- |
-| `mkb.py`, `server.py` | Transpiler and its file watcher. |
+| `mkb/` | The transpiler package: `lexer`, `parser`, `resolver`, `macro_engine`, `emitter`, `compiler`, `config`. |
+| `mkb.py`, `server.py` | Transpiler CLI and its file watcher. |
 | `functions.json` | 120 keywords of the original language, with signatures. |
 | `macros/*.mkb` | MKB sources, including the `commons/` library. |
 | `output/*.txt` | Generated original-language scripts. |
+- [ ] Recreate all the examples in "/macros" folder.
 | `examples/` | Original-language scripts: hand-written samples plus [`forum/`](../examples/forum/README.md) (89 archived community scripts). |
 | `docs/original-language/` | Reference for the mod's language. |
-| `docs/mkb-language/` | Reference for MKB (in progress). |
+| `docs/mkb-language/` | Reference for MKB: [syntax](mkb-language/syntax.md), [modules](mkb-language/modules.md), [functions](mkb-language/functions.md), [usage](mkb-language/usage.md), [library](mkb-language/reference/commons.md). |
 | `docs/validation.md` | Rule catalogue for the script validator (`.txt`). |
 | `docs/lint-mkb.md` | Rule catalogue for the MKB linter (`.mkb`), and the VS Code client. |
 | `vscode-extension/` | Editor support: diagnostics, completion, hover, snippets, grammar. |
@@ -62,20 +65,24 @@ macros/*.mkb  ──transpile──▶  output/*.txt  ──▶  mod ($${ … }$
 
 ## Documentation tooling
 
-All three scripts live in `tools/` and only need the standard library.
+All of these live in `tools/` and only need the standard library.
 
 | Command | Produces |
 | --- | --- |
 | `python3 tools/gen_function_docs.py` | `original-language/reference/functions.md` from `functions.json`. |
 | `python3 tools/corpus_report.py` | `original-language/reference/corpus-coverage.md` from the example corpus. |
 | `python3 tools/fetch_forum_examples.py` | Downloads community scripts into `examples/forum/`. |
+| `python3 tools/check_docs.py` | Checks every relative link and heading anchor under `docs/`; exits 1 on a broken one. |
 | `python3 tools/validate.py <paths>` | Answers "is this script valid?" for original-language `.txt` files; see [validation.md](validation.md). |
 | `python3 tools/fix_examples.py` | Applies the provable repairs (provenance comment, keyword typos, ≤3 missing closers) and re-validates; `--dry-run` to preview. |
 | `python3 tools/lint_mkb.py <paths>` | Answers "will this macro work?" for `.mkb` sources; see [lint-mkb.md](lint-mkb.md). |
 
 The two generators accept `--check`, which exits non-zero when the committed
 page no longer matches its source — cheap insurance against docs drifting from
-`functions.json`.
+`functions.json`. Two more tests guard the documentation itself:
+`tests/test_docs.py` runs the link checker, and `tests/test_doc_library.py`
+compares [mkb-language/reference/commons.md](mkb-language/reference/commons.md)
+with the functions actually declared in `macros/commons/`.
 
 Tests: `python3 -m unittest discover -s tests -v`.
 

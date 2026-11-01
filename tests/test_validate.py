@@ -44,6 +44,11 @@ class CleanScripts(unittest.TestCase):
                 errors = [d for d in diagnostics if d.severity == "error"]
                 self.assertEqual(errors, [])
 
+    def test_comment_outside_block_is_chat(self):
+        source = '// header comment\n$${\nlog("x");\n}$$'
+        codes = [d.code for d in check(source)]
+        self.assertEqual(codes, ["W005"])
+
     def test_comments_and_blank_lines_are_ignored(self):
         source = '$${\n// a comment\n\nlog("x"); // trailing\n}$$'
         self.assertEqual(check(source), [])

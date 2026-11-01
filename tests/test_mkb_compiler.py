@@ -279,6 +279,15 @@ class EmitterTests(unittest.TestCase):
         self.assertIn("// [Transpiled by MKB Transpiler v0.2.0]", exec_code)
         self.assertNotIn("$${", exec_code)
 
+    def test_header_is_inside_the_wrapper(self):
+        """A comment outside `$${ ... }$$` is chat text, so the header must not
+        be placed there."""
+        config = TranspilerConfig(header=True)
+        code = 'log("hello");\n'
+        wrapped, _ = emit_output(code, Path("macros/test.mkb"), config, Path("."))
+        self.assertLess(wrapped.index("$${"), wrapped.index("// [Transpiled by"))
+        self.assertLess(wrapped.index("// [Transpiled by"), wrapped.index("}$$"))
+
     def test_emit_without_header(self):
         config = TranspilerConfig(header=False)
         code = 'log("hello");\n'
