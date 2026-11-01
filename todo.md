@@ -121,10 +121,12 @@ Backlog:
         Rule, now enforced: `FEATURES` in `tests/test_fixtures.py` is the checklist, and
         [docs/mkb-language](./docs/mkb-language/README.md) states the three-part rule.
 - [ ] Refactor the transpiler to be more modular and easier to maintain.
-    The transpiler is currently a single file with a lot of code, making it hard to extend and maintain.
-    Add unit tests to ensure that the transpiler works correctly and to prevent regressions.
-    Add a header comment to the generated scripts, indicating all parameters/versions/metainfos about the transpiler and the source file.
-- [ ]Refactor the server that keeps transpiling the scripts, removing any hardcoded paths and making it more flexible to work with different projects.
+    The transpiler is currently a single file with regex-based pass-over-pass string manipulation, making it hard to extend and maintain.
+    - [ ] Decouple compiler stages into a clean pipeline: Lexer -> Parser/AST -> Preprocessor (Module Resolution) -> Macro Engine (Expansion & Scoping) -> Emitter (Codegen & Formatting).
+    - [ ] Create modular package structure under `mkb/` (`lexer.py`, `parser.py`, `ast_nodes.py`, `resolver.py`, `macro_engine.py`, `emitter.py`, `config.py`) keeping `mkb.py` / `mkb/__init__.py` backwards-compatible.
+    - [ ] Add header metadata comments to generated `.txt` and `exec_*.txt` scripts (transpiler version, source file path, build flags).
+    - [ ] Add modular unit tests (`tests/test_mkb_compiler.py`) for lexing, AST parsing, module resolving, macro expansion, and code emission.
+- [ ] Refactor the server (`server.py`) that keeps transpiling scripts, removing hardcoded paths and adding CLI options/config for flexible directory watching.
 - [ ] Create the documentation for the transpiler, explaining the new language and how to use it.
     Scaffold lives in [docs/mkb-language](./docs/mkb-language/README.md); it still needs
     a full reference (every construct, `import` resolution, function expansion rules,

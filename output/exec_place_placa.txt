@@ -1,4 +1,11 @@
-// [Transpiler] import commons.commons
+// ============================================================================
+// [Transpiled by MKB Transpiler v0.2.0]
+// Source: macros/place_placa.mkb
+// Date: 2026-10-31 21:22:44
+// Options: strict=False, verbose=True
+// ============================================================================
+
+// [Transpiler] import commons.commons;
 keydown("sneak");
 wait(1t);
 placesign("%PLAYER%","1","531.01S","129");

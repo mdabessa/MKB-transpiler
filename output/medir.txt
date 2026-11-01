@@ -1,16 +1,23 @@
+// ============================================================================
+// [Transpiled by MKB Transpiler v0.2.0]
+// Source: macros/medir.mkb
+// Date: 2026-10-31 21:22:44
+// Options: strict=False, verbose=True
+// ============================================================================
+
 $${
 if(@#pos_x == null);
 	@#pos_x = %XPOS%;
 	@#pos_y = %YPOS%;
 	@#pos_z = %ZPOS%;
-
+	
 	log("&6Posicao inicial: X&5%@#pos_x% &6Y&5%@#pos_y% &6Z&5%@#pos_z%");
 	log("&6Aperte novamente para calcular a distancia...");
 elseif;
 	#diffx = %XPOS% - @#pos_x;
 	#diffy = %YPOS% - @#pos_y;
 	#diffz = %ZPOS% - @#pos_z;
-
+	
 	if(#diffx < 0);
 		#diffx = #diffx * -1;
 	endif;
@@ -20,19 +27,19 @@ elseif;
 	if(#diffz < 0);
 		#diffz = #diffz * -1;
 	endif;
-
+	
 	#a = #diffx * #diffx;
 	#b = #diffy * #diffy;
 	#c = #diffz * #diffz;
 	#d = #a + #b + #c;
-
+	
 	log("%#d%");
 	#dist = sqrt(#d);
-
+	
 	log("&6Posicao final: X&5%XPOS% &6Y&5%YPOS% &6Z&5%ZPOS%");
 	log("&6Diferenca: X&5%#diffx% &6Y&5%#diffy% &6Z&5%#diffz%");
 	log("&6Distancia: &5%#dist% &6blocos");
-
+	
 	unset(@#pos_x);
 	unset(@#pos_y);
 	unset(@#pos_z);

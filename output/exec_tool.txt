@@ -1,7 +1,13 @@
-// [Transpiler] import commons.commons
-// [Transpiler] import commons.global
+// ============================================================================
+// [Transpiled by MKB Transpiler v0.2.0]
+// Source: macros/tool.mkb
+// Date: 2026-10-31 21:22:44
+// Options: strict=False, verbose=True
+// ============================================================================
 
-// [Transpiler] import commons.commons
+// [Transpiler] import commons.global;
+
+// [Transpiler] import commons.commons;
 // ~~ Macro para quebrar e vender esmeraldas ~~
 // devido ao bug do abrir bau no alt tab, fazer com que o player
 // pare de quebrar blocos, essa macro foi feita utilizando o sistemas de loja.
@@ -37,17 +43,17 @@ if(#index > -1);
 			push(&temp_array[],&macro);
 		endif;
 	next;
-
+	
 	unset(@&macros[]);
 	foreach(&temp_array[],&value);
 		push(@&macros[],&value);
 	next;
-
+	
 	// [Transpiler] print(&text_scope_print)
 	&text_scope_print = "Macro &3%&macro_name% &f- &4OFF!";
-
+	
 	log("&f[&5 MACRO &f] %&text_scope_print%");
-
+	
 	keyup("forward");
 	if(stop_macro_scope_toggle_macro);
 		stop();
@@ -56,9 +62,9 @@ else;
 	push(@&macros[],"%&macro_name%");
 	// [Transpiler] print(&text_scope_print)
 	&text_scope_print = "Macro &3%&macro_name% &f- &2ON!";
-
+	
 	log("&f[&5 MACRO &f] %&text_scope_print%");
-
+	
 endif;
 
 
@@ -69,142 +75,142 @@ wait(1t);
 // assim evitando bug de não quebrar bloco
 if(%ITEM%!=278);
 	// [Transpiler] set_inventory()
-
+	
 	// [Transpiler] print(&text_scope_print)
 	&text_scope_print = "Verificando inventario inicial...";
-
+	
 	log("&f[&5 MACRO &f] %&text_scope_print%");
-
+	
 	IF(%GUI%!="GUIINVENTORY");
 		GUI("INVENTORY");
 	ENDIF;
-
-	#pickaxe_slot_scope_set_inventory = 0;
-	#rep_slot_scope_set_inventory = 0;
+	
+	#pickaxe_slot = 0;
+	#rep_slot = 0;
 	FOR(#slot,9,44);
 		GETSLOTITEM(%#slot%,#item_id);
 		// GETITEMINFO(%#item_id%,&item_name);
-
+		
 		IF(%#item_id%==278);
-			if(#pickaxe_slot_scope_set_inventory != 0);
+			if(#pickaxe_slot != 0);
 				GUI();
 				// [Transpiler] raise(&text_scope_raise)
 				&text_scope_raise = "Mais de uma picareta no inventario!";
-
+				
 				log("&f[&4 MACRO - ERRO &f] %&text_scope_raise%");
 				stop();
-
+				
 			endif;
-
-			#pickaxe_slot_scope_set_inventory = %#slot%;
-
+			
+			#pickaxe_slot = %#slot%;
+			
 		ELSEIF(%#item_id%==57);
-			if(#rep_slot_scope_set_inventory != 0);
+			if(#rep_slot != 0);
 				GUI();
 				// [Transpiler] raise(&text_scope_raise)
 				&text_scope_raise = "Mais de um slot de blocos de reparacao no inventario!";
-
+				
 				log("&f[&4 MACRO - ERRO &f] %&text_scope_raise%");
 				stop();
-
+				
 			endif;
-			#rep_slot_scope_set_inventory = %#slot%;
+			#rep_slot = %#slot%;
 		ELSEIF(%#item_id%==#block_id);
 			if((#slot < 36) || (#slot > 44));
 				GUI();
 				// [Transpiler] raise(&text_scope_raise)
 				&text_scope_raise = "Bloco de mineracao fora da hotbar!";
-
+				
 				log("&f[&4 MACRO - ERRO &f] %&text_scope_raise%");
 				stop();
-
+				
 			endif;
 		ELSEIF((%#item_id%!=0) && (%#item_id%!=#drop_id));
 			GUI();
 			// [Transpiler] raise(&text_scope_raise)
 			&text_scope_raise = "Item invalido no inventario!";
-
+			
 			log("&f[&4 MACRO - ERRO &f] %&text_scope_raise%");
 			stop();
-
+			
 		endif;
 	NEXT;
-
+	
 	// Validar inventario
-	if(#pickaxe_slot_scope_set_inventory == 0);
+	if(#pickaxe_slot == 0);
 		GUI();
 		// [Transpiler] raise(&text_scope_raise)
 		&text_scope_raise = "Sem picareta no inventario!";
-
+		
 		log("&f[&4 MACRO - ERRO &f] %&text_scope_raise%");
 		stop();
-
+		
 	endif;
-
-	if(#rep_slot_scope_set_inventory == 0);
+	
+	if(#rep_slot == 0);
 		// [Transpiler] warning(&text_scope_warning)
 		&text_scope_warning = "Sem bloco de reparacao no inventario!";
-
+		
 		log("&f[&6 MACRO - AVISO &f] %&text_scope_warning%");
-
+		
 	endif;
-
+	
 	// Organizar inventario
-	if(#pickaxe_slot_scope_set_inventory != 36);
-		SLOTCLICK(%#pickaxe_slot_scope_set_inventory%,L,FALSE);
+	if(#pickaxe_slot != 36);
+		SLOTCLICK(%#pickaxe_slot%,L,FALSE);
 		WAIT(3t);
 		SLOTCLICK("36",L,FALSE);
 		WAIT(3t);
 	endif;
-
-	if(#rep_slot_scope_set_inventory != 35);
-		SLOTCLICK(%#rep_slot_scope_set_inventory%,L,FALSE);
+	
+	if(#rep_slot != 35);
+		SLOTCLICK(%#rep_slot%,L,FALSE);
 		WAIT(3t);
 		SLOTCLICK("35",L,FALSE);
 		WAIT(3t);
 	endif;
 	GUI();
-
-
+	
+	
 	// Ir pra a home
 	// [Transpiler] go_home(&gohome_home_scope_go_home)
 	&gohome_home_scope_go_home = "%&home%";
-
-	#gohome_x_scope_go_home = %XPOS%;
-	#gohome_y_scope_go_home = %YPOS%;
-	#gohome_z_scope_go_home = %ZPOS%;
-
+	
+	#gohome_x = %XPOS%;
+	#gohome_y = %YPOS%;
+	#gohome_z = %ZPOS%;
+	
 	// [Transpiler] command(&command_cmd_scope_command)
 	&command_cmd_scope_command = "/home %&gohome_home_scope_go_home%";
-
+	
 	// [Transpiler] print(&text_scope_print)
 	&text_scope_print = "Comando: &3%&command_cmd_scope_command%";
-
+	
 	log("&f[&5 MACRO &f] %&text_scope_print%");
-
+	
 	echo("%&command_cmd_scope_command%");
 	wait(1t);
-
-
+	
+	
 	// aguardar o teleporte, maximo 100 ticks (5 segundos)
 	DO(100);
-		IF((%XPOS% != #gohome_x_scope_go_home) || (%YPOS% != #gohome_y_scope_go_home) || (%ZPOS% != #gohome_z_scope_go_home));
+		IF((%XPOS% != #gohome_x) || (%YPOS% != #gohome_y) || (%ZPOS% != #gohome_z));
 			BREAK;
 		ENDIF;
 		wait(1t);
 	LOOP;
 	// #todo: verificar se o teleporte foi bem sucedido
-	#pitch_scope_go_home = %PITCH%;
+	#pitch = %PITCH%;
 	// Yaw é invertido
-	#yaw_scope_go_home = %YAW% - 180;
-	if(#yaw_scope_go_home < 0);
-		#yaw_scope_go_home = 360 + #yaw_scope_go_home;
-	elseif(#yaw_scope_go_home > 360);
-		#yaw_scope_go_home = #yaw_scope_go_home - 360;
+	#yaw = %YAW% - 180;
+	if(#yaw < 0);
+		#yaw = 360 + #yaw;
+	elseif(#yaw > 360);
+		#yaw = #yaw - 360;
 	endif;
-
+	
 	wait(1t);
-
+	
 	// aguardar carregar o mundo
 	do();
 		look("355","90");
@@ -214,9 +220,9 @@ if(%ITEM%!=278);
 		ENDIF;
 	loop();
 	wait(10t);
-	look("%#yaw_scope_go_home%","%#pitch_scope_go_home%");
+	look("%#yaw%","%#pitch%");
 	wait(1t);
-
+	
 endif;
 
 // desativar menu loja
@@ -248,25 +254,25 @@ do();
 					// vender itens
 					// [Transpiler] print(&text_scope_print)
 					&text_scope_print = "Sem bloco na hotbar!";
-
+					
 					log("&f[&5 MACRO &f] %&text_scope_print%");
-
+					
 					// [Transpiler] sell_items()
-
-					unset(#baus_scope_sell_items[]);
-					#baus_scope_sell_items[0] = 307;
-					#baus_scope_sell_items[1] = 326;
-					#baus_scope_sell_items[2] = 4;
-					#baus_scope_sell_items[3] = 39;
-					#baus_scope_sell_items[4] = 57;
-
-
+					
+					unset(#baus[]);
+					#baus[0] = 307;
+					#baus[1] = 326;
+					#baus[2] = 4;
+					#baus[3] = 39;
+					#baus[4] = 57;
+					
+					
 					// vender
 					do(5);
-						FOREACH(#baus_scope_sell_items[],#bau);
+						FOREACH(#baus[],#bau);
 							look("270", "%#bau%");
 							wait(1t);
-
+							
 							// placa
 							if(%HITID% == 68);
 								key("attack");
@@ -274,14 +280,14 @@ do();
 							endif;
 						next;
 					loop;
-
+					
 					break;
 				endif;
 			endif;
 		endif;
-
+		
 		// [Transpiler] place_and_break()
-
+		
 		look("179","4");
 		wait(1t);
 		do(5);
@@ -292,31 +298,31 @@ do();
 				wait(1t);
 			endif;
 		loop;
-
+		
 		slot(1);
 		do();
-			c_scope_place_and_break = false;
+			c = false;
 			do(150);
 				key("attack");
-
+				
 				if(%HITID%==49);
 					@#total_blocks = @#total_blocks + 4;
-					c_scope_place_and_break = true;
+					c = true;
 					break;
 				endif;
-
+				
 				if((%YAW% != 179) || (%PITCH% != 4));
 					looks("179","4");
 					wait(0.2t);
 				endif;
 			loop;
-
-			if(c_scope_place_and_break);
+			
+			if(c);
 				// [Transpiler] update_label()
-
-				&label_text_scope_update_label = "&aEsmeraldas: &3%@#total_blocks%";
-				setlabel("ore_label","%&label_text_scope_update_label%");
-
+				
+				&label_text = "&aEsmeraldas: &3%@#total_blocks%";
+				setlabel("ore_label","%&label_text%");
+				
 				break;
 			else;
 				do(5);
@@ -327,62 +333,62 @@ do();
 				loop;
 			endif;
 		loop;
-
-
+		
+		
 		// Checar durabilidade / reparar
 		IF(%DURABILITY% < 450);
 			// [Transpiler] raise(&text_scope_raise)
 			&text_scope_raise = "&fFerramenta &4quebrando, &fparando macro...";
-
+			
 			log("&f[&4 MACRO - ERRO &f] %&text_scope_raise%");
 			stop();
-
+			
 		elseif(%DURABILITY% < 460);
 			// [Transpiler] print(&text_scope_print)
 			&text_scope_print = "Reparandot ferramenta...";
-
+			
 			log("&f[&5 MACRO &f] %&text_scope_print%");
-
+			
 			look("268","86");
 			wait(1t);
 			key("use");
 			wait(1t);
 		ENDIF;
 	loop;
-
+	
 	// [Transpiler] fill_hotbar()
-
+	
 	// [Transpiler] print(&text_scope_print)
 	&text_scope_print = "Comprando minerios...";
-
+	
 	log("&f[&5 MACRO &f] %&text_scope_print%");
-
-	unset(#baus_scope_fill_hotbar[]);
-	//#baus_scope_fill_hotbar[0] = 310;
-	//#baus_scope_fill_hotbar[1] = 332;
-	//#baus_scope_fill_hotbar[2] = 1;
-	//#baus_scope_fill_hotbar[3] = 33;
-	#baus_scope_fill_hotbar[0] = 53;
-
+	
+	unset(#baus[]);
+	//#baus[0] = 310;
+	//#baus[1] = 332;
+	//#baus[2] = 1;
+	//#baus[3] = 33;
+	#baus[0] = 53;
+	
 	slot(8);
 	wait(3t);
 	if(%ITEM%==#block_id);
 		break;
 	endif;
-
+	
 	// ciclar até conseguir comprar
 	do();
-		FOREACH(#baus_scope_fill_hotbar[],#bau);
+		FOREACH(#baus[],#bau);
 			look("1", "%#bau%");
 			wait(1t);
-
+			
 			// placa
 			if(%HITID% == 68);
 				key("use");
 				wait(20t);
 				slot(8);
 				wait(20t);
-
+				
 				if(%ITEM%==#block_id);
 					break;
 				endif;
@@ -391,13 +397,13 @@ do();
 		if(%ITEM%==#block_id);
 			break;
 		endif;
-
+		
 		wait(600t);
 	loop;
-
+	
 	@#real_total_blocks = @#real_total_blocks + 448;
 	@#total_blocks = @#real_total_blocks;
 	slot(1);
 	wait(5t);
-
+	
 loop;

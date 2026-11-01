@@ -1,3 +1,10 @@
+// ============================================================================
+// [Transpiled by MKB Transpiler v0.2.0]
+// Source: macros/onChat.mkb
+// Date: 2026-10-31 21:22:44
+// Options: strict=False, verbose=True
+// ============================================================================
+
 //log("%CHATCLEAN%")
 //@&text_test = %CHATCLEAN%
 
@@ -8,13 +15,13 @@ ENDIF;
 
 IFMATCHES("%CHATCLEAN%","^Seu saldo atual: (.*).[\d]+[\d]+ (Coins|Coin)");
 	MATCH("%CHATCLEAN%","^Seu saldo atual: (.*).[\d]+[\d]+ (Coins|Coin)",{#money_});
-
+	
 	@#money_change = @#money_change + (#money_ - @#money);
 	@#money = #money_;
-
+	
 	// Dinheiro atual
 	&money_text = "&6$&3%@#money%";
-
+	
 	// Mudanca desde o login
 	if(@#money_change > 0);
 		&money_text = "%&money_text%\n&2+%@#money_change%";
@@ -23,11 +30,11 @@ IFMATCHES("%CHATCLEAN%","^Seu saldo atual: (.*).[\d]+[\d]+ (Coins|Coin)");
 	else;
 		&money_text = "%&money_text%\n&4%@#money_change%";
 	endif;
-
+	
 	// Mudanca por minuto
 	#mins = (@#tick_total / 20) / 60;
 	#money_per_min = @#money_change / #mins;
 	//&money_text = "%&money_text%\n&5%#money_per_min% C/min"
-
+	
 	setlabel("money_label","%&money_text%");
 ENDIF;
