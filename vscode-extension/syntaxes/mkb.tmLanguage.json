@@ -59,7 +59,7 @@
       }
     },
     "numbers": {
-      "match": "\\b\\d+\\b",
+      "match": "\\b\\d+(_\\d+)*((?:ms|t))?\\b",
       "name": "constant.numeric.mkb"
     }
   }

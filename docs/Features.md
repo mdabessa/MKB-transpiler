@@ -59,12 +59,10 @@ Any new rules should be added to the linter and validator, with proper documenta
 - [ ] Better way to handle variable types, making it more natural and easier to use (e.g., `#var` for numbers, `&var` for strings, `@var` for global variables, etc.).
 - [ ] Optimization: Remove any unused variables, functions, and imports from the generated code.
 - [ ] Obfuscation: Add a feature to obfuscate the generated code while keeping the same functionality, enabled as a flag to the CLI.
-- [ ] Linter should solve the imports;
-- [ ] Linter should warn about unused imports, variables, and functions;
-- [ ] Linter should solve the dead code (code after `stop` or `return`);
-- [ ] Linter should solve special number formats (e.g., `100ms`, `1t`);
+- [ ] The vscode-extension/language server should solve the imports;
+- [ ] The vscode-extension/language server should warn about unused imports, variables, and functions;
+- [ ] The vscode-extension/language server should solve the dead code (code after `stop` or `return`);
+- [x] The vscode-extension/language server should solve special number formats (e.g., `100ms`, `1t`), (raw numbers is supported, the mod interprets them as seconds);
 - [ ] Add more number formats:
-   - [ ] `1s` = 1000ms
-   - [ ] `1m` = 60s
    - [ ] `1_000`, `1_000_000` ... = 1000, 1000000 ... (underscore as thousands separator) [should work with other formats too, like `1_000ms`, `1_000s`, `1_000m`]
 
