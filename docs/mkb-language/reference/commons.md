@@ -15,6 +15,7 @@ import commons.chest;
 | `chest.mkb` | `import commons.chest;` | `stock_item`, `withdraw_item` (imports `commons.commons` itself) |
 | `global.mkb` | `import commons.global;` | `toggle_macro`, `reload` (imports `commons.commons` itself) |
 | `math.mkb` | `import commons.math;` | `abs` — **stub, does nothing** |
+| `colors.mkb` | `import commons.colors;` | `&COLOR_*` — sixteen chat colour constants, no functions |
 
 This page is written by hand and kept honest by
 `tests/test_doc_library.py`, which fails when a function exists in the library
@@ -88,6 +89,42 @@ transpiled cannot be restarted by it.
 | Function | Status |
 | --- | --- |
 | `abs(#number)` | **Empty stub** — the body is empty, so the call expands to nothing but a binding. Do not use it yet. |
+
+## `commons.colors`
+
+Sixteen chat colour constants. Each variable holds the raw `&<code>` string
+the mod uses for Minecraft colour formatting. Import the module once and the
+names are available everywhere:
+
+| Variable | Code | Colour |
+| --- | --- | --- |
+| `&COLOR_BLACK` | `&0` | Black |
+| `&COLOR_DARK_BLUE` | `&1` | Dark Blue |
+| `&COLOR_DARK_GREEN` | `&2` | Dark Green |
+| `&COLOR_DARK_AQUA` | `&3` | Dark Aqua |
+| `&COLOR_DARK_RED` | `&4` | Dark Red |
+| `&COLOR_DARK_PURPLE` | `&5` | Dark Purple |
+| `&COLOR_GOLD` | `&6` | Gold / Yellow-Brown |
+| `&COLOR_GRAY` | `&7` | Gray |
+| `&COLOR_DARK_GRAY` | `&8` | Dark Gray |
+| `&COLOR_BLUE` | `&9` | Blue |
+| `&COLOR_GREEN` | `&a` | Green |
+| `&COLOR_AQUA` | `&b` | Aqua / Light Blue |
+| `&COLOR_RED` | `&c` | Red |
+| `&COLOR_LIGHT_PURPLE` | `&d` | Light Purple / Magenta |
+| `&COLOR_YELLOW` | `&e` | Yellow |
+| `&COLOR_WHITE` | `&f` | White |
+
+```mkb
+import commons.colors;
+
+log("%&COLOR_RED%[ERROR] Something broke");
+log("%&COLOR_GOLD%Gold: %#gold_count%");
+```
+
+Because they are plain string variables assigned at module level, they survive
+as top-level statements in the generated script — the import costs a few lines
+in the output. For macros that never need them, skip the import.
 
 ## Known issues
 

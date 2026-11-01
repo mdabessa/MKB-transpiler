@@ -55,7 +55,16 @@ Any new rules should be added to the linter and validator, with proper documenta
 
 - [ ] Import Naming: Currently, the import is resolved as global (e.g., `import commons.math;` makes `*` all inside `commons.math` available), instead it should have to be imported as a namespace (e.g., `import commons.math` -> math.*).
 - [ ] Support for selective imports (e.g., `import commons.math { abs, sqrt };`).
-- [ ] Create new global constants for the colors.
+- [x] Create new global constants for the colors.
 - [ ] Better way to handle variable types, making it more natural and easier to use (e.g., `#var` for numbers, `&var` for strings, `@var` for global variables, etc.).
 - [ ] Optimization: Remove any unused variables, functions, and imports from the generated code.
 - [ ] Obfuscation: Add a feature to obfuscate the generated code while keeping the same functionality, enabled as a flag to the CLI.
+- [ ] Linter should solve the imports;
+- [ ] Linter should warn about unused imports, variables, and functions;
+- [ ] Linter should solve the dead code (code after `stop` or `return`);
+- [ ] Linter should solve special number formats (e.g., `100ms`, `1t`);
+- [ ] Add more number formats:
+   - [ ] `1s` = 1000ms
+   - [ ] `1m` = 60s
+   - [ ] `1_000`, `1_000_000` ... = 1000, 1000000 ... (underscore as thousands separator) [should work with other formats too, like `1_000ms`, `1_000s`, `1_000m`]
+

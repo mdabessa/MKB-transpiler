@@ -1,0 +1,4 @@
+import commons.colors;
+
+log("Red: %&COLOR_RED%");
+log("Green: %&COLOR_GREEN%");
