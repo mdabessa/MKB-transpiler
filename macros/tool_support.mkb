@@ -1,4 +1,3 @@
-$${
 import commons.commons
 import commons.global
 import commons.chest
@@ -251,4 +250,3 @@ do()
 	next;
 	wait(200t);
 loop
-}$$

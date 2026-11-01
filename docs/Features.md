@@ -32,6 +32,7 @@ vanilla-compatible macro script files.
    - [x] Clean File Format Without Markers: `.mkb` source files do not require wrapping in `$${ ... }$$` markers (though markers are supported and stripped if present on read).
    - [x] Trailing Comment Hoisting: Comments written at the end of a line (`statement(); // comment`) are automatically moved to their own line above the statement (`// comment \n statement();`) because the target mod does not support inline comments after code.
    - [x] Block Checking & Indentation: Automatically checks block opening and closing (`if/endif`, `do/loop`, `do/until`, `do/while`, `elseif`, `else`) and formats indentation with one tab per open block level.
+   - [x] Script Wrapping: The transpiler automatically wraps the generated code in `$${ ... }$$` for the `output/foo.txt` file, while leaving `output/exec_foo.txt` unwrapped for direct execution via `EXEC()`. 
 
 5. TOOLCHAIN & QUALITY ASSURANCE
    - [x] Dual Output Generation: For every `foo.mkb`, generates two files:
@@ -47,14 +48,13 @@ vanilla-compatible macro script files.
 Roadmap - TODOs & Future Features
 ------------------
 When a feature is implemented, it should be grouped in the above list and marked as `[x]`.
-All new features should be documented in the [MKB Language Reference](./docs/mkb-language/README.md)
-All new features should be included in the [Macros](./macros/) folder with examples of usage (refactoring existing examples or creating new ones).
+All new features should be documented in the [MKB Language Reference](./mkb-language/README.md)
+All new features should be included in the [Macros](../macros/) folder with examples of usage (refactoring existing examples or creating new ones).
 All new features should be tested with unit tests and/or integration tests (see `tests/` folder).
-Any new rules should be added to the linter and validator, with proper documentation in the [linter](./docs/lint-mkb.md) and [validator](./docs/validation.md) references.
+Any new rules should be added to the linter and validator, with proper documentation in the [linter](./lint-mkb.md) and [validator](./validation.md) references.
 
 - [ ] Import Naming: Currently, the import is resolved as global (e.g., `import commons.math;` makes `*` all inside `commons.math` available), instead it should have to be imported as a namespace (e.g., `import commons.math` -> math.*).
 - [ ] Support for selective imports (e.g., `import commons.math { abs, sqrt };`).
-- [ ] Remove the `$${ ... }$$` wrapper need for the MKB source files, making less boilerplate (the transpiler should automatically wrap the generated code).
 - [ ] Create new global constants for the colors.
 - [ ] Better way to handle variable types, making it more natural and easier to use (e.g., `#var` for numbers, `&var` for strings, `@var` for global variables, etc.).
 - [ ] Optimization: Remove any unused variables, functions, and imports from the generated code.

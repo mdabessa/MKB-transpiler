@@ -1,4 +1,3 @@
-$${
 import commons.commons
 
 join(", ",@&macros[],&mac);
@@ -6,5 +5,3 @@ print("Macros atuais: [%&mac%]")
 unset(@&macros[])
 join(", ",@&macros[],&mac);
 print("Macros pos clear: [%&mac%]")
-
-}$$

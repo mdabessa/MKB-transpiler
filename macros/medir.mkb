@@ -1,6 +1,3 @@
-$${
-
-
 if(@#pos_x == null)
     @#pos_x = %XPOS%
     @#pos_y = %YPOS%
@@ -39,4 +36,3 @@ elseif
 	unset(@#pos_y)
 	unset(@#pos_z)
 endif
-}$$

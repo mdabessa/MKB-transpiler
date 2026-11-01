@@ -1,4 +1,3 @@
-$${
 //log("%CHATCLEAN%")
 //@&text_test = %CHATCLEAN%
 
@@ -32,6 +31,3 @@ IFMATCHES("%CHATCLEAN%","^Seu saldo atual: (.*).[\d]+[\d]+ (Coins|Coin)");
 
     setlabel("money_label","%&money_text%");
 ENDIF;
-
-
-}$$

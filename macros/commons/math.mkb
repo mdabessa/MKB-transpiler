@@ -1,5 +1,3 @@
-$${
-	function abs(#number);
-		
-	endfunction;
-}$$
+function abs(#number);
+	
+endfunction;

@@ -1,4 +1,3 @@
-$${
 import commons.chest
 
 
@@ -18,4 +17,3 @@ do()
     wait(1t)
     stock_item("%#iid%","guardar")
 loop
-}$$

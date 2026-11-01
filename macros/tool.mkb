@@ -1,4 +1,3 @@
-$${
 import commons.commons
 import commons.global
 
@@ -265,4 +264,3 @@ do()
 
 	fill_hotbar()
 loop
-}$$

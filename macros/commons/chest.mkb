@@ -1,4 +1,3 @@
-$${
 import commons.commons
 
 function stock_item(#item_id,&stock_home);
@@ -235,4 +234,3 @@ function withdraw_item(#item_id,&stock_home="guardar",#max=36,stop_=true,temp_ho
 		endif;
 	loop
 endfunction;
-}$$

@@ -1,4 +1,3 @@
-$${
 // Macro para farmar esqueletos
 import commons.commons
 import commons.chest
@@ -157,5 +156,3 @@ do()
         endif
     ENDIF;
 loop
-
-}$$

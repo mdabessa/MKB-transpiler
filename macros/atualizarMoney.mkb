@@ -1,4 +1,3 @@
-$${
 import commons.global
 // atualizar o money de tempo em tempo
 
@@ -22,5 +21,3 @@ do()
 	endif
 	wait(300000ms)
 loop
-
-}$$

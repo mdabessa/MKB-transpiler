@@ -1,4 +1,3 @@
-$${
 import commons.commons
 keydown("sneak")
 wait(1t)
@@ -37,6 +36,3 @@ endif;
 
 keydown("sneak")
 wait(1t)
-
-
-}$$

@@ -1,8 +1,8 @@
 $${
 // [Transpiled by MKB Transpiler v0.2.0]
 // Source: macros/onChat.mkb
-// Date: 2026-11-01 11:11:56
-// Options: strict=False, verbose=False
+// Date: 2026-11-01 12:32:45
+// Options: strict=False, verbose=True
 
 //log("%CHATCLEAN%")
 //@&text_test = %CHATCLEAN%
