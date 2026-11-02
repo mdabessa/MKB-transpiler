@@ -6,6 +6,8 @@ Editor support for this repository's macro language:
   generated `.txt` scripts (from `tools/validate.py`), on type and on save;
 * **completion** for the keywords in `functions.json`, with signature and
   category;
+* **typed declarations** — `int` / `str` / `bool` / `global` are highlighted,
+  completed as a ready-made declaration and documented on hover;
 * **hover** showing the signature and what the keyword does;
 * **signature help** with the active parameter while you type arguments;
 * **snippets** for `macro`, `function`, `if`, `dofor`, loops and friends;
@@ -19,6 +21,34 @@ picks up the `firstLine` hint for files it does not already know.
 The extension is a thin client: it pipes the current buffer into the Python
 tools as JSON, so the rules live in one place and the editor can never disagree
 with the command line.
+
+## Typed declarations
+
+`.mkb` accepts a type in front of a declaration; the transpiler writes the
+mod's sigil and remembers the name for later uses:
+
+| You write | Generated |
+| --- | --- |
+| `int total = 0` | `#total = 0;` |
+| `str label = "x"` | `&label = "x";` |
+| `bool logging = false` | `logging = false;` |
+| `global int pos = %XPOS%` | `@#pos = %XPOS%;` |
+| `str[] names = []` | `&names = [];` |
+
+The editor mirrors the feature:
+
+* **highlighting** — the type is a storage type and the declared name a
+  declared variable; typed parameters (`function f(str a, int b = 1)`) get the
+  same treatment;
+* **completion** — `int`, `str`, `bool`, `global` and the aliases `num`,
+  `number`, `float`, `double`, `long`, `string`, `text`, `boolean` complete to
+  a full declaration with placeholders;
+* **hover** — shows what the declaration compiles to and which sigil it uses;
+* **snippets** — `int`, `str`, `bool`, `global`, `array`, `funct`, `foreacht`.
+
+Diagnostics need no special case: `tools/lint_mkb.py` reads the buffer through
+the same preprocessing as the transpiler (`mkb/utils.py`), so the rules already
+see the inferred sigils and `M010` reports an unused typed variable.
 
 ## Requirements
 

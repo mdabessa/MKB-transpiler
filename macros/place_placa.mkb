@@ -5,32 +5,32 @@ placesign("%PLAYER%","1","531.01S","129")
 keydown("sneak")
 wait(1t)
 stop()
-#iid = 129
+int iid = 129
 
 // Valor que eu vendo
-#unit_price_b = 0
+int unit_price_b = 0
 
 // Valor que eu compro
-#unit_price_s = 521t
+int unit_price_s = 521t
 
 // Quantidade de itens
-#quantity = 1;//64 * 7
+int quantity = 1;//64 * 7
 
 
-#price_b = #unit_price_b * #quantity
-#price_s = #unit_price_s * #quantity
+int price_b = unit_price_b * quantity
+int price_s = unit_price_s * quantity
 
 keydown("sneak")
 wait(1t)
 
-if((#price_b > 0) && (#price_s > 0))
-	placesign("%PLAYER%","%#quantity%","B%#price_b%:%#price_s%S","%#iid%")
-elseif(#price_b > 0)
-	placesign("%PLAYER%","%#quantity%","B%#price_b%","%#iid%")
-elseif(#price_s > 0);
-	placesign("%PLAYER%","%#quantity%","S%#price_s%","%#iid%")
+if((price_b > 0) && (price_s > 0))
+	placesign("%PLAYER%","%quantity%","B%price_b%:%price_s%S","%iid%")
+elseif(price_b > 0)
+	placesign("%PLAYER%","%quantity%","B%price_b%","%iid%")
+elseif(price_s > 0);
+	placesign("%PLAYER%","%quantity%","S%price_s%","%iid%")
 else
-	log("Precos nao sao validos! S = %#price_s%, B = %#price_b%")
+	log("Precos nao sao validos! S = %price_s%, B = %price_b%")
 	stop()
 endif;
 

@@ -31,8 +31,9 @@ vanilla-compatible macro script files.
    - [x] Optional Semicolons: Semicolons are optional at the end of statements; the transpiler automatically appends `;` where missing while preserving existing ones.
    - [x] Clean File Format Without Markers: `.mkb` source files do not require wrapping in `$${ ... }$$` markers (though markers are supported and stripped if present on read).
    - [x] Trailing Comment Hoisting: Comments written at the end of a line (`statement(); // comment`) are automatically moved to their own line above the statement (`// comment \n statement();`) because the target mod does not support inline comments after code.
-   - [x] Block Checking & Indentation: Automatically checks block opening and closing (`if/endif`, `do/loop`, `do/until`, `do/while`, `elseif`, `else`) and formats indentation with one tab per open block level.
+   - [x] Block Checking & Indentation: Automatically checks block opening and closing (`if/endif`, `do/loop`, `do/until`, `elseif`, `else`) and formats indentation with one tab per open block level.
    - [x] Script Wrapping: The transpiler automatically wraps the generated code in `$${ ... }$$` for the `output/foo.txt` file, while leaving `output/exec_foo.txt` unwrapped for direct execution via `EXEC()`. 
+   - [x] Typed Variable Declarations: Explicit types replace the sigils — `int x = 0` → `#x = 0`, `str s = "hi"` → `&s = "hi"`, `bool flag = false` → `flag = false`, `global int g = 0` → `@#g = 0`, `str[] a = []` → `&a = []`. Declared names are remembered, so later bare uses receive their sigil (`pick(cicle)` → `pick(&cicle)`, `log("%cicle%")` → `log("%&cicle%")`), including typed parameters (`function f(str a, int b = 1);` → `function f(&a, #b = 1);`) and inline loop variables (`FOREACH(names, str name)` → `FOREACH(&names[], &name)`).
 
 5. TOOLCHAIN & QUALITY ASSURANCE
    - [x] Dual Output Generation: For every `foo.mkb`, generates two files:
@@ -42,11 +43,11 @@ vanilla-compatible macro script files.
    - [x] MKB Source Linter (`tools/lint_mkb.py`): Static analysis tool checking imports (`M001`, `M002`), keyword calls (`M003`), argument counts (`M004`, `M005`), duplicate functions (`M006`), unclosed blocks (`M007`, `M008`), dead code (`M009`), unread variables (`M010`, `M012`), and syntax/string issues (`M011`), complete with a safe auto-fixer (`--fix`).
    - [x] Script Validator (`tools/validate.py`): Validates generated `.txt` scripts against `functions.json` grammar rules (errors `E001`-`E010`, warnings `W001`-`W005`, info `I001`-`I002`).
    - [x] Build-Time Strict Validation & Watcher (`server.py`): Continuous file system watcher with `--strict` mode that prevents invalid generated scripts from being written to output.
-   - [x] VS Code Extension (`vscode-extension/`): Provides syntax highlighting, code snippets, autocompletion, hover documentation, signature help, and real-time on-type diagnostics via stdio integration with the linter and validator.
+   - [x] VS Code Extension (`vscode-extension/`): Provides syntax highlighting, code snippets, autocompletion, hover documentation, signature help, and real-time on-type diagnostics via stdio integration with the linter and validator, including highlighting, completion, hover and snippets for typed declarations (`int`/`str`/`bool`/`global`).
 
 
 Roadmap - TODOs & Future Features
-------------------
+|------------------
 When a feature is implemented, it should be grouped in the above list and marked as `[x]`.
 All new features should be documented in the [MKB Language Reference](./mkb-language/README.md)
 All new features should be included in the [Macros](../macros/) folder with examples of usage (refactoring existing examples or creating new ones).
@@ -75,8 +76,25 @@ Any new rules should be added to the linter and validator, with proper documenta
       FUNCTION name(params) {} -> It will be expanded to the transpiler; ENDFUNCTION should be removed.
    4. UNSAFE:
       UNSAFE {} -> UNSAFE ... ENDUNSAFE // Unsafe block, no condition
+- [x] Better way to handle variable types, making it more natural and easier to use (e.g., `#var` for numbers, `&var` for strings, `@var` for global variables, etc.).
+   Type annotations with explicit type declarations
+      int seconds_before = 10    ---> #seconds_before = 10
+      str cicle = "Hello"        ---> &cicle = "Hello"
+      bool log_cicle = false     ---> log_cicle = false
+      global int pos_x = XPOS    ---> @#pos_x = XPOS
+      str[] macros = []          ---> &macros = []
+
+      // Function parameters with type annotations
+      function log_items(str prefix, int count = 5);    ---> function log_items(&prefix, #count = 5)
+      // Inside function body
+      int index = 0    ---> #index = 0
+
+      // Sigils are inserted at usage sites too
+      if (log_cicle) ...         ----> if (log_cicle) ...
+      print(cicle)               ----> print(&cicle)
+      log("%cicle%")             ----> log("%&cicle%")
+      FOREACH (macros; str macro) ...  ----> FOREACH (&macros[]; &macro) ...
 - [x] Create new global constants for the colors.
-- [ ] Better way to handle variable types, making it more natural and easier to use (e.g., `#var` for numbers, `&var` for strings, `@var` for global variables, etc.).
 - [ ] Optimization: Remove any unused variables, functions, and imports from the generated code.
 - [ ] Obfuscation: Add a feature to obfuscate the generated code while keeping the same functionality, enabled as a flag to the CLI.
 - [ ] The vscode-extension/language server should solve the imports;
@@ -85,4 +103,3 @@ Any new rules should be added to the linter and validator, with proper documenta
 - [x] The vscode-extension/language server should solve special number formats (e.g., `100ms`, `1t`), (raw numbers is supported, the mod interprets them as seconds);
 - [ ] Add more number formats:
    - [ ] `1_000`, `1_000_000` ... = 1000, 1000000 ... (underscore as thousands separator) [should work with other formats too, like `1_000ms`, `1_000s`, `1_000m`]
-

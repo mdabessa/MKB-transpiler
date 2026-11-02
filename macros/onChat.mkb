@@ -13,21 +13,21 @@ IFMATCHES("%CHATCLEAN%","^Seu saldo atual: (.*).[\d]+[\d]+ (Coins|Coin)");
     @#money = #money_
 
     // Dinheiro atual
-    &money_text = "&6$&3%@#money%"
+    str money_text = "&6$&3%@#money%"
     
     // Mudanca desde o login
     if(@#money_change > 0)
-    	&money_text = "%&money_text%\n&2+%@#money_change%"
+    	money_text = "%money_text%\n&2+%@#money_change%"
     elseif(@#money_change == 0)
-    	&money_text = "%&money_text%\n&7%@#money_change%"
+    	money_text = "%money_text%\n&7%@#money_change%"
     else
-    	&money_text = "%&money_text%\n&4%@#money_change%"
+    	money_text = "%money_text%\n&4%@#money_change%"
     endif
 
     // Mudanca por minuto
-    #mins = (@#tick_total / 20) / 60
-    #money_per_min = @#money_change / #mins
+    int mins = (@#tick_total / 20) / 60
+    int money_per_min = @#money_change / mins
     //&money_text = "%&money_text%\n&5%#money_per_min% C/min"
 
-    setlabel("money_label","%&money_text%");
+    setlabel("money_label","%money_text%");
 ENDIF;

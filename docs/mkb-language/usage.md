@@ -81,7 +81,7 @@ one can be read on its own.
 
 ```mermaid
 flowchart TD
-    A["read_file<br/>CRLF → LF, strip $${ }$$"] --> B["process_imports<br/>resolve, dedupe, prepend"]
+    A["read_file<br/>strip $${ }$$, braces, type → sigil"] --> B["process_imports<br/>resolve, dedupe, prepend"]
     B --> C["format<br/>hoist trailing // , append ;"]
     C --> D["register_user_functions<br/>function defs → keyword table"]
     D --> E["expand_macro_calls<br/>inline, bind, rename locals"]
@@ -93,7 +93,7 @@ flowchart TD
 
 | # | Stage | Module | What can go wrong |
 | --- | --- | --- | --- |
-| 1 | Read | `utils.read_file` | — |
+| 1 | Read | `utils.read_file` (markers, braces, typed declarations) | — |
 | 2 | Imports | `resolver.process_imports` | `Module <x> not found` |
 | 3 | Format | `compiler.transpile` | — |
 | 4 | Register | `macro_engine.register_user_functions` | nothing; a definition is just removed and remembered |
@@ -103,9 +103,11 @@ flowchart TD
 | 8 | Validate | `compiler.lint_generated` | `<name> generated an invalid script: …` (fatal under `strict`) |
 | 9 | Write | `compiler.transpile` | — |
 
-Step 3 is the only place where the text of a line is touched: a trailing
-`// comment` is moved above the statement, and `;` is appended when missing.
-Everything else either adds lines, removes lines, or replaces a line.
+Step 1 also rewrites lines: `{ … }` blocks are desugared, and a typed
+declaration (`int x = 0`) becomes its sigil form (`#x = 0`), along with every
+later bare use of that name. Step 3 then moves a trailing `// comment` above the
+statement and appends `;` when missing. Everything else either adds lines,
+removes lines, or replaces a line.
 
 ## Header
 

@@ -2,19 +2,19 @@
 // Import this file to use these variables in your macros.
 // Example: import commons.colors; log("%&COLOR_RED%[ERROR]");
 
-&COLOR_BLACK = "&0";
-&COLOR_DARK_BLUE = "&1";
-&COLOR_DARK_GREEN = "&2";
-&COLOR_DARK_AQUA = "&3";
-&COLOR_DARK_RED = "&4";
-&COLOR_DARK_PURPLE = "&5";
-&COLOR_GOLD = "&6";
-&COLOR_GRAY = "&7";
-&COLOR_DARK_GRAY = "&8";
-&COLOR_BLUE = "&9";
-&COLOR_GREEN = "&a";
-&COLOR_AQUA = "&b";
-&COLOR_RED = "&c";
-&COLOR_LIGHT_PURPLE = "&d";
-&COLOR_YELLOW = "&e";
-&COLOR_WHITE = "&f";
+str COLOR_BLACK = "&0";
+str COLOR_DARK_BLUE = "&1";
+str COLOR_DARK_GREEN = "&2";
+str COLOR_DARK_AQUA = "&3";
+str COLOR_DARK_RED = "&4";
+str COLOR_DARK_PURPLE = "&5";
+str COLOR_GOLD = "&6";
+str COLOR_GRAY = "&7";
+str COLOR_DARK_GRAY = "&8";
+str COLOR_BLUE = "&9";
+str COLOR_GREEN = "&a";
+str COLOR_AQUA = "&b";
+str COLOR_RED = "&c";
+str COLOR_LIGHT_PURPLE = "&d";
+str COLOR_YELLOW = "&e";
+str COLOR_WHITE = "&f";

@@ -1,0 +1,29 @@
+$${
+// [Fixture] Typed declarations: int/str/bool/global/array, use sites, params.
+int seconds_before = 10
+str cicle = "Hello"
+bool log_cicle = false
+global int pos_x = %XPOS%
+str[] names = []
+
+inc(seconds_before, 5)
+log("cicle %cicle%, wait %seconds_before% seconds")
+log("position %pos_x%")
+
+if(log_cicle)
+    log("logging enabled")
+endif
+
+push(names, "ana")
+push(names, "bia")
+FOREACH(names, str name)
+    log("name %name%")
+NEXT
+
+function log_items(str prefix, int count = 5);
+    int index = 0
+    log("%prefix% %count% %index%")
+endfunction;
+
+log_items("items", 3)
+}$$

@@ -33,6 +33,7 @@ FEATURES = {
     "block families: if/elseif/else, for/next, do/until/loop": "05-blocks.mkb",
     "color constants library": "06-colors.mkb",
     "brace-based block syntax": "07-braces.mkb",
+    "typed declarations and inferred sigils": "08-types.mkb",
 }
 
 

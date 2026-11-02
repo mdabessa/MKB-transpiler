@@ -28,12 +28,12 @@ codes.
 
 | Function | What it does |
 | --- | --- |
-| `print(&text)` | `log` with a blue `[ MACRO ]` prefix. The workhorse for player-facing messages. |
-| `warning(&text)` | Same, in gold: `[ MACRO - AVISO ]`. |
-| `raise(&text)` | Same, in red (`[ MACRO - ERRO ]`), then `stop()`. Use it for fatal conditions. |
-| `command(&command_cmd)` | Prints `Comando: <cmd>`, runs it with `echo("/…")` and waits one tick. Pass the command **with** its slash: `command("/home base")`. |
-| `go_home(&gohome_home)` | Runs `/home <name>`, waits up to 100 ticks for the teleport to land, then waits for the world to load (looking at the sky until something is under the crosshair) and restores the direction you were facing. |
-| `set_home(&sethome_home)` | Runs `/sethome <name>` twice with a 500 ms wait, to get through the confirmation dialog. |
+| `print(str text)` | `log` with a blue `[ MACRO ]` prefix. The workhorse for player-facing messages. |
+| `warning(str text)` | Same, in gold: `[ MACRO - AVISO ]`. |
+| `raise(str text)` | Same, in red (`[ MACRO - ERRO ]`), then `stop()`. Use it for fatal conditions. |
+| `command(str command_cmd)` | Prints `Comando: <cmd>`, runs it with `echo("/…")` and waits one tick. Pass the command **with** its slash: `command("/home base")`. |
+| `go_home(str gohome_home)` | Runs `/home <name>`, waits up to 100 ticks for the teleport to land, then waits for the world to load (looking at the sky until something is under the crosshair) and restores the direction you were facing. |
+| `set_home(str sethome_home)` | Runs `/sethome <name>` twice with a 500 ms wait, to get through the confirmation dialog. |
 
 ```mkb
 import commons.commons;
@@ -50,8 +50,8 @@ by looking at fixed angles.
 
 | Function | What it does |
 | --- | --- |
-| `stock_item(#item_id, &stock_home)` | Stores item **id** `#item_id` into the trap, chest by chest, until the last chest reports full, then goes to the `<stock_home>_temp` home. An empty or `false` `&stock_home` becomes `"guardar"`. |
-| `withdraw_item(#item_id, &stock_home="guardar", #max=36, stop_=true, temp_home=true, fast_inv=true)` | Takes up to `#max` of item `#item_id` back out of the trap into the inventory. `temp_home` also probes the temporary home before starting. |
+| `stock_item(int item_id, str stock_home)` | Stores item **id** `item_id` into the trap, chest by chest, until the last chest reports full, then goes to the `<stock_home>_temp` home. An empty or `false` `stock_home` becomes `"guardar"`. |
+| `withdraw_item(int item_id, str stock_home="guardar", int max=36, bool stop_=true, bool temp_home=true, bool fast_inv=true)` | Takes up to `max` of item `item_id` back out of the trap into the inventory. `temp_home` also probes the temporary home before starting. |
 
 ```mkb
 import commons.chest;
@@ -71,7 +71,7 @@ reload.
 
 | Function | What it does |
 | --- | --- |
-| `toggle_macro(&macro_name, stop_macro=true)` | Adds the macro to `@&macros[]` and announces ON, or removes it, releases the `forward` key, announces OFF and — unless `stop_macro` is `false` — stops the current macro. |
+| `toggle_macro(str macro_name, bool stop_macro=true)` | Adds the macro to `@&macros[]` and announces ON, or removes it, releases the `forward` key, announces OFF and — unless `stop_macro` is `false` — stops the current macro. |
 | `reload()` | For every macro in `@&macros[]`: turn it off, then start it again with `exec("exec_<name>.txt", "<name>")`. This is why the transpiler writes an `exec_` variant of every macro. |
 
 ```mkb
@@ -88,7 +88,7 @@ transpiled cannot be restarted by it.
 
 | Function | Status |
 | --- | --- |
-| `abs(#number)` | **Empty stub** — the body is empty, so the call expands to nothing but a binding. Do not use it yet. |
+| `abs(int number)` | **Empty stub** — the body is empty, so the call expands to nothing but a binding. Do not use it yet. |
 
 ## `commons.colors`
 

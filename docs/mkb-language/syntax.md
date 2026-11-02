@@ -107,6 +107,63 @@ Two MKB-specific rules apply **inside a function body** — the parameter bindin
 and the automatic `_scope_` renaming. Both are described in
 [functions.md](functions.md#scope-renaming).
 
+### Typed declarations (optional)
+
+Write the type instead of the sigil. The transpiler converts the declaration and
+remembers the name, so later uses do not need a sigil either:
+
+| You write | Generated | Later bare uses |
+| --- | --- | --- |
+| `int seconds_before = 10` | `#seconds_before = 10;` | `#seconds_before` |
+| `str cicle = "Hello"` | `&cicle = "Hello";` | `&cicle` |
+| `bool log_cicle = false` | `log_cicle = false;` | `log_cicle` (unchanged) |
+| `global int pos_x = %XPOS%` | `@#pos_x = %XPOS%;` | `@#pos_x` |
+| `str[] names = []` | `&names = [];` | `&names` |
+
+| Type | Sigil |
+| --- | --- |
+| `int`, `num`, `number`, `float`, `double`, `long` | `#` |
+| `str`, `string`, `text` | `&` |
+| `bool`, `boolean` | none |
+| any of the above with `[]` | an array |
+
+The sigil is added at every later use — arguments, conditions, and `%…%`
+interpolation:
+
+```mkb
+str cicle = "Hello"
+pick(cicle)              // -> pick(&cicle);
+log("hello %cicle%")     // -> log("hello %&cicle%");
+```
+
+```mkb
+str[] names = []
+push(names, "ana")              // -> push(&names, "ana");
+FOREACH(names, str name)        // -> FOREACH(&names[], &name);
+    log("%name%")               // -> log("%&name%");
+NEXT
+```
+
+An array is passed to a keyword **without** brackets (`push(&names, …)`),
+because that is what the mod expects. The one place brackets appear is the
+`FOREACH` iterator. A `FOREACH` (or `FOR`) header may also declare its variable
+inline, as `str name` does above.
+
+Rules that keep the rewrite safe:
+
+* Only **declared** names are rewritten. An undeclared identifier is left as
+  written, so untracked code and `bool` flags behave exactly as before.
+* The rewrite is whole-word and case-sensitive: `n` is not touched inside
+  `n2`, `n_scope_f`, or `%N%`.
+* A `//` comment and ordinary string text are never rewritten — only `%…%`
+  inside a string is.
+* A top-level declaration is visible from that line to the end of the file.
+  Inside a `function` body a declaration is visible until its `endfunction`.
+* `#x = …` and `&x = …` are untouched: MKB only *adds* sigils, it never moves
+  or removes one, so you can mix both styles in a file.
+
+Typed parameters are described in [functions.md](functions.md#parameters).
+
 ## Blocks
 
 A block is opened by a keyword and closed by its closer from `functions.json`:

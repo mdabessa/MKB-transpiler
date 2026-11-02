@@ -85,6 +85,30 @@ There is no type checking: the sigil is part of the name, so `&stock_home` is a
 different parameter from `#stock_home`, and passing a number to `&stock_home`
 simply assigns a number.
 
+### Typed parameters
+
+Write the type instead of the sigil and the transpiler adds it:
+
+```mkb
+function log_items(str prefix, int count = 5);
+```
+
+```txt
+function log_items(&prefix, #count = 5);
+```
+
+| Type | Parameter |
+| --- | --- |
+| `int`, `num`, `number`, `float`, `double`, `long` | `#name` |
+| `str`, `string`, `text` | `&name` |
+| `bool`, `boolean` | `name` |
+
+The declaration also applies inside the body: `log(prefix)` becomes
+`log(&prefix)` before the function is expanded, so the
+[scope renaming](#scope-renaming) treats the parameter like any other local. See
+[syntax.md](syntax.md#typed-declarations-optional) for the full type table and
+for typed declarations outside functions.
+
 ### Defaults
 
 A default is used **only** when the argument is missing:

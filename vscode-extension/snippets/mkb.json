@@ -24,6 +24,41 @@
     ],
     "description": "User function, expanded inline by the transpiler"
   },
+  "Function (typed parameters)": {
+    "prefix": ["funct", "functiontyped"],
+    "body": [
+      "function ${1:nome}(${2:str} ${3:param})",
+      "\t${4:int} ${5:local} = ${6:0}",
+      "\t$0",
+      "endfunction;"
+    ],
+    "description": "Function with typed parameters — the transpiler adds & / # for you"
+  },
+  "Typed number": {
+    "prefix": ["int", "num"],
+    "body": ["int ${1:name} = ${2:0}"],
+    "description": "Number declaration: int total = 0 becomes #total = 0"
+  },
+  "Typed string": {
+    "prefix": ["str", "string"],
+    "body": ["str ${1:name} = \"${2}\""],
+    "description": "String declaration: str name = \"x\" becomes &name = \"x\""
+  },
+  "Typed flag": {
+    "prefix": ["bool"],
+    "body": ["bool ${1:name} = ${2:false}"],
+    "description": "Flag declaration, written without a sigil"
+  },
+  "Typed global": {
+    "prefix": ["global"],
+    "body": ["global ${1|int,str,bool|} ${2:name} = ${3:0}"],
+    "description": "Global declaration: global int x = 0 becomes @#x = 0"
+  },
+  "Typed array": {
+    "prefix": ["array", "arr"],
+    "body": ["${1|str,int|}[] ${2:name} = []"],
+    "description": "Array declaration; use it bare in calls and with [] in FOREACH"
+  },
   "If": {
     "prefix": ["if"],
     "body": [
@@ -97,6 +132,11 @@
     "prefix": ["foreach"],
     "body": ["foreach(#${1:array},#${2:item})"],
     "description": "Iterate an array or a built-in iterator"
+  },
+  "Foreach (typed item)": {
+    "prefix": ["foreacht", "foreachtyped"],
+    "body": ["FOREACH(${1:array}, ${2:str} ${3:item})"],
+    "description": "Iterate a declared array and declare the loop variable inline"
   },
   "Log": {
     "prefix": ["log"],

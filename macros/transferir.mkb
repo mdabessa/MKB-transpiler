@@ -9,11 +9,11 @@ elseif
     log("ON!");
 }
 
-#iid = 261 
+int iid = 261 
 
 do(){
     // até o final da mkb trap
-    withdraw_item("%#iid%","transferir");
+    withdraw_item("%iid%","transferir");
     wait(1t);
-    stock_item("%#iid%","guardar");
+    stock_item("%iid%","guardar");
 }

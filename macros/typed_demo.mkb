@@ -1,0 +1,31 @@
+$${
+// Typed declarations: write the type, and the transpiler adds the sigil.
+// See docs/mkb-language/syntax.md#typed-declarations-optional
+int seconds_before = 10
+str cicle = "Hello"
+bool log_cicle = true
+global int typed_demo_x = %XPOS%
+str[] names = []
+
+// From here on the names are used without a sigil.
+inc(seconds_before, 5)
+log("cicle %cicle%, wait %seconds_before% seconds")
+
+if(log_cicle)
+    log("typed demo at %typed_demo_x%")
+endif
+
+push(names, "ana")
+push(names, "bia")
+FOREACH(names, str name)
+    log("name %name%")
+NEXT
+
+// Typed parameters and a typed local.
+function typed_demo_line(str label, int width = 5);
+    int padding = 0
+    log("%label% (%width%-%padding%)")
+endfunction;
+
+typed_demo_line("ready", 3)
+}$$

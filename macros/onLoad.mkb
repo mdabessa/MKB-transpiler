@@ -1,14 +1,14 @@
 import commons.global;
 
 // 	Login e inciar macros ao entrar no server.
-@#money = 0
-@#tick_total = 0
-@#money_chang1e = 0
+global int money = 0
+global int tick_total = 0
+global int money_chang1e = 0
 
-@&main_nickname = "zaaaht"
-&senha = ""
+global str main_nickname = "zaaaht"
+str senha = ""
 
-echo("/login %&senha%");
+echo("/login %senha%");
 wait(1);
 echo("/menuloja off");
 wait(1);

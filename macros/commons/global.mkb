@@ -1,13 +1,13 @@
 import commons.commons
 
-function toggle_macro(&macro_name,stop_macro=true);
- 	indexof(@&macros[],#index,"%&macro_name%");
+function toggle_macro(str macro_name,bool stop_macro=true);
+ 	indexof(@&macros[],#index,"%macro_name%");
 	//log("%@#macro_count%")
 	if(#index > -1)
 		// remover macro_name da lista macros
 		unset(&temp_array[])
 		foreach(@&macros[],&macro);
-			if(&macro_name != &macro)
+			if(macro_name != &macro)
 				push(&temp_array[],&macro)
 			endif
 		next;
@@ -17,14 +17,14 @@ function toggle_macro(&macro_name,stop_macro=true);
 			push(@&macros[],&value)
 		next;
 
-	    print("Macro &3%&macro_name% &f- &4OFF!")
+	    print("Macro &3%macro_name% &f- &4OFF!")
 		keyup("forward")
 		if(stop_macro)
 	    	stop()
 	    endif;
 	else
-	    push(@&macros[],"%&macro_name%")
-	    print("Macro &3%&macro_name% &f- &2ON!")
+	    push(@&macros[],"%macro_name%")
+	    print("Macro &3%macro_name% &f- &2ON!")
 	endif
 endfunction;
 

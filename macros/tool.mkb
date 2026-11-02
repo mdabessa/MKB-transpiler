@@ -11,19 +11,19 @@ import commons.global
 
 // CONFIG
 // Nome da Macro
-&macro_name = "tool"
+str macro_name = "tool"
 // Id do bloco a ser minerado
-#block_id = 129
+int block_id = 129
 // Id do item dropado
-#drop_id = 388
+int drop_id = 388
 // Nome da home da mineradora com os baus
-&home = "esmeralda"
+str home = "esmeralda"
 // blocos minerados
-@#total_blocks = 0
+global int total_blocks = 0
 // blocos minerados, em tempo real o de cima é estimado, a cada ciclo completo, é atualizado para a real quantidade
-@#real_total_blocks = -448
+global int real_total_blocks = -448
 
-toggle_macro(&macro_name)
+toggle_macro(macro_name)
 
 function set_inventory()
 	print("Verificando inventario inicial...")
@@ -31,57 +31,57 @@ function set_inventory()
         GUI("INVENTORY");
     ENDIF;
 
-    #pickaxe_slot = 0
-    #rep_slot = 0
+    int pickaxe_slot = 0
+    int rep_slot = 0
     FOR(#slot,9,44);
         GETSLOTITEM(%#slot%,#item_id);
         // GETITEMINFO(%#item_id%,&item_name);
 
         IF(%#item_id%==278);
-        	if(#pickaxe_slot != 0)
+        	if(pickaxe_slot != 0)
 				GUI()
         		raise("Mais de uma picareta no inventario!")
             endif
 			
-            #pickaxe_slot = %#slot%
+            pickaxe_slot = %#slot%
 
         ELSEIF(%#item_id%==57);
-        	if(#rep_slot != 0)
+        	if(rep_slot != 0)
 				GUI()
 				raise("Mais de um slot de blocos de reparacao no inventario!")
 			endif
-        	#rep_slot = %#slot%
-		ELSEIF(%#item_id%==#block_id);
+        	rep_slot = %#slot%
+		ELSEIF(%#item_id%==block_id);
 			if((#slot < 36) || (#slot > 44))
 				GUI()
 				raise("Bloco de mineracao fora da hotbar!")
 			endif;
-		ELSEIF((%#item_id%!=0) && (%#item_id%!=#drop_id));
+		ELSEIF((%#item_id%!=0) && (%#item_id%!=drop_id));
 			GUI()
 			raise("Item invalido no inventario!")
 		endif;
     NEXT;
 
     // Validar inventario
-	if(#pickaxe_slot == 0)
+	if(pickaxe_slot == 0)
 		GUI()
 		raise("Sem picareta no inventario!")
 	endif
 
-	if(#rep_slot == 0)
+	if(rep_slot == 0)
 		warning("Sem bloco de reparacao no inventario!")
 	endif
 
 	// Organizar inventario
-	if(#pickaxe_slot != 36)
-		SLOTCLICK(%#pickaxe_slot%,L,FALSE);
+	if(pickaxe_slot != 36)
+		SLOTCLICK(%pickaxe_slot%,L,FALSE);
 	    WAIT(3t)
 	    SLOTCLICK("36",L,FALSE);
 	    WAIT(3t)
 	endif;
 	
-	if(#rep_slot != 35)
-		SLOTCLICK(%#rep_slot%,L,FALSE);
+	if(rep_slot != 35)
+		SLOTCLICK(%rep_slot%,L,FALSE);
 	    WAIT(3t)
 	    SLOTCLICK("35",L,FALSE);
 	    WAIT(3t)
@@ -101,7 +101,7 @@ function fill_hotbar()
 	
 	slot(8);
 	wait(3t);
-	if(%ITEM%==#block_id)
+	if(%ITEM%==block_id)
 		break;
 	endif
 
@@ -118,20 +118,20 @@ function fill_hotbar()
 				slot(8);
 				wait(20t);
 
-				if(%ITEM%==#block_id)
+				if(%ITEM%==block_id)
 					break;
 				endif
         	endif;
 		next;
-		if(%ITEM%==#block_id)
+		if(%ITEM%==block_id)
 			break;
 		endif
 
 		wait(600t)
 	loop
 
-	@#real_total_blocks = @#real_total_blocks + 448
-	@#total_blocks = @#real_total_blocks
+	real_total_blocks = real_total_blocks + 448
+	total_blocks = real_total_blocks
 	slot(1)
 	wait(5t)
 endfunction;
@@ -151,12 +151,12 @@ function place_and_break()
 
 	slot(1)
     do()
-	    c = false
+	    bool c = false
 		do(150)
 		    key("attack")
 
 		    if(%HITID%==49)
-		    	@#total_blocks = @#total_blocks + 4
+		    	total_blocks = total_blocks + 4
 		    	c = true
 		    	break;
 		    endif
@@ -208,8 +208,8 @@ endfunction;
 
 
 function update_label();
-	&label_text = "&aEsmeraldas: &3%@#total_blocks%"
-    setlabel("ore_label","%&label_text%");
+	str label_text = "&aEsmeraldas: &3%total_blocks%"
+    setlabel("ore_label","%label_text%");
 endfunction;
 
 // Iniciar a macro
@@ -221,25 +221,25 @@ if(%ITEM%!=278)
 	set_inventory()
 
 	// Ir pra a home
-	go_home("%&home%")
+	go_home("%home%")
 endif
 
 // desativar menu loja
 command("/menuloja off")
 
 do()
-	#block_slot = 2
+	int block_slot = 2
 	do()
-		slot(%#block_slot%)
+		slot(%block_slot%)
 		wait(1t)
-		if(%ITEM% != %#block_id%)
+		if(%ITEM% != %block_id%)
 			keydown("jump")
 			wait(1t)
 			keyup("jump")
 			wait(20t)
-			if(%ITEM% != %#block_id%)
-				INC(#block_slot, 1)
-				if(#block_slot > 9)
+			if(%ITEM% != %block_id%)
+				INC(block_slot, 1)
+				if(block_slot > 9)
 					// vender itens
 					print("Sem bloco na hotbar!")
 					sell_items()

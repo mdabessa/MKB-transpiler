@@ -24,6 +24,93 @@ interface KeywordEntry {
   description: string;
 }
 
+/**
+ * Typed declarations. The transpiler turns the type into the mod's sigil, so
+ * these are completion items and hover topics of their own — they are not in
+ * `functions.json`, because they never reach the generated script.
+ */
+interface TypeKeywordEntry {
+  name: string;
+  declaration: string;
+  detail: string;
+  documentation: string;
+}
+
+const TYPE_KEYWORDS: readonly TypeKeywordEntry[] = [
+  {
+    name: 'int',
+    declaration: 'int ${1:name} = ${2:0}',
+    detail: 'number declaration → #name',
+    documentation: 'Declares a number: `int total = 0` compiles to `#total = 0`, and later bare uses of `total` get the `#` sigil.',
+  },
+  {
+    name: 'num',
+    declaration: 'num ${1:name} = ${2:0}',
+    detail: 'number declaration → #name',
+    documentation: 'Alias of `int`: `num total = 0` compiles to `#total = 0`.',
+  },
+  {
+    name: 'number',
+    declaration: 'number ${1:name} = ${2:0}',
+    detail: 'number declaration → #name',
+    documentation: 'Alias of `int`: `number total = 0` compiles to `#total = 0`.',
+  },
+  {
+    name: 'float',
+    declaration: 'float ${1:name} = ${2:0}',
+    detail: 'number declaration → #name',
+    documentation: 'Alias of `int` (the mod has a single number type): `float ratio = 1.5` compiles to `#ratio = 1.5`.',
+  },
+  {
+    name: 'double',
+    declaration: 'double ${1:name} = ${2:0}',
+    detail: 'number declaration → #name',
+    documentation: 'Alias of `int`: `double ratio = 1.5` compiles to `#ratio = 1.5`.',
+  },
+  {
+    name: 'long',
+    declaration: 'long ${1:name} = ${2:0}',
+    detail: 'number declaration → #name',
+    documentation: 'Alias of `int`: `long total = 0` compiles to `#total = 0`.',
+  },
+  {
+    name: 'str',
+    declaration: 'str ${1:name} = "${2}"',
+    detail: 'string declaration → &name',
+    documentation: 'Declares a string: `str label = "hi"` compiles to `&label = "hi"`, and `log("%label%")` to `log("%&label%")`.',
+  },
+  {
+    name: 'string',
+    declaration: 'string ${1:name} = "${2}"',
+    detail: 'string declaration → &name',
+    documentation: 'Alias of `str`: `string label = "hi"` compiles to `&label = "hi"`.',
+  },
+  {
+    name: 'text',
+    declaration: 'text ${1:name} = "${2}"',
+    detail: 'string declaration → &name',
+    documentation: 'Alias of `str`: `text label = "hi"` compiles to `&label = "hi"`.',
+  },
+  {
+    name: 'bool',
+    declaration: 'bool ${1:name} = ${2:false}',
+    detail: 'flag declaration → no sigil',
+    documentation: 'Declares a flag. It is written without a sigil, so `bool logging = false` stays `logging = false`; use it as `if(logging)`.',
+  },
+  {
+    name: 'boolean',
+    declaration: 'boolean ${1:name} = ${2:false}',
+    detail: 'flag declaration → no sigil',
+    documentation: 'Alias of `bool`: `boolean logging = false` stays `logging = false`.',
+  },
+  {
+    name: 'global',
+    declaration: 'global ${1|int,str,bool|} ${2:name} = ${3:0}',
+    detail: 'global declaration → @#name / @&name / @name',
+    documentation: 'Declares a variable that survives the macro stopping and a `/reload`: `global int pos_x = %XPOS%` compiles to `@#pos_x = %XPOS%`. Pair it with `int`, `str` or `bool`.',
+  },
+];
+
 interface DiagnosticDto {
   file: string;
   line: number;
@@ -343,10 +430,20 @@ function keywordAt(document: vscode.TextDocument, position: vscode.Position): Ke
 
 class KeywordCompletion implements vscode.CompletionItemProvider {
   provideCompletionItems(document: vscode.TextDocument, position: vscode.Position): vscode.CompletionItem[] {
+    const typeItems = TYPE_KEYWORDS.map(entry => {
+      const item = new vscode.CompletionItem(entry.name, vscode.CompletionItemKind.Keyword);
+      item.detail = entry.detail;
+      item.documentation = new vscode.MarkdownString(entry.documentation);
+      item.filterText = entry.name;
+      item.insertText = new vscode.SnippetString(entry.declaration);
+      item.sortText = `0-type-${entry.name}`;
+      return item;
+    });
+
     const entries = [...loadKeywords().values()];
     entries.sort((left, right) => left.name.localeCompare(right.name));
 
-    return entries.map(entry => {
+    const keywordItems = entries.map(entry => {
       const item = new vscode.CompletionItem(entry.name, vscode.CompletionItemKind.Function);
       item.detail = entry.definition;
       const documentation = new vscode.MarkdownString();
@@ -366,11 +463,39 @@ class KeywordCompletion implements vscode.CompletionItemProvider {
       }
       return item;
     });
+
+    return [...typeItems, ...keywordItems];
   }
+}
+
+function typeKeywordAt(document: vscode.TextDocument, position: vscode.Position): TypeKeywordEntry | undefined {
+  const range = document.getWordRangeAtPosition(position, /[A-Za-z_][A-Za-z0-9_]*/);
+  if (!range) {
+    return undefined;
+  }
+  const word = document.getText(range).toLowerCase();
+  return TYPE_KEYWORDS.find(entry => entry.name === word);
+}
+
+/** Turn a snippet body into the plain declaration shown in the hover. */
+function plainSignature(declaration: string): string {
+  return declaration
+    .replace(/\$\{\d+\|([^}]*)\|/g, (_match, choices: string) => choices.split(',')[0])
+    .replace(/\$\{\d+:([^}]*)\}/g, '$1')
+    .replace(/\$\{\d+\}/g, '');
 }
 
 class KeywordHover implements vscode.HoverProvider {
   provideHover(document: vscode.TextDocument, position: vscode.Position): vscode.Hover | undefined {
+    const type = typeKeywordAt(document, position);
+    if (type) {
+      const markdown = new vscode.MarkdownString();
+      markdown.appendMarkdown(`**\`${plainSignature(type.declaration)}\`**\n\n`);
+      markdown.appendText(type.documentation);
+      markdown.appendMarkdown('\n\n*Typed declaration — the transpiler writes the sigil.*');
+      return new vscode.Hover(markdown);
+    }
+
     const entry = keywordAt(document, position);
     if (!entry) {
       return undefined;

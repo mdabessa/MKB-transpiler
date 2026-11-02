@@ -60,7 +60,11 @@ def expand_macro_calls(code: str, builtins: dict, max_depth: int = 15) -> str:
                     else:
                         refs[clean_arg_name] = arg_val
             inner += func_def['code']
-            var_pattern = r'^(?!//)(?:#|&)?\b[a-zA-Z_]\w*(?:\[\])?(?=\s*=|\s*[\[\]])'
+            # A local is a name assigned in the body. Allow leading whitespace:
+            # bodies are normally indented, and requiring column 0 silently
+            # skipped every local of a formatted function.
+            var_pattern = (r'^[ \t]*(?!//)(?P<var>(?:#|&)?\b[a-zA-Z_]\w*(?:\[\])?)'
+                           r'(?=\s*=|\s*[\[\]])')
             vars_found = list(set(re.findall(var_pattern, inner, flags=re.MULTILINE)).union(set(refs.keys())))
             renamed = []
             for line_in_inner in inner.split('\n'):

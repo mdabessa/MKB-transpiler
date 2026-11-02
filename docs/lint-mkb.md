@@ -8,6 +8,11 @@ It is the developer-experience half of validation. The other half,
 this one answers *"will this macro do what I meant?"*, which is a different
 question and a different moment in the workflow.
 
+It reads sources through the transpiler's own preprocessing (`mkb/utils.py`), so
+the syntax the transpiler desugars — `{ … }` blocks and typed declarations like
+`int x = 0` — is analysed in the sigil form it will generate. `M010` therefore
+also sees typed variables.
+
 | Tool | Question | Input | When |
 | --- | --- | --- | --- |
 | `tools/validate.py` | is this script valid? | generated `.txt` | after transpiling, in CI |

@@ -7,7 +7,9 @@
     { "include": "#markers" },
     { "include": "#strings" },
     { "include": "#interpolation" },
+    { "include": "#typed-declarations" },
     { "include": "#declarations" },
+    { "include": "#typed-parameters" },
     { "include": "#calls" },
     { "include": "#block-keywords" },
     { "include": "#braces" },
@@ -41,6 +43,24 @@
     "declarations": {
       "match": "\\b(import|function|endfunction)\\b",
       "name": "keyword.control.declaration.mkb"
+    },
+    "typed-declarations": {
+      "match": "^([ \\t]*)(?:(global)[ \\t]+)?(int|num|number|float|double|long|str|string|text|bool|boolean)([ \\t]*\\[\\s*\\])?[ \\t]+([#&@]{0,2}[A-Za-z_][A-Za-z0-9_]*)",
+      "captures": {
+        "2": { "name": "storage.modifier.global.mkb" },
+        "3": { "name": "storage.type.mkb" },
+        "4": { "name": "punctuation.definition.array.mkb" },
+        "5": { "name": "variable.other.declared.mkb" }
+      }
+    },
+    "typed-parameters": {
+      "match": "(?<!\\w)(?:(global)\\s+)?(int|num|number|float|double|long|str|string|text|bool|boolean)(\\s*\\[\\s*\\])?\\s+([A-Za-z_][A-Za-z0-9_]*)(?=\\s*[,)=;=])",
+      "captures": {
+        "1": { "name": "storage.modifier.global.mkb" },
+        "2": { "name": "storage.type.mkb" },
+        "3": { "name": "punctuation.definition.array.mkb" },
+        "4": { "name": "variable.parameter.mkb" }
+      }
     },
     "calls": {
       "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?=\\()",

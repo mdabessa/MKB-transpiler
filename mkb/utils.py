@@ -3,6 +3,8 @@
 import re
 from pathlib import Path
 
+from .type_system import resolve_types
+
 
 def _strip_markers(code: str) -> str:
     """Strip optional $${ ... }$$ markers from text."""
@@ -252,18 +254,26 @@ def desugar_braces(code: str) -> str:
 
 def process_text(code: str) -> str:
     """Process text by stripping markers and desugaring braces.
-    
-    This is the main entry point for processing MKB source text.
+
+    This is the main entry point for processing MKB source text. It also
+    resolves typed declarations (`int x = 0` -> `#x = 0`) so that every tool
+    that reads MKB — the transpiler and the linter — sees the same sigils.
     """
     code = _strip_markers(code)
     code = desugar_braces(code)
-    # Add semicolons to lines that need them (basic statement completion)
+    # Add semicolons to lines that need them (basic statement completion).
+    # Only the code part is inspected: a `;` appended after `//` would land
+    # inside the comment (`int x = 1 // note` -> `// note;`).
     lines = code.split('\n')
     for i, line in enumerate(lines):
-        stripped = line.strip()
-        if stripped and not stripped.endswith(';') and not stripped.endswith('{') and not stripped.startswith('//') and not stripped.startswith('#') and re.match(r'^\w+\s*$', stripped) is None:
-            lines[i] = line.rstrip() + ';'
-    return '\n'.join(lines)
+        code_part, comment = (line.split('//', 1) + [''])[:2]
+        core = code_part.rstrip()
+        if not core or core.endswith(';') or core.endswith('{'):
+            continue
+        if core.strip().startswith('#') or re.match(r'^\w+\s*$', core.strip()):
+            continue
+        lines[i] = f'{core};{line[len(core):]}'
+    return resolve_types('\n'.join(lines))
 
 
 def read_file(file_path: Path | str) -> str:

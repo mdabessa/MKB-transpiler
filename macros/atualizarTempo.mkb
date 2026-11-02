@@ -6,59 +6,59 @@ toggle_macro("atualizarTempo");
 // Config
 
 // Dar log quando estiver mudando o ciclo do dia?(Dia/Noite)
-log_cicle = false;
+bool log_cicle = false;
 // Quantos segundos de antecedencia?
-#seconds_before = 10
+int seconds_before = 10
 
 // MAIN
-#last_tick = %TICKS%
-#last_secs = 0
+int last_tick = %TICKS%
+int last_secs = 0
 do(){
-if(#last_tick != %TICKS%){
-    #diff = %TICKS% - #last_tick
-if(#diff < 0){
-    SET(#diff, #diff + 24000);
+if(last_tick != %TICKS%){
+    int diff = %TICKS% - last_tick
+if(diff < 0){
+    SET(diff, diff + 24000);
 }
 
-    @#tick_total = @#tick_total + #diff
-    #last_tick = %TICKS%
+    @#tick_total = @#tick_total + diff
+    last_tick = %TICKS%
 }
 
-    #total_secs = %TICKS% / 20
-    #mins = #total_secs / 60
+    int total_secs = %TICKS% / 20
+    int mins = total_secs / 60
     // Module
-    #secs = #total_secs - (#total_secs / 60) * 60
+    int secs = total_secs - (total_secs / 60) * 60
 
-    SET(&secs_string, "%#secs%");
-if(#secs < 10){
-        &secs_string = "0%#secs%"
+    SET(&secs_string, "%secs%");
+if(secs < 10){
+        &secs_string = "0%secs%"
 }
     
-    SET(&mins_string, "%#mins%");
-if(#mins < 10){
-        &mins_string = "0%#mins%"
+    SET(&mins_string, "%mins%");
+if(mins < 10){
+        &mins_string = "0%mins%"
 }
 
     // Definir se é dia ou noite
-    &cicle = "&4Noite"
-    &cicle_reversed = "&3Dia"
-if(#mins < 10){
-        &cicle = "&3Dia"
-        &cicle_reversed = "&4Noite"
+    str cicle = "&4Noite"
+    str cicle_reversed = "&3Dia"
+if(mins < 10){
+        cicle = "&3Dia"
+        cicle_reversed = "&4Noite"
 }
 
-    SETLABEL("daytick","DT &6%&mins_string%:%&secs_string%\n%&cicle%");
+    SETLABEL("daytick","DT &6%&mins_string%:%&secs_string%\n%cicle%");
 
-if(#last_secs != #total_secs){
-        #last_secs = #total_secs
+if(last_secs != total_secs){
+        last_secs = total_secs
 if(log_cicle){
-            #seconds_cicle = #total_secs - (#total_secs / 600) * 600
-            #seconds_lasting = 600 - #seconds_cicle
+            int seconds_cicle = total_secs - (total_secs / 600) * 600
+            int seconds_lasting = 600 - seconds_cicle
             //log("&6Ciclo do dia mudará para %&cicle_reversed%&6 em &5%#seconds_lasting% &6segundos!")
-if(#seconds_lasting =< 1){
-                log("&6Ciclo do dia mudou para %&cicle_reversed%&6!");
-}elseif(#seconds_lasting < #seconds_before){
-                log("&6Ciclo do dia mudara para %&cicle_reversed%&6 em &5%#seconds_lasting% &6segundos!");
+if(seconds_lasting =< 1){
+                log("&6Ciclo do dia mudou para %cicle_reversed%&6!");
+}elseif(seconds_lasting < seconds_before){
+                log("&6Ciclo do dia mudara para %cicle_reversed%&6 em &5%seconds_lasting% &6segundos!");
 }
 }
 }
