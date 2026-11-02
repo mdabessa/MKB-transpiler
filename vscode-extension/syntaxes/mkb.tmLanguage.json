@@ -10,6 +10,7 @@
     { "include": "#declarations" },
     { "include": "#calls" },
     { "include": "#block-keywords" },
+    { "include": "#braces" },
     { "include": "#variables" },
     { "include": "#numbers" }
   ],
@@ -31,7 +32,7 @@
       ]
     },
     "interpolation": {
-      "match": "%(@?[#&]?)([A-Za-z_][A-Za-z0-9_]*)(\\[\\])?%",
+      "match": "%(@?[#&]?)([A-Za-z_][A-Za-z0-9_]*)(\\[\\\\])?%",
       "captures": {
         "1": { "name": "punctuation.definition.variable.mkb" },
         "2": { "name": "variable.other.interpolated.mkb" }
@@ -50,6 +51,22 @@
     "block-keywords": {
       "match": "\\b(?:endif|else|elseif|loop|next|endfunction|endunsafe|break)\\b",
       "name": "keyword.control.mkb"
+    },
+    "braces": {
+      "patterns": [
+        {
+          "match": "(\\{)\\s*$",
+          "captures": {
+            "1": { "name": "keyword.control.brace.mkb" }
+          }
+        },
+        {
+          "match": "(\\})",
+          "captures": {
+            "1": { "name": "keyword.control.brace.mkb" }
+          }
+        }
+      ]
     },
     "variables": {
       "match": "(@[#&]?|#|&)([A-Za-z_][A-Za-z0-9_]*)",

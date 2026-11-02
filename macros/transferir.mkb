@@ -1,19 +1,19 @@
-import commons.chest
+import commons.chest;
 
 
-if(on)
-    toggle(on)
-    log("OFF!")
+if(on){
+    toggle(on);
+    log("OFF!");
 elseif
-    toggle(on)
-    log("ON!")
-endif
+    toggle(on);
+    log("ON!");
+}
 
 #iid = 261 
 
-do()
+do(){
     // até o final da mkb trap
-    withdraw_item("%#iid%","transferir")
-    wait(1t)
-    stock_item("%#iid%","guardar")
-loop
+    withdraw_item("%#iid%","transferir");
+    wait(1t);
+    stock_item("%#iid%","guardar");
+}

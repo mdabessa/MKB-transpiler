@@ -1,4 +1,4 @@
-import commons.global
+import commons.global;
 
 // 	Login e inciar macros ao entrar no server.
 @#money = 0
@@ -8,22 +8,22 @@ import commons.global
 @&main_nickname = "zaaaht"
 &senha = ""
 
-echo("/login %&senha%")
-wait(1)
-echo("/menuloja off")
-wait(1)
-echo("/pvp off")
-wait(1)
+echo("/login %&senha%");
+wait(1);
+echo("/menuloja off");
+wait(1);
+echo("/pvp off");
+wait(1);
 
 wait(5000ms);
-echo("/money")
+echo("/money");
 wait(3000ms);
 
 // Redefinir o @#money_change apos atualizar o @#money 
-set(@#money_change, 0)
+set(@#money_change, 0);
 wait(1000ms);
-echo("/money")
+echo("/money");
 wait(1000ms);
 
 // Religar todos os macros que estavam ativos
-reload()
+reload();

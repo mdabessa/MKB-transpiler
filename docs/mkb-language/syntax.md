@@ -157,15 +157,94 @@ the macro runs; `tools/validate.py` reports that mistake as `W005`.
 MKB is a pre-processor, not a new scripting language. These are **not**
 available, and none of them will ever silently work:
 
-| You might expect | Reality |
-| --- | --- |
-| `if` with `{ }` braces | Only the mod's `if … endif` |
-| Expressions rewritten (`a+b` folded) | Text is passed through verbatim |
-| Multi-line strings | Not supported by the mod either |
-| Block comments `/* … */` | Not a comment |
-| Statements on one line separated by `;` | One statement per line |
-| `import` anywhere in the file | Only in the [leading block](modules.md#position) |
-| Runtime functions with a call stack | Functions are [inlined textually](functions.md) |
+|| You might expect | Reality |
+|| --- | --- |
+|| Expressions rewritten (`a+b` folded) | Text is passed through verbatim |
+|| Multi-line strings | Not supported by the mod either |
+|| Block comments `/* … */` | Not a comment |
+|| Statements on one line separated by `;` | One statement per line |
+|| `import` anywhere in the file | Only in the [leading block](modules.md#position) |
+|| Runtime functions with a call stack | Functions are [inlined textually](functions.md) |
+
+## Brace Syntax (Syntactic Sugar)
+
+The transpiler supports an ergonomic brace-based syntax for blocks.  When
+enabled, `{ }` can replace the word-marker delimiters (`endif;`, `loop;`, 
+`next;`, `endunsafe;`):
+
+**If blocks:**
+```mkb
+if(%#count% = 0) {
+    log("zero")
+}
+```
+transforms to:
+```txt
+if(%#count% = 0);
+	log("zero");
+endif;
+```
+
+**If-else chains:**
+```mkb
+if(%#count% = 0) {
+    log("zero")
+} else {
+    log("non-zero")
+}
+```
+transforms to:
+```txt
+if(%#count% = 0);
+	log("zero");
+else;
+	log("non-zero");
+endif;
+```
+
+**Loops:**
+```mkb
+do() {
+    inc(#count, 1)
+} while(%#count% < 5);
+```
+transforms to:
+```txt
+do();
+	inc(#count, 1);
+while(%#count% < 5);
+loop;
+```
+
+**For loops:**
+```mkb
+for(#i, 1, 10) {
+    log(%#i%)
+}
+```
+transforms to:
+```txt
+for(#i, 1, 10);
+	log(%#i%);
+next;
+```
+
+**Unsafe blocks:**
+```mkb
+unsafe(5) {
+    log("dangerous")
+}
+```
+transforms to:
+```txt
+unsafe(5);
+	log("dangerous");
+endunsafe;
+```
+
+Note: The `{}` syntax is purely syntactic sugar. The transpiler converts all
+braces to the mod's word-marker syntax before output. No runtime overhead is
+introduced.
 
 ## Next
 

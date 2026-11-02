@@ -32,6 +32,7 @@ FEATURES = {
     "local scoping between functions": "04-scoping.mkb",
     "block families: if/elseif/else, for/next, do/until/loop": "05-blocks.mkb",
     "color constants library": "06-colors.mkb",
+    "brace-based block syntax": "07-braces.mkb",
 }
 
 

@@ -55,6 +55,26 @@ Any new rules should be added to the linter and validator, with proper documenta
 
 - [ ] Import Naming: Currently, the import is resolved as global (e.g., `import commons.math;` makes `*` all inside `commons.math` available), instead it should have to be imported as a namespace (e.g., `import commons.math` -> math.*).
 - [ ] Support for selective imports (e.g., `import commons.math { abs, sqrt };`).
+- [ ] Support for import aliasing (e.g., `import commons.math as math;`).
+- [ ] Support for import renaming (e.g., `import commons.math { abs as absolute, sqrt as square_root };`).
+- [x] Instead of using words as endblock markers (e.g., `endfunction`, `endif`), use a more natural syntax with braces (e.g., `function name(params) { ... }`, `if (condition) { ... }`).
+   1. Conditional family: IF ... ENDIF
+      IF (expression) {} -> IF (expression) ... ENDIF
+      IFMATCHES (expression) {} -> IFMATCHES (expression) ... ENDIF
+      IF(expression) {} ELSEIF() {} ELSE {} -> IF (expression) ... ELSEIF  (expression) ... ELSE ... ENDIF
+   2. Loop family: two sub-types
+      - DO
+         DO {} -> DO ... LOOP // Infinite loop, no condition
+         DO (n) {} -> DO (n) ... UNTIL // Loop with count
+      - FOR / FOREACH 
+         FOR (i;start;end) {} -> FOR (i;start;end) ... NEXT // Loop with count
+      UNTIL AND WHILE Modifiers:
+      UNTIL (expression) {} -> DO ... UNTIL (expression) loop // Stop when expression is true
+      WHILE (expression) {} -> DO ... WHILE (expression) loop // Stop when expression is false
+   3. Function family: FUNCTION ... ENDFUNCTION
+      FUNCTION name(params) {} -> It will be expanded to the transpiler; ENDFUNCTION should be removed.
+   4. UNSAFE:
+      UNSAFE {} -> UNSAFE ... ENDUNSAFE // Unsafe block, no condition
 - [x] Create new global constants for the colors.
 - [ ] Better way to handle variable types, making it more natural and easier to use (e.g., `#var` for numbers, `&var` for strings, `@var` for global variables, etc.).
 - [ ] Optimization: Remove any unused variables, functions, and imports from the generated code.

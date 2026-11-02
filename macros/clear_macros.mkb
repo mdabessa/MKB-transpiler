@@ -1,7 +1,7 @@
-import commons.commons
+import commons.commons;
 
 join(", ",@&macros[],&mac);
-print("Macros atuais: [%&mac%]")
-unset(@&macros[])
+print("Macros atuais: [%&mac%]");
+unset(@&macros[]);
 join(", ",@&macros[],&mac);
-print("Macros pos clear: [%&mac%]")
+print("Macros pos clear: [%&mac%]");

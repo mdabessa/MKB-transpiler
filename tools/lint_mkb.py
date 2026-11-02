@@ -51,6 +51,10 @@ sys.path.insert(0, str(TOOLS_DIR))
 
 import validate  # noqa: E402
 
+# Import text processing from mkb package (strips markers + desugars braces)
+sys.path.insert(0, str(REPO_ROOT))
+from mkb.utils import process_text  # noqa: E402
+
 Diagnostic = validate.Diagnostic
 SEVERITIES = validate.SEVERITIES
 SEVERITY_ORDER = validate.SEVERITY_ORDER
@@ -100,7 +104,8 @@ class Scope:
 
 def parse_module(path: Path) -> Module:
     text = path.read_text(encoding="utf-8", errors="replace")
-    statements, problems, open_string = validate.split_statements(text, 0, len(text))
+    processed = process_text(text)
+    statements, problems, open_string = validate.split_statements(processed, 0, len(processed))
     return Module(path=path, statements=statements, lex_problems=problems,
                   open_string=open_string)
 
@@ -197,9 +202,11 @@ def merge_imported(module: Module, scope: Scope, seen: set[Path]) -> None:
 def lint_text(text: str, filename: str, known: dict[str, validate.Keyword],
               repo_index: dict[str, list[str]] | None = None,
               global_reads: dict[str, int] | None = None) -> list[Diagnostic]:
-    statements, problems, open_string = validate.split_statements(text, 0, len(text))
+    # Process text: strip markers and desugar braces
+    processed = process_text(text)
+    statements, problems, open_string = validate.split_statements(processed, 0, len(processed))
     module = Module(Path(filename), statements, problems, open_string)
-    return lint_module(module, known, repo_index or {}, text, global_reads)
+    return lint_module(module, known, repo_index or {}, processed, global_reads)
 
 
 def lint_module(module: Module, known: dict[str, validate.Keyword],

@@ -1,0 +1,48 @@
+$${
+// [Fixture] Brace syntax support for if/for/do blocks
+#count = 0;
+
+// if with braces
+if(%#count% = 0) {
+    log("zero");
+}
+
+// if-else with braces
+if(%#count% = 0) {
+    log("zero");
+} else {
+    log("non-zero");
+}
+
+// if-elseif-else with braces
+if(%#count% = 0) {
+    log("zero");
+} elseif(%#count% = 1) {
+    log("one");
+} else {
+    log("many");
+}
+
+// do-while with braces
+do() {
+    inc(#count, 1);
+} while(%#count% < 5);
+
+// for with braces
+for(#step, 1, 3) {
+    inc(#count, 1);
+}
+
+// nested braces
+if(%#count% > 0) {
+    log("positive count");
+    if(%#count% > 5) {
+        log("big count");
+    }
+}
+
+// unsafe with braces
+unsafe(5) {
+    log("unsafe block");
+}
+}$$
